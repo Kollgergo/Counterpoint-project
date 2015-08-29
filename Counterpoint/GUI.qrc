@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/" >
+		<file>res/whole_note.png</file>
+        <file>res/half_note.png</file>
+		<file>res/quarter_note.png</file>
+		<file>res/whole_rest.png</file>
+		<file>res/half_rest.png</file>
+		<file>res/quarter_rest.png</file>
+		<file>res/eighth_rest.png</file>
+    </qresource>
+</RCC>

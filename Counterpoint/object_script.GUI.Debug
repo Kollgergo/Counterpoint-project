@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\score.o
+./debug\note.o
+./debug\staff.o
+./debug\cpsystem.o
+./debug\clef.o
+./debug\keysignature.o
+./debug\scoreviewmodel.o
+./debug\mainwindow.o
+./debug\vnote.o
+./debug\vstaff.o
+./debug\vstaffline.o
+./debug\qrc_GUI.o
+./debug\moc_mainwindow.o
+./debug\moc_vnote.o
+);

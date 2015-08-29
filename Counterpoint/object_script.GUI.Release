@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\score.o
+./release\note.o
+./release\staff.o
+./release\cpsystem.o
+./release\clef.o
+./release\keysignature.o
+./release\scoreviewmodel.o
+./release\mainwindow.o
+./release\vnote.o
+./release\vstaff.o
+./release\vstaffline.o
+./release\qrc_GUI.o
+./release\moc_mainwindow.o
+./release\moc_vnote.o
+);
