@@ -21,7 +21,7 @@ public:
 
     void addNote(int pitch, int duration, unsigned int where = 0);
     bool deleteNote(unsigned int which);
-    const Note& getNoteByNum(unsigned int which);
+    Note& getNoteByNum(unsigned int which);
     unsigned int getNumOfNotes() const;
 
     void transpose(int interval);

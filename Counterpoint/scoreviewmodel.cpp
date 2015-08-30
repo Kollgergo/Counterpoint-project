@@ -42,7 +42,7 @@ bool ScoreViewModel::deleteNote(unsigned int staffnum, unsigned int which)
     return score->getStaffByNum(staffnum).deleteNote(which);
 }
 
-const Note &ScoreViewModel::getNoteByNum(unsigned int staffnum ,unsigned int which)
+Note &ScoreViewModel::getNoteByNum(unsigned int staffnum ,unsigned int which)
 {
     return score->getStaffByNum(staffnum).getNoteByNum(which);
 }
@@ -545,3 +545,83 @@ ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsi
 
     return type;
 }
+
+void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos)
+{
+    int octave_counter = 0;
+    int newdatapos;
+
+    /*while(newscorepos > 7){
+        newscorepos -= 7;
+        octave_counter++;
+    }*/
+
+    switch (clefs.at(staffnumber-1).getClef()) {
+    case Clef::treble:
+        newscorepos += 7;
+        break;
+    case Clef::tenor:
+        newscorepos += 1;
+        break;
+    case Clef::alto:
+        newscorepos -= 1;
+        break;
+    case Clef::bass:
+        newscorepos -= 5;
+        break;
+    default:
+        break;
+    }
+
+    switch (newscorepos) {
+    case 0:
+        newdatapos = -11;
+        break;
+    case 1:
+        newdatapos = -10;
+        break;
+    case 2:
+        newdatapos = -8;
+        break;
+    case 3:
+       newdatapos = -7;
+        break;
+    case 4:
+        newdatapos = -5;
+        break;
+    case 5:
+        newdatapos = -3;
+        break;
+    case 6:
+        newdatapos = -1;
+        break;
+    case 7:
+        newdatapos = 0;
+        break;
+    case 8:
+        newdatapos = 2;
+        break;
+    case 9:
+        newdatapos = 4;
+        break;
+    case 10:
+        newdatapos = 6;
+        break;
+    case 11:
+        newdatapos = 8;
+        break;
+    case 12:
+        newdatapos = 10;
+        break;
+    case 13:
+        newdatapos = 11;
+        break;
+    default:
+        newdatapos = 0;
+        break;
+    }
+
+    //getNoteByNum(staffnumber, notenumber).setPitch(newdatapos);
+    score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
+}
+

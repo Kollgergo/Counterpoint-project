@@ -29,13 +29,17 @@ public:
 
     void addNote(unsigned int staffnum, int pitch, int duration, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);
-    const Note& getNoteByNum(unsigned int staffnum, unsigned int which);
+    Note& getNoteByNum(unsigned int staffnum, unsigned int which);
     unsigned int getNumOfNotes(unsigned int staffnum) const;
     void transpose(int interval);
 
     int getPosition(unsigned int staffnumber, unsigned int notenumber);
     accents getAccent(unsigned int staffnumber, unsigned int notenumber);
     noteTypes getType(unsigned int staffnumber, unsigned int notenumber);
+
+    void updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos);
+    void updateAccent(unsigned int staffnumber, unsigned int notenumber, accents newaccent);
+    void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
 
     void makeLilyPond();
 

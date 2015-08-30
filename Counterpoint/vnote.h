@@ -30,7 +30,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 signals:
-    void notePosChanging(unsigned int spos);
+    void notePosChanging(VNote *note);
 
 private:
     QPixmap pixmap;

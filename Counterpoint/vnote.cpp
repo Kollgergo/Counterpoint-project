@@ -196,7 +196,7 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         VStaffLine *colStaffLine = (VStaffLine *)colList.last();
         this->setScorepos(temp->getVstafflines().indexOf(colStaffLine));
 
-        emit this->notePosChanging(getScorepos());
+        emit this->notePosChanging(this);
     }
 
     if(shadow != NULL){

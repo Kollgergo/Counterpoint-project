@@ -37,7 +37,7 @@ private slots:
     void on_showButton_clicked();
 
 public slots:
-    void notePosChanged(unsigned int spos);
+    void notePosChanged(VNote *note);
 
 private:
     Ui::MainWindow *ui;

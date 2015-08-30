@@ -20,7 +20,7 @@ bool Staff::deleteNote(unsigned int which)
     }
 }
 
-const Note &Staff::getNoteByNum(unsigned int which)
+Note &Staff::getNoteByNum(unsigned int which)
 {
     return notes.at(which-1);
 }

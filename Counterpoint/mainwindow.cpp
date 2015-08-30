@@ -39,20 +39,13 @@ void MainWindow::showScore()
 {
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
         this->showNextVStaff(new VStaff);
-        //newstaff->setY((i-1)*100);
-//        foreach (VStaffLine line, newstaff->getVstafflines()) {
-//            line.setY((i-1)*100);
-//        }
-//        for(int j=0; j<newstaff->getVstafflines().size(); j++){
-//            newstaff->getVstafflines().at(j)->setY((i-1)*100);
-//        }
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
             VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), vstaffs.last());
 
             vstaffs.last()->showNextVNote(newnote);
 
-            connect(vstaffs.last()->getVnotes().last(), SIGNAL(notePosChanging(unsigned int)), this, SLOT(notePosChanged(unsigned int)));
+            connect(vstaffs.last()->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
         }
     }
 
@@ -60,11 +53,29 @@ void MainWindow::showScore()
 
 void MainWindow::showNextVStaff(VStaff *vstaff)
 {
+    int idx = 0;
+    if(!vstaffs.isEmpty()){
+        idx = vstaffs.size();
+    }
+
     vstaffs.push_back(vstaff);
-    /*foreach (VStaffLine *line, vstaffs.last()->getVstafflines()) {
-        line->setY(100*vstaffs.size());
-    }*/
+
+    foreach (VStaffLine *line, vstaffs.last()->getVstafflines()) {
+        int prevY = line->y();
+        line->setY(prevY+(idx*200));
+    }
+
     scene->addItem(vstaffs.last());
+}
+
+void MainWindow::updateNoteData(VNote *note)
+{
+    for(int i=0; i<vstaffs.size(); i++){
+        if(vstaffs.at(i)->getVnotes().contains(note)){
+            qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
+            svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(note)+1, note->getScorepos());
+        }
+    }
 }
 
 void MainWindow::on_showButton_clicked()
@@ -72,10 +83,12 @@ void MainWindow::on_showButton_clicked()
     showScore();
 }
 
-void MainWindow::notePosChanged(unsigned int spos)
+void MainWindow::notePosChanged(VNote *note)
 {
     qDebug() << "notepos changed";
-    //(VNote *)sender()->setObjectName();
+
+    updateNoteData(note);
+
 }
 QList<VStaff *> MainWindow::getVstaffs() const
 {

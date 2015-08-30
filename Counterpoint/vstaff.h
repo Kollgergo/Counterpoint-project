@@ -22,6 +22,7 @@ public:
     void showNextVNote(VNote *vnote);
 
 private:
+    QPixmap clefpixmap;
     QList <VStaffLine *> vstafflines;
     QList<VNote *> vnotes;
 
