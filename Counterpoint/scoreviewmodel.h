@@ -26,6 +26,7 @@ public:
     unsigned int getNumOfStaffs() const;
     void addStaff(Clef::clefNames clef = Clef::treble, int keysig = 0, unsigned int where = 0);
     void deleteStaff(unsigned int which);
+    Clef::clefNames getClefByNum(int which);
 
     void addNote(unsigned int staffnum, int pitch, int duration, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);

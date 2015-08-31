@@ -1,10 +1,10 @@
 #include "vstaff.h"
 
-VStaff::VStaff(QGraphicsItem *parent) : QGraphicsObject(parent)
+VStaff::VStaff(Clef::clefNames clef, QGraphicsItem *parent) : QGraphicsObject(parent)
 {
     //setFlag(ItemHasNoContents);
 
-    clefpixmap = QPixmap("./res/half_note.png");
+    this->clef = clef;
 
     for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(this));
 
@@ -30,6 +30,7 @@ VStaff::VStaff(QGraphicsItem *parent) : QGraphicsObject(parent)
     vstafflines.at(12)->setPos(0, -60);
     vstafflines.at(12)->setOpacity(0.1);
 
+
 }
 
 
@@ -42,11 +43,39 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
+    //Q_UNUSED(painter);
 
-    clefpixmap.load("./res/treble_clef.png");
+    QPixmap clefpixmap;
 
-    painter->setRenderHint(QPainter::Antialiasing);
-    painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+    switch (clef) {
+    case Clef::treble:
+        clefpixmap = QPixmap("./res/treble_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        break;
+    case Clef::alto:
+        clefpixmap = QPixmap("./res/c_clef.png");
+        painter->drawPixmap(5,vstafflines.at(10)->y(),54,80,clefpixmap);
+        break;
+    case Clef::tenor:
+        clefpixmap = QPixmap("./res/c_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y(),54,80,clefpixmap);
+        break;
+    case Clef::bass:
+        clefpixmap = QPixmap("./res/bass_clef.png");
+        painter->drawPixmap(5,vstafflines.at(10)->y(),63,70,clefpixmap);
+        break;
+    default:
+        clefpixmap = QPixmap("./res/treble_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        break;
+    }
+
+    QPixmap barline = QPixmap("./res/double_barline");
+
+
+    painter->drawPixmap(vstafflines.at(0)->boundingRect().right()-22, vstafflines.at(10)->y()+1, 23, 80, barline);
+//    painter->drawPixmap(0, 0, 32, 113, barline);
+
     /*QPen pen(Qt::red)
     painter->setPen(pen);
     painter->drawRect(boundingRect());*/

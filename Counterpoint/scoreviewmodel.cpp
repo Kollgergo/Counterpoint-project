@@ -32,6 +32,11 @@ void ScoreViewModel::deleteStaff(unsigned int which)
     score->deleteStaff(which);
 }
 
+Clef::clefNames ScoreViewModel::getClefByNum(int which)
+{
+    return clefs.at(which).getClef();
+}
+
 void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, unsigned int where)
 {
     score->getStaffByNum(staffnum).addNote(pitch, duration, where);
@@ -483,10 +488,10 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
             pos -= 7;
             break;
         case Clef::tenor:
-            pos -= 1;
+            pos += 1;
             break;
         case Clef::alto:
-            pos += 1;
+            pos -= 1;
             break;
         case Clef::bass:
             pos += 5;
@@ -499,6 +504,48 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
     pos += octave_counter * 7;
 
     return pos;
+}
+
+ScoreViewModel::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
+{
+    switch (getNoteByNum(staffnumber, notenumber).getPitch()) { //calculate accent
+    case -32767:
+        return none;
+        break;
+    case -11:
+        return sharp;
+        break;
+    case -9:
+        return sharp;
+        break;
+    case -6:
+        return sharp;
+        break;
+    case -4:
+        return sharp;
+        break;
+    case -2:
+        return sharp;
+        break;
+    case 1:
+       return sharp;
+        break;
+    case 3:
+        return sharp;
+        break;
+    case 6:
+        return sharp;
+        break;
+    case 8:
+        return sharp;
+        break;
+    case 10:
+        return sharp;
+        break;
+    default:
+        return none;
+        break;
+    }
 }
 
 ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsigned int notenumber)
@@ -561,10 +608,10 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         newscorepos += 7;
         break;
     case Clef::tenor:
-        newscorepos += 1;
+        newscorepos -= 1;
         break;
     case Clef::alto:
-        newscorepos -= 1;
+        newscorepos += 1;
         break;
     case Clef::bass:
         newscorepos -= 5;

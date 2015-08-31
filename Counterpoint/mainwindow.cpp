@@ -35,13 +35,20 @@ void MainWindow::setSvm(ScoreViewModel *value)
     svm = value;
 }
 
+void MainWindow::on_showButton_clicked()
+{
+    scene->clear();
+    vstaffs.clear();
+    showScore();
+}
+
 void MainWindow::showScore()
 {
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
-        this->showNextVStaff(new VStaff);
+        this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
-            VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), vstaffs.last());
+            VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last());
 
             vstaffs.last()->showNextVNote(newnote);
 
@@ -76,11 +83,6 @@ void MainWindow::updateNoteData(VNote *note)
             svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(note)+1, note->getScorepos());
         }
     }
-}
-
-void MainWindow::on_showButton_clicked()
-{
-    showScore();
 }
 
 void MainWindow::notePosChanged(VNote *note)

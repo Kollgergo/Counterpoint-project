@@ -5,13 +5,14 @@
 #include <QtWidgets>
 #include "vstaffline.h"
 #include "vnote.h"
+#include "clef.h"
 
 class VNote;
 
 class VStaff : public QGraphicsObject
 {
 public:
-    VStaff(QGraphicsItem *parent = 0);
+    VStaff(Clef::clefNames clef = Clef::treble, QGraphicsItem *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -22,7 +23,7 @@ public:
     void showNextVNote(VNote *vnote);
 
 private:
-    QPixmap clefpixmap;
+    Clef::clefNames clef;
     QList <VStaffLine *> vstafflines;
     QList<VNote *> vnotes;
 

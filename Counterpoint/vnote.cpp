@@ -1,6 +1,6 @@
 #include "vnote.h"
 
-VNote::VNote(unsigned int spos, ScoreViewModel::noteTypes ntype, QGraphicsObject *parent) : QGraphicsObject(parent)
+VNote::VNote(unsigned int spos, ScoreViewModel::noteTypes ntype, ScoreViewModel::accents acc, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
     pixmap = QPixmap("./res/half_note.png");
     shadow = NULL;
@@ -15,7 +15,7 @@ VNote::VNote(unsigned int spos, ScoreViewModel::noteTypes ntype, QGraphicsObject
 
     scorepos = spos;
     notetype = ntype;
-    accent = ScoreViewModel::none;
+    accent = acc;
 
     if(this->parentItem() != 0){ // if not shadow, process scorepos
         VStaff *temp = (VStaff *)this->parentItem();
@@ -104,6 +104,23 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         break;
     }
 
+    QPixmap accentpixmap = QPixmap();
+
+    switch (accent) {
+    case ScoreViewModel::sharp:
+        accentpixmap.load("./res/sharp.png");
+        painter->drawPixmap(-20,-5,16,35,accentpixmap);
+        break;
+    case ScoreViewModel::flat:
+        accentpixmap.load("./res/flat.png");
+        painter->drawPixmap(-20,-15,16,35,accentpixmap);
+        break;
+    case ScoreViewModel::none:
+
+        break;
+    default:
+        break;
+    }
 
     if(this->isSelected()){
         QPen pen(Qt::red);
@@ -129,19 +146,19 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
         switch (this->getNotetype()) {
         case ScoreViewModel::whole:
-            this->shadow = new VNote(getScorepos(),ScoreViewModel::whole,0);
+            this->shadow = new VNote(getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, 0);
             break;
         case ScoreViewModel::half:
-            this->shadow = new VNote(getScorepos(),ScoreViewModel::half,0);
+            this->shadow = new VNote(getScorepos(),ScoreViewModel::half, ScoreViewModel::none, 0);
             break;
         case ScoreViewModel::quarter:
-            this->shadow = new VNote(getScorepos(),ScoreViewModel::quarter,0);
+            this->shadow = new VNote(getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, 0);
             break;
         case ScoreViewModel::eight:
-            this->shadow = new VNote(getScorepos(),ScoreViewModel::eight,0);
+            this->shadow = new VNote(getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, 0);
             break;
         default:
-            this->shadow = new VNote(getScorepos(),ScoreViewModel::half,0);
+            this->shadow = new VNote(getScorepos(),ScoreViewModel::half, ScoreViewModel::none, 0);
             break;
         }
 
@@ -197,6 +214,8 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         this->setScorepos(temp->getVstafflines().indexOf(colStaffLine));
 
         emit this->notePosChanging(this);
+
+        this->scene()->update();
     }
 
     if(shadow != NULL){
