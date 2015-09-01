@@ -4,7 +4,6 @@ INPUT(
 ./release\note.o
 ./release\staff.o
 ./release\cpsystem.o
-./release\clef.o
 ./release\keysignature.o
 ./release\scoreviewmodel.o
 ./release\mainwindow.o

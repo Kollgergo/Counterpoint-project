@@ -48,9 +48,11 @@ void MainWindow::showScore()
         this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
-            VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last());
+            //itt valami nem jó alt és tenor kulcsnál!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            //update után rossz érték jön vissza az adatmodellből
+            //VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last());
 
-            vstaffs.last()->showNextVNote(newnote);
+            vstaffs.last()->showNextVNote(new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
 
             connect(vstaffs.last()->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
         }

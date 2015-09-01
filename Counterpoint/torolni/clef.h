@@ -4,7 +4,7 @@
 class Clef
 {
 public:
-    enum clefNames{treble, tenor, alto, bass};
+
 
 private:
     clefNames clef;

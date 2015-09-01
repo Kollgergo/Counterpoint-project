@@ -29,33 +29,39 @@ Cpsystem::~Cpsystem()
 
 void Cpsystem::test()
 {
-
-    scoreview->addStaff(Clef::treble, 0, 0);
+/*
+    scoreview->addStaff(ScoreViewModel::treble, 0, 0);
     scoreview->addNote(1, 0, 4, 0);
-    scoreview->addNote(1, 3, 4, 0);
+    scoreview->addNote(1, 4, 4, 0);
     scoreview->addNote(1, 0, 4, 0);
-    scoreview->addNote(1, 0, 4, 0);
-    scoreview->addNote(1, 8, 2, 0);
+    scoreview->addNote(1, 4, 4, 0);
     scoreview->addNote(1, 7, 2, 0);
-
-    scoreview->addStaff(Clef::alto, 0, 0);
-    scoreview->addNote(2, 0, 2, 0);
-    scoreview->addNote(2, 0, 2, 0);
-    scoreview->addNote(2, 7, 2, 0);
-    scoreview->addNote(2, 7, 2, 0);
-
-    scoreview->addStaff(Clef::tenor, 0, 0);
-    scoreview->addNote(3, 0, 2, 0);
-    scoreview->addNote(3, 0, 2, 0);
+    scoreview->addNote(1, 7, 2, 0);
+*/
+    scoreview->addStaff(ScoreViewModel::alto, 0, 0);
+    scoreview->addNote(1, 0, 4, 0);
+    scoreview->addNote(1, 4, 4, 0);
+    scoreview->addNote(1, 0, 4, 0);
+    scoreview->addNote(1, 4, 4, 0);
+    scoreview->addNote(1, 7, 2, 0);
+    scoreview->addNote(1, 7, 2, 0);
+/*
+    scoreview->addStaff(ScoreViewModel::tenor, 0, 0);
+    scoreview->addNote(3, 0, 4, 0);
+    scoreview->addNote(3, 4, 4, 0);
+    scoreview->addNote(3, 0, 4, 0);
+    scoreview->addNote(3, 4, 4, 0);
     scoreview->addNote(3, 7, 2, 0);
     scoreview->addNote(3, 7, 2, 0);
 
-    scoreview->addStaff(Clef::bass, 0, 0);
-    scoreview->addNote(4, -15, 2, 0);
-    scoreview->addNote(4, -20, 2, 0);
-    scoreview->addNote(4, -12, 2, 0);
-    scoreview->addNote(4, -8, 2, 0);
-
+    scoreview->addStaff(ScoreViewModel::bass, 0, 0);
+    scoreview->addNote(4, -12, 4, 0);
+    scoreview->addNote(4, -8, 4, 0);
+    scoreview->addNote(4, -12, 4, 0);
+    scoreview->addNote(4, -8, 4, 0);
+    scoreview->addNote(4, -5, 2, 0);
+    scoreview->addNote(4, -5, 2, 0);
+*/
 
 
 

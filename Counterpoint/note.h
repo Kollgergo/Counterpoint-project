@@ -1,9 +1,5 @@
 #ifndef NOTE_H
 #define NOTE_H
-#include <iostream>
-#include <stdlib.h>
-#include <sstream>
-
 
 class Note
 {
@@ -14,6 +10,7 @@ public:
 private:
     int pitch;
     int duration;
+
 
 public:
     Note(int pi = Cpitch, int dur = 4);

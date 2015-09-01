@@ -1,6 +1,6 @@
 #include "vstaff.h"
 
-VStaff::VStaff(Clef::clefNames clef, QGraphicsItem *parent) : QGraphicsObject(parent)
+VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsItem *parent) : QGraphicsObject(parent)
 {
     //setFlag(ItemHasNoContents);
 
@@ -48,19 +48,19 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     QPixmap clefpixmap;
 
     switch (clef) {
-    case Clef::treble:
+    case ScoreViewModel::treble:
         clefpixmap = QPixmap("./res/treble_clef.png");
         painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
         break;
-    case Clef::alto:
+    case ScoreViewModel::alto:
         clefpixmap = QPixmap("./res/c_clef.png");
         painter->drawPixmap(5,vstafflines.at(10)->y(),54,80,clefpixmap);
         break;
-    case Clef::tenor:
+    case ScoreViewModel::tenor:
         clefpixmap = QPixmap("./res/c_clef.png");
         painter->drawPixmap(5,vstafflines.at(12)->y(),54,80,clefpixmap);
         break;
-    case Clef::bass:
+    case ScoreViewModel::bass:
         clefpixmap = QPixmap("./res/bass_clef.png");
         painter->drawPixmap(5,vstafflines.at(10)->y(),63,70,clefpixmap);
         break;

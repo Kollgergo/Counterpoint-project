@@ -10,7 +10,6 @@ SOURCES += main.cpp \
     note.cpp \
     staff.cpp \
     cpsystem.cpp \
-    clef.cpp \
     keysignature.cpp \
     scoreviewmodel.cpp \
     mainwindow.cpp \
@@ -23,7 +22,6 @@ HEADERS += \
     note.h \
     staff.h \
     cpsystem.h \
-    clef.h \
     keysignature.h \
     scoreviewmodel.h \
     mainwindow.h \

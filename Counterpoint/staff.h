@@ -2,7 +2,6 @@
 #define STAFF_H
 #include <iostream>
 #include <vector>
-#include "clef.h"
 #include "note.h"
 
 
