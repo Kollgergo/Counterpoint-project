@@ -4,8 +4,33 @@
 \new Staff{
 	\override Staff.TimeSignature #'stencil = ##f
 	\set Score.timing = ##f
+	\clef treble
 	{
-	 c'1	 e'2	 c'4	 e'8	 r1	 r2	 r4	 r8
-\bar "|."
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef alto
+	{
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef tenor
+	{
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef bass
+	{
+	c4	e4	c4	e4	g2	g2
+	\bar "|."
 	}
 }>>

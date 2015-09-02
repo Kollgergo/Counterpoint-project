@@ -39,6 +39,8 @@ private slots:
 
     void on_showButton_clicked();
 
+    void on_openButton_clicked();
+
 public slots:
     void notePosChanged(VNote *note);
 

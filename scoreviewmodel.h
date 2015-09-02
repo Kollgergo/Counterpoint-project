@@ -48,6 +48,7 @@ public:
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
 
     void makeLilyPond();
+    void readLilyPond();
 
 };
 

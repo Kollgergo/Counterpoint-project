@@ -70,7 +70,25 @@ void ScoreViewModel::makeLilyPond()
 
     for(unsigned int i=0; i<score->getNumOfStaffs(); i++){
         lilystaff.clear();
-        lilystaff.append("\\new Staff{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\set Score.timing = ##f\n\t{\n");
+        lilystaff.append("\\new Staff{\n\t\\override Staff.TimeSignature #'stencil = ##f\n\t\\set Score.timing = ##f\n");
+        switch (clefs.at(i)) {
+        case treble:
+            lilystaff.append("\t\\clef treble\n");
+            break;
+        case alto:
+            lilystaff.append("\t\\clef alto\n");
+            break;
+        case tenor:
+            lilystaff.append("\t\\clef tenor\n");
+            break;
+        case bass:
+            lilystaff.append("\t\\clef bass\n");
+            break;
+        default:
+            lilystaff.append("\t\\clef treble\n");
+            break;
+        }
+        lilystaff.append("\t{\n");
         string lilynote;
         lilynote.clear();
         for(unsigned int j=0; j<score->getNumOfNotes(i+1); j++){
@@ -110,12 +128,12 @@ void ScoreViewModel::makeLilyPond()
             ss >> durationstring;
 
             if(isrest){
-                lilynote.append(" r");
+                lilynote.append("r");
                 lilynote.append(durationstring);
             }else{
                 switch (note) {
                 case -11:
-                    lilynote.append(" cis");
+                    lilynote.append("cis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -124,7 +142,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -10:
-                    lilynote.append(" d");
+                    lilynote.append("d");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -133,7 +151,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -9:
-                    lilynote.append(" dis");
+                    lilynote.append("dis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -142,7 +160,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -8:
-                    lilynote.append(" e");
+                    lilynote.append("e");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -151,7 +169,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -7:
-                    lilynote.append(" f");
+                    lilynote.append("f");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -160,7 +178,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -6:
-                    lilynote.append(" fis");
+                    lilynote.append("fis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -169,7 +187,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -5:
-                    lilynote.append(" g");
+                    lilynote.append("g");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -178,7 +196,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -4:
-                    lilynote.append(" gis");
+                    lilynote.append("gis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -187,7 +205,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -3:
-                    lilynote.append(" a");
+                    lilynote.append("a");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -196,7 +214,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -2:
-                    lilynote.append(" ais");
+                    lilynote.append("ais");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -205,7 +223,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case -1:
-                    lilynote.append(" b");
+                    lilynote.append("b");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -215,7 +233,7 @@ void ScoreViewModel::makeLilyPond()
                     break;
 
                 case 0:
-                    lilynote.append(" c");
+                    lilynote.append("c");
                     if(isLowerC){
                         if(octave_counter>0){
                             for(unsigned int k=1; k<octave_counter; k++){
@@ -235,7 +253,7 @@ void ScoreViewModel::makeLilyPond()
                     }
                     break;
                 case 1:
-                    lilynote.append(" cis");
+                    lilynote.append("cis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -246,7 +264,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 2:
-                    lilynote.append(" d");
+                    lilynote.append("d");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -257,7 +275,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 3:
-                    lilynote.append(" dis");
+                    lilynote.append("dis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -268,7 +286,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 4:
-                    lilynote.append(" e");
+                    lilynote.append("e");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -279,7 +297,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 5:
-                    lilynote.append(" f");
+                    lilynote.append("f");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -290,7 +308,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 6:
-                    lilynote.append(" fis");
+                    lilynote.append("fis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -301,7 +319,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 7:
-                    lilynote.append(" g");
+                    lilynote.append("g");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -312,7 +330,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 8:
-                    lilynote.append(" gis");
+                    lilynote.append("gis");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -323,7 +341,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 9:
-                    lilynote.append(" a");
+                    lilynote.append("a");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -334,7 +352,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 10:
-                    lilynote.append(" ais");
+                    lilynote.append("ais");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -345,7 +363,7 @@ void ScoreViewModel::makeLilyPond()
                     lilynote.append(durationstring);
                     break;
                 case 11:
-                    lilynote.append(" b");
+                    lilynote.append("b");
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -361,7 +379,7 @@ void ScoreViewModel::makeLilyPond()
             }
             lilystaff.append(lilynote);
         }
-        lilystaff.append("\n\\bar \"|.\"\n");
+        lilystaff.append("\n\t\\bar \"|.\"\n");
         lilystaff.append("\t}\n}");
         lilyscore.append(lilystaff);
     }
@@ -375,6 +393,13 @@ void ScoreViewModel::makeLilyPond()
     lilyfile.open("./export/lilypond.ly");
     lilyfile << lilyscore;
     lilyfile.close();
+
+
+}
+
+void ScoreViewModel::readLilyPond()
+{
+    score->deleteStaff(0);
 
 
 }

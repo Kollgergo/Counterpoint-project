@@ -107,4 +107,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
     }
 }
 
-
+void MainWindow::on_openButton_clicked()
+{
+    svm->readLilyPond();
+}

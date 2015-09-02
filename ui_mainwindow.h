@@ -34,6 +34,7 @@ public:
     QPushButton *addNoteButton;
     QPushButton *exportButton;
     QPushButton *showButton;
+    QPushButton *openButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -70,6 +71,11 @@ public:
 
         verticalLayout->addWidget(showButton);
 
+        openButton = new QPushButton(centralWidget);
+        openButton->setObjectName(QStringLiteral("openButton"));
+
+        verticalLayout->addWidget(openButton);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -93,6 +99,7 @@ public:
         addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
         exportButton->setText(QApplication::translate("MainWindow", "Export", 0));
         showButton->setText(QApplication::translate("MainWindow", "Show Score", 0));
+        openButton->setText(QApplication::translate("MainWindow", "Open LilyPond file", 0));
     } // retranslateUi
 
 };

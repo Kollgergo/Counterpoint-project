@@ -22,8 +22,11 @@ void Score::addStaff(unsigned int where)
 
 bool Score::deleteStaff(unsigned int which)
 {
-    if(which <= staffs.size()){
+    if(which <= staffs.size() && which != 0){
         staffs.erase(staffs.begin()+(which-1));
+        return true;
+    }else if(which == 0){
+        staffs.clear();
         return true;
     }else{
         return false;
