@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[7];
-    char stringdata0[103];
+    QByteArrayData data[8];
+    char stringdata0[110];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,13 @@ QT_MOC_LITERAL(2, 36, 0), // ""
 QT_MOC_LITERAL(3, 37, 23), // "on_exportButton_clicked"
 QT_MOC_LITERAL(4, 61, 21), // "on_showButton_clicked"
 QT_MOC_LITERAL(5, 83, 14), // "notePosChanged"
-QT_MOC_LITERAL(6, 98, 4) // "spos"
+QT_MOC_LITERAL(6, 98, 6), // "VNote*"
+QT_MOC_LITERAL(7, 105, 4) // "note"
 
     },
     "MainWindow\0on_addNoteButton_clicked\0"
     "\0on_exportButton_clicked\0on_showButton_clicked\0"
-    "notePosChanged\0spos"
+    "notePosChanged\0VNote*\0note"
 };
 #undef QT_MOC_LITERAL
 
@@ -67,7 +68,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::UInt,    6,
+    QMetaType::Void, 0x80000000 | 6,    7,
 
        0        // eod
 };
@@ -81,8 +82,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_addNoteButton_clicked(); break;
         case 1: _t->on_exportButton_clicked(); break;
         case 2: _t->on_showButton_clicked(); break;
-        case 3: _t->notePosChanged((*reinterpret_cast< uint(*)>(_a[1]))); break;
+        case 3: _t->notePosChanged((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+        case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VNote* >(); break;
+            }
+            break;
         }
     }
 }
@@ -117,7 +129,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 4)
-            *reinterpret_cast<int*>(_a[0]) = -1;
+            qt_static_metacall(this, _c, _id, _a);
         _id -= 4;
     }
     return _id;

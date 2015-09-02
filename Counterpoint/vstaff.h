@@ -5,13 +5,14 @@
 #include <QtWidgets>
 #include "vstaffline.h"
 #include "vnote.h"
+#include "scoreviewmodel.h"
 
 class VNote;
 
 class VStaff : public QGraphicsObject
 {
 public:
-    VStaff(QGraphicsItem *parent = 0);
+    VStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble, QGraphicsItem *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -22,6 +23,7 @@ public:
     void showNextVNote(VNote *vnote);
 
 private:
+    ScoreViewModel::clefNames clef;
     QList <VStaffLine *> vstafflines;
     QList<VNote *> vnotes;
 

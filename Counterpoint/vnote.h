@@ -14,7 +14,7 @@ class VNote : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VNote(unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half, QGraphicsObject *parent = 0);
+    VNote(unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half, ScoreViewModel::accents acc = ScoreViewModel::none, QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -30,7 +30,7 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 signals:
-    void notePosChanging(unsigned int spos);
+    void notePosChanging(VNote *note);
 
 private:
     QPixmap pixmap;

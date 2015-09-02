@@ -15,13 +15,13 @@ unsigned int ScoreViewModel::getNumOfStaffs() const
     return score->getNumOfStaffs();
 }
 
-void ScoreViewModel::addStaff(Clef::clefNames clef, int keysig, unsigned int where)
+void ScoreViewModel::addStaff(ScoreViewModel::clefNames clef, int keysig, unsigned int where)
 {
     if(where == 0){
-        clefs.push_back(Clef(clef));
+        clefs.push_back(clef);
         keysignatures.push_back(KeySignature(keysig));
     }else{
-        clefs.insert(clefs.begin()+(where-1), Clef(clef));
+        clefs.insert(clefs.begin()+(where-1), clef);
         keysignatures.insert(keysignatures.begin()+(where-1), KeySignature(keysig));
     }
     score->addStaff(where);
@@ -30,6 +30,11 @@ void ScoreViewModel::addStaff(Clef::clefNames clef, int keysig, unsigned int whe
 void ScoreViewModel::deleteStaff(unsigned int which)
 {
     score->deleteStaff(which);
+}
+
+ScoreViewModel::clefNames ScoreViewModel::getClefByNum(int which)
+{
+    return clefs.at(which);
 }
 
 void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, unsigned int where)
@@ -42,7 +47,7 @@ bool ScoreViewModel::deleteNote(unsigned int staffnum, unsigned int which)
     return score->getStaffByNum(staffnum).deleteNote(which);
 }
 
-const Note &ScoreViewModel::getNoteByNum(unsigned int staffnum ,unsigned int which)
+Note &ScoreViewModel::getNoteByNum(unsigned int staffnum ,unsigned int which)
 {
     return score->getStaffByNum(staffnum).getNoteByNum(which);
 }
@@ -478,17 +483,17 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
     }
 
     if(note != Note::rest){
-        switch (clefs.at(staffnumber-1).getClef()) {
-        case Clef::treble:
+        switch (clefs.at(staffnumber-1)) {
+        case ScoreViewModel::treble:
             pos -= 7;
             break;
-        case Clef::tenor:
+        case ScoreViewModel::alto:
             pos -= 1;
             break;
-        case Clef::alto:
+        case ScoreViewModel::tenor:
             pos += 1;
             break;
-        case Clef::bass:
+        case ScoreViewModel::bass:
             pos += 5;
             break;
         default:
@@ -499,6 +504,48 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
     pos += octave_counter * 7;
 
     return pos;
+}
+
+ScoreViewModel::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
+{
+    switch (getNoteByNum(staffnumber, notenumber).getPitch()) { //calculate accent
+    case -32767:
+        return none;
+        break;
+    case -11:
+        return sharp;
+        break;
+    case -9:
+        return sharp;
+        break;
+    case -6:
+        return sharp;
+        break;
+    case -4:
+        return sharp;
+        break;
+    case -2:
+        return sharp;
+        break;
+    case 1:
+       return sharp;
+        break;
+    case 3:
+        return sharp;
+        break;
+    case 6:
+        return sharp;
+        break;
+    case 8:
+        return sharp;
+        break;
+    case 10:
+        return sharp;
+        break;
+    default:
+        return none;
+        break;
+    }
 }
 
 ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsigned int notenumber)
@@ -545,3 +592,203 @@ ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsi
 
     return type;
 }
+
+void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos)
+{
+    int newdatapos;
+
+    switch (clefs.at(staffnumber-1)) {
+    case ScoreViewModel::treble:
+        switch (newscorepos) {
+        case 0:
+            newdatapos = 0;
+            break;
+        case 1:
+            newdatapos = 2;
+            break;
+        case 2:
+            newdatapos = 4;
+            break;
+        case 3:
+           newdatapos = 5;
+            break;
+        case 4:
+            newdatapos = 7;
+            break;
+        case 5:
+            newdatapos = 9;
+            break;
+        case 6:
+            newdatapos = 11;
+            break;
+        case 7:
+            newdatapos = 12;
+            break;
+        case 8:
+            newdatapos = 14;
+            break;
+        case 9:
+            newdatapos = 16;
+            break;
+        case 10:
+            newdatapos = 17;
+            break;
+        case 11:
+            newdatapos = 19;
+            break;
+        case 12:
+            newdatapos = 21;
+            break;
+        default:
+            newdatapos = 0;
+            break;
+        }
+        break;
+    case ScoreViewModel::alto:
+        switch (newscorepos) {
+        case 0:
+            newdatapos = 2;
+            break;
+        case 1:
+            newdatapos = 4;
+            break;
+        case 2:
+            newdatapos = 5;
+            break;
+        case 3:
+           newdatapos = 7;
+            break;
+        case 4:
+            newdatapos = 9;
+            break;
+        case 5:
+            newdatapos = 11;
+            break;
+        case 6:
+            newdatapos = 12;
+            break;
+        case 7:
+            newdatapos = 14;
+            break;
+        case 8:
+            newdatapos = 16;
+            break;
+        case 9:
+            newdatapos = 17;
+            break;
+        case 10:
+            newdatapos = 19;
+            break;
+        case 11:
+            newdatapos = 21;
+            break;
+        case 12:
+            newdatapos = 23;
+            break;
+        default:
+            newdatapos = 0;
+            break;
+        }
+        break;
+    case ScoreViewModel::tenor:
+        switch (newscorepos) {
+        case 0:
+            newdatapos = -1;
+            break;
+        case 1:
+            newdatapos = 0;
+            break;
+        case 2:
+            newdatapos = 2;
+            break;
+        case 3:
+           newdatapos = 4;
+            break;
+        case 4:
+            newdatapos = 5;
+            break;
+        case 5:
+            newdatapos = 7;
+            break;
+        case 6:
+            newdatapos = 9;
+            break;
+        case 7:
+            newdatapos = 11;
+            break;
+        case 8:
+            newdatapos = 12;
+            break;
+        case 9:
+            newdatapos = 14;
+            break;
+        case 10:
+            newdatapos = 16;
+            break;
+        case 11:
+            newdatapos = 18;
+            break;
+        case 12:
+            newdatapos = 20;
+            break;
+        default:
+            newdatapos = 0;
+            break;
+        }
+        break;
+    case ScoreViewModel::bass:
+        switch (newscorepos) {
+        case 0:
+            newdatapos = -20;
+            break;
+        case 1:
+            newdatapos = -19;
+            break;
+        case 2:
+            newdatapos = -17;
+            break;
+        case 3:
+           newdatapos = -15;
+            break;
+        case 4:
+            newdatapos = -13;
+            break;
+        case 5:
+            newdatapos = -12;
+            break;
+        case 6:
+            newdatapos = -10;
+            break;
+        case 7:
+            newdatapos = -8;
+            break;
+        case 8:
+            newdatapos = -7;
+            break;
+        case 9:
+            newdatapos = -5;
+            break;
+        case 10:
+            newdatapos = -3;
+            break;
+        case 11:
+            newdatapos = -1;
+            break;
+        case 12:
+            newdatapos = 0;
+            break;
+        default:
+            newdatapos = 0;
+            break;
+        }
+        break;
+    default:
+        break;
+    }
+
+
+
+    //getNoteByNum(staffnumber, notenumber).setPitch(newdatapos);
+    score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
+}
+

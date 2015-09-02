@@ -1,13 +1,15 @@
 #include "vstaff.h"
 
-VStaff::VStaff(QGraphicsItem *parent) : QGraphicsObject(parent)
+VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsItem *parent) : QGraphicsObject(parent)
 {
-    setFlag(ItemHasNoContents);
+    //setFlag(ItemHasNoContents);
+
+    this->clef = clef;
 
     for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(this));
 
     vstafflines.at(0)->setPos(0, 60);
-    vstafflines.at(0)->setOpacity(0.2);
+    vstafflines.at(0)->setOpacity(0.1);
     vstafflines.at(1)->setPos(0, 50);
     vstafflines.at(1)->setOpacity(0);
     vstafflines.at(2)->setPos(0, 40);
@@ -26,7 +28,8 @@ VStaff::VStaff(QGraphicsItem *parent) : QGraphicsObject(parent)
     vstafflines.at(11)->setPos(0, -50);
     vstafflines.at(11)->setOpacity(0);
     vstafflines.at(12)->setPos(0, -60);
-    vstafflines.at(12)->setOpacity(0.2);
+    vstafflines.at(12)->setOpacity(0.1);
+
 
 }
 
@@ -38,9 +41,45 @@ QRectF VStaff::boundingRect() const
 
 void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    Q_UNUSED(painter);
     Q_UNUSED(option);
     Q_UNUSED(widget);
+    //Q_UNUSED(painter);
+
+    QPixmap clefpixmap;
+
+    switch (clef) {
+    case ScoreViewModel::treble:
+        clefpixmap = QPixmap("./res/treble_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        break;
+    case ScoreViewModel::alto:
+        clefpixmap = QPixmap("./res/c_clef.png");
+        painter->drawPixmap(5,vstafflines.at(10)->y(),54,80,clefpixmap);
+        break;
+    case ScoreViewModel::tenor:
+        clefpixmap = QPixmap("./res/c_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y(),54,80,clefpixmap);
+        break;
+    case ScoreViewModel::bass:
+        clefpixmap = QPixmap("./res/bass_clef.png");
+        painter->drawPixmap(5,vstafflines.at(10)->y(),63,70,clefpixmap);
+        break;
+    default:
+        clefpixmap = QPixmap("./res/treble_clef.png");
+        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        break;
+    }
+
+    QPixmap barline = QPixmap("./res/double_barline");
+
+
+    painter->drawPixmap(vstafflines.at(0)->boundingRect().right()-22, vstafflines.at(10)->y()+1, 23, 80, barline);
+//    painter->drawPixmap(0, 0, 32, 113, barline);
+
+    /*QPen pen(Qt::red)
+    painter->setPen(pen);
+    painter->drawRect(boundingRect());*/
+
 }
 QList<VStaffLine *> VStaff::getVstafflines() const
 {
