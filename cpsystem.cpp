@@ -29,7 +29,7 @@ Cpsystem::~Cpsystem()
 
 void Cpsystem::test()
 {
-/*
+
     scoreview->addStaff(ScoreViewModel::treble, 0, 0);
     scoreview->addNote(1, 0, 4, 0);
     scoreview->addNote(1, 4, 4, 0);
@@ -37,15 +37,15 @@ void Cpsystem::test()
     scoreview->addNote(1, 4, 4, 0);
     scoreview->addNote(1, 7, 2, 0);
     scoreview->addNote(1, 7, 2, 0);
-*/
+
     scoreview->addStaff(ScoreViewModel::alto, 0, 0);
-    scoreview->addNote(1, 0, 4, 0);
-    scoreview->addNote(1, 4, 4, 0);
-    scoreview->addNote(1, 0, 4, 0);
-    scoreview->addNote(1, 4, 4, 0);
-    scoreview->addNote(1, 7, 2, 0);
-    scoreview->addNote(1, 7, 2, 0);
-/*
+    scoreview->addNote(2, 0, 4, 0);
+    scoreview->addNote(2, 4, 4, 0);
+    scoreview->addNote(2, 0, 4, 0);
+    scoreview->addNote(2, 4, 4, 0);
+    scoreview->addNote(2, 7, 2, 0);
+    scoreview->addNote(2, 7, 2, 0);
+
     scoreview->addStaff(ScoreViewModel::tenor, 0, 0);
     scoreview->addNote(3, 0, 4, 0);
     scoreview->addNote(3, 4, 4, 0);
@@ -61,7 +61,7 @@ void Cpsystem::test()
     scoreview->addNote(4, -8, 4, 0);
     scoreview->addNote(4, -5, 2, 0);
     scoreview->addNote(4, -5, 2, 0);
-*/
+
 
 
 

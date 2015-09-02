@@ -458,7 +458,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 9;
         break;
     case 5:
-        pos = 9;
+        pos = 10;
         break;
     case 6:
         pos = 10;
@@ -647,43 +647,43 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::alto:
         switch (newscorepos) {
         case 0:
-            newdatapos = 2;
+            newdatapos = -10;
             break;
         case 1:
-            newdatapos = 4;
+            newdatapos = -8;
             break;
         case 2:
-            newdatapos = 5;
+            newdatapos = -7;
             break;
         case 3:
-           newdatapos = 7;
+           newdatapos = -5;
             break;
         case 4:
-            newdatapos = 9;
+            newdatapos = -3;
             break;
         case 5:
-            newdatapos = 11;
+            newdatapos = -1;
             break;
         case 6:
-            newdatapos = 12;
+            newdatapos = 0;
             break;
         case 7:
-            newdatapos = 14;
+            newdatapos = 2;
             break;
         case 8:
-            newdatapos = 16;
+            newdatapos = 4;
             break;
         case 9:
-            newdatapos = 17;
+            newdatapos = 5;
             break;
         case 10:
-            newdatapos = 19;
+            newdatapos = 7;
             break;
         case 11:
-            newdatapos = 21;
+            newdatapos = 9;
             break;
         case 12:
-            newdatapos = 23;
+            newdatapos = 11;
             break;
         default:
             newdatapos = 0;
@@ -693,46 +693,46 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::tenor:
         switch (newscorepos) {
         case 0:
-            newdatapos = -1;
+            newdatapos = -13;
             break;
         case 1:
-            newdatapos = 0;
+            newdatapos = -12;
             break;
         case 2:
-            newdatapos = 2;
+            newdatapos = -10;
             break;
         case 3:
-           newdatapos = 4;
+           newdatapos = -8;
             break;
         case 4:
-            newdatapos = 5;
+            newdatapos = -7;
             break;
         case 5:
-            newdatapos = 7;
+            newdatapos = -5;
             break;
         case 6:
-            newdatapos = 9;
+            newdatapos = -3;
             break;
         case 7:
-            newdatapos = 11;
+            newdatapos = -1;
             break;
         case 8:
-            newdatapos = 12;
+            newdatapos = 0;
             break;
         case 9:
-            newdatapos = 14;
+            newdatapos = 2;
             break;
         case 10:
-            newdatapos = 16;
+            newdatapos = 4;
             break;
         case 11:
-            newdatapos = 18;
+            newdatapos = 5;
             break;
         case 12:
-            newdatapos = 20;
+            newdatapos = 7;
             break;
         default:
-            newdatapos = 0;
+            newdatapos = 9;
             break;
         }
         break;

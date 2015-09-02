@@ -37,8 +37,7 @@ void MainWindow::setSvm(ScoreViewModel *value)
 
 void MainWindow::on_showButton_clicked()
 {
-    scene->clear();
-    vstaffs.clear();
+
     showScore();
 }
 
@@ -97,6 +96,15 @@ void MainWindow::notePosChanged(VNote *note)
 QList<VStaff *> MainWindow::getVstaffs() const
 {
     return vstaffs;
+}
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == Qt::Key_Enter){
+        scene->clear();
+        vstaffs.clear();
+        showScore();
+    }
 }
 
 

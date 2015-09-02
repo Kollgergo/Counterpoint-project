@@ -29,6 +29,9 @@ public:
 
     QList<VStaff *> getVstaffs() const;
 
+protected:
+    void keyPressEvent(QKeyEvent * event);
+
 private slots:
     void on_addNoteButton_clicked();
 
