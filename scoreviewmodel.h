@@ -1,7 +1,11 @@
 #ifndef SCOREVIEWMODEL_H
 #define SCOREVIEWMODEL_H
+#include <QRegExp>
+#include <QFile>
 #include <vector>
 #include <iostream>
+#include <string>
+#include <QDebug>
 #include <stdlib.h>
 #include <map>
 #include <sstream>
