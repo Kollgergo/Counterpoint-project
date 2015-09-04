@@ -397,88 +397,129 @@ void ScoreViewModel::makeLilyPond()
 
 }
 
-void ScoreViewModel::readLilyPond()
+void ScoreViewModel::readLilyPond(QString file)
 {
     score->deleteStaff(0);
 
-    QFile inlilyfile("./export/lilypond.ly");
+    QFile inlilyfile(file);
     inlilyfile.open(QIODevice::ReadOnly | QIODevice::Text);
     QString line;
 
-    QRegExp staffregexp("\\new\\sStaff{\\n");
-    QRegExp clefregexp("\\b(treble|alto|tenor|bass)");
-    QRegExp noteregexp("\\b[c,d,e,f,g,a,b](is|es)*('+|,+)*\\d");
+    QRegularExpression staffregexp("^\\new Staff{");
+    QRegularExpression clefregexp("\\b(treble|alto|tenor|bass)");
+    QRegularExpression noteregexp("\\b[c,d,e,f,g,a,b](is|es)*('+|,+)*\\d");
+    QRegularExpressionMatch match;
 
     QString temp = staffregexp.errorString();
     bool valid = staffregexp.isValid();
+    match = staffregexp.match("\\new Staff{\n");
 
     while(!inlilyfile.atEnd()){
         line = inlilyfile.readLine();
 
-        if(staffregexp.indexIn(line) > -1){
+        if(line == "\\new Staff{\n"){ //new Staff
             addStaff(treble, 0, 0);
-        }else if(clefregexp.indexIn(line) > -1){
-            if(clefregexp.cap(1) == "treble"){
-                clefs.back() = treble;
-            }else if(clefregexp.cap(1) == "alto"){
-                clefs.back() = alto;
-            }else if(clefregexp.cap(1) == "tenor"){
-                clefs.back() = tenor;
-            }else if(clefregexp.cap(1) == "bass"){
-                clefs.back() = bass;
-            }
-        }else if(noteregexp.exactMatch(line)){
-            for(int i=1; i<=noteregexp.captureCount(); i++){
-                QString notestring = noteregexp.cap(i);
-                int pitch = 0;
-                int duration = 0;
-                int octave_counter = 0;
-                for(int j=0; j<notestring.size(); j++){
-
-                    if(notestring.at(i)=='c'){
-                        pitch = 0;
-                    }else if(notestring.at(i)=='d'){
-                        pitch = 2;
-                    }else if(notestring.at(i)=='e'){
-                        pitch = 4;
-                    }else if(notestring.at(i)=='f'){
-                        pitch = 5;
-                    }else if(notestring.at(i)=='g'){
-                        pitch = 7;
-                    }else if(notestring.at(i)=='a'){
-                        pitch = 9;
-                    }else if(notestring.at(i)=='b'){
-                        pitch = 11;
-                    }else if(notestring.at(i+1)=='s'){
-                        if(notestring.at(i) == 'i'){
-                            pitch++;
-                        }else if(notestring.at(i) == 'e'){
-                            pitch--;
-                        }
-                    }else if(notestring.at(i)=='\''){
-                        octave_counter++;
-                    }else if(notestring.at(i)==','){
-                        octave_counter--;
-                    }else if(notestring.at(i)=='1'){
-                        duration = 1;
-                    }else if(notestring.at(i)=='2'){
-                        duration = 2;
-                    }else if(notestring.at(i)=='4'){
-                        duration = 4;
-                    }else if(notestring.at(i)=='8'){
-                        duration = 8;
-                    }
-
-                    if(clefs.back() == bass){
-                        pitch -= 12;
-                    }else{
-                        octave_counter--;
-                    }
-
-                    pitch += octave_counter * 12;
-
-                    addNote(getNumOfStaffs(),pitch,duration,0);
+        }else{
+            match = clefregexp.match(line);
+            if(match.hasMatch()){
+                if(match.captured(1) == "treble"){
+                    clefs.back() = treble;
+                }else if(match.captured(1) == "alto"){
+                    clefs.back() = alto;
+                }else if(match.captured(1) == "tenor"){
+                    clefs.back() = tenor;
+                }else if(match.captured(1) == "bass"){
+                    clefs.back() = bass;
                 }
+            }else{
+                match = noteregexp.match(line);
+                if(match.hasMatch()){
+                    QString notestring = line;
+                    int pitch = 0;
+                    int duration = 0;
+                    int octave_counter = 0;
+                    for(int i=0; i<notestring.size(); i++){
+
+                        if(notestring.at(i)=='c'){
+                            pitch = 0;
+                        }else if(notestring.at(i)=='d'){
+                            pitch = 2;
+                        }else if(notestring.at(i)=='e'){
+                            pitch = 4;
+                        }else if(notestring.at(i)=='f'){
+                            pitch = 5;
+                        }else if(notestring.at(i)=='g'){
+                            pitch = 7;
+                        }else if(notestring.at(i)=='a'){
+                            pitch = 9;
+                        }else if(notestring.at(i)=='b'){
+                            pitch = 11;
+                        }else if(i+1 < notestring.size() && notestring.at(i+1)=='s'){
+                            if(notestring.at(i) == 'i'){
+                                pitch++;
+                            }else if(notestring.at(i) == 'e'){
+                                pitch--;
+                            }
+                        }else if(notestring.at(i)=='\''){
+                            octave_counter++;
+                        }else if(notestring.at(i)==','){
+                            octave_counter--;
+                        }else if(notestring.at(i)=='1'){
+                            duration = 1;
+
+                            if(clefs.back() == bass){
+                                pitch -= 12;
+                            }else{
+                                octave_counter--;
+                            }
+
+                            pitch += octave_counter * 12;
+                            octave_counter = 0;
+
+                            addNote(getNumOfStaffs(),pitch,duration,0);
+                        }else if(notestring.at(i)=='2'){
+                            duration = 2;
+
+                            if(clefs.back() == bass){
+                                pitch -= 12;
+                            }else{
+                                octave_counter--;
+                            }
+
+                            pitch += octave_counter * 12;
+                            octave_counter = 0;
+
+                            addNote(getNumOfStaffs(),pitch,duration,0);
+                        }else if(notestring.at(i)=='4'){
+                            duration = 4;
+
+                            if(clefs.back() == bass){
+                                pitch -= 12;
+                            }else{
+                                octave_counter--;
+                            }
+
+                            pitch += octave_counter * 12;
+                            octave_counter = 0;
+
+                            addNote(getNumOfStaffs(),pitch,duration,0);
+                        }else if(notestring.at(i)=='8'){
+                            duration = 8;
+
+                            if(clefs.back() == bass){
+                                pitch -= 12;
+                            }else{
+                                octave_counter--;
+                            }
+
+                            pitch += octave_counter * 12;
+                            octave_counter = 0;
+
+                            addNote(getNumOfStaffs(),pitch,duration,0);
+                        }
+                    }
+                }
+
             }
         }
     }

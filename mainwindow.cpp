@@ -43,13 +43,12 @@ void MainWindow::on_showButton_clicked()
 
 void MainWindow::showScore()
 {
+    scene->clear();
+    vstaffs.clear();
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
         this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
-            //itt valami nem jó alt és tenor kulcsnál!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            //update után rossz érték jön vissza az adatmodellből
-            //VNote *newnote = new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last());
 
             vstaffs.last()->showNextVNote(new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
 
@@ -101,13 +100,14 @@ QList<VStaff *> MainWindow::getVstaffs() const
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Enter){
-        scene->clear();
-        vstaffs.clear();
+
         showScore();
     }
 }
 
 void MainWindow::on_openButton_clicked()
 {
-    svm->readLilyPond();
+    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./", "*.ly");
+    svm->readLilyPond(filename);
+    showScore();
 }

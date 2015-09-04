@@ -6,7 +6,7 @@ int Cpsystem::initGui(int argc, char *argv[])
     MainWindow w;
     w.setSvm(this->getScoreview());
 
-    w.show();
+    w.showMaximized();
 
     return a.exec();
 }

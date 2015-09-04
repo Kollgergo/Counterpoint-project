@@ -1,6 +1,6 @@
 #ifndef SCOREVIEWMODEL_H
 #define SCOREVIEWMODEL_H
-#include <QRegExp>
+#include <QRegularExpression>
 #include <QFile>
 #include <vector>
 #include <iostream>
@@ -52,7 +52,7 @@ public:
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
 
     void makeLilyPond();
-    void readLilyPond();
+    void readLilyPond(QString file);
 
 };
 
