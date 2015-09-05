@@ -10,6 +10,7 @@ INPUT(
 ./release\vnote.o
 ./release\vstaff.o
 ./release\vstaffline.o
+./release\scoreview.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o

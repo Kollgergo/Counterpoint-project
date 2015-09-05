@@ -64,9 +64,9 @@ void ScoreViewModel::transpose(int interval)
     }
 }
 
-void ScoreViewModel::makeLilyPond()
+void ScoreViewModel::makeLilyPond(QString destination)
 {
-    string lilyscore, lilystaff;
+    QString lilyscore, lilystaff;
 
     for(unsigned int i=0; i<score->getNumOfStaffs(); i++){
         lilystaff.clear();
@@ -89,7 +89,7 @@ void ScoreViewModel::makeLilyPond()
             break;
         }
         lilystaff.append("\t{\n");
-        string lilynote;
+        QString lilynote;
         lilynote.clear();
         for(unsigned int j=0; j<score->getNumOfNotes(i+1); j++){
             lilystaff.append("\t");
@@ -98,7 +98,7 @@ void ScoreViewModel::makeLilyPond()
             bool isLowerC = false;
             int note=score->getStaffByNum(i+1).getNoteByNum(j+1).getPitch();
             unsigned int octave_counter = 0;
-            std::string durationstring;
+            QString durationstring;
 
             if(note>0){ //positive
                 if(note>11){ //greater than octave
@@ -123,9 +123,11 @@ void ScoreViewModel::makeLilyPond()
                 }
             }
 
-            std::stringstream ss;
+            /*std::stringstream ss;
             ss << score->getStaffByNum(i+1).getNoteByNum(j+1).getDuration();
-            ss >> durationstring;
+            ss >> durationstring;*/
+
+            durationstring.setNum(score->getStaffByNum(i+1).getNoteByNum(j+1).getDuration());
 
             if(isrest){
                 lilynote.append("r");
@@ -389,9 +391,10 @@ void ScoreViewModel::makeLilyPond()
     lilyscore.insert(0,"\\version \"2.16.0\"\n\\header{}\n\\new StaffGroup << \n");
 
 
-    ofstream lilyfile;
-    lilyfile.open("./export/lilypond.ly");
-    lilyfile << lilyscore;
+    QFile lilyfile(destination);
+    lilyfile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream outstream(&lilyfile);
+    outstream << lilyscore;
     lilyfile.close();
 
 
@@ -523,6 +526,8 @@ void ScoreViewModel::readLilyPond(QString file)
             }
         }
     }
+
+    inlilyfile.close();
 
 }
 

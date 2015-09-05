@@ -28,7 +28,7 @@ void MainWindow::on_addNoteButton_clicked()
 
 void MainWindow::on_exportButton_clicked()
 {
-    svm->makeLilyPond();
+    //svm->makeLilyPond();
 }
 void MainWindow::setSvm(ScoreViewModel *value)
 {
@@ -107,7 +107,25 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
 void MainWindow::on_openButton_clicked()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./", "*.ly");
+    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
+    svm->readLilyPond(filename);
+    showScore();
+}
+
+void MainWindow::on_actionExit_triggered()
+{
+    QApplication::quit();
+}
+
+void MainWindow::on_actionLilyPond_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Export to Lilypond", "./export", "*.ly");
+    svm->makeLilyPond(filename);
+}
+
+void MainWindow::on_actionOpen_LilyPond_file_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
     svm->readLilyPond(filename);
     showScore();
 }

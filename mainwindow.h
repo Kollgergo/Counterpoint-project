@@ -42,6 +42,12 @@ private slots:
 
     void on_openButton_clicked();
 
+    void on_actionExit_triggered();
+
+    void on_actionLilyPond_triggered();
+
+    void on_actionOpen_LilyPond_file_triggered();
+
 public slots:
     void notePosChanged(VNote *note);
 

@@ -122,12 +122,22 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         break;
     }
 
+    QPen pen(Qt::black);
+    pen.setWidth(2);
+    painter->setPen(pen);
+
+    if(getScorepos() < 6){
+        painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
+    }else{
+        painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
+    }
+
     if(this->isSelected()){
-        QPen pen(Qt::red);
+        pen.setColor(Qt::red);
+        pen.setWidth(1);
         painter->setPen(pen);
         painter->drawRect(boundingRect());
     }
-
 
     /*QPen pen(Qt::red);
     painter->setPen(pen);
@@ -193,6 +203,8 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
         }
     }
+
+    this->scene()->update();
 
     QGraphicsItem::mouseMoveEvent(event);
 }

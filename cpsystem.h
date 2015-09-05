@@ -2,9 +2,9 @@
 #define CPSYSTEM_H
 #include <iostream>
 #include <stdlib.h>
+#include <QApplication>
 #include "scoreviewmodel.h"
 #include "mainwindow.h"
-#include <QApplication>
 
 using namespace std;
 

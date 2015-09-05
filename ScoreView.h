@@ -1,15 +1,18 @@
-class ScoreViewModel {
-    Score& score;
-    
-    set/get/add minden legyen. 
-    clef / elojegyzes vector, ezekhez get/set, stb (add, remove, stb ezeket is piszkalja)
-    
-    getPosition(staffnumber, notenumber) -> vertikalisan hol int kozepso vonaltol
-    getAccent(staffnum, notenum) -> kell-e plusz elojegyzes neki enum: bb, b, semmi, #, ##
-    getType (staffnum, notenum) -> egesz, negyed, folfele vagy lefele
-    
-    esetleg ez a harom adat egy fuggvennyel egy strukturaban. 
-    
-    
-    
+#ifndef SCOREVIEW_H
+#define SCOREVIEW_H
+
+#include <QGraphicsView>
+#include <QtWidgets>
+#include <QWidget>
+
+class ScoreView : public QGraphicsView
+{
+public:
+    ScoreView(QWidget *parent = 0);
+
+protected:
+    virtual void wheelEvent(QWheelEvent *event);
+
 };
+
+#endif // SCOREVIEW_H

@@ -15,7 +15,8 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     vnote.cpp \
     vstaff.cpp \
-    vstaffline.cpp
+    vstaffline.cpp \
+    scoreview.cpp
 
 HEADERS += \
     score.h \
@@ -27,7 +28,8 @@ HEADERS += \
     mainwindow.h \
     vnote.h \
     vstaff.h \
-    vstaffline.h
+    vstaffline.h \
+    scoreview.h
 
 FORMS    += mainwindow.ui
 
