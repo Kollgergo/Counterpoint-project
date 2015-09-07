@@ -36,12 +36,6 @@ protected:
 private slots:
     void on_addNoteButton_clicked();
 
-    void on_exportButton_clicked();
-
-    void on_showButton_clicked();
-
-    void on_openButton_clicked();
-
     void on_actionExit_triggered();
 
     void on_actionLilyPond_triggered();

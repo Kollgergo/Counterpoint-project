@@ -23,22 +23,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addNoteButton_clicked()
 {
+    //VNote *newvnote = new VNote(0,ScoreViewModel::half,ScoreViewModel::none, ui->scoreView->scene());
+
 
 }
 
-void MainWindow::on_exportButton_clicked()
-{
-    //svm->makeLilyPond();
-}
 void MainWindow::setSvm(ScoreViewModel *value)
 {
     svm = value;
-}
-
-void MainWindow::on_showButton_clicked()
-{
-
-    showScore();
 }
 
 void MainWindow::showScore()
@@ -51,6 +43,8 @@ void MainWindow::showScore()
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
             vstaffs.last()->showNextVNote(new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
+
+            //qDebug() << vstaffs.last();
 
             connect(vstaffs.last()->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
         }
@@ -103,13 +97,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         showScore();
     }
-}
-
-void MainWindow::on_openButton_clicked()
-{
-    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
-    svm->readLilyPond(filename);
-    showScore();
 }
 
 void MainWindow::on_actionExit_triggered()

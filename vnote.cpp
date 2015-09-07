@@ -122,7 +122,11 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         break;
     }
 
+
     QPen pen(Qt::black);
+
+    qDebug() << this->parent();
+
     pen.setWidth(2);
     painter->setPen(pen);
 
@@ -200,11 +204,23 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }else{
             //qDebug() << colList.first()->pos();
             shadow->setY((colList.first()->pos().y())-10);
+        }
 
+        if(this->parentItem() != 0){ // if not shadow, update scorepos
+
+            //QList <QGraphicsItem *> colList = this->scene()->collidingItems(shadow);
+            VStaff *temp = (VStaff *)this->parentItem();
+
+            VStaffLine *colStaffLine = (VStaffLine *)colList.last();
+            this->setScorepos(temp->getVstafflines().indexOf(colStaffLine));
+
+            emit this->notePosChanging(this);
+
+            this->scene()->update();
         }
     }
 
-    this->scene()->update();
+    //this->scene()->update();
 
     QGraphicsItem::mouseMoveEvent(event);
 }
@@ -217,33 +233,34 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
     this->setPos(shadow->pos());
 
-    if(this->parentItem() != 0){ // if not shadow, update scorepos
+//    if(this->parentItem() != 0){ // if not shadow, update scorepos
 
-        QList <QGraphicsItem *> colList = this->scene()->collidingItems(shadow);
-        VStaff *temp = (VStaff *)this->parentItem();
+//        QList <QGraphicsItem *> colList = this->scene()->collidingItems(shadow);
+//        VStaff *temp = (VStaff *)this->parentItem();
 
-        VStaffLine *colStaffLine = (VStaffLine *)colList.last();
-        this->setScorepos(temp->getVstafflines().indexOf(colStaffLine));
+//        VStaffLine *colStaffLine = (VStaffLine *)colList.last();
+//        this->setScorepos(temp->getVstafflines().indexOf(colStaffLine));
 
-        emit this->notePosChanging(this);
+//        emit this->notePosChanging(this);
 
-        this->scene()->update();
-    }
+//        this->scene()->update();
+//    }
 
     if(shadow != NULL){
         delete shadow;
         shadow = NULL;
     }
 
+    this->scene()->update();
     //qDebug() << this->pos();
 
     QGraphicsItem::mouseReleaseEvent(event);
 }
+
 ScoreViewModel::noteTypes VNote::getNotetype() const
 {
     return notetype;
 }
-
 
 int VNote::getScorepos() const
 {

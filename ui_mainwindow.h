@@ -38,9 +38,6 @@ public:
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
     QPushButton *addNoteButton;
-    QPushButton *exportButton;
-    QPushButton *showButton;
-    QPushButton *openButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuNew;
@@ -84,21 +81,6 @@ public:
 
         verticalLayout->addWidget(addNoteButton);
 
-        exportButton = new QPushButton(centralWidget);
-        exportButton->setObjectName(QStringLiteral("exportButton"));
-
-        verticalLayout->addWidget(exportButton);
-
-        showButton = new QPushButton(centralWidget);
-        showButton->setObjectName(QStringLiteral("showButton"));
-
-        verticalLayout->addWidget(showButton);
-
-        openButton = new QPushButton(centralWidget);
-        openButton->setObjectName(QStringLiteral("openButton"));
-
-        verticalLayout->addWidget(openButton);
-
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -115,6 +97,7 @@ public:
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
+        MainWindow->insertToolBarBreak(mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -143,9 +126,6 @@ public:
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
         actionLilyPond->setText(QApplication::translate("MainWindow", "LilyPond", 0));
         addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
-        exportButton->setText(QApplication::translate("MainWindow", "Export", 0));
-        showButton->setText(QApplication::translate("MainWindow", "Show Score", 0));
-        openButton->setText(QApplication::translate("MainWindow", "Open LilyPond file", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Open", 0));

@@ -41,27 +41,6 @@
       </property>
      </widget>
     </item>
-    <item>
-     <widget class="QPushButton" name="exportButton">
-      <property name="text">
-       <string>Export</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="showButton">
-      <property name="text">
-       <string>Show Score</string>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="openButton">
-      <property name="text">
-       <string>Open LilyPond file</string>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -108,7 +87,7 @@
     <enum>TopToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>false</bool>
+    <bool>true</bool>
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
