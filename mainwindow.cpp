@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     scene = new QGraphicsScene(this);
     ui->scoreView->setScene(scene);
+    ui->scoreView->setMouseTracking(true);
 
     //vstaff = new VStaff;
     //scene->addItem(vstaff);
@@ -23,9 +24,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addNoteButton_clicked()
 {
-    //VNote *newvnote = new VNote(0,ScoreViewModel::half,ScoreViewModel::none, ui->scoreView->scene());
+    /*VNote *newvnote = new VNote(true,0,ScoreViewModel::half,ScoreViewModel::none, 0);
+    foreach (VStaffLine *vstaffline, ) {
 
-
+    }
+    scene->addItem(newvnote);
+    */
 }
 
 void MainWindow::setSvm(ScoreViewModel *value)
@@ -42,7 +46,7 @@ void MainWindow::showScore()
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
-            vstaffs.last()->showNextVNote(new VNote(svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
+            vstaffs.last()->showNextVNote(new VNote(false, svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
 
             //qDebug() << vstaffs.last();
 
@@ -79,6 +83,17 @@ void MainWindow::updateNoteData(VNote *note)
     }
 }
 
+void MainWindow::addStaff(ScoreViewModel::clefNames clef)
+{
+    vstaffs.push_back(new VStaff(clef,0));
+
+    svm->addStaff(clef, 0, 0);
+
+    vstaffs.last()->setY((vstaffs.size()-1)*200);
+
+    scene->addItem(vstaffs.last());
+}
+
 void MainWindow::notePosChanged(VNote *note)
 {
     qDebug() << "notepos changed";
@@ -86,6 +101,7 @@ void MainWindow::notePosChanged(VNote *note)
     updateNoteData(note);
 
 }
+
 QList<VStaff *> MainWindow::getVstaffs() const
 {
     return vstaffs;
@@ -115,4 +131,26 @@ void MainWindow::on_actionOpen_LilyPond_file_triggered()
     QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
     svm->readLilyPond(filename);
     showScore();
+}
+
+void MainWindow::on_addStaffButton_clicked()
+{
+    QStringList clefs;
+    clefs << tr("Violin kulcs") << tr("Alt kulcs") << tr("Tenor kulcs") << tr("Basszus kulcs");
+
+    bool ok;
+
+    QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
+
+    if(clef == "Violin kulcs"){
+        addStaff(ScoreViewModel::treble);
+    }else if(clef == "Alt kulcs"){
+        addStaff(ScoreViewModel::alto);
+    }else if(clef == "Tenor kulcs"){
+        addStaff(ScoreViewModel::tenor);
+    }else if(clef == "Basszus kulcs"){
+        addStaff(ScoreViewModel::bass);
+    }
+
+
 }

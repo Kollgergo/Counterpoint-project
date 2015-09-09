@@ -37,6 +37,7 @@ public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
+    QPushButton *addStaffButton;
     QPushButton *addNoteButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -76,8 +77,17 @@ public:
 
         verticalLayout->addWidget(scoreView);
 
+        addStaffButton = new QPushButton(centralWidget);
+        addStaffButton->setObjectName(QStringLiteral("addStaffButton"));
+        addStaffButton->setCheckable(false);
+        addStaffButton->setAutoDefault(false);
+        addStaffButton->setFlat(false);
+
+        verticalLayout->addWidget(addStaffButton);
+
         addNoteButton = new QPushButton(centralWidget);
         addNoteButton->setObjectName(QStringLiteral("addNoteButton"));
+        addNoteButton->setCheckable(true);
 
         verticalLayout->addWidget(addNoteButton);
 
@@ -97,7 +107,6 @@ public:
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        MainWindow->insertToolBarBreak(mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -114,6 +123,9 @@ public:
 
         retranslateUi(MainWindow);
 
+        addStaffButton->setDefault(false);
+
+
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
@@ -125,6 +137,7 @@ public:
         actionOpen_LilyPond_file->setText(QApplication::translate("MainWindow", "Open LilyPond file", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
         actionLilyPond->setText(QApplication::translate("MainWindow", "LilyPond", 0));
+        addStaffButton->setText(QApplication::translate("MainWindow", "Add Staff", 0));
         addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));

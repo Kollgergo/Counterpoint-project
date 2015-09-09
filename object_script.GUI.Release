@@ -14,4 +14,6 @@ INPUT(
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o
+./release\moc_vstaff.o
+./release\moc_vstaffline.o
 );

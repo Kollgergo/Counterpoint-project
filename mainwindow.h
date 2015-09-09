@@ -27,6 +27,7 @@ public:
     void showScore();
     void showNextVStaff(VStaff * vstaff);
     void updateNoteData(VNote *note);
+    void addStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble);
 
     QList<VStaff *> getVstaffs() const;
 
@@ -41,6 +42,8 @@ private slots:
     void on_actionLilyPond_triggered();
 
     void on_actionOpen_LilyPond_file_triggered();
+
+    void on_addStaffButton_clicked();
 
 public slots:
     void notePosChanged(VNote *note);

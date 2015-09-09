@@ -1,8 +1,8 @@
 #include "vstaff.h"
 
-VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsItem *parent) : QGraphicsObject(parent)
+VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
-    //setFlag(ItemHasNoContents);
+    setFlag(ItemIsSelectable);
 
     this->clef = clef;
 
@@ -30,20 +30,28 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsItem *parent) : QGraphic
     vstafflines.at(12)->setPos(0, -60);
     vstafflines.at(12)->setOpacity(0.1);
 
-
 }
 
 
 QRectF VStaff::boundingRect() const
 {
-    return QRectF();
+    return QRectF(0,-60, 60, 120);
 }
 
 void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     Q_UNUSED(option);
     Q_UNUSED(widget);
-    //Q_UNUSED(painter);
+
+    if(this->isSelected()){
+        QPen pen(Qt::green);
+        pen.setWidth(2);
+
+        painter->setPen(pen);
+        painter->drawRect(boundingRect());
+
+    }
+
 
     QPixmap clefpixmap;
 
@@ -164,11 +172,99 @@ void VStaff::showNextVNote(VNote *vnote)
         }
         break;
     default:
+        if(vnotes.size() > 1){
+            vnotes.last()->setX(lastX+200);
+        }else{
+            vnotes.last()->setX(100);
+        }
         break;
     }
     //qDebug() << vnotes.last()->x();
 
     //vnotes.last()->setX(50*vnotes.size());
 }
+
+void VStaff::hoverEntered(VStaffLine *staffline)
+{
+    newvnote->setOpacity(0.5);
+
+    if(vnotes.size() == 0){
+        newvnote->setX(100);
+        newvnote->setY(staffline->y()-10);
+    }else{
+        switch (vnotes.last()->getNotetype()) {
+        case ScoreViewModel::whole:
+            newvnote->setX(vnotes.last()->x()+400);
+            newvnote->setY(staffline->y()-10);
+            break;
+        /*case ScoreViewModel::half:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+200);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::quarter:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+100);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::eight:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+50);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::whole_rest:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+400);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::half_rest:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+200);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::quarter_rest:
+            if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+100);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;
+        case ScoreViewModel::eight_rest:
+           if(vnotes.size() > 1){
+                vnotes.last()->setX(lastX+50);
+            }else{
+                vnotes.last()->setX(100);
+            }
+            break;*/
+        default:
+            newvnote->setX(vnotes.last()->x()+400);
+            newvnote->setY(staffline->y()-10);
+            break;
+        }
+    }
+
+}
+
+VNote *VStaff::getNewvnote() const
+{
+    return newvnote;
+}
+
+void VStaff::setNewvnote(VNote *value)
+{
+    newvnote = value;
+}
+
+
 
 

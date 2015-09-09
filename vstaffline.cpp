@@ -1,8 +1,8 @@
 #include "vstaffline.h"
 
-VStaffLine::VStaffLine(QGraphicsItem *parent) : QGraphicsObject(parent)
+VStaffLine::VStaffLine(QGraphicsObject *parent) : QGraphicsObject(parent)
 {
-
+    setAcceptHoverEvents(true);
 }
 
 QRectF VStaffLine::boundingRect() const
@@ -21,4 +21,23 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     painter->setBrush(brush);
     painter->drawRect(rect);
+}
+
+void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
+{
+    qDebug() << "hover enter";
+    emit hoverEntering(this);
+    this->parentItem()->scene()->update();
+
+    QGraphicsItem::hoverEnterEvent(event);
+}
+
+void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    qDebug() << "hover leave";
+
+    this->parentItem()->scene()->update();
+
+    QGraphicsItem::hoverLeaveEvent(event);
+
 }
