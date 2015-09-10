@@ -10,9 +10,11 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
         scorepos = spos;
         notetype = ntype;
         accent = acc;
+        hasShadow = false;
     }else{
         pixmap = QPixmap();
         shadow = NULL;
+        hasShadow = false;
 
         if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
             setFlag(ItemIsMovable);
@@ -26,7 +28,7 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
         notetype = ntype;
         accent = acc;
 
-        if(this->parentItem() != 0){ // if not shadow, process scorepos
+        if(this->parentItem() != 0){ // process scorepos
             VStaff *temp = (VStaff *)this->parentItem();
 
             this->setY(temp->getVstafflines().at(scorepos)->y()-10);
@@ -183,7 +185,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         pen.setWidth(2);
         painter->setPen(pen);
 
-        if(getScorepos() < 5){
+        if(getScorepos() < 6){
             painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
         }else{
             painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
@@ -221,26 +223,30 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
             switch (this->getNotetype()) {
             case ScoreViewModel::whole:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, 0);
+                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::half:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, 0);
+                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::quarter:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, 0);
+                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::eight:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, 0);
+                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, this->parentObject());
                 break;
             default:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, 0);
+                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
                 break;
             }
 
+            hasShadow = true;
+
             this->scene()->addItem(shadow);
             shadow->setOpacity(0);
-            shadow->setX(this->x());
-            shadow->setY(this->y());
+            shadow->setX(this->pos().x());
+            shadow->setY(this->pos().y());
+            //qDebug() << "Current note pos" << this->pos();
+            //qDebug() << "Current note scenepos" << this->scenePos();
         }
 
         //qDebug() << this->pos();
@@ -252,7 +258,7 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
 void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    qDebug() << "mousmoveevent call";
+    //qDebug() << "mousmoveevent call";
 
     if(newnote == true){
         this->setPos(event->scenePos());
@@ -264,15 +270,19 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
             shadow->setOpacity(0.5);
 
-            if(colList.startsWith(shadow)){ // evade collision with shadow
+            //qDebug() << colList;
+
+            if(colList.last()->parentItem() == this->parentItem() && colList.startsWith(shadow)){ // evade collision with shadow
                 //qDebug() << colList.first()->pos();
                 if(colList.size() > 1){
                     shadow->setY((colList.at(1)->pos().y())-10);
+                    //qDebug() << colList.at(1)->y()-10;
                 }
 
-            }else{
+            }else if(colList.first()->parentItem() == this->parentItem()){
                 //qDebug() << colList.first()->pos();
                 shadow->setY((colList.first()->pos().y())-10);
+                //qDebug() << colList.first()->y()-10;
             }
 
 //            if(this->parentItem() != 0){ // if not shadow, update scorepos
@@ -285,10 +295,11 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
 //                emit this->notePosChanging(this);
 
-//                this->scene()->update();
+//              this->scene()->update();
 //            }
         }
 
+        //this->scene()->update(boundingRect().x()-10,boundingRect().y()-80,boundingRect().right()+10,boundingRect().bottom());
         this->scene()->update();
     }
 
@@ -306,7 +317,19 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
            setCursor(Qt::OpenHandCursor);
         }
 
+//        qDebug() << shadow->mapToParent(shadow->pos());
+//        qDebug() << shadow->mapFromParent(shadow->pos());
+//        qDebug() << shadow->mapToScene(shadow->pos());
+//        qDebug() << shadow->mapFromScene(shadow->pos());
+
+        //this->setX(this->mapFromScene(shadow->x()));
+        //this->setY(this->mapFromScene(shadow->y()));
+
+        //this->setPos(this->mapFromScene(shadow->pos()));
         this->setPos(shadow->pos());
+
+        qDebug() << "After note pos" << this->pos();
+        qDebug() << "After note scenepos" << this->scenePos();
 
         if(this->parentItem() != 0){ // if not shadow, update scorepos
 
@@ -324,6 +347,7 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         if(shadow != NULL){
             delete shadow;
             shadow = NULL;
+            hasShadow = false;
         }
 
         this->scene()->update();

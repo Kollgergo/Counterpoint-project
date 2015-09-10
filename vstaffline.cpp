@@ -25,7 +25,7 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    qDebug() << "hover enter";
+    //qDebug() << "hover enter";
     emit hoverEntering(this);
     this->parentItem()->scene()->update();
 
@@ -34,7 +34,7 @@ void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
 void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {
-    qDebug() << "hover leave";
+    //qDebug() << "hover leave";
 
     this->parentItem()->scene()->update();
 

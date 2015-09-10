@@ -27,7 +27,7 @@ public:
     void showScore();
     void showNextVStaff(VStaff * vstaff);
     void updateNoteData(VNote *note);
-    void addStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble);
+    void addVStaff(VStaff *vstaff);
 
     QList<VStaff *> getVstaffs() const;
 
@@ -47,12 +47,14 @@ private slots:
 
 public slots:
     void notePosChanged(VNote *note);
+    void vstaffSelected(VStaff *vstaff);
 
 private:
     Ui::MainWindow *ui;
     ScoreViewModel *svm;
     QGraphicsScene *scene;
     QList<VStaff*> vstaffs;
+    VStaff *selectedvstaff;
 
 };
 

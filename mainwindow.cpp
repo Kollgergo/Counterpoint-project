@@ -24,6 +24,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_addNoteButton_clicked()
 {
+
     /*VNote *newvnote = new VNote(true,0,ScoreViewModel::half,ScoreViewModel::none, 0);
     foreach (VStaffLine *vstaffline, ) {
 
@@ -58,17 +59,20 @@ void MainWindow::showScore()
 
 void MainWindow::showNextVStaff(VStaff *vstaff)
 {
-    int idx = 0;
+    /*int idx = 0;
     if(!vstaffs.isEmpty()){
         idx = vstaffs.size();
-    }
+    }*/
 
     vstaffs.push_back(vstaff);
+    connect(vstaff, SIGNAL(vstaffSelect(VStaff*)), this, SLOT(vstaffSelected(VStaff*)));
 
-    foreach (VStaffLine *line, vstaffs.last()->getVstafflines()) {
+    vstaffs.last()->setY((vstaffs.size()-1)*200);
+
+    /*foreach (VStaffLine *line, vstaffs.last()->getVstafflines()) {
         int prevY = line->y();
         line->setY(prevY+(idx*200));
-    }
+    }*/
 
     scene->addItem(vstaffs.last());
 }
@@ -77,17 +81,18 @@ void MainWindow::updateNoteData(VNote *note)
 {
     for(int i=0; i<vstaffs.size(); i++){
         if(vstaffs.at(i)->getVnotes().contains(note)){
-            qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
+            //qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
             svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(note)+1, note->getScorepos());
         }
     }
 }
 
-void MainWindow::addStaff(ScoreViewModel::clefNames clef)
+void MainWindow::addVStaff(VStaff *vstaff)
 {
-    vstaffs.push_back(new VStaff(clef,0));
+    vstaffs.push_back(vstaff);
+    connect(vstaffs.last(), SIGNAL(vstaffSelect(VStaff*)), this, SLOT(vstaffSelected(VStaff*)));
 
-    svm->addStaff(clef, 0, 0);
+    svm->addStaff(vstaff->getClef(), 0, 0);
 
     vstaffs.last()->setY((vstaffs.size()-1)*200);
 
@@ -96,10 +101,16 @@ void MainWindow::addStaff(ScoreViewModel::clefNames clef)
 
 void MainWindow::notePosChanged(VNote *note)
 {
-    qDebug() << "notepos changed";
+    //qDebug() << "notepos changed";
 
     updateNoteData(note);
 
+}
+
+void MainWindow::vstaffSelected(VStaff *vstaff)
+{
+    selectedvstaff = vstaff;
+    //qDebug() << selectedvstaff;
 }
 
 QList<VStaff *> MainWindow::getVstaffs() const
@@ -143,13 +154,13 @@ void MainWindow::on_addStaffButton_clicked()
     QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
 
     if(clef == "Violin kulcs"){
-        addStaff(ScoreViewModel::treble);
+        addVStaff(new VStaff(ScoreViewModel::treble,0));
     }else if(clef == "Alt kulcs"){
-        addStaff(ScoreViewModel::alto);
+        addVStaff(new VStaff(ScoreViewModel::alto,0));
     }else if(clef == "Tenor kulcs"){
-        addStaff(ScoreViewModel::tenor);
+        addVStaff(new VStaff(ScoreViewModel::tenor,0));
     }else if(clef == "Basszus kulcs"){
-        addStaff(ScoreViewModel::bass);
+        addVStaff(new VStaff(ScoreViewModel::bass,0));
     }
 
 

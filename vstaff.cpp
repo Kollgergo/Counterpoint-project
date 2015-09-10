@@ -8,27 +8,54 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
 
     for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(this));
 
-    vstafflines.at(0)->setPos(0, 60);
+//    vstafflines.at(0)->setPos(0, 60);
+//    vstafflines.at(0)->setOpacity(0.1);
+//    vstafflines.at(1)->setPos(0, 50);
+//    vstafflines.at(1)->setOpacity(0);
+//    vstafflines.at(2)->setPos(0, 40);
+//    vstafflines.at(3)->setPos(0, 30);
+//    vstafflines.at(3)->setOpacity(0);
+//    vstafflines.at(4)->setPos(0, 20);
+//    vstafflines.at(5)->setPos(0, 10);
+//    vstafflines.at(5)->setOpacity(0);
+//    vstafflines.at(6)->setPos(0, 0);
+//    vstafflines.at(7)->setPos(0, -10);
+//    vstafflines.at(7)->setOpacity(0);
+//    vstafflines.at(8)->setPos(0, -20);
+//    vstafflines.at(9)->setPos(0, -30);
+//    vstafflines.at(9)->setOpacity(0);
+//    vstafflines.at(10)->setPos(0, -40);
+//    vstafflines.at(11)->setPos(0, -50);
+//    vstafflines.at(11)->setOpacity(0);
+//    vstafflines.at(12)->setPos(0, -60);
+//    vstafflines.at(12)->setOpacity(0.1);
+
+    //qDebug() << parent->y();
+    //qDebug() << parentItem()->y();
+
+    vstafflines.at(0)->setPos(0, this->y()+60);
     vstafflines.at(0)->setOpacity(0.1);
-    vstafflines.at(1)->setPos(0, 50);
+    vstafflines.at(1)->setPos(0, this->y()+50);
     vstafflines.at(1)->setOpacity(0);
-    vstafflines.at(2)->setPos(0, 40);
-    vstafflines.at(3)->setPos(0, 30);
+    vstafflines.at(2)->setPos(0, this->y()+40);
+    vstafflines.at(3)->setPos(0, this->y()+30);
     vstafflines.at(3)->setOpacity(0);
-    vstafflines.at(4)->setPos(0, 20);
-    vstafflines.at(5)->setPos(0, 10);
+    vstafflines.at(4)->setPos(0, this->y()+20);
+    vstafflines.at(5)->setPos(0, this->y()+10);
     vstafflines.at(5)->setOpacity(0);
-    vstafflines.at(6)->setPos(0, 0);
-    vstafflines.at(7)->setPos(0, -10);
+    vstafflines.at(6)->setPos(0, this->y());
+    vstafflines.at(7)->setPos(0, this->y()-10);
     vstafflines.at(7)->setOpacity(0);
-    vstafflines.at(8)->setPos(0, -20);
-    vstafflines.at(9)->setPos(0, -30);
+    vstafflines.at(8)->setPos(0, this->y()-20);
+    vstafflines.at(9)->setPos(0, this->y()-30);
     vstafflines.at(9)->setOpacity(0);
-    vstafflines.at(10)->setPos(0, -40);
-    vstafflines.at(11)->setPos(0, -50);
+    vstafflines.at(10)->setPos(0, this->y()-40);
+    vstafflines.at(11)->setPos(0, this->y()-50);
     vstafflines.at(11)->setOpacity(0);
-    vstafflines.at(12)->setPos(0, -60);
+    vstafflines.at(12)->setPos(0, this->y()-60);
     vstafflines.at(12)->setOpacity(0.1);
+
+
 
 }
 
@@ -43,6 +70,10 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     Q_UNUSED(option);
     Q_UNUSED(widget);
 
+    //qDebug() << this->y();
+
+
+
     if(this->isSelected()){
         QPen pen(Qt::green);
         pen.setWidth(2);
@@ -54,6 +85,8 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
 
     QPixmap clefpixmap;
+
+    //qDebug() << vstafflines.at(12)->y();
 
     switch (clef) {
     case ScoreViewModel::treble:
@@ -184,9 +217,15 @@ void VStaff::showNextVNote(VNote *vnote)
     //vnotes.last()->setX(50*vnotes.size());
 }
 
-void VStaff::hoverEntered(VStaffLine *staffline)
+void VStaff::addVNote(VNote *vnote)
 {
     newvnote->setOpacity(0.5);
+    newvnote = vnote;
+
+}
+
+void VStaff::hoverEntered(VStaffLine *staffline)
+{
 
     if(vnotes.size() == 0){
         newvnote->setX(100);
@@ -254,6 +293,19 @@ void VStaff::hoverEntered(VStaffLine *staffline)
     }
 
 }
+
+void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+    emit vstaffSelect(this);
+    //qDebug() << this;
+
+    QGraphicsItem::mousePressEvent(event);
+}
+ScoreViewModel::clefNames VStaff::getClef() const
+{
+    return clef;
+}
+
 
 VNote *VStaff::getNewvnote() const
 {

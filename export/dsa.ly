@@ -6,7 +6,34 @@
 	\set Score.timing = ##f
 	\clef treble
 	{
-	g'4	a'4	g'4	b'4	f''2	a'2
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}
+\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef alto
+	{
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}
+\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef tenor
+	{
+	c'4	e'4	c'4	e'4	g'2	g'2
+	\bar "|."
+	}
+}
+\new Staff{
+	\override Staff.TimeSignature #'stencil = ##f
+	\set Score.timing = ##f
+	\clef bass
+	{
+	c4	e4	c4	e4	g2	g2
 	\bar "|."
 	}
 }

@@ -24,11 +24,21 @@ public:
     QList<VNote *> getVnotes() const;
     void showNextVNote(VNote *vnote);
 
+    void addVNote(VNote *vnote);
+
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
 
+    ScoreViewModel::clefNames getClef() const;
+
+signals:
+    void vstaffSelect(VStaff *vstaff);
+
 public slots:
     void hoverEntered(VStaffLine *staffline);
+
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
 private:
     ScoreViewModel::clefNames clef;
