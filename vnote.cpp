@@ -10,11 +10,11 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
         scorepos = spos;
         notetype = ntype;
         accent = acc;
-        hasShadow = false;
+
     }else{
         pixmap = QPixmap();
         shadow = NULL;
-        hasShadow = false;
+
 
         if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
             setFlag(ItemIsMovable);
@@ -198,6 +198,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             pen.setWidth(1);
             painter->setPen(pen);
             painter->drawRect(boundingRect());
+            this->parentItem()->setSelected(true);
         }
     }
 
@@ -215,6 +216,7 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if(newnote == true){
         //this->setSelected(true);
     }else{
+
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
            setCursor(Qt::ClosedHandCursor);
         }
@@ -239,8 +241,6 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
                 break;
             }
 
-            hasShadow = true;
-
             this->scene()->addItem(shadow);
             shadow->setOpacity(0);
             shadow->setX(this->pos().x());
@@ -262,6 +262,8 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     if(newnote == true){
         this->setPos(event->scenePos());
+
+
         this->scene()->update();
     }else{
         QList <QGraphicsItem *> colList = this->scene()->collidingItems(this);
@@ -300,7 +302,7 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
 
         //this->scene()->update(boundingRect().x()-10,boundingRect().y()-80,boundingRect().right()+10,boundingRect().bottom());
-        this->scene()->update();
+        this->update();
     }
 
 
@@ -347,7 +349,6 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
         if(shadow != NULL){
             delete shadow;
             shadow = NULL;
-            hasShadow = false;
         }
 
         this->scene()->update();
@@ -355,6 +356,11 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     }
 
     QGraphicsItem::mouseReleaseEvent(event);
+}
+
+void VNote::hoverEntered(VStaffLine *staffline)
+{
+    this->setY(staffline->y()-10);
 }
 
 ScoreViewModel::noteTypes VNote::getNotetype() const

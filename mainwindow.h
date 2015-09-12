@@ -48,6 +48,7 @@ private slots:
 public slots:
     void notePosChanged(VNote *note);
     void vstaffSelected(VStaff *vstaff);
+    void newVNoteAdded(VNote *vnote);
 
 private:
     Ui::MainWindow *ui;

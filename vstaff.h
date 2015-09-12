@@ -24,6 +24,7 @@ public:
     QList<VNote *> getVnotes() const;
     void showNextVNote(VNote *vnote);
 
+    void setNewVNote(VNote *vnote);
     void addVNote(VNote *vnote);
 
     VNote *getNewvnote() const;
@@ -33,9 +34,6 @@ public:
 
 signals:
     void vstaffSelect(VStaff *vstaff);
-
-public slots:
-    void hoverEntered(VStaffLine *staffline);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

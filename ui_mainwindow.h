@@ -87,7 +87,7 @@ public:
 
         addNoteButton = new QPushButton(centralWidget);
         addNoteButton->setObjectName(QStringLiteral("addNoteButton"));
-        addNoteButton->setCheckable(true);
+        addNoteButton->setCheckable(false);
 
         verticalLayout->addWidget(addNoteButton);
 

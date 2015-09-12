@@ -944,3 +944,4 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
 }
 
+

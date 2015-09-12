@@ -6,7 +6,21 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
 
     this->clef = clef;
 
-    for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(this));
+    //for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(true, this));
+
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(true, this));
 
 //    vstafflines.at(0)->setPos(0, 60);
 //    vstafflines.at(0)->setOpacity(0.1);
@@ -36,22 +50,30 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     vstafflines.at(0)->setPos(0, this->y()+60);
     vstafflines.at(0)->setOpacity(0.1);
     vstafflines.at(1)->setPos(0, this->y()+50);
-    vstafflines.at(1)->setOpacity(0);
+
+    //vstafflines.at(1)->setOpacity(0.1);
+    //vstafflines.at(1)->setVisible(true);
+    vstafflines.at(1)->setAcceptHoverEvents(true);
     vstafflines.at(2)->setPos(0, this->y()+40);
     vstafflines.at(3)->setPos(0, this->y()+30);
-    vstafflines.at(3)->setOpacity(0);
+    //vstafflines.at(3)->setVisible(true);
+    //vstafflines.at(3)->setOpacity(0);
     vstafflines.at(4)->setPos(0, this->y()+20);
     vstafflines.at(5)->setPos(0, this->y()+10);
-    vstafflines.at(5)->setOpacity(0);
+    //vstafflines.at(5)->setVisible(true);
+    //vstafflines.at(5)->setOpacity(0);
     vstafflines.at(6)->setPos(0, this->y());
     vstafflines.at(7)->setPos(0, this->y()-10);
-    vstafflines.at(7)->setOpacity(0);
+    //vstafflines.at(7)->setVisible(true);
+    //vstafflines.at(7)->setOpacity(0);
     vstafflines.at(8)->setPos(0, this->y()-20);
     vstafflines.at(9)->setPos(0, this->y()-30);
-    vstafflines.at(9)->setOpacity(0);
+    //vstafflines.at(9)->setVisible(true);
+    //vstafflines.at(9)->setOpacity(0);
     vstafflines.at(10)->setPos(0, this->y()-40);
     vstafflines.at(11)->setPos(0, this->y()-50);
-    vstafflines.at(11)->setOpacity(0);
+    //vstafflines.at(11)->setVisible(true);
+   // vstafflines.at(11)->setOpacity(0);
     vstafflines.at(12)->setPos(0, this->y()-60);
     vstafflines.at(12)->setOpacity(0.1);
 
@@ -80,6 +102,8 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
         painter->setPen(pen);
         painter->drawRect(boundingRect());
+        emit vstaffSelect(this);
+        qDebug() << this;
 
     }
 
@@ -217,80 +241,22 @@ void VStaff::showNextVNote(VNote *vnote)
     //vnotes.last()->setX(50*vnotes.size());
 }
 
-void VStaff::addVNote(VNote *vnote)
+void VStaff::setNewVNote(VNote *vnote)
 {
-    newvnote->setOpacity(0.5);
     newvnote = vnote;
+    newvnote->setOpacity(0.5);
+    newvnote->setX(100);
 
+    foreach (VStaffLine *staffline, vstafflines) {
+        staffline->setAcceptHoverEvents(true);
+        connect(staffline,SIGNAL(hoverEntering(VStaffLine*)),newvnote,SLOT(hoverEntered(VStaffLine*)));
+    }
 }
 
-void VStaff::hoverEntered(VStaffLine *staffline)
+void VStaff::addVNote(VNote *vnote)
 {
+    //vnotes.push_back(vnote);
 
-    if(vnotes.size() == 0){
-        newvnote->setX(100);
-        newvnote->setY(staffline->y()-10);
-    }else{
-        switch (vnotes.last()->getNotetype()) {
-        case ScoreViewModel::whole:
-            newvnote->setX(vnotes.last()->x()+400);
-            newvnote->setY(staffline->y()-10);
-            break;
-        /*case ScoreViewModel::half:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+200);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::quarter:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+100);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::eight:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+50);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::whole_rest:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+400);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::half_rest:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+200);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::quarter_rest:
-            if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+100);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;
-        case ScoreViewModel::eight_rest:
-           if(vnotes.size() > 1){
-                vnotes.last()->setX(lastX+50);
-            }else{
-                vnotes.last()->setX(100);
-            }
-            break;*/
-        default:
-            newvnote->setX(vnotes.last()->x()+400);
-            newvnote->setY(staffline->y()-10);
-            break;
-        }
-    }
 
 }
 

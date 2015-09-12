@@ -32,6 +32,10 @@ protected:
 
 signals:
     void notePosChanging(VNote *note);
+    void newVNoteAdd(VNote *vnote);
+
+public slots:
+    void hoverEntered(VStaffLine *staffline);
 
 private:
     QPixmap pixmap;
@@ -40,7 +44,6 @@ private:
     ScoreViewModel::accents accent;
     ScoreViewModel::noteTypes notetype;
     bool newnote;
-    bool hasShadow;
 };
 
 #endif // VNOTE_H
