@@ -24,8 +24,8 @@ public:
     QList<VNote *> getVnotes() const;
     void showNextVNote(VNote *vnote);
 
-    void setNewVNote(VNote *vnote);
-    void addVNote(VNote *vnote);
+    void setNewVNote(ScoreViewModel::noteTypes notetype);
+    void addNewVNote();
 
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
@@ -34,6 +34,7 @@ public:
 
 signals:
     void vstaffSelect(VStaff *vstaff);
+    void newVNoteAdd(VNote *vnote);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

@@ -5,6 +5,7 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     setFlag(ItemIsSelectable);
 
     this->clef = clef;
+    newvnote = NULL;
 
     //for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(true, this));
 
@@ -48,12 +49,12 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     //qDebug() << parentItem()->y();
 
     vstafflines.at(0)->setPos(0, this->y()+60);
-    vstafflines.at(0)->setOpacity(0.1);
+    //vstafflines.at(0)->setOpacity(0.1);
     vstafflines.at(1)->setPos(0, this->y()+50);
 
     //vstafflines.at(1)->setOpacity(0.1);
     //vstafflines.at(1)->setVisible(true);
-    vstafflines.at(1)->setAcceptHoverEvents(true);
+    //vstafflines.at(1)->setAcceptHoverEvents(true);
     vstafflines.at(2)->setPos(0, this->y()+40);
     vstafflines.at(3)->setPos(0, this->y()+30);
     //vstafflines.at(3)->setVisible(true);
@@ -75,7 +76,7 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     //vstafflines.at(11)->setVisible(true);
    // vstafflines.at(11)->setOpacity(0);
     vstafflines.at(12)->setPos(0, this->y()-60);
-    vstafflines.at(12)->setOpacity(0.1);
+    //vstafflines.at(12)->setOpacity(0.1);
 
 
 
@@ -103,7 +104,7 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         painter->setPen(pen);
         painter->drawRect(boundingRect());
         emit vstaffSelect(this);
-        qDebug() << this;
+        //qDebug() << this;
 
     }
 
@@ -241,11 +242,53 @@ void VStaff::showNextVNote(VNote *vnote)
     //vnotes.last()->setX(50*vnotes.size());
 }
 
-void VStaff::setNewVNote(VNote *vnote)
+void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype)
 {
-    newvnote = vnote;
+    newvnote = new VNote(true,0,notetype,ScoreViewModel::none,this);
     newvnote->setOpacity(0.5);
-    newvnote->setX(100);
+
+    if(vnotes.isEmpty()){
+        newvnote->setX(100);
+    }else{
+        switch (vnotes.last()->getNotetype()) {
+        case ScoreViewModel::whole:
+            newvnote->setX(vnotes.last()->x()+400);
+
+            break;
+        case ScoreViewModel::half:
+            newvnote->setX(vnotes.last()->x()+200);
+
+            break;
+        case ScoreViewModel::quarter:
+            newvnote->setX(vnotes.last()->x()+100);
+
+            break;
+        case ScoreViewModel::eight:
+            newvnote->setX(vnotes.last()->x()+50);
+
+            break;
+        case ScoreViewModel::whole_rest:
+            newvnote->setX(vnotes.last()->x()+400);
+
+            break;
+        case ScoreViewModel::half_rest:
+            newvnote->setX(vnotes.last()->x()+200);
+
+            break;
+        case ScoreViewModel::quarter_rest:
+            newvnote->setX(vnotes.last()->x()+100);
+
+            break;
+        case ScoreViewModel::eight_rest:
+            newvnote->setX(vnotes.last()->x()+50);
+
+            break;
+        default:
+            newvnote->setX(vnotes.last()->x()+200);
+
+            break;
+        }
+    }
 
     foreach (VStaffLine *staffline, vstafflines) {
         staffline->setAcceptHoverEvents(true);
@@ -253,10 +296,22 @@ void VStaff::setNewVNote(VNote *vnote)
     }
 }
 
-void VStaff::addVNote(VNote *vnote)
+void VStaff::addNewVNote()
 {
-    //vnotes.push_back(vnote);
+    newvnote->setOpacity(1);
+    vnotes.push_back(new VNote(false, newvnote->getScorepos(), newvnote->getNotetype(), ScoreViewModel::none, this));
 
+    vnotes.last()->setX(newvnote->x());
+
+
+    foreach (VStaffLine *staffline, vstafflines) {
+        staffline->setAcceptHoverEvents(false);
+        disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),newvnote,SLOT(hoverEntered(VStaffLine*)));
+    }
+
+    delete newvnote;
+    newvnote = NULL;
+    emit newVNoteAdd(vnotes.last());
 
 }
 

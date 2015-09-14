@@ -413,8 +413,6 @@ void ScoreViewModel::readLilyPond(QString file)
     QRegularExpression noteregexp("\\b[c,d,e,f,g,a,b](is|es)*('+|,+)*\\d");
     QRegularExpressionMatch match;
 
-    QString temp = staffregexp.errorString();
-    bool valid = staffregexp.isValid();
     match = staffregexp.match("\\new Staff{\n");
 
     while(!inlilyfile.atEnd()){

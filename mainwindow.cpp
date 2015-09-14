@@ -26,7 +26,8 @@ void MainWindow::on_addNoteButton_clicked()
 {
     foreach (VStaff *vstaff, vstaffs) {
         if(vstaff == selectedvstaff){
-            vstaff->addVNote(new VNote(true,0,ScoreViewModel::half,ScoreViewModel::none,vstaff));
+            vstaff->setNewVNote(ScoreViewModel::half);
+            connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
         }
     }
 
@@ -110,18 +111,22 @@ void MainWindow::notePosChanged(VNote *note)
 void MainWindow::vstaffSelected(VStaff *vstaff)
 {
     selectedvstaff = vstaff;
-    qDebug() << selectedvstaff;
+    //qDebug() << selectedvstaff;
 }
 
 void MainWindow::newVNoteAdded(VNote *vnote)
 {
     for(int i=0; i<vstaffs.size(); i++){
-        if(vstaffs.at(i) == vnote->parent()){
-            vstaffs.at(i)->addVNote(vnote);
-            svm->addNote(i+1, 0, 0, 0);
+        if(vstaffs.at(i) == vnote->parentItem()){
+            svm->addNote(i+1, 0, 2, 0);
             svm->updatePosition(i+1, svm->getNumOfNotes(i+1), vnote->getScorepos());
+            disconnect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+            connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
         }
     }
+
+
+    scene->update();
 }
 
 QList<VStaff *> MainWindow::getVstaffs() const

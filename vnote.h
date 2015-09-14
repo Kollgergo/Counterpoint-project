@@ -32,7 +32,6 @@ protected:
 
 signals:
     void notePosChanging(VNote *note);
-    void newVNoteAdd(VNote *vnote);
 
 public slots:
     void hoverEntered(VStaffLine *staffline);

@@ -9,7 +9,10 @@ VStaffLine::VStaffLine(bool iswhite, QGraphicsObject *parent) : QGraphicsObject(
 
 QRectF VStaffLine::boundingRect() const
 {
-    return QRectF(0,0,1500,1);
+    QRectF rect(0,0,1500,1);
+
+
+    return rect;
 }
 
 void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -30,9 +33,9 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    //qDebug() << "hover enter";
+    qDebug() << "hover enter";
     emit hoverEntering(this);
-    this->scene()->update();
+    //this->scene()->update();
 
     //QGraphicsItem::hoverEnterEvent(event);
 }
