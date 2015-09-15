@@ -5,12 +5,18 @@ VStaffLine::VStaffLine(bool iswhite, QGraphicsObject *parent) : QGraphicsObject(
     this->iswhite = iswhite;
     setAcceptHoverEvents(false);
     setFlag(ItemStacksBehindParent, true);
+    extrawidth = 150;
 }
 
 QRectF VStaffLine::boundingRect() const
 {
-    QRectF rect(0,0,1500,1);
+    QRectF rect(0,0,extrawidth,1);
 
+    //qDebug() << rect;
+
+    //rect.setWidth(rect.width()+extrawidth);
+
+    //qDebug() << extrawidth;
 
     return rect;
 }
@@ -33,12 +39,21 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    qDebug() << "hover enter";
+    //qDebug() << "hover enter";
     emit hoverEntering(this);
     //this->scene()->update();
 
     //QGraphicsItem::hoverEnterEvent(event);
 }
+void VStaffLine::setExtrawidth(int value)
+{
+    prepareGeometryChange();
+    extrawidth += value;
+    qDebug() << extrawidth;
+    qDebug() << this->boundingRect().width();
+    //update();
+}
+
 
 /*void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
 {

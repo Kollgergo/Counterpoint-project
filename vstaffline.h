@@ -14,6 +14,8 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
+    void setExtrawidth(int value);
+
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     //void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
@@ -23,6 +25,7 @@ signals:
 
 private:
     bool iswhite;
+    int extrawidth;
 
 };
 

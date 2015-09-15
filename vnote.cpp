@@ -202,10 +202,11 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
 
         //qDebug() << this->pos();
+        QGraphicsItem::mousePressEvent(event);
     }
 
 
-    QGraphicsItem::mousePressEvent(event);
+    //QGraphicsItem::mousePressEvent(event);
 }
 
 void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)

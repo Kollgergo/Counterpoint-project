@@ -172,71 +172,134 @@ void VStaff::showNextVNote(VNote *vnote)
 
     vnotes.push_back(vnote);
 
-    switch (lastNoteType) {
-    case ScoreViewModel::whole:
-        if(vnotes.size() > 1){
+    if(vnotes.isEmpty()){
+        vnotes.last()->setX(100);
+
+        switch (vnote->getNotetype()) {
+        case ScoreViewModel::whole:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+
+            break;
+        case ScoreViewModel::half:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        case ScoreViewModel::whole_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+
+            break;
+        case ScoreViewModel::half_rest:
+            vnotes.last()->setX(100);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        default:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        }
+    }else{
+        switch (lastNoteType) {
+        case ScoreViewModel::whole:
             vnotes.last()->setX(lastX+400);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::half:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+            break;
+        case ScoreViewModel::half:
             vnotes.last()->setX(lastX+200);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::quarter:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter:
             vnotes.last()->setX(lastX+100);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::eight:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight:
             vnotes.last()->setX(lastX+50);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::whole_rest:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        case ScoreViewModel::whole_rest:
             vnotes.last()->setX(lastX+400);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::half_rest:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+
+            break;
+        case ScoreViewModel::half_rest:
             vnotes.last()->setX(lastX+200);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::quarter_rest:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter_rest:
             vnotes.last()->setX(lastX+100);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    case ScoreViewModel::eight_rest:
-       if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight_rest:
             vnotes.last()->setX(lastX+50);
-        }else{
-            vnotes.last()->setX(100);
-        }
-        break;
-    default:
-        if(vnotes.size() > 1){
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        default:
             vnotes.last()->setX(lastX+200);
-        }else{
-            vnotes.last()->setX(100);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
         }
-        break;
     }
+
+
     //qDebug() << vnotes.last()->x();
 
     //vnotes.last()->setX(50*vnotes.size());
@@ -244,47 +307,131 @@ void VStaff::showNextVNote(VNote *vnote)
 
 void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype)
 {
-    newvnote = new VNote(true,0,notetype,ScoreViewModel::none,this);
+    newvnote = new VNote(true,7,notetype,ScoreViewModel::none,this);
     newvnote->setOpacity(0.5);
 
     if(vnotes.isEmpty()){
         newvnote->setX(100);
+        switch (notetype) {
+        case ScoreViewModel::whole:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+
+            break;
+        case ScoreViewModel::half:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        case ScoreViewModel::whole_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
+
+            break;
+        case ScoreViewModel::half_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        case ScoreViewModel::quarter_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
+
+            break;
+        case ScoreViewModel::eight_rest:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
+
+            break;
+        default:
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
+
+            break;
+        }
+
     }else{
         switch (vnotes.last()->getNotetype()) {
         case ScoreViewModel::whole:
             newvnote->setX(vnotes.last()->x()+400);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
 
             break;
         case ScoreViewModel::half:
             newvnote->setX(vnotes.last()->x()+200);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
 
             break;
         case ScoreViewModel::quarter:
             newvnote->setX(vnotes.last()->x()+100);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
 
             break;
         case ScoreViewModel::eight:
             newvnote->setX(vnotes.last()->x()+50);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
 
             break;
         case ScoreViewModel::whole_rest:
             newvnote->setX(vnotes.last()->x()+400);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(400);
+            }
 
             break;
         case ScoreViewModel::half_rest:
             newvnote->setX(vnotes.last()->x()+200);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
 
             break;
         case ScoreViewModel::quarter_rest:
             newvnote->setX(vnotes.last()->x()+100);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(100);
+            }
 
             break;
         case ScoreViewModel::eight_rest:
             newvnote->setX(vnotes.last()->x()+50);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(50);
+            }
 
             break;
         default:
             newvnote->setX(vnotes.last()->x()+200);
+            foreach (VStaffLine *staffline, vstafflines) {
+                staffline->setExtrawidth(200);
+            }
 
             break;
         }
