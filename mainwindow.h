@@ -45,6 +45,18 @@ private slots:
 
     void on_addStaffButton_clicked();
 
+    void on_actionAddNote_triggered();
+
+    void on_actionAddRest_triggered();
+
+    void on_actionHalf_triggered();
+
+    void on_actionWhole_triggered();
+
+    void on_actionQuarter_triggered();
+
+    void on_actionEighth_triggered();
+
 public slots:
     void notePosChanged(VNote *note);
     void vstaffSelected(VStaff *vstaff);

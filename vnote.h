@@ -23,6 +23,8 @@ public:
     int getScorepos() const;
     void setScorepos(int value);
 
+    void changeToRest();
+
     ScoreViewModel::noteTypes getNotetype() const;
 
 protected:

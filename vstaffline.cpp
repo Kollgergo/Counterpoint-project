@@ -51,7 +51,7 @@ void VStaffLine::setExtrawidth(int value)
     extrawidth += value;
     qDebug() << extrawidth;
     qDebug() << this->boundingRect().width();
-    //update();
+    this->scene()->update();
 }
 
 

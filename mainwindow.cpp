@@ -140,6 +140,20 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 
         showScore();
     }
+
+    if(event->key() == Qt::Key_Delete){
+        for(int i=0; i<vstaffs.size(); i++){
+            if(vstaffs.at(i) == selectedvstaff){
+                for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
+                    if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
+                        svm->getNoteByNum(i+1, j+1).setPitch(Note::rest);
+                    }
+                }
+            }
+        }
+        selectedvstaff->deleteSelectedVNote();
+        showScore();
+    }
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -180,4 +194,50 @@ void MainWindow::on_addStaffButton_clicked()
     }
 
 
+}
+
+void MainWindow::on_actionAddNote_triggered()
+{
+    ui->actionAddRest->setChecked(false);
+    ui->actionHalf->setChecked(true);
+    ui->actionWhole->setChecked(false);
+    ui->actionQuarter->setChecked(false);
+    ui->actionEighth->setChecked(false);
+}
+
+void MainWindow::on_actionAddRest_triggered()
+{
+    ui->actionAddNote->setChecked(false);
+    ui->actionHalf->setChecked(true);
+    ui->actionWhole->setChecked(false);
+    ui->actionQuarter->setChecked(false);
+    ui->actionEighth->setChecked(false);
+}
+
+void MainWindow::on_actionHalf_triggered()
+{
+    ui->actionWhole->setChecked(false);
+    ui->actionQuarter->setChecked(false);
+    ui->actionEighth->setChecked(false);
+}
+
+void MainWindow::on_actionWhole_triggered()
+{
+    ui->actionHalf->setChecked(false);
+    ui->actionQuarter->setChecked(false);
+    ui->actionEighth->setChecked(false);
+}
+
+void MainWindow::on_actionQuarter_triggered()
+{
+    ui->actionWhole->setChecked(false);
+    ui->actionHalf->setChecked(false);
+    ui->actionEighth->setChecked(false);
+}
+
+void MainWindow::on_actionEighth_triggered()
+{
+    ui->actionWhole->setChecked(false);
+    ui->actionQuarter->setChecked(false);
+    ui->actionHalf->setChecked(false);
 }

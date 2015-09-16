@@ -7,5 +7,16 @@
 		<file>res/half_rest.png</file>
 		<file>res/quarter_rest.png</file>
 		<file>res/eighth_rest.png</file>
+		<file>res/treble_clef.png</file>
+		<file>res/c_clef.png</file>
+		<file>res/bass_clef.png</file>
+		<file>res/sharp.png</file>
+		<file>res/flat.png</file>
+		<file>res/natural.png</file>
+		<file>res/double_barline.png</file>
+		<file>res/whole_note_icon.png</file>
+		<file>res/half_note_icon.png</file>
+		<file>res/quarter_note_icon.png</file>
+		<file>res/eighth_note_icon.png</file>
     </qresource>
 </RCC>

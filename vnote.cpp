@@ -14,10 +14,10 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
 
     }else{
         this->newnote = false;
+        setFlag(ItemIsSelectable);
 
         if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
             setFlag(ItemIsMovable);
-            setFlag(ItemIsSelectable);
             setCursor(Qt::OpenHandCursor);
             setAcceptedMouseButtons(Qt::LeftButton);
         }
@@ -126,19 +126,19 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             break;
         default:
             break;
-        }
-
+        }        
 
         QPen pen(Qt::black);
-
-
         pen.setWidth(2);
-        painter->setPen(pen);
 
-        if(getScorepos() < 6){
-            painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
-        }else{
-            painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
+        if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+            painter->setPen(pen);
+
+            if(getScorepos() < 6){
+                painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
+            }else{
+                painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
+            }
         }
 
         if(scorepos == 0 || scorepos == 12){
@@ -306,6 +306,27 @@ int VNote::getScorepos() const
 void VNote::setScorepos(int value)
 {
     scorepos = value;
+}
+
+void VNote::changeToRest()
+{
+    switch (notetype) {
+    case ScoreViewModel::whole:
+        notetype = ScoreViewModel::whole_rest;
+        break;
+    case ScoreViewModel::half:
+        notetype = ScoreViewModel::half_rest;
+        break;
+    case ScoreViewModel::quarter:
+        notetype = ScoreViewModel::quarter_rest;
+        break;
+    case ScoreViewModel::eight:
+        notetype = ScoreViewModel::eight_rest;
+        break;
+    default:
+        notetype = ScoreViewModel::half_rest;
+        break;
+    }
 }
 
 

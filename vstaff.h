@@ -27,6 +27,8 @@ public:
     void setNewVNote(ScoreViewModel::noteTypes notetype);
     void addNewVNote();
 
+    void deleteSelectedVNote();
+
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
 
