@@ -26,6 +26,7 @@ public:
     void changeToRest();
 
     ScoreViewModel::noteTypes getNotetype() const;
+    void setNotetype(const ScoreViewModel::noteTypes &value);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

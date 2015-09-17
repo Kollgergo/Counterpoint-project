@@ -146,7 +146,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             if(vstaffs.at(i) == selectedvstaff){
                 for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
                     if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
-                        svm->getNoteByNum(i+1, j+1).setPitch(Note::rest);
+                        svm->changeToRest(i+1, j+1);
                     }
                 }
             }
@@ -183,61 +183,182 @@ void MainWindow::on_addStaffButton_clicked()
 
     QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
 
-    if(clef == "Violin kulcs"){
-        addVStaff(new VStaff(ScoreViewModel::treble,0));
-    }else if(clef == "Alt kulcs"){
-        addVStaff(new VStaff(ScoreViewModel::alto,0));
-    }else if(clef == "Tenor kulcs"){
-        addVStaff(new VStaff(ScoreViewModel::tenor,0));
-    }else if(clef == "Basszus kulcs"){
-        addVStaff(new VStaff(ScoreViewModel::bass,0));
+    if(ok){
+        if(clef == "Violin kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::treble,0));
+        }else if(clef == "Alt kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::alto,0));
+        }else if(clef == "Tenor kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::tenor,0));
+        }else if(clef == "Basszus kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::bass,0));
+        }
+    }
+
+}
+
+void MainWindow::on_actionAddNote_triggered(bool checked)
+{
+    if(checked){
+        ui->actionAddRest->setChecked(false);
+        ui->actionHalf->setChecked(true);
+        ui->actionWhole->setChecked(false);
+        ui->actionQuarter->setChecked(false);
+        ui->actionEighth->setChecked(false);
+    }else{
+        ui->actionHalf->setChecked(false);
+        ui->actionWhole->setChecked(false);
+        ui->actionQuarter->setChecked(false);
+        ui->actionEighth->setChecked(false);
+    }
+}
+
+void MainWindow::on_actionAddRest_triggered(bool checked)
+{
+    if(checked){
+        ui->actionAddNote->setChecked(false);
+        ui->actionHalf->setChecked(true);
+        ui->actionWhole->setChecked(false);
+        ui->actionQuarter->setChecked(false);
+        ui->actionEighth->setChecked(false);
+    }else{
+        ui->actionHalf->setChecked(false);
+        ui->actionWhole->setChecked(false);
+        ui->actionQuarter->setChecked(false);
+        ui->actionEighth->setChecked(false);
+    }
+}
+
+void MainWindow::on_actionWhole_triggered(bool checked)
+{
+    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+
+    }else{
+        if(checked){
+            ui->actionWhole->setChecked(false);
+
+            for(int i=0; i<vstaffs.size(); i++){
+                if(vstaffs.at(i)->isSelected()){
+                    for(int j=0; j<selectedvstaff->getVnotes().size(); j++){
+                        if(selectedvstaff->getVnotes().at(j)->isSelected()){
+                            svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::whole);
+                            selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::whole);
+
+                            scene->update();
+                            selectedvstaff->getVnotes().at(j)->setSelected(true);
+
+                        }
+                    }
+                }
+            }
+            //ui->actionWhole->setChecked(false);
+        }
+    }
+}
+
+void MainWindow::on_actionHalf_triggered(bool checked)
+{
+    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+
+    }else{
+        if(checked){
+            ui->actionHalf->setChecked(false);
+
+            for(int i=0; i<vstaffs.size(); i++){
+                if(vstaffs.at(i)->isSelected()){
+                    for(int j=0; j<selectedvstaff->getVnotes().size(); j++){
+                        if(selectedvstaff->getVnotes().at(j)->isSelected()){
+                            svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                            selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                            scene->update();
+                            selectedvstaff->getVnotes().at(j)->setSelected(true);
+
+                        }
+                    }
+                }
+            }
+            //ui->actionWhole->setChecked(false);
+        }
+    }
+}
+
+void MainWindow::on_actionQuarter_triggered(bool checked)
+{
+    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+
+    }else{
+        if(checked){
+            ui->actionQuarter->setChecked(false);
+
+            for(int i=0; i<vstaffs.size(); i++){
+                if(vstaffs.at(i)->isSelected()){
+                    for(int j=0; j<selectedvstaff->getVnotes().size(); j++){
+                        if(selectedvstaff->getVnotes().at(j)->isSelected()){
+                            svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::quarter);
+                            selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::quarter);
+
+                            scene->update();
+                            selectedvstaff->getVnotes().at(j)->setSelected(true);
+
+                        }
+                    }
+                }
+            }
+            //ui->actionWhole->setChecked(false);
+        }
     }
 
 
 }
 
-void MainWindow::on_actionAddNote_triggered()
+void MainWindow::on_actionEighth_triggered(bool checked)
 {
-    ui->actionAddRest->setChecked(false);
-    ui->actionHalf->setChecked(true);
-    ui->actionWhole->setChecked(false);
-    ui->actionQuarter->setChecked(false);
-    ui->actionEighth->setChecked(false);
+    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+
+    }else{
+        if(checked){
+            ui->actionEighth->setChecked(false);
+
+            for(int i=0; i<vstaffs.size(); i++){
+                if(vstaffs.at(i)->isSelected()){
+                    for(int j=0; j<selectedvstaff->getVnotes().size(); j++){
+                        if(selectedvstaff->getVnotes().at(j)->isSelected()){
+                            svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
+                            selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::eight);
+
+                            scene->update();
+                            selectedvstaff->getVnotes().at(j)->setSelected(true);
+
+                        }
+                    }
+                }
+            }
+            //ui->actionWhole->setChecked(false);
+        }
+    }
 }
 
-void MainWindow::on_actionAddRest_triggered()
+void MainWindow::on_action_newStaff_triggered()
 {
-    ui->actionAddNote->setChecked(false);
-    ui->actionHalf->setChecked(true);
-    ui->actionWhole->setChecked(false);
-    ui->actionQuarter->setChecked(false);
-    ui->actionEighth->setChecked(false);
+    QStringList clefs;
+    clefs << tr("Violin kulcs") << tr("Alt kulcs") << tr("Tenor kulcs") << tr("Basszus kulcs");
+
+    bool ok;
+
+    QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
+
+    if(ok){
+        if(clef == "Violin kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::treble,0));
+        }else if(clef == "Alt kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::alto,0));
+        }else if(clef == "Tenor kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::tenor,0));
+        }else if(clef == "Basszus kulcs"){
+            addVStaff(new VStaff(ScoreViewModel::bass,0));
+        }
+    }
 }
 
-void MainWindow::on_actionHalf_triggered()
-{
-    ui->actionWhole->setChecked(false);
-    ui->actionQuarter->setChecked(false);
-    ui->actionEighth->setChecked(false);
-}
 
-void MainWindow::on_actionWhole_triggered()
-{
-    ui->actionHalf->setChecked(false);
-    ui->actionQuarter->setChecked(false);
-    ui->actionEighth->setChecked(false);
-}
-
-void MainWindow::on_actionQuarter_triggered()
-{
-    ui->actionWhole->setChecked(false);
-    ui->actionHalf->setChecked(false);
-    ui->actionEighth->setChecked(false);
-}
-
-void MainWindow::on_actionEighth_triggered()
-{
-    ui->actionWhole->setChecked(false);
-    ui->actionQuarter->setChecked(false);
-    ui->actionHalf->setChecked(false);
-}

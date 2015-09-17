@@ -131,7 +131,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QPen pen(Qt::black);
         pen.setWidth(2);
 
-        if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+        if(notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
             painter->setPen(pen);
 
             if(getScorepos() < 6){
@@ -169,6 +169,9 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
         tempparent->addNewVNote();
 
     }else{
+
+        VStaff *tempparent = (VStaff *)this->parentItem();
+        tempparent->setSelectedvnote(this);
 
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
            setCursor(Qt::ClosedHandCursor);
@@ -292,6 +295,32 @@ void VNote::hoverEntered(VStaffLine *staffline)
     }
 
 }
+void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
+{
+    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+        notetype = value;
+    }else{
+        switch (notetype) {
+        case ScoreViewModel::whole:
+            notetype = ScoreViewModel::whole_rest;
+            break;
+        case ScoreViewModel::half:
+            notetype = ScoreViewModel::half_rest;
+            break;
+        case ScoreViewModel::quarter:
+            notetype = ScoreViewModel::quarter_rest;
+            break;
+        case ScoreViewModel::eight:
+            notetype = ScoreViewModel::eight_rest;
+            break;
+        default:
+            notetype = ScoreViewModel::half_rest;
+            break;
+        }
+    }
+
+}
+
 
 ScoreViewModel::noteTypes VNote::getNotetype() const
 {

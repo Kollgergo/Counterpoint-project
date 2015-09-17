@@ -45,17 +45,19 @@ private slots:
 
     void on_addStaffButton_clicked();
 
-    void on_actionAddNote_triggered();
+    void on_actionAddNote_triggered(bool checked);
 
-    void on_actionAddRest_triggered();
+    void on_actionAddRest_triggered(bool checked);
 
-    void on_actionHalf_triggered();
+    void on_actionWhole_triggered(bool checked);
 
-    void on_actionWhole_triggered();
+    void on_actionHalf_triggered(bool checked);
 
-    void on_actionQuarter_triggered();
+    void on_actionQuarter_triggered(bool checked);
 
-    void on_actionEighth_triggered();
+    void on_actionEighth_triggered(bool checked);
+
+    void on_action_newStaff_triggered();
 
 public slots:
     void notePosChanged(VNote *note);

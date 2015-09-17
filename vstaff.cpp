@@ -472,6 +472,16 @@ void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     QGraphicsItem::mousePressEvent(event);
 }
+void VStaff::setSelectedvnote(VNote *value)
+{
+    selectedvnote = value;
+}
+
+VNote *VStaff::getSelectedvnote() const
+{
+    return selectedvnote;
+}
+
 ScoreViewModel::clefNames VStaff::getClef() const
 {
     return clef;

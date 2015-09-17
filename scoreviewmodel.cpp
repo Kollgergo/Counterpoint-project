@@ -942,4 +942,42 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
 }
 
+void ScoreViewModel::updateType(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::noteTypes newnotetype)
+{
+    switch (newnotetype) {
+    case whole:
+        getNoteByNum(staffnumber, notenumber).setDuration(1);
+        break;
+    case half:
+        getNoteByNum(staffnumber, notenumber).setDuration(2);
+        break;
+    case quarter:
+        getNoteByNum(staffnumber, notenumber).setDuration(4);
+        break;
+    case eight:
+        getNoteByNum(staffnumber, notenumber).setDuration(8);
+        break;
+    /*case whole_rest:
+        getNoteByNum(staffnumber, notenumber).setDuration(1);
+        break;
+    case half_rest:
+        getNoteByNum(staffnumber, notenumber).setDuration(2);
+        break;
+    case quarter_rest:
+        getNoteByNum(staffnumber, notenumber).setDuration(4);
+        break;
+    case eight_rest:
+        getNoteByNum(staffnumber, notenumber).setDuration(8);
+        break;*/
+    default:
+        getNoteByNum(staffnumber, notenumber).setDuration(2);
+        break;
+    }
+}
+
+void ScoreViewModel::changeToRest(unsigned int staffnumber, unsigned int notenumber)
+{
+    getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
+}
+
 

@@ -18,5 +18,6 @@
 		<file>res/half_note_icon.png</file>
 		<file>res/quarter_note_icon.png</file>
 		<file>res/eighth_note_icon.png</file>
+		<file>res/staff_icon.png</file>
     </qresource>
 </RCC>

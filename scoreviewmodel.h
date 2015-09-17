@@ -51,6 +51,8 @@ public:
     void updateAccent(unsigned int staffnumber, unsigned int notenumber, accents newaccent);
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
 
+    void changeToRest(unsigned int staffnumber, unsigned int notenumber);
+
 
     void makeLilyPond(QString destination);
     void readLilyPond(QString file);

@@ -111,6 +111,8 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="action_newStaff"/>
+   <addaction name="separator"/>
    <addaction name="actionAddNote"/>
    <addaction name="actionAddRest"/>
    <addaction name="separator"/>
@@ -118,6 +120,7 @@
    <addaction name="actionHalf"/>
    <addaction name="actionQuarter"/>
    <addaction name="actionEighth"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionScore">
@@ -215,6 +218,15 @@
    </property>
    <property name="text">
     <string>Nyolcad</string>
+   </property>
+  </action>
+  <action name="action_newStaff">
+   <property name="icon">
+    <iconset>
+     <normaloff>res/staff_icon.png</normaloff>res/staff_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Új kottasor</string>
    </property>
   </action>
  </widget>

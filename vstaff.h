@@ -34,6 +34,9 @@ public:
 
     ScoreViewModel::clefNames getClef() const;
 
+    VNote *getSelectedvnote() const;
+    void setSelectedvnote(VNote *value);
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);
@@ -46,6 +49,7 @@ private:
     QList <VStaffLine *> vstafflines;
     QList<VNote *> vnotes;
     VNote *newvnote;
+    VNote *selectedvnote;
 
 };
 

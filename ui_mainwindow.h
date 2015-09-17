@@ -40,6 +40,7 @@ public:
     QAction *actionWhole;
     QAction *actionQuarter;
     QAction *actionEighth;
+    QAction *action_newStaff;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -104,6 +105,11 @@ public:
         QIcon icon5;
         icon5.addFile(QStringLiteral(":/res/eighth_note_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionEighth->setIcon(icon5);
+        action_newStaff = new QAction(MainWindow);
+        action_newStaff->setObjectName(QStringLiteral("action_newStaff"));
+        QIcon icon6;
+        icon6.addFile(QStringLiteral("res/staff_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        action_newStaff->setIcon(icon6);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -162,6 +168,8 @@ public:
         menuNew->addAction(actionStaff);
         menuOpen->addAction(actionOpen_LilyPond_file);
         menuExport->addAction(actionLilyPond);
+        mainToolBar->addAction(action_newStaff);
+        mainToolBar->addSeparator();
         mainToolBar->addAction(actionAddNote);
         mainToolBar->addAction(actionAddRest);
         mainToolBar->addSeparator();
@@ -169,6 +177,7 @@ public:
         mainToolBar->addAction(actionHalf);
         mainToolBar->addAction(actionQuarter);
         mainToolBar->addAction(actionEighth);
+        mainToolBar->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -192,6 +201,7 @@ public:
         actionWhole->setText(QApplication::translate("MainWindow", "Eg\303\251sz", 0));
         actionQuarter->setText(QApplication::translate("MainWindow", "Negyed", 0));
         actionEighth->setText(QApplication::translate("MainWindow", "Nyolcad", 0));
+        action_newStaff->setText(QApplication::translate("MainWindow", "\303\232j kottasor", 0));
         addStaffButton->setText(QApplication::translate("MainWindow", "Add Staff", 0));
         addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
