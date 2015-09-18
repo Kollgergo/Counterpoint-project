@@ -122,11 +122,15 @@ void MainWindow::newVNoteAdded(VNote *vnote)
             svm->updatePosition(i+1, svm->getNumOfNotes(i+1), vnote->getScorepos());
             disconnect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
             connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
+
+            vstaffs.at(i)->setNewVNote(vstaffs.at(i)->getVnotes().last()->getNotetype());
+            connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
         }
     }
 
-
     scene->update();
+
+
 }
 
 QList<VStaff *> MainWindow::getVstaffs() const
@@ -205,11 +209,22 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
         ui->actionWhole->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+                vstaff->setNewVNote(ScoreViewModel::half);
+                connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+            }
+        }
+        scene->update();
     }else{
         ui->actionHalf->setChecked(false);
         ui->actionWhole->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
+
+        delete(selectedvstaff->getNewvnote());
+
+        scene->update();
     }
 }
 
@@ -231,10 +246,16 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
 
 void MainWindow::on_actionWhole_triggered(bool checked)
 {
-    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+    if(checked){
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionHalf->setChecked(false);
+            ui->actionQuarter->setChecked(false);
+            ui->actionEighth->setChecked(false);
 
-    }else{
-        if(checked){
+            selectedvstaff->getNewvnote()->setNotetype(ScoreViewModel::whole);
+            scene->update();
+        }else{
+
             ui->actionWhole->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
@@ -258,10 +279,16 @@ void MainWindow::on_actionWhole_triggered(bool checked)
 
 void MainWindow::on_actionHalf_triggered(bool checked)
 {
-    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+    if(checked){
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionWhole->setChecked(false);
+            ui->actionQuarter->setChecked(false);
+            ui->actionEighth->setChecked(false);
 
-    }else{
-        if(checked){
+            selectedvstaff->getNewvnote()->setNotetype(ScoreViewModel::half);
+            scene->update();
+        }else{
+
             ui->actionHalf->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
@@ -285,10 +312,16 @@ void MainWindow::on_actionHalf_triggered(bool checked)
 
 void MainWindow::on_actionQuarter_triggered(bool checked)
 {
-    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+    if(checked){
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionWhole->setChecked(false);
+            ui->actionHalf->setChecked(false);
+            ui->actionEighth->setChecked(false);
 
-    }else{
-        if(checked){
+            selectedvstaff->getNewvnote()->setNotetype(ScoreViewModel::quarter);
+            scene->update();
+        }else{
+
             ui->actionQuarter->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
@@ -308,16 +341,20 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
             //ui->actionWhole->setChecked(false);
         }
     }
-
-
 }
 
 void MainWindow::on_actionEighth_triggered(bool checked)
-{
-    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+{   
+    if(checked){
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionWhole->setChecked(false);
+            ui->actionHalf->setChecked(false);
+            ui->actionQuarter->setChecked(false);
 
-    }else{
-        if(checked){
+            selectedvstaff->getNewvnote()->setNotetype(ScoreViewModel::eight);
+            scene->update();
+        }else{
+
             ui->actionEighth->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){

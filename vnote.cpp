@@ -136,9 +136,19 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
             if(getScorepos() < 6){
                 painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
+                if(notetype == ScoreViewModel::eight){
+                    QPixmap flagpixmap("./res/flag.png");
+                    painter->drawPixmap(boundingRect().right(), -60, 26, 60, flagpixmap);
+                }
             }else{
                 painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
+                if(notetype == ScoreViewModel::eight){
+                    QPixmap flagpixmap("./res/flag_flip.png");
+                    painter->drawPixmap(boundingRect().left(), 20, 26, 60, flagpixmap);
+                }
             }
+
+
         }
 
         if(scorepos == 0 || scorepos == 12){
