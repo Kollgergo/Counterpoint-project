@@ -203,7 +203,7 @@ void MainWindow::on_addStaffButton_clicked()
 
 void MainWindow::on_actionAddNote_triggered(bool checked)
 {
-    if(checked){
+    if(checked){ //check
         ui->actionAddRest->setChecked(false);
         ui->actionHalf->setChecked(true);
         ui->actionWhole->setChecked(false);
@@ -211,18 +211,58 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
         ui->actionEighth->setChecked(false);
         foreach (VStaff *vstaff, vstaffs) {
             if(vstaff == selectedvstaff){
-                vstaff->setNewVNote(ScoreViewModel::half);
+                if(vstaff->getNewvnote() != NULL){
+                    delete(vstaff->getNewvnote());
+                    //vstaff->setNewvnote(NULL);
+                    //vstaff->getNewvnote() = NULL;
+                }
+                if(vstaff->getVnotes().isEmpty()){
+                    vstaff->setNewVNote(ScoreViewModel::half);
+                }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half ||
+                         vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight){
+                    vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype());
+                }else{
+                    switch (vstaff->getVnotes().last()->getNotetype()) {
+                    case ScoreViewModel::whole_rest:
+                        vstaff->setNewVNote(ScoreViewModel::whole);
+                        break;
+                    case ScoreViewModel::half_rest:
+                        vstaff->setNewVNote(ScoreViewModel::half);
+                        break;
+                    case ScoreViewModel::quarter_rest:
+                        vstaff->setNewVNote(ScoreViewModel::quarter);
+                        break;
+                    case ScoreViewModel::eight_rest:
+                        vstaff->setNewVNote(ScoreViewModel::eight);
+                        break;
+                    default:
+                        vstaff->setNewVNote(ScoreViewModel::half);
+                        break;
+                    }
+                }
+
                 connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
             }
         }
         scene->update();
-    }else{
+    }else{ //uncheck
         ui->actionHalf->setChecked(false);
         ui->actionWhole->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
 
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+                disconnect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                foreach (VStaffLine *staffline, vstaff->getVstafflines()) {
+                    staffline->setAcceptHoverEvents(false);
+                    disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
+                }
+            }
+        }
+
         delete(selectedvstaff->getNewvnote());
+        selectedvstaff->setNewvnote(NULL);
 
         scene->update();
     }
@@ -236,11 +276,61 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
         ui->actionWhole->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+                if(vstaff->getNewvnote() != NULL){
+                    delete(vstaff->getNewvnote());
+                    //vstaff->getNewvnote() = NULL;
+                }
+                if(vstaff->getVnotes().isEmpty()){
+                    vstaff->setNewVNote(ScoreViewModel::half_rest);
+                }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half_rest ||
+                         vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight_rest){
+                    vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype());
+                }else{
+                    switch (vstaff->getVnotes().last()->getNotetype()) {
+                    case ScoreViewModel::whole:
+                        vstaff->setNewVNote(ScoreViewModel::whole_rest);
+                        break;
+                    case ScoreViewModel::half:
+                        vstaff->setNewVNote(ScoreViewModel::half_rest);
+                        break;
+                    case ScoreViewModel::quarter:
+                        vstaff->setNewVNote(ScoreViewModel::quarter_rest);
+                        break;
+                    case ScoreViewModel::eight:
+                        vstaff->setNewVNote(ScoreViewModel::eight_rest);
+                        break;
+                    default:
+                        vstaff->setNewVNote(ScoreViewModel::half_rest);
+                        break;
+                    }
+                }
+                connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+            }
+        }
+        scene->update();
+
     }else{
         ui->actionHalf->setChecked(false);
         ui->actionWhole->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
+
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+                disconnect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                foreach (VStaffLine *staffline, vstaff->getVstafflines()) {
+                    staffline->setAcceptHoverEvents(false);
+                    disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
+                }
+            }
+        }
+
+        delete(selectedvstaff->getNewvnote());
+        selectedvstaff->setNewvnote(NULL);
+
+        scene->update();
     }
 }
 

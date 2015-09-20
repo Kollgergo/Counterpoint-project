@@ -12,6 +12,11 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
         setFlag(ItemIsMovable);  
         this->newnote = true;
 
+        if(this->parentItem() != 0){ // process scorepos
+            VStaff *temp = (VStaff *)this->parentItem();
+            this->setY(temp->getVstafflines().at(scorepos)->y()-10);
+        }
+
     }else{
         this->newnote = false;
         setFlag(ItemIsSelectable);
@@ -295,14 +300,18 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void VNote::hoverEntered(VStaffLine *staffline)
 {
-    this->setY(staffline->y()-10);
-    VStaff *tempparent = (VStaff *)this->parentItem();
+    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+        this->setY(staffline->y()-10);
+        VStaff *tempparent = (VStaff *)this->parentItem();
 
-    for(int i=0; i<tempparent->getVstafflines().size(); i++){
-        if(tempparent->getVstafflines().at(i) == staffline){
-            setScorepos(i);
+        for(int i=0; i<tempparent->getVstafflines().size(); i++){
+            if(tempparent->getVstafflines().at(i) == staffline){
+                setScorepos(i);
+            }
         }
     }
+
+
 
 }
 void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
@@ -310,7 +319,7 @@ void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
     if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
         notetype = value;
     }else{
-        switch (notetype) {
+        switch (value) {
         case ScoreViewModel::whole:
             notetype = ScoreViewModel::whole_rest;
             break;
