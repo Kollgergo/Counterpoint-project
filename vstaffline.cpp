@@ -5,7 +5,7 @@ VStaffLine::VStaffLine(bool iswhite, QGraphicsObject *parent) : QGraphicsObject(
     this->iswhite = iswhite;
     setAcceptHoverEvents(false);
     setFlag(ItemStacksBehindParent, true);
-    extrawidth = 150;
+    extrawidth = 173;
 }
 
 QRectF VStaffLine::boundingRect() const
@@ -45,6 +45,7 @@ void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
     //QGraphicsItem::hoverEnterEvent(event);
 }
+
 void VStaffLine::setExtrawidth(int value)
 {
     prepareGeometryChange();

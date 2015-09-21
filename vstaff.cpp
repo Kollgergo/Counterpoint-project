@@ -355,7 +355,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype)
 
 void VStaff::addNewVNote()
 {
-    if(vnotes.isEmpty()){
+   /* if(vnotes.isEmpty()){
         switch (newvnote->getNotetype()) {
         case ScoreViewModel::whole:
             foreach (VStaffLine *staffline, vstafflines) {
@@ -470,7 +470,7 @@ void VStaff::addNewVNote()
 
             break;
         }
-    }
+    }*/
 
     newvnote->setOpacity(1);
     vnotes.push_back(new VNote(false, newvnote->getScorepos(), newvnote->getNotetype(), ScoreViewModel::none, this));

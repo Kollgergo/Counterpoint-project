@@ -402,6 +402,12 @@ void ScoreViewModel::makeLilyPond(QString destination)
 
 void ScoreViewModel::readLilyPond(QString file)
 {
+    int staffnum = -1;
+    accents accent;
+    accentsMap.clear();
+    accentsMap[0];
+    accent = none;
+
     score->deleteStaff(0);
 
     QFile inlilyfile(file);
@@ -420,6 +426,7 @@ void ScoreViewModel::readLilyPond(QString file)
 
         if(line == "\\new Staff{\n"){ //new Staff
             addStaff(treble, 0, 0);
+            staffnum++;
         }else{
             match = clefregexp.match(line);
             if(match.hasMatch()){
@@ -441,25 +448,37 @@ void ScoreViewModel::readLilyPond(QString file)
                     int octave_counter = 0;
                     for(int i=0; i<notestring.size(); i++){
 
-                        if(notestring.at(i)=='c'){
+                        if(notestring.at(i)=='r'){
+                            pitch = Note::rest;
+
+                        }else if(notestring.at(i)=='c'){
                             pitch = 0;
+
                         }else if(notestring.at(i)=='d'){
                             pitch = 2;
-                        }else if(notestring.at(i)=='e'){
+
+                        }else if(notestring.at(i)=='e' && notestring.at(i+1) != 's'){
                             pitch = 4;
+
                         }else if(notestring.at(i)=='f'){
                             pitch = 5;
+
                         }else if(notestring.at(i)=='g'){
                             pitch = 7;
+
                         }else if(notestring.at(i)=='a'){
                             pitch = 9;
+
                         }else if(notestring.at(i)=='b'){
                             pitch = 11;
+
                         }else if(i+1 < notestring.size() && notestring.at(i+1)=='s'){
                             if(notestring.at(i) == 'i'){
                                 pitch++;
+                                accent = sharp;
                             }else if(notestring.at(i) == 'e'){
                                 pitch--;
+                                accent = flat;
                             }
                         }else if(notestring.at(i)=='\''){
                             octave_counter++;
@@ -468,55 +487,72 @@ void ScoreViewModel::readLilyPond(QString file)
                         }else if(notestring.at(i)=='1'){
                             duration = 1;
 
-                            if(clefs.back() == bass){
-                                pitch -= 12;
-                            }else{
-                                octave_counter--;
-                            }
+                            if(pitch != Note::rest){
+                                if(clefs.back() == bass){
+                                    pitch -= 12;
+                                }else{
+                                    octave_counter--;
+                                }
 
-                            pitch += octave_counter * 12;
+                                pitch += octave_counter * 12;
+                            }
                             octave_counter = 0;
 
                             addNote(getNumOfStaffs(),pitch,duration,0);
+                            accentsMap[staffnum].push_back(accent);
+                            accent = none;
                         }else if(notestring.at(i)=='2'){
                             duration = 2;
 
-                            if(clefs.back() == bass){
-                                pitch -= 12;
-                            }else{
-                                octave_counter--;
-                            }
+                            if(pitch != Note::rest){
+                                if(clefs.back() == bass){
+                                    pitch -= 12;
+                                }else{
+                                    octave_counter--;
+                                }
 
-                            pitch += octave_counter * 12;
+                                pitch += octave_counter * 12;
+                            }
                             octave_counter = 0;
 
                             addNote(getNumOfStaffs(),pitch,duration,0);
+                            accentsMap[staffnum].push_back(accent);
+                            accent = none;
                         }else if(notestring.at(i)=='4'){
                             duration = 4;
 
-                            if(clefs.back() == bass){
-                                pitch -= 12;
-                            }else{
-                                octave_counter--;
+                            if(pitch != Note::rest){
+                                if(clefs.back() == bass){
+                                    pitch -= 12;
+                                }else{
+                                    octave_counter--;
+                                }
+
+                                pitch += octave_counter * 12;
                             }
 
-                            pitch += octave_counter * 12;
                             octave_counter = 0;
 
                             addNote(getNumOfStaffs(),pitch,duration,0);
+                            accentsMap[staffnum].push_back(accent);
+                            accent = none;
                         }else if(notestring.at(i)=='8'){
                             duration = 8;
 
-                            if(clefs.back() == bass){
-                                pitch -= 12;
-                            }else{
-                                octave_counter--;
-                            }
+                            if(pitch != Note::rest){
+                                if(clefs.back() == bass){
+                                    pitch -= 12;
+                                }else{
+                                    octave_counter--;
+                                }
 
-                            pitch += octave_counter * 12;
+                                pitch += octave_counter * 12;
+                            }
                             octave_counter = 0;
 
                             addNote(getNumOfStaffs(),pitch,duration,0);
+                            accentsMap[staffnum].push_back(accent);
+                            accent = none;
                         }
                     }
                 }
@@ -658,44 +694,46 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 
 ScoreViewModel::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
 {
-    switch (getNoteByNum(staffnumber, notenumber).getPitch()) { //calculate accent
-    case -32767:
-        return none;
-        break;
-    case -11:
-        return sharp;
-        break;
-    case -9:
-        return sharp;
-        break;
-    case -6:
-        return sharp;
-        break;
-    case -4:
-        return sharp;
-        break;
-    case -2:
-        return sharp;
-        break;
-    case 1:
-       return sharp;
-        break;
-    case 3:
-        return sharp;
-        break;
-    case 6:
-        return sharp;
-        break;
-    case 8:
-        return sharp;
-        break;
-    case 10:
-        return sharp;
-        break;
-    default:
-        return none;
-        break;
-    }
+//    switch (getNoteByNum(staffnumber, notenumber).getPitch()) { //calculate accent
+//    case -32767:
+//        return none;
+//        break;
+//    case -11:
+//        return sharp;
+//        break;
+//    case -9:
+//        return sharp;
+//        break;
+//    case -6:
+//        return sharp;
+//        break;
+//    case -4:
+//        return sharp;
+//        break;
+//    case -2:
+//        return sharp;
+//        break;
+//    case 1:
+//       return sharp;
+//        break;
+//    case 3:
+//        return sharp;
+//        break;
+//    case 6:
+//        return sharp;
+//        break;
+//    case 8:
+//        return sharp;
+//        break;
+//    case 10:
+//        return sharp;
+//        break;
+//    default:
+//        return none;
+//        break;
+//    }
+
+    return accentsMap[staffnumber-1].at(notenumber-1);
 }
 
 ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsigned int notenumber)
