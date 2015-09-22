@@ -78,12 +78,20 @@ void MainWindow::showNextVStaff(VStaff *vstaff)
     scene->addItem(vstaffs.last());
 }
 
-void MainWindow::updateNoteData(VNote *note) //updates note properties in svm
+void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
 {
     for(int i=0; i<vstaffs.size(); i++){
-        if(vstaffs.at(i)->getVnotes().contains(note)){
+        if(vstaffs.at(i)->getVnotes().contains(vnote)){
             //qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
-            svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(note)+1, note->getScorepos());
+            if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
+                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
+            }
+            if(svm->getType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
+                svm->updateType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getNotetype());
+            }
+//            if(svm->getAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
+//                svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
+//            }
         }
     }
 }
@@ -119,7 +127,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
     for(int i=0; i<vstaffs.size(); i++){
         if(vstaffs.at(i) == vnote->parentItem()){
             svm->addNote(i+1, 0, 2, 0);
-            svm->updatePosition(i+1, svm->getNumOfNotes(i+1), vnote->getScorepos());
+            updateNoteData(vnote);
             disconnect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
             connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(notePosChanging(VNote*)), this, SLOT(notePosChanged(VNote*)));
 
@@ -352,9 +360,11 @@ void MainWindow::on_actionWhole_triggered(bool checked)
                 if(vstaffs.at(i)->isSelected()){
                     for(int j=0; j<selectedvstaff->getVnotes().size(); j++){
                         if(selectedvstaff->getVnotes().at(j)->isSelected()){
-                            svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::whole);
+                            //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::whole);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::whole);
+                            updateNoteData(selectedvstaff->getVnotes().at(j));
 
+                            selectedvstaff->updateStaffWidth();
                             scene->update();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
 
@@ -362,6 +372,7 @@ void MainWindow::on_actionWhole_triggered(bool checked)
                     }
                 }
             }
+
             //ui->actionWhole->setChecked(false);
         }
     }
@@ -388,6 +399,7 @@ void MainWindow::on_actionHalf_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
 
+                            selectedvstaff->updateStaffWidth();
                             scene->update();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
 
@@ -421,6 +433,7 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::quarter);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::quarter);
 
+                            selectedvstaff->updateStaffWidth();
                             scene->update();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
 
@@ -454,6 +467,7 @@ void MainWindow::on_actionEighth_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::eight);
 
+                            selectedvstaff->updateStaffWidth();
                             scene->update();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
 

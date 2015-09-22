@@ -37,6 +37,8 @@ public:
     VNote *getSelectedvnote() const;
     void setSelectedvnote(VNote *value);
 
+    void updateStaffWidth();
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);

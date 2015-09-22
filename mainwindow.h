@@ -26,7 +26,7 @@ public:
     void setSvm(ScoreViewModel *value);
     void showScore();
     void showNextVStaff(VStaff * vstaff);
-    void updateNoteData(VNote *note);
+    void updateNoteData(VNote *vnote);
     void addVStaff(VStaff *vstaff);
 
     QList<VStaff *> getVstaffs() const;

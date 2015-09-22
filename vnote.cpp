@@ -314,6 +314,11 @@ void VNote::hoverEntered(VStaffLine *staffline)
 
 
 }
+ScoreViewModel::accents VNote::getAccent() const
+{
+    return accent;
+}
+
 void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
 {
     if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){

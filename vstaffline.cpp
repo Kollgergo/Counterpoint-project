@@ -5,12 +5,12 @@ VStaffLine::VStaffLine(bool iswhite, QGraphicsObject *parent) : QGraphicsObject(
     this->iswhite = iswhite;
     setAcceptHoverEvents(false);
     setFlag(ItemStacksBehindParent, true);
-    extrawidth = 173;
+    staffwidth = 173;
 }
 
 QRectF VStaffLine::boundingRect() const
 {
-    QRectF rect(0,0,extrawidth,1);
+    QRectF rect(0,0,staffwidth,1);
 
     //qDebug() << rect;
 
@@ -46,12 +46,17 @@ void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     //QGraphicsItem::hoverEnterEvent(event);
 }
 
-void VStaffLine::setExtrawidth(int value)
+void VStaffLine::addStaffwidth(int value)
 {
     prepareGeometryChange();
-    extrawidth += value;
-    qDebug() << extrawidth;
-    qDebug() << this->boundingRect().width();
+    if(value == 0){
+        staffwidth = 173;
+    }else{
+        staffwidth += value;
+    }
+
+    //qDebug() << staffwidth;
+    //qDebug() << this->boundingRect().width();
     this->scene()->update();
 }
 

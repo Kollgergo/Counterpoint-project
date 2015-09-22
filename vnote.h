@@ -28,6 +28,8 @@ public:
     ScoreViewModel::noteTypes getNotetype() const;
     void setNotetype(const ScoreViewModel::noteTypes &value);
 
+    ScoreViewModel::accents getAccent() const;
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
     void mouseMoveEvent(QGraphicsSceneMouseEvent *event);

@@ -25,6 +25,9 @@ void ScoreViewModel::addStaff(ScoreViewModel::clefNames clef, int keysig, unsign
         keysignatures.insert(keysignatures.begin()+(where-1), KeySignature(keysig));
     }
     score->addStaff(where);
+//    if(!accentsMap.empty()){
+//        accentsMap[0];
+//    }
 }
 
 void ScoreViewModel::deleteStaff(unsigned int which)
@@ -474,10 +477,16 @@ void ScoreViewModel::readLilyPond(QString file)
 
                         }else if(i+1 < notestring.size() && notestring.at(i+1)=='s'){
                             if(notestring.at(i) == 'i'){
-                                pitch++;
+                                if(notestring.at(i-1) != 'e' && notestring.at(i-1) != 'b'){
+                                    pitch++;
+                                }
+
                                 accent = sharp;
                             }else if(notestring.at(i) == 'e'){
-                                pitch--;
+                                if(notestring.at(i-1) != 'c' && notestring.at(i-1) != 'f'){
+                                    pitch--;
+                                }
+
                                 accent = flat;
                             }
                         }else if(notestring.at(i)=='\''){
@@ -594,36 +603,66 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 7;
         break;
     case -11:
-        pos = 0;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 0;
+        }else{
+            pos = 1;
+        }
         break;
     case -10:
         pos = 1;
         break;
     case -9:
-        pos = 1;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 1;
+        }else{
+            pos = 2;
+        }
         break;
     case -8:
         pos = 2;
         break;
     case -7:
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//            pos = 4;
+//        }else{
+//            pos = 3;
+//        }
         pos = 3;
         break;
     case -6:
-        pos = 3;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 3;
+        }else{
+            pos = 4;
+        }
         break;
     case -5:
         pos = 4;
         break;
     case -4:
-        pos = 4;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 4;
+        }else{
+            pos = 5;
+        }
         break;
     case -3:
         pos = 5;
         break;
     case -2:
-        pos = 5;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 5;
+        }else{
+            pos = 6;
+        }
         break;
     case -1:
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//            pos = 7;
+//        }else{
+//            pos = 6;
+//        }
         pos = 6;
         break;
 
@@ -632,36 +671,66 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         break;
 
     case 1:
-        pos = 7;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 7;
+        }else{
+            pos = 8;
+        }
         break;
     case 2:
         pos = 8;
         break;
     case 3:
-        pos = 8;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 8;
+        }else{
+            pos = 9;
+        }
         break;
     case 4:
         pos = 9;
         break;
     case 5:
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//            pos = 11;
+//        }else{
+//            pos = 10;
+//        }
         pos = 10;
         break;
     case 6:
-        pos = 10;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 10;
+        }else{
+            pos = 11;
+        }
         break;
     case 7:
         pos = 11;
         break;
     case 8:
-        pos = 11;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 11;
+        }else{
+            pos = 12;
+        }
         break;
     case 9:
         pos = 12;
         break;
     case 10:
-        pos = 12;
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 12;
+        }else{
+            pos = 13;
+        }
         break;
     case 11:
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//            pos = 14;
+//        }else{
+//            pos = 13;
+//        }
         pos = 13;
         break;
     default:
@@ -694,45 +763,6 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 
 ScoreViewModel::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
 {
-//    switch (getNoteByNum(staffnumber, notenumber).getPitch()) { //calculate accent
-//    case -32767:
-//        return none;
-//        break;
-//    case -11:
-//        return sharp;
-//        break;
-//    case -9:
-//        return sharp;
-//        break;
-//    case -6:
-//        return sharp;
-//        break;
-//    case -4:
-//        return sharp;
-//        break;
-//    case -2:
-//        return sharp;
-//        break;
-//    case 1:
-//       return sharp;
-//        break;
-//    case 3:
-//        return sharp;
-//        break;
-//    case 6:
-//        return sharp;
-//        break;
-//    case 8:
-//        return sharp;
-//        break;
-//    case 10:
-//        return sharp;
-//        break;
-//    default:
-//        return none;
-//        break;
-//    }
-
     return accentsMap[staffnumber-1].at(notenumber-1);
 }
 
@@ -979,6 +1009,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     //getNoteByNum(staffnumber, notenumber).setPitch(newdatapos);
     score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
 }
+
+//void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::accents newaccent)
+//{
+//    accentsMap[staffnumber-1].at(notenumber-1) = newaccent;
+//}
 
 void ScoreViewModel::updateType(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::noteTypes newnotetype)
 {

@@ -53,7 +53,6 @@ public:
 
     void changeToRest(unsigned int staffnumber, unsigned int notenumber);
 
-
     void makeLilyPond(QString destination);
     void readLilyPond(QString file);
 
