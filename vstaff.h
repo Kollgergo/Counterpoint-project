@@ -24,7 +24,7 @@ public:
     QList<VNote *> getVnotes() const;
     void showNextVNote(VNote *vnote);
 
-    void setNewVNote(ScoreViewModel::noteTypes notetype);
+    void setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent);
     void addNewVNote();
 
     void deleteSelectedVNote();

@@ -27,7 +27,7 @@ Cpsystem::~Cpsystem()
     delete scoreview;
 }
 
-void Cpsystem::test()
+/*void Cpsystem::test()
 {
 
     scoreview->addStaff(ScoreViewModel::treble, 0, 0);
@@ -65,5 +65,5 @@ void Cpsystem::test()
 
 
 
-}
+}*/
 

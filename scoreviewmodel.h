@@ -37,7 +37,7 @@ public:
     void deleteStaff(unsigned int which);
     clefNames getClefByNum(int which);
 
-    void addNote(unsigned int staffnum, int pitch, int duration, unsigned int where = 0);
+    void addNote(unsigned int staffnum, int pitch, int duration, accents accent, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);
     Note& getNoteByNum(unsigned int staffnum, unsigned int which);
     unsigned int getNumOfNotes(unsigned int staffnum) const;

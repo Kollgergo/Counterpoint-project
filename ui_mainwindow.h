@@ -41,6 +41,8 @@ public:
     QAction *actionQuarter;
     QAction *actionEighth;
     QAction *action_newStaff;
+    QAction *actionAddSharp;
+    QAction *actionAddFlat;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -110,6 +112,18 @@ public:
         QIcon icon6;
         icon6.addFile(QStringLiteral("res/staff_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         action_newStaff->setIcon(icon6);
+        actionAddSharp = new QAction(MainWindow);
+        actionAddSharp->setObjectName(QStringLiteral("actionAddSharp"));
+        actionAddSharp->setCheckable(true);
+        QIcon icon7;
+        icon7.addFile(QStringLiteral(":/res/sharp.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAddSharp->setIcon(icon7);
+        actionAddFlat = new QAction(MainWindow);
+        actionAddFlat->setObjectName(QStringLiteral("actionAddFlat"));
+        actionAddFlat->setCheckable(true);
+        QIcon icon8;
+        icon8.addFile(QStringLiteral(":/res/flat.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionAddFlat->setIcon(icon8);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -178,6 +192,9 @@ public:
         mainToolBar->addAction(actionQuarter);
         mainToolBar->addAction(actionEighth);
         mainToolBar->addSeparator();
+        mainToolBar->addAction(actionAddSharp);
+        mainToolBar->addAction(actionAddFlat);
+        mainToolBar->addSeparator();
 
         retranslateUi(MainWindow);
 
@@ -202,6 +219,8 @@ public:
         actionQuarter->setText(QApplication::translate("MainWindow", "Negyed", 0));
         actionEighth->setText(QApplication::translate("MainWindow", "Nyolcad", 0));
         action_newStaff->setText(QApplication::translate("MainWindow", "\303\232j kottasor", 0));
+        actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
+        actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
         addStaffButton->setText(QApplication::translate("MainWindow", "Add Staff", 0));
         addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));

@@ -1,0 +1,95 @@
+\hypertarget{class_score_view_model}{}\section{Score\+View\+Model Class Reference}
+\label{class_score_view_model}\index{Score\+View\+Model@{Score\+View\+Model}}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_score_view_model_a2e603d26e71fb126b64895ae0b1636d2}{}enum {\bfseries clef\+Names} \{ {\bfseries treble}, 
+{\bfseries alto}, 
+{\bfseries tenor}, 
+{\bfseries bass}
+ \}\label{class_score_view_model_a2e603d26e71fb126b64895ae0b1636d2}
+
+\item 
+\hypertarget{class_score_view_model_a8b24e5bf70ec80a749d798cb7e907964}{}enum {\bfseries accents} \{ {\bfseries flat}, 
+{\bfseries none}, 
+{\bfseries sharp}, 
+{\bfseries natural}
+ \}\label{class_score_view_model_a8b24e5bf70ec80a749d798cb7e907964}
+
+\item 
+\hypertarget{class_score_view_model_a8e5435988383d8b15ff30eb41f1c0a5d}{}enum {\bfseries note\+Types} \{ \\*
+{\bfseries whole\+\_\+rest}, 
+{\bfseries half\+\_\+rest}, 
+{\bfseries quarter\+\_\+rest}, 
+{\bfseries eight\+\_\+rest}, 
+\\*
+{\bfseries whole}, 
+{\bfseries half}, 
+{\bfseries quarter}, 
+{\bfseries eight}
+ \}\label{class_score_view_model_a8e5435988383d8b15ff30eb41f1c0a5d}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_score_view_model_a2e95a5f0786d42535d04eeaa173ef90f}{}unsigned int {\bfseries get\+Num\+Of\+Staffs} () const \label{class_score_view_model_a2e95a5f0786d42535d04eeaa173ef90f}
+
+\item 
+\hypertarget{class_score_view_model_aba57d53f1f981ed6426362e72f314112}{}void {\bfseries add\+Staff} (clef\+Names clef=treble, int keysig=0, unsigned int where=0)\label{class_score_view_model_aba57d53f1f981ed6426362e72f314112}
+
+\item 
+\hypertarget{class_score_view_model_a48ec38e418000ba3e1f69678eaedaeee}{}void {\bfseries delete\+Staff} (unsigned int which)\label{class_score_view_model_a48ec38e418000ba3e1f69678eaedaeee}
+
+\item 
+\hypertarget{class_score_view_model_a89a469259de6149a1eb88faaae00b0b2}{}clef\+Names {\bfseries get\+Clef\+By\+Num} (int which)\label{class_score_view_model_a89a469259de6149a1eb88faaae00b0b2}
+
+\item 
+\hypertarget{class_score_view_model_a72a684c084554c68762d70e5a7bbf09c}{}void {\bfseries add\+Note} (unsigned int staffnum, int pitch, int duration, accents accent, unsigned int where=0)\label{class_score_view_model_a72a684c084554c68762d70e5a7bbf09c}
+
+\item 
+\hypertarget{class_score_view_model_a68c1b40e40541dbfc0ffd2194ca5bcb4}{}bool {\bfseries delete\+Note} (unsigned int staffnum, unsigned int which)\label{class_score_view_model_a68c1b40e40541dbfc0ffd2194ca5bcb4}
+
+\item 
+\hypertarget{class_score_view_model_a36c92215c16d908f3fd69093e4d307aa}{}\hyperlink{class_note}{Note} \& {\bfseries get\+Note\+By\+Num} (unsigned int staffnum, unsigned int which)\label{class_score_view_model_a36c92215c16d908f3fd69093e4d307aa}
+
+\item 
+\hypertarget{class_score_view_model_afd65004f27e1f03a7aab8c1c9b6635e4}{}unsigned int {\bfseries get\+Num\+Of\+Notes} (unsigned int staffnum) const \label{class_score_view_model_afd65004f27e1f03a7aab8c1c9b6635e4}
+
+\item 
+\hypertarget{class_score_view_model_adc09e48006e07d05cd06d28f85731ec4}{}void {\bfseries transpose} (int interval)\label{class_score_view_model_adc09e48006e07d05cd06d28f85731ec4}
+
+\item 
+\hypertarget{class_score_view_model_afc656d3b87cfcab65e2e2df84275811d}{}int {\bfseries get\+Position} (unsigned int staffnumber, unsigned int notenumber)\label{class_score_view_model_afc656d3b87cfcab65e2e2df84275811d}
+
+\item 
+\hypertarget{class_score_view_model_ac9ba2d57c16d6e20f4c3da111b73615f}{}accents {\bfseries get\+Accent} (unsigned int staffnumber, unsigned int notenumber)\label{class_score_view_model_ac9ba2d57c16d6e20f4c3da111b73615f}
+
+\item 
+\hypertarget{class_score_view_model_a6714358745b284c08d6cec01449ff306}{}note\+Types {\bfseries get\+Type} (unsigned int staffnumber, unsigned int notenumber)\label{class_score_view_model_a6714358745b284c08d6cec01449ff306}
+
+\item 
+\hypertarget{class_score_view_model_ab83b04a6d5678338e8b5712d5715048d}{}void {\bfseries update\+Position} (unsigned int staffnumber, unsigned int notenumber, int newscorepos)\label{class_score_view_model_ab83b04a6d5678338e8b5712d5715048d}
+
+\item 
+\hypertarget{class_score_view_model_a634fd237d616540d5031a64a72d3ddbf}{}void {\bfseries update\+Accent} (unsigned int staffnumber, unsigned int notenumber, accents newaccent)\label{class_score_view_model_a634fd237d616540d5031a64a72d3ddbf}
+
+\item 
+\hypertarget{class_score_view_model_ad78152fc30e09d58422e4671462d5884}{}void {\bfseries update\+Type} (unsigned int staffnumber, unsigned int notenumber, note\+Types newnotetype)\label{class_score_view_model_ad78152fc30e09d58422e4671462d5884}
+
+\item 
+\hypertarget{class_score_view_model_ac2247ce41cb07e55d007819e55dbc47b}{}void {\bfseries change\+To\+Rest} (unsigned int staffnumber, unsigned int notenumber)\label{class_score_view_model_ac2247ce41cb07e55d007819e55dbc47b}
+
+\item 
+\hypertarget{class_score_view_model_a99a64a7bd6e22a14eaf2920c44b1ca4a}{}void {\bfseries make\+Lily\+Pond} (Q\+String destination)\label{class_score_view_model_a99a64a7bd6e22a14eaf2920c44b1ca4a}
+
+\item 
+\hypertarget{class_score_view_model_a2ddc643ffec7b39df6e6b5fab7ab9e66}{}void {\bfseries read\+Lily\+Pond} (Q\+String file)\label{class_score_view_model_a2ddc643ffec7b39df6e6b5fab7ab9e66}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/scoreviewmodel.\+h\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/scoreviewmodel.\+cpp\end{DoxyCompactItemize}

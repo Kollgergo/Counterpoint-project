@@ -59,8 +59,13 @@ private slots:
 
     void on_action_newStaff_triggered();
 
+    void on_actionAddSharp_triggered(bool checked);
+
+    void on_actionAddFlat_triggered(bool checked);
+
 public slots:
-    void notePosChanged(VNote *note);
+    void vNoteSelected(VNote *note);
+    void vNotePosChanged(VNote *note);
     void vstaffSelected(VStaff *vstaff);
     void newVNoteAdded(VNote *vnote);
 

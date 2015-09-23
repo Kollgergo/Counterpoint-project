@@ -15,7 +15,7 @@
 	\set Score.timing = ##f
 	\clef alto
 	{
-	c'4	b4	d4	b'4	d2	d4	e'4	e'8	d'8
+	c'4	b4	eis4	b'4	d2	d4	e'4	e'8	d'8
 	\bar "|."
 	}
 }

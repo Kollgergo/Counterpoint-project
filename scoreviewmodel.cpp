@@ -3,6 +3,8 @@
 ScoreViewModel::ScoreViewModel()
 {
     score = new Score();
+    accentsMap.clear();
+    accentsMap[0];
 }
 
 ScoreViewModel::~ScoreViewModel()
@@ -40,9 +42,10 @@ ScoreViewModel::clefNames ScoreViewModel::getClefByNum(int which)
     return clefs.at(which);
 }
 
-void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, unsigned int where)
+void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, accents accent, unsigned int where)
 {
     score->getStaffByNum(staffnum).addNote(pitch, duration, where);
+    accentsMap[staffnum-1].push_back(accent);
 }
 
 bool ScoreViewModel::deleteNote(unsigned int staffnum, unsigned int which)
@@ -138,7 +141,12 @@ void ScoreViewModel::makeLilyPond(QString destination)
             }else{
                 switch (note) {
                 case -11:
-                    lilynote.append("cis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("cis");
+                    }else{
+                       lilynote.append("des");
+                    }
+
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -156,7 +164,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -9:
-                    lilynote.append("dis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("dis");
+                    }else{
+                       lilynote.append("ees");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -165,7 +177,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -8:
-                    lilynote.append("e");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("eis");
+                    }else{
+                       lilynote.append("e");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -174,7 +190,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -7:
-                    lilynote.append("f");
+                    if(accentsMap[i].at(j) == flat){
+                        lilynote.append("fes");
+                    }else{
+                       lilynote.append("f");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -183,7 +203,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -6:
-                    lilynote.append("fis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("fis");
+                    }else{
+                       lilynote.append("ges");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -201,7 +225,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -4:
-                    lilynote.append("gis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("gis");
+                    }else{
+                       lilynote.append("aes");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -219,7 +247,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -2:
-                    lilynote.append("ais");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("ais");
+                    }else{
+                       lilynote.append("bes");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -228,7 +260,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -1:
-                    lilynote.append("b");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("bis");
+                    }else{
+                       lilynote.append("b");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<octave_counter; k++){
                             lilynote.append(",");
@@ -238,7 +274,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     break;
 
                 case 0:
-                    lilynote.append("c");
+                    if(accentsMap[i].at(j) == flat){
+                        lilynote.append("ces");
+                    }else{
+                       lilynote.append("c");
+                    }
                     if(isLowerC){
                         if(octave_counter>0){
                             for(unsigned int k=1; k<octave_counter; k++){
@@ -258,7 +298,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     }
                     break;
                 case 1:
-                    lilynote.append("cis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("cis");
+                    }else{
+                       lilynote.append("des");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -280,7 +324,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 3:
-                    lilynote.append("dis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("dis");
+                    }else{
+                       lilynote.append("ees");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -291,7 +339,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 4:
-                    lilynote.append("e");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("eis");
+                    }else{
+                       lilynote.append("e");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -302,7 +354,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 5:
-                    lilynote.append("f");
+                    if(accentsMap[i].at(j) == flat){
+                        lilynote.append("fes");
+                    }else{
+                       lilynote.append("f");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -313,7 +369,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 6:
-                    lilynote.append("fis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("fis");
+                    }else{
+                       lilynote.append("ges");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -335,7 +395,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 8:
-                    lilynote.append("gis");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("gis");
+                    }else{
+                       lilynote.append("aes");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -357,7 +421,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 10:
-                    lilynote.append("ais");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("ais");
+                    }else{
+                       lilynote.append("bes");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -368,7 +436,11 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 11:
-                    lilynote.append("b");
+                    if(accentsMap[i].at(j) == sharp){
+                        lilynote.append("bis");
+                    }else{
+                       lilynote.append("b");
+                    }
                     if(octave_counter>0){
                         for(unsigned int k=0; k<=octave_counter; k++){
                             lilynote.append("'");
@@ -407,8 +479,8 @@ void ScoreViewModel::readLilyPond(QString file)
 {
     int staffnum = -1;
     accents accent;
-    accentsMap.clear();
-    accentsMap[0];
+    //accentsMap.clear();
+    //accentsMap[0];
     accent = none;
 
     score->deleteStaff(0);
@@ -507,8 +579,8 @@ void ScoreViewModel::readLilyPond(QString file)
                             }
                             octave_counter = 0;
 
-                            addNote(getNumOfStaffs(),pitch,duration,0);
-                            accentsMap[staffnum].push_back(accent);
+                            addNote(getNumOfStaffs(),pitch,duration,accent,0);
+                            //accentsMap[staffnum].push_back(accent);
                             accent = none;
                         }else if(notestring.at(i)=='2'){
                             duration = 2;
@@ -524,8 +596,8 @@ void ScoreViewModel::readLilyPond(QString file)
                             }
                             octave_counter = 0;
 
-                            addNote(getNumOfStaffs(),pitch,duration,0);
-                            accentsMap[staffnum].push_back(accent);
+                            addNote(getNumOfStaffs(),pitch,duration,accent,0);
+                            //accentsMap[staffnum].push_back(accent);
                             accent = none;
                         }else if(notestring.at(i)=='4'){
                             duration = 4;
@@ -542,8 +614,8 @@ void ScoreViewModel::readLilyPond(QString file)
 
                             octave_counter = 0;
 
-                            addNote(getNumOfStaffs(),pitch,duration,0);
-                            accentsMap[staffnum].push_back(accent);
+                            addNote(getNumOfStaffs(),pitch,duration,accent,0);
+                            //accentsMap[staffnum].push_back(accent);
                             accent = none;
                         }else if(notestring.at(i)=='8'){
                             duration = 8;
@@ -559,8 +631,8 @@ void ScoreViewModel::readLilyPond(QString file)
                             }
                             octave_counter = 0;
 
-                            addNote(getNumOfStaffs(),pitch,duration,0);
-                            accentsMap[staffnum].push_back(accent);
+                            addNote(getNumOfStaffs(),pitch,duration,accent,0);
+                            //accentsMap[staffnum].push_back(accent);
                             accent = none;
                         }
                     }
@@ -819,181 +891,756 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::treble:
         switch (newscorepos) {
         case 0:
-            newdatapos = 0;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 1;
+                break;
+            case flat:
+                newdatapos = 0;
+                break;
+            default:
+                newdatapos = 0;
+                break;
+            }
+
             break;
         case 1:
-            newdatapos = 2;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 3;
+                break;
+            case flat:
+                newdatapos = 1;
+                break;
+            default:
+                newdatapos = 2;
+                break;
+            }
+
             break;
         case 2:
-            newdatapos = 4;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 4;
+                break;
+            case flat:
+                newdatapos = 3;
+                break;
+            default:
+                newdatapos = 4;
+                break;
+            }
+
             break;
         case 3:
-           newdatapos = 5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 6;
+                break;
+            case flat:
+                newdatapos = 5;
+                break;
+            default:
+                newdatapos = 5;
+                break;
+            }
+
             break;
         case 4:
-            newdatapos = 7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 8;
+                break;
+            case flat:
+                newdatapos = 7;
+                break;
+            default:
+                newdatapos = 6;
+                break;
+            }
+
             break;
         case 5:
-            newdatapos = 9;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 10;
+                break;
+            case flat:
+                newdatapos = 8;
+                break;
+            default:
+                newdatapos = 9;
+                break;
+            }
+
             break;
         case 6:
-            newdatapos = 11;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 11;
+                break;
+            case flat:
+                newdatapos = 10;
+                break;
+            default:
+                newdatapos = 11;
+                break;
+            }
+
             break;
         case 7:
-            newdatapos = 12;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 13;
+                break;
+            case flat:
+                newdatapos = 12;
+                break;
+            default:
+                newdatapos = 12;
+                break;
+            }
+
             break;
         case 8:
-            newdatapos = 14;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 15;
+                break;
+            case flat:
+                newdatapos = 13;
+                break;
+            default:
+                newdatapos = 14;
+                break;
+            }
+
             break;
         case 9:
-            newdatapos = 16;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 16;
+                break;
+            case flat:
+                newdatapos = 15;
+                break;
+            default:
+                newdatapos = 16;
+                break;
+            }
+
             break;
         case 10:
-            newdatapos = 17;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 18;
+                break;
+            case flat:
+                newdatapos = 17;
+                break;
+            default:
+                newdatapos = 17;
+                break;
+            }
+
             break;
         case 11:
-            newdatapos = 19;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 20;
+                break;
+            case flat:
+                newdatapos = 18;
+                break;
+            default:
+                newdatapos = 19;
+                break;
+            }
+
             break;
         case 12:
-            newdatapos = 21;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 21;
+                break;
+            case flat:
+                newdatapos = 20;
+                break;
+            default:
+                newdatapos = 21;
+                break;
+            }
+
             break;
         default:
             newdatapos = 0;
             break;
         }
         break;
+
     case ScoreViewModel::alto:
         switch (newscorepos) {
         case 0:
-            newdatapos = -10;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -9;
+                break;
+            case flat:
+                newdatapos = -11;
+                break;
+            default:
+                newdatapos = -10;
+                break;
+            }
+
             break;
         case 1:
-            newdatapos = -8;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -8;
+                break;
+            case flat:
+                newdatapos = -9;
+                break;
+            default:
+                newdatapos = -8;
+                break;
+            }
+
             break;
         case 2:
-            newdatapos = -7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -6;
+                break;
+            case flat:
+                newdatapos = -7;
+                break;
+            default:
+                newdatapos = -7;
+                break;
+            }
+
             break;
         case 3:
-           newdatapos = -5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -4;
+                break;
+            case flat:
+                newdatapos = -6;
+                break;
+            default:
+                newdatapos = -5;
+                break;
+            }
+
             break;
         case 4:
-            newdatapos = -3;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -2;
+                break;
+            case flat:
+                newdatapos = -4;
+                break;
+            default:
+                newdatapos = -3;
+                break;
+            }
+
             break;
         case 5:
-            newdatapos = -1;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -1;
+                break;
+            case flat:
+                newdatapos = -2;
+                break;
+            default:
+                newdatapos = -1;
+                break;
+            }
+
             break;
         case 6:
-            newdatapos = 0;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 1;
+                break;
+            case flat:
+                newdatapos = 0;
+                break;
+            default:
+                newdatapos = 0;
+                break;
+            }
+
             break;
         case 7:
-            newdatapos = 2;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 3;
+                break;
+            case flat:
+                newdatapos = 1;
+                break;
+            default:
+                newdatapos = 2;
+                break;
+            }
+
             break;
         case 8:
-            newdatapos = 4;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 4;
+                break;
+            case flat:
+                newdatapos = 3;
+                break;
+            default:
+                newdatapos = 4;
+                break;
+            }
+
             break;
         case 9:
-            newdatapos = 5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 6;
+                break;
+            case flat:
+                newdatapos = 5;
+                break;
+            default:
+                newdatapos = 5;
+                break;
+            }
+
             break;
         case 10:
-            newdatapos = 7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 8;
+                break;
+            case flat:
+                newdatapos = 6;
+                break;
+            default:
+                newdatapos = 7;
+                break;
+            }
+
             break;
         case 11:
-            newdatapos = 9;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 10;
+                break;
+            case flat:
+                newdatapos = 8;
+                break;
+            default:
+                newdatapos = 9;
+                break;
+            }
+
             break;
         case 12:
-            newdatapos = 11;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 11;
+                break;
+            case flat:
+                newdatapos = 10;
+                break;
+            default:
+                newdatapos = 11;
+                break;
+            }
+
             break;
         default:
             newdatapos = 0;
             break;
         }
         break;
+
     case ScoreViewModel::tenor:
         switch (newscorepos) {
         case 0:
-            newdatapos = -13;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -13;
+                break;
+            case flat:
+                newdatapos = -12;
+                break;
+            default:
+                newdatapos = -13;
+                break;
+            }
+
             break;
         case 1:
-            newdatapos = -12;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -11;
+                break;
+            case flat:
+                newdatapos = -12;
+                break;
+            default:
+                newdatapos = -12;
+                break;
+            }
+
             break;
         case 2:
-            newdatapos = -10;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -9;
+                break;
+            case flat:
+                newdatapos = -11;
+                break;
+            default:
+                newdatapos = -10;
+                break;
+            }
+
             break;
         case 3:
-           newdatapos = -8;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -8;
+                break;
+            case flat:
+                newdatapos = -9;
+                break;
+            default:
+                newdatapos = -8;
+                break;
+            }
+
             break;
         case 4:
-            newdatapos = -7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -6;
+                break;
+            case flat:
+                newdatapos = -7;
+                break;
+            default:
+                newdatapos = -7;
+                break;
+            }
+
             break;
         case 5:
-            newdatapos = -5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -4;
+                break;
+            case flat:
+                newdatapos = -6;
+                break;
+            default:
+                newdatapos = -5;
+                break;
+            }
+
             break;
         case 6:
-            newdatapos = -3;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -2;
+                break;
+            case flat:
+                newdatapos = -4;
+                break;
+            default:
+                newdatapos = -3;
+                break;
+            }
+
             break;
         case 7:
-            newdatapos = -1;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -1;
+                break;
+            case flat:
+                newdatapos = -2;
+                break;
+            default:
+                newdatapos = -1;
+                break;
+            }
+
             break;
         case 8:
-            newdatapos = 0;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 1;
+                break;
+            case flat:
+                newdatapos = 0;
+                break;
+            default:
+                newdatapos = 0;
+                break;
+            }
+
             break;
         case 9:
-            newdatapos = 2;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 3;
+                break;
+            case flat:
+                newdatapos = 1;
+                break;
+            default:
+                newdatapos = 2;
+                break;
+            }
+
             break;
         case 10:
-            newdatapos = 4;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 4;
+                break;
+            case flat:
+                newdatapos = 3;
+                break;
+            default:
+                newdatapos = 4;
+                break;
+            }
+
             break;
         case 11:
-            newdatapos = 5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 6;
+                break;
+            case flat:
+                newdatapos = 5;
+                break;
+            default:
+                newdatapos = 5;
+                break;
+            }
+
             break;
         case 12:
-            newdatapos = 7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 8;
+                break;
+            case flat:
+                newdatapos = 6;
+                break;
+            default:
+                newdatapos = 7;
+                break;
+            }
+
             break;
         default:
-            newdatapos = 9;
+            newdatapos = 0;
             break;
         }
         break;
+
     case ScoreViewModel::bass:
         switch (newscorepos) {
         case 0:
-            newdatapos = -20;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -20;
+                break;
+            case flat:
+                newdatapos = -21;
+                break;
+            default:
+                newdatapos = -20;
+                break;
+            }
+
             break;
         case 1:
-            newdatapos = -19;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -18;
+                break;
+            case flat:
+                newdatapos = -19;
+                break;
+            default:
+                newdatapos = -19;
+                break;
+            }
+
             break;
         case 2:
-            newdatapos = -17;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -16;
+                break;
+            case flat:
+                newdatapos = -18;
+                break;
+            default:
+                newdatapos = -17;
+                break;
+            }
+
             break;
         case 3:
-           newdatapos = -15;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -14;
+                break;
+            case flat:
+                newdatapos = -16;
+                break;
+            default:
+                newdatapos = -15;
+                break;
+            }
+
             break;
         case 4:
-            newdatapos = -13;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -13;
+                break;
+            case flat:
+                newdatapos = -12;
+                break;
+            default:
+                newdatapos = -13;
+                break;
+            }
+
             break;
         case 5:
-            newdatapos = -12;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -11;
+                break;
+            case flat:
+                newdatapos = -12;
+                break;
+            default:
+                newdatapos = -12;
+                break;
+            }
+
             break;
         case 6:
-            newdatapos = -10;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -9;
+                break;
+            case flat:
+                newdatapos = -11;
+                break;
+            default:
+                newdatapos = -10;
+                break;
+            }
+
             break;
         case 7:
-            newdatapos = -8;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -8;
+                break;
+            case flat:
+                newdatapos = -9;
+                break;
+            default:
+                newdatapos = -8;
+                break;
+            }
+
             break;
         case 8:
-            newdatapos = -7;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -6;
+                break;
+            case flat:
+                newdatapos = -7;
+                break;
+            default:
+                newdatapos = -7;
+                break;
+            }
+
             break;
         case 9:
-            newdatapos = -5;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -4;
+                break;
+            case flat:
+                newdatapos = -6;
+                break;
+            default:
+                newdatapos = -5;
+                break;
+            }
+
             break;
         case 10:
-            newdatapos = -3;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -2;
+                break;
+            case flat:
+                newdatapos = -4;
+                break;
+            default:
+                newdatapos = -3;
+                break;
+            }
+
             break;
         case 11:
-            newdatapos = -1;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -1;
+                break;
+            case flat:
+                newdatapos = -2;
+                break;
+            default:
+                newdatapos = -1;
+                break;
+            }
+
             break;
         case 12:
-            newdatapos = 0;
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 1;
+                break;
+            case flat:
+                newdatapos = 0;
+                break;
+            default:
+                newdatapos = 0;
+                break;
+            }
+
             break;
         default:
             newdatapos = 0;
@@ -1004,16 +1651,15 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         break;
     }
 
-
-
     //getNoteByNum(staffnumber, notenumber).setPitch(newdatapos);
     score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
 }
 
-//void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::accents newaccent)
-//{
-//    accentsMap[staffnumber-1].at(notenumber-1) = newaccent;
-//}
+void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::accents newaccent)
+{
+    accentsMap[staffnumber-1].at(notenumber-1) = newaccent;
+
+}
 
 void ScoreViewModel::updateType(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::noteTypes newnotetype)
 {

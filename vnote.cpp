@@ -184,6 +184,7 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
         tempparent->addNewVNote();
 
     }else{
+        emit vNoteSelecting(this);
 
         VStaff *tempparent = (VStaff *)this->parentItem();
         tempparent->setSelectedvnote(this);
@@ -281,7 +282,7 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             VStaffLine *colStaffLine = (VStaffLine *)colList.last();
             this->setScorepos(tempparent->getVstafflines().indexOf(colStaffLine));
 
-            emit this->notePosChanging(this);
+            emit this->vNotePosChanging(this);
 
             this->scene()->update();
         }
@@ -314,6 +315,11 @@ void VNote::hoverEntered(VStaffLine *staffline)
 
 
 }
+void VNote::setAccent(const ScoreViewModel::accents &value)
+{
+    accent = value;
+}
+
 ScoreViewModel::accents VNote::getAccent() const
 {
     return accent;

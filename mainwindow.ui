@@ -121,6 +121,9 @@
    <addaction name="actionQuarter"/>
    <addaction name="actionEighth"/>
    <addaction name="separator"/>
+   <addaction name="actionAddSharp"/>
+   <addaction name="actionAddFlat"/>
+   <addaction name="separator"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionScore">
@@ -227,6 +230,30 @@
    </property>
    <property name="text">
     <string>Új kottasor</string>
+   </property>
+  </action>
+  <action name="actionAddSharp">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/sharp.png</normaloff>:/res/sharp.png</iconset>
+   </property>
+   <property name="text">
+    <string>Kereszt hozzáadása</string>
+   </property>
+  </action>
+  <action name="actionAddFlat">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/flat.png</normaloff>:/res/flat.png</iconset>
+   </property>
+   <property name="text">
+    <string>B hozzáadása</string>
    </property>
   </action>
  </widget>

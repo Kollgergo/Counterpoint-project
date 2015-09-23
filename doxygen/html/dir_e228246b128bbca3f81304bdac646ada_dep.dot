@@ -1,0 +1,13 @@
+digraph "C:/Users/kollg/Documents" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_1fdaf3ab886ef6b3e888834fb2787cda {
+    graph [ bgcolor="#ddddee", pencolor="black", label="kollg" fontname="Helvetica", fontsize="10", URL="dir_1fdaf3ab886ef6b3e888834fb2787cda.html"]
+  subgraph clusterdir_e228246b128bbca3f81304bdac646ada {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_e228246b128bbca3f81304bdac646ada.html"];
+    dir_e228246b128bbca3f81304bdac646ada [shape=plaintext label="Documents"];
+    dir_f7d4afce1e690d6bec8a670b9e0fe59b [shape=box label="GitHub" color="red" fillcolor="white" style="filled" URL="dir_f7d4afce1e690d6bec8a670b9e0fe59b.html"];
+  }
+  }
+}
