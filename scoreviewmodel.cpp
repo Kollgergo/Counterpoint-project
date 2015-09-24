@@ -676,23 +676,23 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         break;
     case -11:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 0;
+            pos = 2;
         }else{
-            pos = 1;
+            pos = 3;
         }
         break;
     case -10:
-        pos = 1;
+        pos = 3;
         break;
     case -9:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 1;
+            pos = 3;
         }else{
-            pos = 2;
+            pos = 4;
         }
         break;
     case -8:
-        pos = 2;
+        pos = 4;
         break;
     case -7:
 //        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
@@ -700,33 +700,33 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 //        }else{
 //            pos = 3;
 //        }
-        pos = 3;
-        break;
-    case -6:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 3;
-        }else{
-            pos = 4;
-        }
-        break;
-    case -5:
-        pos = 4;
-        break;
-    case -4:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 4;
-        }else{
-            pos = 5;
-        }
-        break;
-    case -3:
         pos = 5;
         break;
-    case -2:
+    case -6:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
             pos = 5;
         }else{
             pos = 6;
+        }
+        break;
+    case -5:
+        pos = 6;
+        break;
+    case -4:
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 6;
+        }else{
+            pos = 7;
+        }
+        break;
+    case -3:
+        pos = 7;
+        break;
+    case -2:
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 7;
+        }else{
+            pos = 8;
         }
         break;
     case -1:
@@ -735,32 +735,32 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 //        }else{
 //            pos = 6;
 //        }
-        pos = 6;
+        pos = 8;
         break;
 
     case 0:
-        pos = 7;
+        pos = 9;
         break;
 
     case 1:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 7;
+            pos = 9;
         }else{
-            pos = 8;
+            pos = 10;
         }
         break;
     case 2:
-        pos = 8;
+        pos = 10;
         break;
     case 3:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 8;
+            pos = 10;
         }else{
-            pos = 9;
+            pos = 11;
         }
         break;
     case 4:
-        pos = 9;
+        pos = 11;
         break;
     case 5:
 //        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
@@ -768,33 +768,33 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 //        }else{
 //            pos = 10;
 //        }
-        pos = 10;
-        break;
-    case 6:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 10;
-        }else{
-            pos = 11;
-        }
-        break;
-    case 7:
-        pos = 11;
-        break;
-    case 8:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
-            pos = 11;
-        }else{
-            pos = 12;
-        }
-        break;
-    case 9:
         pos = 12;
         break;
-    case 10:
+    case 6:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
             pos = 12;
         }else{
             pos = 13;
+        }
+        break;
+    case 7:
+        pos = 13;
+        break;
+    case 8:
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 13;
+        }else{
+            pos = 14;
+        }
+        break;
+    case 9:
+        pos = 14;
+        break;
+    case 10:
+        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+            pos = 14;
+        }else{
+            pos = 15;
         }
         break;
     case 11:
@@ -803,7 +803,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 //        }else{
 //            pos = 13;
 //        }
-        pos = 13;
+        pos = 15;
         break;
     default:
         break;
@@ -893,6 +893,30 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         case 0:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
+                newdatapos = -2;
+                break;
+            case flat:
+                newdatapos = -4;
+                break;
+            default:
+                newdatapos = -3;
+                break;
+            }
+        case 1:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -1;
+                break;
+            case flat:
+                newdatapos = -2;
+                break;
+            default:
+                newdatapos = -1;
+                break;
+            }
+        case 2:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
                 newdatapos = 1;
                 break;
             case flat:
@@ -904,7 +928,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 1:
+        case 3:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 3;
@@ -918,7 +942,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 2:
+        case 4:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 4;
@@ -932,7 +956,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 3:
+        case 5:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 6;
@@ -946,7 +970,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 4:
+        case 6:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 8;
@@ -960,7 +984,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 5:
+        case 7:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 10;
@@ -974,7 +998,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 6:
+        case 8:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 11;
@@ -988,7 +1012,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 7:
+        case 9:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 13;
@@ -1002,7 +1026,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 8:
+        case 10:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 15;
@@ -1016,7 +1040,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 9:
+        case 11:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 16;
@@ -1030,7 +1054,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 10:
+        case 12:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 18;
@@ -1044,7 +1068,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 11:
+        case 13:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 20;
@@ -1058,7 +1082,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 12:
+        case 14:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 21;
@@ -1068,6 +1092,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             default:
                 newdatapos = 21;
+                break;
+            }
+
+            break;
+        case 15:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 23;
+                break;
+            case flat:
+                newdatapos = 22;
+                break;
+            default:
+                newdatapos = 23;
+                break;
+            }
+
+            break;
+        case 16:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 25;
+                break;
+            case flat:
+                newdatapos = 24;
+                break;
+            default:
+                newdatapos = 24;
                 break;
             }
 
@@ -1083,6 +1135,30 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         case 0:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
+                newdatapos = -13;
+                break;
+            case flat:
+                newdatapos = -14;
+                break;
+            default:
+                newdatapos = -13;
+                break;
+            }
+        case 1:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -11;
+                break;
+            case flat:
+                newdatapos = -12;
+                break;
+            default:
+                newdatapos = -12;
+                break;
+            }
+        case 2:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
                 newdatapos = -9;
                 break;
             case flat:
@@ -1094,7 +1170,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 1:
+        case 3:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -8;
@@ -1108,7 +1184,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 2:
+        case 4:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -6;
@@ -1122,7 +1198,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 3:
+        case 5:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -4;
@@ -1136,7 +1212,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 4:
+        case 6:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -2;
@@ -1150,7 +1226,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 5:
+        case 7:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -1;
@@ -1164,7 +1240,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 6:
+        case 8:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 1;
@@ -1178,7 +1254,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 7:
+        case 9:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 3;
@@ -1192,7 +1268,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 8:
+        case 10:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 4;
@@ -1206,7 +1282,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 9:
+        case 11:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 6;
@@ -1220,7 +1296,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 10:
+        case 12:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 8;
@@ -1234,7 +1310,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 11:
+        case 13:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 10;
@@ -1248,7 +1324,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 12:
+        case 14:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 11;
@@ -1258,6 +1334,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             default:
                 newdatapos = 11;
+                break;
+            }
+
+            break;
+        case 15:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 13;
+                break;
+            case flat:
+                newdatapos = 12;
+                break;
+            default:
+                newdatapos = 12;
+                break;
+            }
+
+            break;
+        case 16:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 15;
+                break;
+            case flat:
+                newdatapos = 13;
+                break;
+            default:
+                newdatapos = 14;
                 break;
             }
 
@@ -1273,6 +1377,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         case 0:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
+                newdatapos = -16;
+                break;
+            case flat:
+                newdatapos = -18;
+                break;
+            default:
+                newdatapos = -17;
+                break;
+            }
+
+            break;
+        case 1:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -14;
+                break;
+            case flat:
+                newdatapos = -16;
+                break;
+            default:
+                newdatapos = -15;
+                break;
+            }
+
+            break;
+        case 2:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
                 newdatapos = -13;
                 break;
             case flat:
@@ -1284,7 +1416,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 1:
+        case 3:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -11;
@@ -1298,7 +1430,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 2:
+        case 4:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -9;
@@ -1312,7 +1444,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 3:
+        case 5:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -8;
@@ -1326,7 +1458,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 4:
+        case 6:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -6;
@@ -1340,7 +1472,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 5:
+        case 7:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -4;
@@ -1354,7 +1486,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 6:
+        case 8:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -2;
@@ -1368,7 +1500,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 7:
+        case 9:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -1;
@@ -1382,7 +1514,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 8:
+        case 10:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 1;
@@ -1396,7 +1528,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 9:
+        case 11:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 3;
@@ -1410,7 +1542,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 10:
+        case 12:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 4;
@@ -1424,7 +1556,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 11:
+        case 13:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 6;
@@ -1438,7 +1570,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 12:
+        case 14:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 8;
@@ -1448,6 +1580,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             default:
                 newdatapos = 7;
+                break;
+            }
+
+            break;
+        case 15:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 10;
+                break;
+            case flat:
+                newdatapos = 8;
+                break;
+            default:
+                newdatapos = 9;
+                break;
+            }
+
+            break;
+        case 16:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 11;
+                break;
+            case flat:
+                newdatapos = 10;
+                break;
+            default:
+                newdatapos = 11;
                 break;
             }
 
@@ -1463,6 +1623,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
         case 0:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
+                newdatapos = -23;
+                break;
+            case flat:
+                newdatapos = -24;
+                break;
+            default:
+                newdatapos = -24;
+                break;
+            }
+
+            break;
+        case 1:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = -21;
+                break;
+            case flat:
+                newdatapos = -23;
+                break;
+            default:
+                newdatapos = -22;
+                break;
+            }
+
+            break;
+        case 2:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
                 newdatapos = -20;
                 break;
             case flat:
@@ -1474,7 +1662,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 1:
+        case 3:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -18;
@@ -1488,7 +1676,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 2:
+        case 4:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -16;
@@ -1502,7 +1690,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 3:
+        case 5:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -14;
@@ -1516,7 +1704,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 4:
+        case 6:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -13;
@@ -1530,7 +1718,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 5:
+        case 7:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -11;
@@ -1544,7 +1732,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 6:
+        case 8:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -9;
@@ -1558,7 +1746,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 7:
+        case 9:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -8;
@@ -1572,7 +1760,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 8:
+        case 10:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -6;
@@ -1586,7 +1774,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 9:
+        case 11:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -4;
@@ -1600,7 +1788,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 10:
+        case 12:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -2;
@@ -1614,7 +1802,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 11:
+        case 13:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = -1;
@@ -1628,7 +1816,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
             }
 
             break;
-        case 12:
+        case 14:
             switch (accentsMap[staffnumber-1].at(notenumber-1)) {
             case sharp:
                 newdatapos = 1;
@@ -1638,6 +1826,34 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             default:
                 newdatapos = 0;
+                break;
+            }
+
+            break;
+        case 15:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 3;
+                break;
+            case flat:
+                newdatapos = 1;
+                break;
+            default:
+                newdatapos = 2;
+                break;
+            }
+
+            break;
+        case 16:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
+            case sharp:
+                newdatapos = 4;
+                break;
+            case flat:
+                newdatapos = 3;
+                break;
+            default:
+                newdatapos = 4;
                 break;
             }
 

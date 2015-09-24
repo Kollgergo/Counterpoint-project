@@ -156,7 +156,17 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
         }
 
-        if(scorepos == 0 || scorepos == 12){
+        if(scorepos == 0){
+            painter->drawLine(-10, 10, 35, 10);
+            painter->drawLine(-10, -10, 35, -10);
+        }else if(scorepos == 1){
+            painter->drawLine(-10, 0, 35, 0);
+        }else if(scorepos == 15){
+            painter->drawLine(-10, 20, 35, 20);
+        }else if(scorepos == 16){
+            painter->drawLine(-10, 10, 35, 10);
+            painter->drawLine(-10, 30, 35, 30);
+        }else if(scorepos == 2 || scorepos == 14){
             painter->drawLine(-10, 10, 35, 10);
         }
 

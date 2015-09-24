@@ -11,7 +11,7 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
 
     vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(false, this));
     vstafflines.push_back(new VStaffLine(true, this));
@@ -20,35 +20,30 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     vstafflines.push_back(new VStaffLine(false, this));
     vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(false, this));
+    vstafflines.push_back(new VStaffLine(true, this));
+    vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(true, this));
     vstafflines.push_back(new VStaffLine(true, this));
 
-    vstafflines.at(0)->setPos(0, this->y()+60);
-    //vstafflines.at(0)->setOpacity(0.1);
-    vstafflines.at(1)->setPos(0, this->y()+50);
-
-    vstafflines.at(2)->setPos(0, this->y()+40);
-    vstafflines.at(3)->setPos(0, this->y()+30);
-    //vstafflines.at(3)->setVisible(true);
-    //vstafflines.at(3)->setOpacity(0);
-    vstafflines.at(4)->setPos(0, this->y()+20);
-    vstafflines.at(5)->setPos(0, this->y()+10);
-    //vstafflines.at(5)->setVisible(true);
-    //vstafflines.at(5)->setOpacity(0);
-    vstafflines.at(6)->setPos(0, this->y());
-    vstafflines.at(7)->setPos(0, this->y()-10);
-    //vstafflines.at(7)->setVisible(true);
-    //vstafflines.at(7)->setOpacity(0);
-    vstafflines.at(8)->setPos(0, this->y()-20);
-    vstafflines.at(9)->setPos(0, this->y()-30);
-    //vstafflines.at(9)->setVisible(true);
-    //vstafflines.at(9)->setOpacity(0);
-    vstafflines.at(10)->setPos(0, this->y()-40);
-    vstafflines.at(11)->setPos(0, this->y()-50);
-    //vstafflines.at(11)->setVisible(true);
-   // vstafflines.at(11)->setOpacity(0);
-    vstafflines.at(12)->setPos(0, this->y()-60);
-    //vstafflines.at(12)->setOpacity(0.1);
+    vstafflines.at(0)->setPos(0, this->y()+80);
+    vstafflines.at(1)->setPos(0, this->y()+70);
+    vstafflines.at(2)->setPos(0, this->y()+60);
+    vstafflines.at(3)->setPos(0, this->y()+50);
+    vstafflines.at(4)->setPos(0, this->y()+40);
+    vstafflines.at(5)->setPos(0, this->y()+30);
+    vstafflines.at(6)->setPos(0, this->y()+20);
+    vstafflines.at(7)->setPos(0, this->y()+10);
+    vstafflines.at(8)->setPos(0, this->y());
+    vstafflines.at(9)->setPos(0, this->y()-10);
+    vstafflines.at(10)->setPos(0, this->y()-20);
+    vstafflines.at(11)->setPos(0, this->y()-30);
+    vstafflines.at(12)->setPos(0, this->y()-40);
+    vstafflines.at(13)->setPos(0, this->y()-50);
+    vstafflines.at(14)->setPos(0, this->y()-60);
+    vstafflines.at(15)->setPos(0, this->y()-70);
+    vstafflines.at(16)->setPos(0, this->y()-80);
 
 
 
@@ -88,30 +83,30 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
     switch (clef) {
     case ScoreViewModel::treble:
         clefpixmap = QPixmap("./res/treble_clef.png");
-        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        painter->drawPixmap(5,vstafflines.at(14)->y()-15,54,150,clefpixmap);
         break;
     case ScoreViewModel::alto:
         clefpixmap = QPixmap("./res/c_clef.png");
-        painter->drawPixmap(5,vstafflines.at(10)->y(),54,80,clefpixmap);
+        painter->drawPixmap(5,vstafflines.at(12)->y(),54,80,clefpixmap);
         break;
     case ScoreViewModel::tenor:
         clefpixmap = QPixmap("./res/c_clef.png");
-        painter->drawPixmap(5,vstafflines.at(12)->y(),54,80,clefpixmap);
+        painter->drawPixmap(5,vstafflines.at(14)->y(),54,80,clefpixmap);
         break;
     case ScoreViewModel::bass:
         clefpixmap = QPixmap("./res/bass_clef.png");
-        painter->drawPixmap(5,vstafflines.at(10)->y(),63,70,clefpixmap);
+        painter->drawPixmap(5,vstafflines.at(12)->y(),63,70,clefpixmap);
         break;
     default:
         clefpixmap = QPixmap("./res/treble_clef.png");
-        painter->drawPixmap(5,vstafflines.at(12)->y()-15,54,150,clefpixmap);
+        painter->drawPixmap(5,vstafflines.at(14)->y()-15,54,150,clefpixmap);
         break;
     }
 
     QPixmap barline = QPixmap("./res/double_barline");
 
 
-    painter->drawPixmap(vstafflines.at(0)->boundingRect().right()-22, vstafflines.at(10)->y()+1, 23, 80, barline);
+    painter->drawPixmap(vstafflines.at(2)->boundingRect().right()-22, vstafflines.at(12)->y()+1, 23, 80, barline);
 //    painter->drawPixmap(0, 0, 32, 113, barline);
 
     /*QPen pen(Qt::red)
@@ -192,7 +187,7 @@ void VStaff::showNextVNote(VNote *vnote)
 
 void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent)
 {
-    newvnote = new VNote(true,7,notetype,accent,this);
+    newvnote = new VNote(true,9,notetype,accent,this);
 
     newvnote->setOpacity(0.5);
 
