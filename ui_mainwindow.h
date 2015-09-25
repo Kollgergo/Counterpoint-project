@@ -17,7 +17,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QVBoxLayout>
@@ -43,11 +42,10 @@ public:
     QAction *action_newStaff;
     QAction *actionAddSharp;
     QAction *actionAddFlat;
+    QAction *actionOpenLilypondToolBar;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
-    QPushButton *addStaffButton;
-    QPushButton *addNoteButton;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuNew;
@@ -55,6 +53,7 @@ public:
     QMenu *menuExport;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QToolBar *toolBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -124,6 +123,11 @@ public:
         QIcon icon8;
         icon8.addFile(QStringLiteral(":/res/flat.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionAddFlat->setIcon(icon8);
+        actionOpenLilypondToolBar = new QAction(MainWindow);
+        actionOpenLilypondToolBar->setObjectName(QStringLiteral("actionOpenLilypondToolBar"));
+        QIcon icon9;
+        icon9.addFile(QStringLiteral("res/open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOpenLilypondToolBar->setIcon(icon9);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -138,20 +142,6 @@ public:
         scoreView->setRenderHints(QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing);
 
         verticalLayout->addWidget(scoreView);
-
-        addStaffButton = new QPushButton(centralWidget);
-        addStaffButton->setObjectName(QStringLiteral("addStaffButton"));
-        addStaffButton->setCheckable(false);
-        addStaffButton->setAutoDefault(false);
-        addStaffButton->setFlat(false);
-
-        verticalLayout->addWidget(addStaffButton);
-
-        addNoteButton = new QPushButton(centralWidget);
-        addNoteButton->setObjectName(QStringLiteral("addNoteButton"));
-        addNoteButton->setCheckable(false);
-
-        verticalLayout->addWidget(addNoteButton);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -169,9 +159,13 @@ public:
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::LeftToolBarArea, mainToolBar);
+        MainWindow->insertToolBarBreak(mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        toolBar = new QToolBar(MainWindow);
+        toolBar->setObjectName(QStringLiteral("toolBar"));
+        MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menuBar->addAction(menuFile->menuAction());
         menuFile->addAction(menuNew->menuAction());
@@ -195,11 +189,9 @@ public:
         mainToolBar->addAction(actionAddSharp);
         mainToolBar->addAction(actionAddFlat);
         mainToolBar->addSeparator();
+        toolBar->addAction(actionOpenLilypondToolBar);
 
         retranslateUi(MainWindow);
-
-        addStaffButton->setDefault(false);
-
 
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
@@ -221,12 +213,12 @@ public:
         action_newStaff->setText(QApplication::translate("MainWindow", "\303\232j kottasor", 0));
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
-        addStaffButton->setText(QApplication::translate("MainWindow", "Add Staff", 0));
-        addNoteButton->setText(QApplication::translate("MainWindow", "Add Note", 0));
+        actionOpenLilypondToolBar->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Open", 0));
         menuExport->setTitle(QApplication::translate("MainWindow", "Export", 0));
+        toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi
 
 };

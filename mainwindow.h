@@ -35,15 +35,12 @@ protected:
     void keyPressEvent(QKeyEvent * event);
 
 private slots:
-    void on_addNoteButton_clicked();
 
     void on_actionExit_triggered();
 
     void on_actionLilyPond_triggered();
 
     void on_actionOpen_LilyPond_file_triggered();
-
-    void on_addStaffButton_clicked();
 
     void on_actionAddNote_triggered(bool checked);
 
@@ -62,6 +59,8 @@ private slots:
     void on_actionAddSharp_triggered(bool checked);
 
     void on_actionAddFlat_triggered(bool checked);
+
+    void on_actionOpenLilypondToolBar_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);

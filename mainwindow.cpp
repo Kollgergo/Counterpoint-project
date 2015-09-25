@@ -22,18 +22,6 @@ MainWindow::~MainWindow()
     delete scene;
 }
 
-void MainWindow::on_addNoteButton_clicked()
-{
-    foreach (VStaff *vstaff, vstaffs) {
-        if(vstaff == selectedvstaff){
-            vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
-            connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
-        }
-    }
-
-    //selectedvstaff->addVNote(new VNote(false,0,ScoreViewModel::half,ScoreViewModel::none,selectedvstaff));
-}
-
 void MainWindow::setSvm(ScoreViewModel *value)
 {
     svm = value;
@@ -41,8 +29,10 @@ void MainWindow::setSvm(ScoreViewModel *value)
 
 void MainWindow::showScore()
 {
-    scene->clear();
     vstaffs.clear();
+    //svm->deleteStaff(0);
+    scene->clear();
+
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
         this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0));
 
@@ -183,29 +173,6 @@ void MainWindow::on_actionOpen_LilyPond_file_triggered()
     QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
     svm->readLilyPond(filename);
     showScore();
-}
-
-void MainWindow::on_addStaffButton_clicked()
-{
-    QStringList clefs;
-    clefs << tr("Violin kulcs") << tr("Alt kulcs") << tr("Tenor kulcs") << tr("Basszus kulcs");
-
-    bool ok;
-
-    QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
-
-    if(ok){
-        if(clef == "Violin kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::treble,0));
-        }else if(clef == "Alt kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::alto,0));
-        }else if(clef == "Tenor kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::tenor,0));
-        }else if(clef == "Basszus kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::bass,0));
-        }
-    }
-
 }
 
 void MainWindow::on_actionAddNote_triggered(bool checked)
@@ -672,4 +639,11 @@ void MainWindow::vNoteSelected(VNote *note)
 
         break;
     }
+}
+
+void MainWindow::on_actionOpenLilypondToolBar_triggered()
+{
+    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
+    svm->readLilyPond(filename);
+    showScore();
 }

@@ -139,11 +139,11 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         if(notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
             painter->setPen(pen);
 
-            if(getScorepos() < 6){
-                painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60);
+            if(getScorepos() < 8){
+                painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60); //note line
                 if(notetype == ScoreViewModel::eight){
                     QPixmap flagpixmap("./res/flag.png");
-                    painter->drawPixmap(boundingRect().right(), -60, 26, 60, flagpixmap);
+                    painter->drawPixmap(boundingRect().right(), -60, 26, 60, flagpixmap); //eighth flag
                 }
             }else{
                 painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);

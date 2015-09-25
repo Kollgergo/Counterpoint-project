@@ -34,7 +34,17 @@ void ScoreViewModel::addStaff(ScoreViewModel::clefNames clef, int keysig, unsign
 
 void ScoreViewModel::deleteStaff(unsigned int which)
 {
-    score->deleteStaff(which);
+    if(which == 0){
+        score->deleteStaff(which);
+        clefs.clear();
+        keysignatures.clear();
+        accentsMap.clear();
+    }else{
+        score->deleteStaff(which);
+        clefs.erase(clefs.begin()+(which-1));
+        keysignatures.erase(keysignatures.begin()+(which-1));
+        // itt hiányzik az adott staff törlése az accentsMap-ből
+    }
 }
 
 ScoreViewModel::clefNames ScoreViewModel::getClefByNum(int which)
@@ -483,7 +493,7 @@ void ScoreViewModel::readLilyPond(QString file)
     //accentsMap[0];
     accent = none;
 
-    score->deleteStaff(0);
+    deleteStaff(0);
 
     QFile inlilyfile(file);
     inlilyfile.open(QIODevice::ReadOnly | QIODevice::Text);

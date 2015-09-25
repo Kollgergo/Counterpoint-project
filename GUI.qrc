@@ -20,5 +20,6 @@
         <file>res/eighth_note_icon.png</file>
         <file>res/staff_icon.png</file>
         <file>res/flag.png</file>
+        <file>res/open.png</file>
     </qresource>
 </RCC>
