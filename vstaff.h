@@ -14,7 +14,7 @@ class VStaff : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble, QGraphicsObject *parent = 0);
+    VStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -38,6 +38,7 @@ public:
     void setSelectedvnote(VNote *value);
 
     void updateStaffWidth();
+    void updateVStaff();
 
 signals:
     void vstaffSelect(VStaff *vstaff);
@@ -48,6 +49,7 @@ protected:
 
 private:
     ScoreViewModel::clefNames clef;
+    KeySignature keysignature;
     QList <VStaffLine *> vstafflines;
     QList<VNote *> vnotes;
     VNote *newvnote;

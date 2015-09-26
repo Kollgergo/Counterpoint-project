@@ -175,7 +175,10 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             pen.setWidth(1);
             painter->setPen(pen);
             painter->drawRect(boundingRect());
-            this->parentItem()->setSelected(true);
+            if(!parentItem()->isSelected()){
+                this->parentItem()->setSelected(true);
+            }
+
         }
 
 

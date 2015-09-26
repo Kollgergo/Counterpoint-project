@@ -47,18 +47,18 @@
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>Fájl</string>
     </property>
     <widget class="QMenu" name="menuNew">
      <property name="title">
-      <string>New</string>
+      <string>Új</string>
      </property>
      <addaction name="actionScore"/>
      <addaction name="actionStaff"/>
     </widget>
     <widget class="QMenu" name="menuOpen">
      <property name="title">
-      <string>Open</string>
+      <string>Megnyitás</string>
      </property>
      <addaction name="actionOpen_LilyPond_file"/>
     </widget>
@@ -80,7 +80,7 @@
     <enum>LeftToolBarArea</enum>
    </attribute>
    <attribute name="toolBarBreak">
-    <bool>true</bool>
+    <bool>false</bool>
    </attribute>
    <addaction name="action_newStaff"/>
    <addaction name="separator"/>
@@ -111,22 +111,22 @@
   </widget>
   <action name="actionScore">
    <property name="text">
-    <string>Score</string>
+    <string>Kotta</string>
    </property>
   </action>
   <action name="actionStaff">
    <property name="text">
-    <string>Staff</string>
+    <string>Kottasor</string>
    </property>
   </action>
   <action name="actionOpen_LilyPond_file">
    <property name="text">
-    <string>Open LilyPond file</string>
+    <string>LilyPond fájl megnyitása</string>
    </property>
   </action>
   <action name="actionExit">
    <property name="text">
-    <string>Exit</string>
+    <string>Kilépés</string>
    </property>
   </action>
   <action name="actionLilyPond">

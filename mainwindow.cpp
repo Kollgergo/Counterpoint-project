@@ -34,7 +34,7 @@ void MainWindow::showScore()
     scene->clear();
 
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
-        this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0));
+        this->showNextVStaff(new VStaff(svm->getClefByNum(i-1), 0, 0));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
@@ -106,7 +106,32 @@ void MainWindow::vNotePosChanged(VNote *note)
 
 void MainWindow::vstaffSelected(VStaff *vstaff)
 {
+    if(selectedvstaff != vstaff){
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+
+                if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+                    disconnect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                    foreach (VStaffLine *staffline, vstaff->getVstafflines()) {
+                        staffline->setAcceptHoverEvents(false);
+                        disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
+                    }
+
+                    delete(selectedvstaff->getNewvnote());
+                    selectedvstaff->setNewvnote(NULL);
+                    vstaff->updateVStaff();
+                }
+
+                ui->actionAddNote->setChecked(false);
+                ui->actionAddRest->setChecked(false);
+
+                break;
+            }
+        }
+    }
+
     selectedvstaff = vstaff;
+    //scene->update();
     //qDebug() << selectedvstaff;
 }
 
@@ -164,13 +189,13 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_actionLilyPond_triggered()
 {
-    QString filename = QFileDialog::getSaveFileName(this, "Export to Lilypond", "./export", "*.ly");
+    QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
     svm->makeLilyPond(filename);
 }
 
 void MainWindow::on_actionOpen_LilyPond_file_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
+    QString filename = QFileDialog::getOpenFileName(this, "LilyPond fájl megnyitása", "./export", "*.ly");
     svm->readLilyPond(filename);
     showScore();
 }
@@ -180,6 +205,7 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
     if(checked){ //check        
         foreach (VStaff *vstaff, vstaffs) {
             if(vstaff == selectedvstaff){
+                ui->actionAddNote->setChecked(true);
                 ui->actionAddRest->setChecked(false);
                 ui->actionHalf->setChecked(true);
                 ui->actionWhole->setChecked(false);
@@ -238,6 +264,7 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     staffline->setAcceptHoverEvents(false);
                     disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
                 }
+                vstaff->updateVStaff();
             }
         }
 
@@ -253,6 +280,7 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
     if(checked){
         foreach (VStaff *vstaff, vstaffs) {
             if(vstaff == selectedvstaff){
+                ui->actionAddRest->setChecked(true);
                 ui->actionAddNote->setChecked(false);
                 ui->actionHalf->setChecked(true);
                 ui->actionWhole->setChecked(false);
@@ -309,6 +337,7 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     staffline->setAcceptHoverEvents(false);
                     disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
                 }
+                vstaff->updateVStaff();
             }
         }
 
@@ -331,7 +360,9 @@ void MainWindow::on_actionWhole_triggered(bool checked)
             scene->update();
         }else{
 
-            ui->actionWhole->setChecked(false);
+            ui->actionEighth->setChecked(false);
+            ui->actionHalf->setChecked(false);
+            ui->actionQuarter->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
                 if(vstaffs.at(i)->isSelected()){
@@ -341,10 +372,9 @@ void MainWindow::on_actionWhole_triggered(bool checked)
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::whole);
                             updateNoteData(selectedvstaff->getVnotes().at(j));
 
-                            selectedvstaff->update();
-                            scene->update();
+                            selectedvstaff->updateVStaff();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
-
+                            scene->update();
                         }
                     }
                 }
@@ -367,7 +397,9 @@ void MainWindow::on_actionHalf_triggered(bool checked)
             scene->update();
         }else{
 
-            ui->actionHalf->setChecked(false);
+            ui->actionWhole->setChecked(false);
+            ui->actionQuarter->setChecked(false);
+            ui->actionEighth->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
                 if(vstaffs.at(i)->isSelected()){
@@ -376,9 +408,9 @@ void MainWindow::on_actionHalf_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
 
-                            selectedvstaff->update();
-                            scene->update();
+                            selectedvstaff->updateVStaff();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
+                            scene->update();
 
                         }
                     }
@@ -401,7 +433,9 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
             scene->update();
         }else{
 
-            ui->actionQuarter->setChecked(false);
+            ui->actionWhole->setChecked(false);
+            ui->actionHalf->setChecked(false);
+            ui->actionEighth->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
                 if(vstaffs.at(i)->isSelected()){
@@ -410,9 +444,9 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::quarter);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::quarter);
 
-                            selectedvstaff->update();
-                            scene->update();
+                            selectedvstaff->updateVStaff();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
+                            scene->update();
 
                         }
                     }
@@ -435,7 +469,9 @@ void MainWindow::on_actionEighth_triggered(bool checked)
             scene->update();
         }else{
 
-            ui->actionEighth->setChecked(false);
+            ui->actionWhole->setChecked(false);
+            ui->actionHalf->setChecked(false);
+            ui->actionQuarter->setChecked(false);
 
             for(int i=0; i<vstaffs.size(); i++){
                 if(vstaffs.at(i)->isSelected()){
@@ -444,10 +480,9 @@ void MainWindow::on_actionEighth_triggered(bool checked)
                             svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
                             selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::eight);
 
-                            selectedvstaff->update();
-                            scene->update();
-                            //showScore();
+                            selectedvstaff->updateVStaff();
                             selectedvstaff->getVnotes().at(j)->setSelected(true);
+                            scene->update();
 
                         }
                     }
@@ -469,13 +504,13 @@ void MainWindow::on_action_newStaff_triggered()
 
     if(ok){
         if(clef == "Violin kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::treble,0));
+            addVStaff(new VStaff(ScoreViewModel::treble,0,0));
         }else if(clef == "Alt kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::alto,0));
+            addVStaff(new VStaff(ScoreViewModel::alto,0,0));
         }else if(clef == "Tenor kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::tenor,0));
+            addVStaff(new VStaff(ScoreViewModel::tenor,0,0));
         }else if(clef == "Basszus kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::bass,0));
+            addVStaff(new VStaff(ScoreViewModel::bass,0,0));
         }
     }
 }
@@ -589,8 +624,6 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
 void MainWindow::vNoteSelected(VNote *note)
 {
-    ui->actionAddNote->setChecked(false);
-    ui->actionAddRest->setChecked(false);
     ui->actionHalf->setChecked(false);
     ui->actionWhole->setChecked(false);
     ui->actionQuarter->setChecked(false);
@@ -639,6 +672,25 @@ void MainWindow::vNoteSelected(VNote *note)
 
         break;
     }
+
+    if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+        foreach (VStaff *vstaff, vstaffs) {
+            if(vstaff == selectedvstaff){
+                disconnect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                foreach (VStaffLine *staffline, vstaff->getVstafflines()) {
+                    staffline->setAcceptHoverEvents(false);
+                    disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
+                }
+
+                delete(selectedvstaff->getNewvnote());
+                selectedvstaff->setNewvnote(NULL);
+                vstaff->updateVStaff();
+            }
+        }
+    }
+    ui->actionAddNote->setChecked(false);
+    ui->actionAddRest->setChecked(false);
+
 }
 
 void MainWindow::on_actionOpenLilypondToolBar_triggered()

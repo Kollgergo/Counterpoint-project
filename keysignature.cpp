@@ -1,12 +1,6 @@
 #include "keysignature.h"
 
-
-int KeySignature::getKeysig() const
-{
-    return keysig;
-}
-
-void KeySignature::setKeySig(int key)
+KeySignature::KeySignature(int key)
 {
     if(key > -6 && key < 6){
         keysig = key;
@@ -15,7 +9,12 @@ void KeySignature::setKeySig(int key)
     }
 }
 
-KeySignature::KeySignature(int key)
+int KeySignature::getKeysig() const
+{
+    return keysig;
+}
+
+void KeySignature::setKeySig(int key)
 {
     if(key > -6 && key < 6){
         keysig = key;

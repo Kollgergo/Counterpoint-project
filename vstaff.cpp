@@ -1,10 +1,11 @@
 #include "vstaff.h"
 
-VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraphicsObject(parent)
+VStaff::VStaff(ScoreViewModel::clefNames clef, KeySignature keysig, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
     setFlag(ItemIsSelectable);
 
     this->clef = clef;
+    this->keysignature = keysig;
     newvnote = NULL;
 
     //for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(true, this));
@@ -45,10 +46,7 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, QGraphicsObject *parent) : QGraph
     vstafflines.at(15)->setPos(0, this->y()-70);
     vstafflines.at(16)->setPos(0, this->y()-80);
 
-
-
 }
-
 
 QRectF VStaff::boundingRect() const
 {
@@ -62,8 +60,6 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
     //qDebug() << this->y();
 
-
-
     if(this->isSelected()){
         QPen pen(Qt::green);
         pen.setWidth(2);
@@ -74,7 +70,6 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         //qDebug() << this;
 
     }
-
 
     QPixmap clefpixmap;
 
@@ -103,10 +98,80 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         break;
     }
 
+    /*QList <QPixmap> keylist;
+
+    if(keysignature.getKeysig() == 0){
+
+    }else if(keysignature.getKeysig() > 0){
+        keylist.clear();
+        for(int i=0; i<keysignature.getKeysig(); i++){
+            keylist.push_back(QPixmap("./res/sharp.png"));
+        }
+    }else{
+        int tempkeysig = qAbs(keysignature.getKeysig());
+        keylist.clear();
+        for(int i=0; i<tempkeysig; i++){
+            keylist.push_back(QPixmap("./res/flat.png"));
+        }
+
+    }*/
+
+    QPixmap keypixmap("./res/flat.png");
+
+    switch (keysignature.getKeysig()) {
+    case -7:
+
+        break;
+    case -6:
+
+        break;
+    case -5:
+
+        break;
+    case -4:
+
+        break;
+    case -3:
+
+        break;
+    case -2:
+
+        break;
+    case -1:
+        painter->drawPixmap(-20, -15, 16, 35, keypixmap); //valamelyik staffline boundingrectjéhez képest kell elhelyezni
+        break;
+    case 0:
+
+        break;
+    case 1:
+
+        break;
+    case 2:
+
+        break;
+    case 3:
+
+        break;
+    case 4:
+
+        break;
+    case 5:
+
+        break;
+    case 6:
+
+        break;
+    case 7:
+
+        break;
+    default:
+        break;
+    }
+
     QPixmap barline = QPixmap("./res/double_barline");
 
-
     painter->drawPixmap(vstafflines.at(2)->boundingRect().right()-22, vstafflines.at(12)->y()+1, 23, 80, barline);
+
 //    painter->drawPixmap(0, 0, 32, 113, barline);
 
     /*QPen pen(Qt::red)
@@ -370,6 +435,56 @@ void VStaff::updateStaffWidth()
             }
 
             break;
+        }
+    }
+}
+
+void VStaff::updateVStaff()
+{
+    for(int i=0; i<vnotes.size(); i++){
+        if(i==0){
+            vnotes.at(0)->setX(100);
+            updateStaffWidth();
+
+        }else{
+            switch (vnotes.at(i-1)->getNotetype()) {
+            case ScoreViewModel::whole:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+400);
+
+                break;
+            case ScoreViewModel::half:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+200);
+
+                break;
+            case ScoreViewModel::quarter:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+100);
+
+                break;
+            case ScoreViewModel::eight:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
+
+                break;
+            case ScoreViewModel::whole_rest:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+400);
+
+                break;
+            case ScoreViewModel::half_rest:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+200);
+
+                break;
+            case ScoreViewModel::quarter_rest:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+100);
+
+                break;
+            case ScoreViewModel::eight_rest:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
+
+                break;
+            default:
+                vnotes.at(i)->setX(vnotes.at(i-1)->x()+200);
+
+                break;
+            }
         }
     }
 }

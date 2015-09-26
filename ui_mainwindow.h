@@ -159,7 +159,6 @@ public:
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::LeftToolBarArea, mainToolBar);
-        MainWindow->insertToolBarBreak(mainToolBar);
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
@@ -199,10 +198,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
-        actionScore->setText(QApplication::translate("MainWindow", "Score", 0));
-        actionStaff->setText(QApplication::translate("MainWindow", "Staff", 0));
-        actionOpen_LilyPond_file->setText(QApplication::translate("MainWindow", "Open LilyPond file", 0));
-        actionExit->setText(QApplication::translate("MainWindow", "Exit", 0));
+        actionScore->setText(QApplication::translate("MainWindow", "Kotta", 0));
+        actionStaff->setText(QApplication::translate("MainWindow", "Kottasor", 0));
+        actionOpen_LilyPond_file->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
+        actionExit->setText(QApplication::translate("MainWindow", "Kil\303\251p\303\251s", 0));
         actionLilyPond->setText(QApplication::translate("MainWindow", "LilyPond", 0));
         actionAddNote->setText(QApplication::translate("MainWindow", "\303\232j Hangjegy", 0));
         actionAddRest->setText(QApplication::translate("MainWindow", "\303\232j Sz\303\274net", 0));
@@ -214,9 +213,9 @@ public:
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
         actionOpenLilypondToolBar->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
-        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
-        menuNew->setTitle(QApplication::translate("MainWindow", "New", 0));
-        menuOpen->setTitle(QApplication::translate("MainWindow", "Open", 0));
+        menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
+        menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
+        menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));
         menuExport->setTitle(QApplication::translate("MainWindow", "Export", 0));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi
