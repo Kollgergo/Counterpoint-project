@@ -504,11 +504,11 @@ void MainWindow::on_action_newStaff_triggered()
 
     if(ok){
         if(clef == "Violin kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::treble,0,0));
+            addVStaff(new VStaff(ScoreViewModel::treble,1,0));
         }else if(clef == "Alt kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::alto,0,0));
+            addVStaff(new VStaff(ScoreViewModel::alto,-4,0));
         }else if(clef == "Tenor kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::tenor,0,0));
+            addVStaff(new VStaff(ScoreViewModel::tenor,-5,0));
         }else if(clef == "Basszus kulcs"){
             addVStaff(new VStaff(ScoreViewModel::bass,0,0));
         }

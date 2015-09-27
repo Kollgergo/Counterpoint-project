@@ -98,7 +98,7 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         break;
     }
 
-    /*QList <QPixmap> keylist;
+    QList <QPixmap> keylist;
 
     if(keysignature.getKeysig() == 0){
 
@@ -107,6 +107,32 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         for(int i=0; i<keysignature.getKeysig(); i++){
             keylist.push_back(QPixmap("./res/sharp.png"));
         }
+
+        switch (keysignature.getKeysig()) {
+        case 1:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/1_sharp.png"));
+            break;
+        case 2:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/2_sharp.png"));
+            break;
+        case 3:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/3_sharp.png"));
+            break;
+        case 4:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/4_sharp.png"));
+            break;
+        case 5:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/5_sharp.png"));
+            break;
+        case 6:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/6_sharp.png"));
+            break;
+        case 7:
+            painter->drawPixmap(65,-67,115,95,QPixmap("./res/7_sharp.png"));
+            break;
+        default:
+            break;
+        }
     }else{
         int tempkeysig = qAbs(keysignature.getKeysig());
         keylist.clear();
@@ -114,9 +140,34 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
             keylist.push_back(QPixmap("./res/flat.png"));
         }
 
-    }*/
+        switch (tempkeysig) {
+        case 1:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/1_flat.png"));
+            break;
+        case 2:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/2_flat.png"));
+            break;
+        case 3:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/3_flat.png"));
+            break;
+        case 4:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/4_flat.png"));
+            break;
+        case 5:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/5_flat.png"));
+            break;
+        case 6:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/6_flat.png"));
+            break;
+        case 7:
+            painter->drawPixmap(65,-56,115,95,QPixmap("./res/7_flat.png"));
+            break;
+        default:
+            break;
+        }
+    }
 
-    QPixmap keypixmap("./res/flat.png");
+    /*QPixmap keypixmap("./res/flat.png");
 
     switch (keysignature.getKeysig()) {
     case -7:
@@ -138,7 +189,7 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
         break;
     case -1:
-        painter->drawPixmap(-20, -15, 16, 35, keypixmap); //valamelyik staffline boundingrectjéhez képest kell elhelyezni
+        painter->drawPixmap(vstafflines.at(0)->boundingRect().left()+65, -25, 16, 35, keypixmap); //valamelyik staffline boundingrectjéhez képest kell elhelyezni
         break;
     case 0:
 
@@ -166,7 +217,7 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         break;
     default:
         break;
-    }
+    }*/
 
     QPixmap barline = QPixmap("./res/double_barline");
 
