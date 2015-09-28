@@ -16,7 +16,8 @@ SOURCES += main.cpp \
     vnote.cpp \
     vstaff.cpp \
     vstaffline.cpp \
-    scoreview.cpp
+    scoreview.cpp \
+    newstaffdialog.cpp
 
 HEADERS += \
     score.h \
@@ -29,9 +30,11 @@ HEADERS += \
     vnote.h \
     vstaff.h \
     vstaffline.h \
-    scoreview.h
+    scoreview.h \
+    newstaffdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    newstaffdialog.ui
 
 RESOURCES += \
     GUI.qrc

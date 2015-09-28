@@ -11,9 +11,11 @@ INPUT(
 ./debug\vstaff.o
 ./debug\vstaffline.o
 ./debug\scoreview.o
+./debug\newstaffdialog.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
 ./debug\moc_vstaff.o
 ./debug\moc_vstaffline.o
+./debug\moc_newstaffdialog.o
 );

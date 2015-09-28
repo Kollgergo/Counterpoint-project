@@ -8,25 +8,55 @@ VStaff::VStaff(ScoreViewModel::clefNames clef, KeySignature keysig, QGraphicsObj
     this->keysignature = keysig;
     newvnote = NULL;
 
-    //for(int i=0; i<13; i++) vstafflines.push_back(new VStaffLine(true, this));
+    int initstaffwidth;
 
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(false, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
-    vstafflines.push_back(new VStaffLine(true, this));
+    switch (qAbs(keysig.getKeysig())) {
+    case 0:
+        initstaffwidth = 173;
+        break;
+    case 1:
+        initstaffwidth = 193;
+        break;
+    case 2:
+        initstaffwidth = 213;
+        break;
+    case 3:
+        initstaffwidth = 233;
+        break;
+    case 4:
+        initstaffwidth = 253;
+        break;
+    case 5:
+        initstaffwidth = 273;
+        break;
+    case 6:
+        initstaffwidth = 293;
+        break;
+    case 7:
+        initstaffwidth = 313;
+        break;
+    default:
+        initstaffwidth = 173;
+        break;
+    }
+
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(false, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(false, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(false, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(false, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(false, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
+    vstafflines.push_back(new VStaffLine(true, initstaffwidth, this));
 
     vstafflines.at(0)->setPos(0, this->y()+80);
     vstafflines.at(1)->setPos(0, this->y()+70);
@@ -108,31 +138,75 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
             keylist.push_back(QPixmap("./res/sharp.png"));
         }
 
-        switch (keysignature.getKeysig()) {
-        case 1:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/1_sharp.png"));
+        int clefshift = 0;
+
+        switch (clef) {
+        case ScoreViewModel::alto:
+            clefshift = 10;
             break;
-        case 2:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/2_sharp.png"));
-            break;
-        case 3:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/3_sharp.png"));
-            break;
-        case 4:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/4_sharp.png"));
-            break;
-        case 5:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/5_sharp.png"));
-            break;
-        case 6:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/6_sharp.png"));
-            break;
-        case 7:
-            painter->drawPixmap(65,-67,115,95,QPixmap("./res/7_sharp.png"));
+        case ScoreViewModel::bass:
+            clefshift = 20;
             break;
         default:
             break;
         }
+
+        if(clef != ScoreViewModel::tenor){
+            switch (keysignature.getKeysig()) {
+            case 1:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/1_sharp.png"));
+                break;
+            case 2:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/2_sharp.png"));
+                break;
+            case 3:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/3_sharp.png"));
+                break;
+            case 4:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/4_sharp.png"));
+                break;
+            case 5:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/5_sharp.png"));
+                break;
+            case 6:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/6_sharp.png"));
+                break;
+            case 7:
+                painter->drawPixmap(65,-67+clefshift,115,95,QPixmap("./res/7_sharp.png"));
+                break;
+            default:
+                break;
+            }
+        }else{
+
+            switch (keysignature.getKeysig()) {
+            case 1:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/1_sharp_t.png"));
+                break;
+            case 2:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/2_sharp_t.png"));
+                break;
+            case 3:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/3_sharp_t.png"));
+                break;
+            case 4:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/4_sharp_t.png"));
+                break;
+            case 5:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/5_sharp_t.png"));
+                break;
+            case 6:
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/6_sharp_t.png"));
+                break;
+            case 7:
+                painter->drawPixmap(65,-67,115,95,QPixmap("./res/7_sharp_t.png"));
+                break;
+            default:
+                break;
+            }
+        }
+
+
     }else{
         int tempkeysig = qAbs(keysignature.getKeysig());
         keylist.clear();
@@ -140,90 +214,54 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
             keylist.push_back(QPixmap("./res/flat.png"));
         }
 
+        int clefshift = 0;
+
+        switch (clef) {
+        case ScoreViewModel::alto:
+            clefshift = 10;
+            break;
+        case ScoreViewModel::tenor:
+            clefshift = -10;
+            break;
+        case ScoreViewModel::bass:
+            clefshift = 20;
+            break;
+        default:
+            break;
+        }
+
         switch (tempkeysig) {
         case 1:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/1_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/1_flat.png"));
             break;
         case 2:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/2_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/2_flat.png"));
             break;
         case 3:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/3_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/3_flat.png"));
             break;
         case 4:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/4_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/4_flat.png"));
             break;
         case 5:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/5_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/5_flat.png"));
             break;
         case 6:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/6_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/6_flat.png"));
             break;
         case 7:
-            painter->drawPixmap(65,-56,115,95,QPixmap("./res/7_flat.png"));
+            painter->drawPixmap(65,-56+clefshift,115,95,QPixmap("./res/7_flat.png"));
             break;
         default:
             break;
         }
     }
 
-    /*QPixmap keypixmap("./res/flat.png");
-
-    switch (keysignature.getKeysig()) {
-    case -7:
-
-        break;
-    case -6:
-
-        break;
-    case -5:
-
-        break;
-    case -4:
-
-        break;
-    case -3:
-
-        break;
-    case -2:
-
-        break;
-    case -1:
-        painter->drawPixmap(vstafflines.at(0)->boundingRect().left()+65, -25, 16, 35, keypixmap); //valamelyik staffline boundingrectjéhez képest kell elhelyezni
-        break;
-    case 0:
-
-        break;
-    case 1:
-
-        break;
-    case 2:
-
-        break;
-    case 3:
-
-        break;
-    case 4:
-
-        break;
-    case 5:
-
-        break;
-    case 6:
-
-        break;
-    case 7:
-
-        break;
-    default:
-        break;
-    }*/
-
     QPixmap barline = QPixmap("./res/double_barline");
 
     painter->drawPixmap(vstafflines.at(2)->boundingRect().right()-22, vstafflines.at(12)->y()+1, 23, 80, barline);
 
-//    painter->drawPixmap(0, 0, 32, 113, barline);
+    //    painter->drawPixmap(0, 0, 32, 113, barline);
 
     /*QPen pen(Qt::red)
     painter->setPen(pen);
@@ -247,7 +285,35 @@ void VStaff::showNextVNote(VNote *vnote)
     ScoreViewModel::noteTypes lastNoteType;
 
     if(vnotes.isEmpty()){
-        vnote->setX(100);
+        switch (qAbs(keysignature.getKeysig())) {
+        case 0:
+            vnote->setX(100);
+            break;
+        case 1:
+            vnote->setX(120);
+            break;
+        case 2:
+            vnote->setX(140);
+            break;
+        case 3:
+            vnote->setX(160);
+            break;
+        case 4:
+            vnote->setX(180);
+            break;
+        case 5:
+            vnote->setX(200);
+            break;
+        case 6:
+            vnote->setX(220);
+            break;
+        case 7:
+            vnote->setX(240);
+            break;
+        default:
+            vnote->setX(100);
+            break;
+        }
         updateStaffWidth();
 
     }else{
@@ -308,7 +374,36 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::acc
     newvnote->setOpacity(0.5);
 
     if(vnotes.isEmpty()){
-        newvnote->setX(100);
+        switch (qAbs(keysignature.getKeysig())) {
+        case 0:
+            newvnote->setX(100);
+            break;
+        case 1:
+            newvnote->setX(120);
+            break;
+        case 2:
+            newvnote->setX(140);
+            break;
+        case 3:
+            newvnote->setX(160);
+            break;
+        case 4:
+            newvnote->setX(180);
+            break;
+        case 5:
+            newvnote->setX(200);
+            break;
+        case 6:
+            newvnote->setX(220);
+            break;
+        case 7:
+            newvnote->setX(240);
+            break;
+        default:
+            newvnote->setX(100);
+            break;
+        }
+
 
     }else{
         switch (vnotes.last()->getNotetype()) {
@@ -494,7 +589,37 @@ void VStaff::updateVStaff()
 {
     for(int i=0; i<vnotes.size(); i++){
         if(i==0){
-            vnotes.at(0)->setX(100);
+            if(vnotes.isEmpty()){
+                switch (qAbs(keysignature.getKeysig())) {
+                case 0:
+                    vnotes.at(0)->setX(100);
+                    break;
+                case 1:
+                    vnotes.at(0)->setX(120);
+                    break;
+                case 2:
+                    vnotes.at(0)->setX(140);
+                    break;
+                case 3:
+                    vnotes.at(0)->setX(160);
+                    break;
+                case 4:
+                    vnotes.at(0)->setX(180);
+                    break;
+                case 5:
+                    vnotes.at(0)->setX(200);
+                    break;
+                case 6:
+                    vnotes.at(0)->setX(220);
+                    break;
+                case 7:
+                    vnotes.at(0)->setX(240);
+                    break;
+                default:
+                    vnotes.at(0)->setX(100);
+                    break;
+                }
+            }
             updateStaffWidth();
 
         }else{
@@ -560,7 +685,3 @@ void VStaff::setNewvnote(VNote *value)
 {
     newvnote = value;
 }
-
-
-
-

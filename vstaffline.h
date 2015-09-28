@@ -9,7 +9,7 @@ class VStaffLine : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VStaffLine(bool iswhite = true, QGraphicsObject *parent = 0);
+    VStaffLine(bool iswhite = true, int initstaffwidth = 173, QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -25,6 +25,7 @@ signals:
 
 private:
     bool iswhite;
+    int initstaffwidth;
     int staffwidth;
 
 };

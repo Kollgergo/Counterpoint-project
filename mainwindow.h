@@ -9,6 +9,7 @@
 #include <QDebug>
 #include "vstaff.h"
 #include "scoreviewmodel.h"
+#include "newstaffdialog.h"
 
 
 namespace Ui {

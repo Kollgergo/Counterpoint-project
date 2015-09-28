@@ -1,11 +1,12 @@
 #include "vstaffline.h"
 
-VStaffLine::VStaffLine(bool iswhite, QGraphicsObject *parent) : QGraphicsObject(parent)
+VStaffLine::VStaffLine(bool iswhite, int initstaffwidth ,QGraphicsObject *parent) : QGraphicsObject(parent)
 {
     this->iswhite = iswhite;
     setAcceptHoverEvents(false);
     setFlag(ItemStacksBehindParent, true);
-    staffwidth = 173;
+    this->initstaffwidth = initstaffwidth;
+    staffwidth = initstaffwidth;
 }
 
 QRectF VStaffLine::boundingRect() const
@@ -50,7 +51,7 @@ void VStaffLine::addStaffwidth(int value)
 {
     prepareGeometryChange();
     if(value == 0){
-        staffwidth = 173;
+        staffwidth = initstaffwidth;
     }else{
         staffwidth += value;
     }

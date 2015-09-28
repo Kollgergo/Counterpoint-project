@@ -495,7 +495,7 @@ void MainWindow::on_actionEighth_triggered(bool checked)
 
 void MainWindow::on_action_newStaff_triggered()
 {
-    QStringList clefs;
+    /*QStringList clefs;
     clefs << tr("Violin kulcs") << tr("Alt kulcs") << tr("Tenor kulcs") << tr("Basszus kulcs");
 
     bool ok;
@@ -512,7 +512,21 @@ void MainWindow::on_action_newStaff_triggered()
         }else if(clef == "Basszus kulcs"){
             addVStaff(new VStaff(ScoreViewModel::bass,0,0));
         }
+    }*/
+
+//    bool ok = false;
+//    ScoreViewModel::clefNames tempclef;
+//    int tempkey;
+
+    NewStaffDialog *staffdialog = new NewStaffDialog(this);
+    if(staffdialog->exec() == QDialog::Accepted){
+        addVStaff(new VStaff(staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
     }
+    /*staffdialog->show();
+    staffdialog->
+    if(ok){
+        addVStaff(new VStaff(staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+    }*/
 }
 
 
