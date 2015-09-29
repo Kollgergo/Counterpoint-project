@@ -36,6 +36,7 @@ public:
     void addStaff(clefNames clef = treble, int keysig = 0, unsigned int where = 0);
     void deleteStaff(unsigned int which);
     clefNames getClefByNum(int which);
+    KeySignature getKeySignatureByNum(int which);
 
     void addNote(unsigned int staffnum, int pitch, int duration, accents accent, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);

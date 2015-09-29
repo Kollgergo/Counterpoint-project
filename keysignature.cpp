@@ -2,7 +2,7 @@
 
 KeySignature::KeySignature(int key)
 {
-    if(key > -6 && key < 6){
+    if(key >= -7 && key <= 7){
         keysig = key;
     }else{
         keysig = 0;
@@ -16,7 +16,7 @@ int KeySignature::getKeysig() const
 
 void KeySignature::setKeySig(int key)
 {
-    if(key > -6 && key < 6){
+    if(key >= -7 && key <= 7){
         keysig = key;
     }else{
         keysig = 0;

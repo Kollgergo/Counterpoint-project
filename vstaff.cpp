@@ -199,7 +199,7 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
                 painter->drawPixmap(65,-57,115,95,QPixmap("./res/6_sharp_t.png"));
                 break;
             case 7:
-                painter->drawPixmap(65,-67,115,95,QPixmap("./res/7_sharp_t.png"));
+                painter->drawPixmap(65,-57,115,95,QPixmap("./res/7_sharp_t.png"));
                 break;
             default:
                 break;
@@ -513,6 +513,11 @@ void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     QGraphicsItem::mousePressEvent(event);
 }
+KeySignature VStaff::getKeysignature() const
+{
+    return keysignature;
+}
+
 void VStaff::setSelectedvnote(VNote *value)
 {
     selectedvnote = value;
