@@ -173,12 +173,14 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                 for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
                     if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
                         svm->changeToRest(i+1, j+1);
+                        vstaffs.at(i)->deleteSelectedVNote();
                     }
                 }
+                vstaffs.at(i)->updateVStaff();
+                vstaffs.at(i)->updateStaffWidth();
             }
         }
-        selectedvstaff->deleteSelectedVNote();
-        showScore();
+        //selectedvstaff->deleteSelectedVNote();
     }
 }
 
@@ -190,14 +192,18 @@ void MainWindow::on_actionExit_triggered()
 void MainWindow::on_actionLilyPond_triggered()
 {
     QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
-    svm->makeLilyPond(filename);
+    if(!filename.isEmpty()){
+        svm->makeLilyPond(filename);
+    }
 }
 
 void MainWindow::on_actionOpen_LilyPond_file_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond fájl megnyitása", "./export", "*.ly");
-    svm->readLilyPond(filename);
-    showScore();
+    if(!filename.isEmpty()){
+        svm->readLilyPond(filename);
+        showScore();
+    }
 }
 
 void MainWindow::on_actionAddNote_triggered(bool checked)
@@ -762,7 +768,68 @@ void MainWindow::vNoteSelected(VNote *note)
 
 void MainWindow::on_actionOpenLilypondToolBar_triggered()
 {
-    QString filename = QFileDialog::getOpenFileName(this, "Open LilyPond file", "./export", "*.ly");
-    svm->readLilyPond(filename);
-    showScore();
+    QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
+    if(!filename.isEmpty()){
+        svm->readLilyPond(filename);
+        showScore();
+    }
+}
+
+void MainWindow::on_actionSaveLilypondToolBar_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
+    if(!filename.isEmpty()){
+        svm->makeLilyPond(filename);
+    }
+}
+
+void MainWindow::on_actionNewScore_triggered()
+{
+    QMessageBox msgbox;
+    msgbox.setText("Új kotta megnyitása.");
+    msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
+    msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgbox.setDefaultButton(QMessageBox::Cancel);
+    msgbox.setButtonText(QMessageBox::Ok, "Igen");
+    msgbox.setButtonText(QMessageBox::Cancel, "Mégse");
+    int ret = msgbox.exec();
+
+    switch (ret) {
+    case QMessageBox::Ok:
+        svm->deleteStaff(0);
+        vstaffs.clear();
+        scene->clear();
+        break;
+    case QMessageBox::Cancel:
+
+        break;
+    default:
+        break;
+    }
+}
+
+void MainWindow::on_actionScore_triggered()
+{
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle("Új kotta");
+    msgbox.setText("Új kotta megnyitása.");
+    msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
+    msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgbox.setDefaultButton(QMessageBox::Cancel);
+    msgbox.setButtonText(QMessageBox::Ok, "Igen");
+    msgbox.setButtonText(QMessageBox::Cancel, "Mégse");
+    int ret = msgbox.exec();
+
+    switch (ret) {
+    case QMessageBox::Ok:
+        svm->deleteStaff(0);
+        vstaffs.clear();
+        scene->clear();
+        break;
+    case QMessageBox::Cancel:
+
+        break;
+    default:
+        break;
+    }
 }

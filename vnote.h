@@ -23,13 +23,13 @@ public:
     int getScorepos() const;
     void setScorepos(int value);
 
-    void changeToRest();
-
     ScoreViewModel::noteTypes getNotetype() const;
     void setNotetype(const ScoreViewModel::noteTypes &value);
 
     ScoreViewModel::accents getAccent() const;
     void setAccent(const ScoreViewModel::accents &value);
+
+    void changeToRest();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

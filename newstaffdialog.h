@@ -28,7 +28,6 @@ private slots:
 
     void on_bassRadioButton_clicked();
 
-
     void on_comboBox_activated(int index);
 
 private:

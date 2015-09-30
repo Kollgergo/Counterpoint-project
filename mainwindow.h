@@ -63,6 +63,12 @@ private slots:
 
     void on_actionOpenLilypondToolBar_triggered();
 
+    void on_actionSaveLilypondToolBar_triggered();
+
+    void on_actionNewScore_triggered();
+
+    void on_actionScore_triggered();
+
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);

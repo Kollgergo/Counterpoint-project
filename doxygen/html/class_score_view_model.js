@@ -31,6 +31,7 @@ var class_score_view_model =
     [ "deleteStaff", "class_score_view_model.html#a48ec38e418000ba3e1f69678eaedaeee", null ],
     [ "getAccent", "class_score_view_model.html#ac9ba2d57c16d6e20f4c3da111b73615f", null ],
     [ "getClefByNum", "class_score_view_model.html#a89a469259de6149a1eb88faaae00b0b2", null ],
+    [ "getKeySignatureByNum", "class_score_view_model.html#ac8f48528dadb09266ea2f4d4509a5065", null ],
     [ "getNoteByNum", "class_score_view_model.html#a36c92215c16d908f3fd69093e4d307aa", null ],
     [ "getNumOfNotes", "class_score_view_model.html#afd65004f27e1f03a7aab8c1c9b6635e4", null ],
     [ "getNumOfStaffs", "class_score_view_model.html#a2e95a5f0786d42535d04eeaa173ef90f", null ],

@@ -22,25 +22,25 @@ public:
     QList<VStaffLine *> getVstafflines() const;
 
     QList<VNote *> getVnotes() const;
-    void showNextVNote(VNote *vnote);
-
-    void setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent);
-    void addNewVNote();
-
-    void deleteSelectedVNote();
 
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
+    void setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent);
 
     ScoreViewModel::clefNames getClef() const;
+    KeySignature getKeysignature() const;
 
     VNote *getSelectedvnote() const;
     void setSelectedvnote(VNote *value);
 
+    void showNextVNote(VNote *vnote);
+
+    void addNewVNote();
+
+    void deleteSelectedVNote();
+
     void updateStaffWidth();
     void updateVStaff();
-
-    KeySignature getKeysignature() const;
 
 signals:
     void vstaffSelect(VStaff *vstaff);

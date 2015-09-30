@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('vstaff_8h_source.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">vstaff.h</div>  </div>
+<div class="title">C:/Users/kollg/Documents/GitHub/Counterpoint-project/vstaff.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef VSTAFF_H</span></div>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('vstaff_8h_source.html','');});
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    Q_OBJECT</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_v_staff.html">VStaff</a>(ScoreViewModel::clefNames clef = ScoreViewModel::treble, QGraphicsObject *parent = 0);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_v_staff.html">VStaff</a>(ScoreViewModel::clefNames clef = ScoreViewModel::treble, <a class="code" href="class_key_signature.html">KeySignature</a> keysig = 0,QGraphicsObject *parent = 0);</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    QRectF boundingRect() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> paint(QPainter *painter, <span class="keyword">const</span> QStyleOptionGraphicsItem *option, QWidget *widget);</div>
@@ -145,32 +145,37 @@ $(document).ready(function(){initNavTree('vstaff_8h_source.html','');});
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> setSelectedvnote(<a class="code" href="class_v_note.html">VNote</a> *value);</div>
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> updateStaffWidth();</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;signals:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> vstaffSelect(<a class="code" href="class_v_staff.html">VStaff</a> *vstaff);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> newVNoteAdd(<a class="code" href="class_v_note.html">VNote</a> *vnote);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> mousePressEvent(QGraphicsSceneMouseEvent *event);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> updateVStaff();</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_key_signature.html">KeySignature</a> getKeysignature() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;signals:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> vstaffSelect(<a class="code" href="class_v_staff.html">VStaff</a> *vstaff);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> newVNoteAdd(<a class="code" href="class_v_note.html">VNote</a> *vnote);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    ScoreViewModel::clefNames clef;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    QList &lt;VStaffLine *&gt; vstafflines;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    QList&lt;VNote *&gt; vnotes;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_v_note.html">VNote</a> *newvnote;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_v_note.html">VNote</a> *selectedvnote;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;};</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // VSTAFF_H</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> mousePressEvent(QGraphicsSceneMouseEvent *event);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    ScoreViewModel::clefNames clef;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <a class="code" href="class_key_signature.html">KeySignature</a> keysignature;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    QList &lt;VStaffLine *&gt; vstafflines;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    QList&lt;VNote *&gt; vnotes;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_v_note.html">VNote</a> *newvnote;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_v_note.html">VNote</a> *selectedvnote;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#endif // VSTAFF_H</span></div>
 <div class="ttc" id="class_v_note_html"><div class="ttname"><a href="class_v_note.html">VNote</a></div><div class="ttdef"><b>Definition:</b> vnote.h:12</div></div>
+<div class="ttc" id="class_key_signature_html"><div class="ttname"><a href="class_key_signature.html">KeySignature</a></div><div class="ttdef"><b>Definition:</b> keysignature.h:5</div></div>
 <div class="ttc" id="class_v_staff_html"><div class="ttname"><a href="class_v_staff.html">VStaff</a></div><div class="ttdef"><b>Definition:</b> vstaff.h:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_1fdaf3ab886ef6b3e888834fb2787cda.html">kollg</a></li><li class="navelem"><a class="el" href="dir_e228246b128bbca3f81304bdac646ada.html">Documents</a></li><li class="navelem"><a class="el" href="dir_f7d4afce1e690d6bec8a670b9e0fe59b.html">GitHub</a></li><li class="navelem"><a class="el" href="dir_679d785c7ea2520d14dfa37c729f8508.html">Counterpoint-project</a></li><li class="navelem"><b>vstaff.h</b></li>
+    <li class="navelem"><b>vstaff.h</b></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.10 </li>

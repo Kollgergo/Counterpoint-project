@@ -21,5 +21,28 @@
         <file>res/staff_icon.png</file>
         <file>res/flag.png</file>
         <file>res/open.png</file>
+        <file>res/1_flat.png</file>
+        <file>res/1_sharp.png</file>
+        <file>res/1_sharp_t.png</file>
+        <file>res/2_flat.png</file>
+        <file>res/2_sharp.png</file>
+        <file>res/2_sharp_t.png</file>
+        <file>res/3_flat.png</file>
+        <file>res/3_sharp.png</file>
+        <file>res/3_sharp_t.png</file>
+        <file>res/4_flat.png</file>
+        <file>res/4_sharp.png</file>
+        <file>res/4_sharp_t.png</file>
+        <file>res/5_flat.png</file>
+        <file>res/5_sharp.png</file>
+        <file>res/5_sharp_t.png</file>
+        <file>res/6_flat.png</file>
+        <file>res/6_sharp.png</file>
+        <file>res/6_sharp_t.png</file>
+        <file>res/7_flat.png</file>
+        <file>res/7_sharp.png</file>
+        <file>res/7_sharp_t.png</file>
+        <file>res/save_icon.png</file>
+        <file>res/new_icon.png</file>
     </qresource>
 </RCC>

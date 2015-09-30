@@ -162,26 +162,49 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_GUI.cpp
 debug/qrc_GUI.cpp: GUI.qrc \
 		res/quarter_rest.png \
-		res/staff_icon.png \
-		res/quarter_note.png \
-		res/open.png \
-		res/natural.png \
-		res/eighth_note_icon.png \
-		res/flag.png \
-		res/quarter_note_icon.png \
-		res/eighth_rest.png \
-		res/half_note.png \
-		res/flat.png \
-		res/half_rest.png \
-		res/double_barline.png \
-		res/whole_rest.png \
+		res/2_sharp_t.png \
+		res/5_flat.png \
 		res/whole_note.png \
-		res/c_clef.png \
-		res/half_note_icon.png \
+		res/treble_clef.png \
+		res/quarter_note.png \
+		res/1_flat.png \
+		res/7_sharp.png \
+		res/eighth_rest.png \
+		res/7_sharp_t.png \
+		res/7_flat.png \
+		res/4_sharp.png \
 		res/whole_note_icon.png \
-		res/bass_clef.png \
 		res/sharp.png \
-		res/treble_clef.png
+		res/4_sharp_t.png \
+		res/3_flat.png \
+		res/double_barline.png \
+		res/flat.png \
+		res/1_sharp_t.png \
+		res/1_sharp.png \
+		res/staff_icon.png \
+		res/bass_clef.png \
+		res/open.png \
+		res/new_icon.png \
+		res/half_note.png \
+		res/c_clef.png \
+		res/6_sharp_t.png \
+		res/quarter_note_icon.png \
+		res/6_flat.png \
+		res/eighth_note_icon.png \
+		res/3_sharp_t.png \
+		res/6_sharp.png \
+		res/2_flat.png \
+		res/flag.png \
+		res/natural.png \
+		res/5_sharp.png \
+		res/3_sharp.png \
+		res/half_note_icon.png \
+		res/save_icon.png \
+		res/2_sharp.png \
+		res/half_rest.png \
+		res/4_flat.png \
+		res/5_sharp_t.png \
+		res/whole_rest.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name GUI GUI.qrc -o debug\qrc_GUI.cpp
 
 compiler_moc_header_make_all: debug/moc_mainwindow.cpp debug/moc_vnote.cpp debug/moc_vstaff.cpp debug/moc_vstaffline.cpp debug/moc_newstaffdialog.cpp
@@ -2165,6 +2188,15 @@ debug/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		scoreviewmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		score.h \
+		staff.h \
+		note.h \
+		keysignature.h \
 		newstaffdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore newstaffdialog.h -o debug\moc_newstaffdialog.cpp
 
@@ -6143,7 +6175,62 @@ debug/newstaffdialog.o: newstaffdialog.cpp newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
-		ui_newstaffdialog.h
+		scoreviewmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		score.h \
+		staff.h \
+		note.h \
+		keysignature.h \
+		ui_newstaffdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\newstaffdialog.o newstaffdialog.cpp
 
 debug/qrc_GUI.o: debug/qrc_GUI.cpp 

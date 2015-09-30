@@ -12,12 +12,11 @@ var class_ui___main_window =
     [ "actionHalf", "class_ui___main_window.html#a7692563f413df714dfb4e8ed8010c0e9", null ],
     [ "actionLilyPond", "class_ui___main_window.html#af762715085b683b0b0c78bb3eae44dd3", null ],
     [ "actionOpen_LilyPond_file", "class_ui___main_window.html#ad950d2ab76bfbe081e22158a785183b6", null ],
+    [ "actionOpenLilypondToolBar", "class_ui___main_window.html#ab02a56ba9d54cf040591d4de32651b94", null ],
     [ "actionQuarter", "class_ui___main_window.html#a5bbd123670a59da0234403b38e1ce62c", null ],
     [ "actionScore", "class_ui___main_window.html#a65929e7b9005cd18d374457316727024", null ],
     [ "actionStaff", "class_ui___main_window.html#ab115a121a4909c8aad3cb01ef1812893", null ],
     [ "actionWhole", "class_ui___main_window.html#ae98fd6bf7df7b27ec592b96789eeb0cd", null ],
-    [ "addNoteButton", "class_ui___main_window.html#af1555293e1e49dae870c0e8ac6902177", null ],
-    [ "addStaffButton", "class_ui___main_window.html#aa33397b2b42d040340b210286b2697c0", null ],
     [ "centralWidget", "class_ui___main_window.html#a30075506c2116c3ed4ff25e07ae75f81", null ],
     [ "mainToolBar", "class_ui___main_window.html#a5172877001c8c7b4e0f6de50421867d1", null ],
     [ "menuBar", "class_ui___main_window.html#a2be1c24ec9adfca18e1dcc951931457f", null ],
@@ -27,5 +26,6 @@ var class_ui___main_window =
     [ "menuOpen", "class_ui___main_window.html#adcba5a32ce775ca26d6b10e5affbbff0", null ],
     [ "scoreView", "class_ui___main_window.html#a640fd28680d98c59f110e1d5e9f0ffb2", null ],
     [ "statusBar", "class_ui___main_window.html#a50fa481337604bcc8bf68de18ab16ecd", null ],
+    [ "toolBar", "class_ui___main_window.html#ab84dc49349f514d7b7d3fe8e78de069b", null ],
     [ "verticalLayout", "class_ui___main_window.html#aecd96a04789fcfec3f98d80390ad8184", null ]
 ];
