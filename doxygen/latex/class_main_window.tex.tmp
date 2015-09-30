@@ -1,0 +1,58 @@
+\hypertarget{class_main_window}{}\section{Main\+Window Class Reference}
+\label{class_main_window}\index{Main\+Window@{Main\+Window}}
+
+
+Inheritance diagram for Main\+Window\+:
+% FIG 0
+
+
+Collaboration diagram for Main\+Window\+:
+% FIG 1
+\subsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_main_window_a29aa809848a30eabffde0df9b7325879}{}void {\bfseries note\+Pos\+Changed} (\hyperlink{class_v_note}{V\+Note} $\ast$note)\label{class_main_window_a29aa809848a30eabffde0df9b7325879}
+
+\item 
+\hypertarget{class_main_window_a6cd57f6ba7f45bc7f1e723aa99ada0f0}{}void {\bfseries vstaff\+Selected} (\hyperlink{class_v_staff}{V\+Staff} $\ast$vstaff)\label{class_main_window_a6cd57f6ba7f45bc7f1e723aa99ada0f0}
+
+\item 
+\hypertarget{class_main_window_ab76ad97e59b1bc8be3bf8dc05cc37ecb}{}void {\bfseries new\+V\+Note\+Added} (\hyperlink{class_v_note}{V\+Note} $\ast$vnote)\label{class_main_window_ab76ad97e59b1bc8be3bf8dc05cc37ecb}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}{}{\bfseries Main\+Window} (Q\+Widget $\ast$parent=0)\label{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}
+
+\item 
+\hypertarget{class_main_window_a24fce628de02495376e8c1724c077f2a}{}void {\bfseries set\+Svm} (\hyperlink{class_score_view_model}{Score\+View\+Model} $\ast$value)\label{class_main_window_a24fce628de02495376e8c1724c077f2a}
+
+\item 
+\hypertarget{class_main_window_a6634f1163a8752a689aa7ff6ffc0e4b1}{}void {\bfseries show\+Score} ()\label{class_main_window_a6634f1163a8752a689aa7ff6ffc0e4b1}
+
+\item 
+\hypertarget{class_main_window_a29b23178fefbc36a440072d0c9ded820}{}void {\bfseries show\+Next\+V\+Staff} (\hyperlink{class_v_staff}{V\+Staff} $\ast$vstaff)\label{class_main_window_a29b23178fefbc36a440072d0c9ded820}
+
+\item 
+\hypertarget{class_main_window_a4d8d7633f5fcbe11cd1a046301060b96}{}void {\bfseries update\+Note\+Data} (\hyperlink{class_v_note}{V\+Note} $\ast$vnote)\label{class_main_window_a4d8d7633f5fcbe11cd1a046301060b96}
+
+\item 
+\hypertarget{class_main_window_a11b07925a93ef53750a9da3993c05701}{}void {\bfseries add\+V\+Staff} (\hyperlink{class_v_staff}{V\+Staff} $\ast$vstaff)\label{class_main_window_a11b07925a93ef53750a9da3993c05701}
+
+\item 
+\hypertarget{class_main_window_a7345a180da85799035f01dda512ad8d3}{}Q\+List$<$ \hyperlink{class_v_staff}{V\+Staff} $\ast$ $>$ {\bfseries get\+Vstaffs} () const \label{class_main_window_a7345a180da85799035f01dda512ad8d3}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_main_window_a9c4f542263838b9ecd06eae839a42a34}{}void {\bfseries key\+Press\+Event} (Q\+Key\+Event $\ast$event)\label{class_main_window_a9c4f542263838b9ecd06eae839a42a34}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/mainwindow.\+h\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/mainwindow.\+cpp\end{DoxyCompactItemize}

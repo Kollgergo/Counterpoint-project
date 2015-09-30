@@ -36,8 +36,9 @@ public:
     void addStaff(clefNames clef = treble, int keysig = 0, unsigned int where = 0);
     void deleteStaff(unsigned int which);
     clefNames getClefByNum(int which);
+    KeySignature getKeySignatureByNum(int which);
 
-    void addNote(unsigned int staffnum, int pitch, int duration, unsigned int where = 0);
+    void addNote(unsigned int staffnum, int pitch, int duration, accents accent, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);
     Note& getNoteByNum(unsigned int staffnum, unsigned int which);
     unsigned int getNumOfNotes(unsigned int staffnum) const;
@@ -50,6 +51,8 @@ public:
     void updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos);
     void updateAccent(unsigned int staffnumber, unsigned int notenumber, accents newaccent);
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
+
+    void changeToRest(unsigned int staffnumber, unsigned int notenumber);
 
     void makeLilyPond(QString destination);
     void readLilyPond(QString file);

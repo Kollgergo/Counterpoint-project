@@ -1,11 +1,48 @@
 <RCC>
-    <qresource prefix="/" >
-		<file>res/whole_note.png</file>
+    <qresource prefix="/">
+        <file>res/whole_note.png</file>
         <file>res/half_note.png</file>
-		<file>res/quarter_note.png</file>
-		<file>res/whole_rest.png</file>
-		<file>res/half_rest.png</file>
-		<file>res/quarter_rest.png</file>
-		<file>res/eighth_rest.png</file>
+        <file>res/quarter_note.png</file>
+        <file>res/whole_rest.png</file>
+        <file>res/half_rest.png</file>
+        <file>res/quarter_rest.png</file>
+        <file>res/eighth_rest.png</file>
+        <file>res/treble_clef.png</file>
+        <file>res/c_clef.png</file>
+        <file>res/bass_clef.png</file>
+        <file>res/sharp.png</file>
+        <file>res/flat.png</file>
+        <file>res/natural.png</file>
+        <file>res/double_barline.png</file>
+        <file>res/whole_note_icon.png</file>
+        <file>res/half_note_icon.png</file>
+        <file>res/quarter_note_icon.png</file>
+        <file>res/eighth_note_icon.png</file>
+        <file>res/staff_icon.png</file>
+        <file>res/flag.png</file>
+        <file>res/open.png</file>
+        <file>res/1_flat.png</file>
+        <file>res/1_sharp.png</file>
+        <file>res/1_sharp_t.png</file>
+        <file>res/2_flat.png</file>
+        <file>res/2_sharp.png</file>
+        <file>res/2_sharp_t.png</file>
+        <file>res/3_flat.png</file>
+        <file>res/3_sharp.png</file>
+        <file>res/3_sharp_t.png</file>
+        <file>res/4_flat.png</file>
+        <file>res/4_sharp.png</file>
+        <file>res/4_sharp_t.png</file>
+        <file>res/5_flat.png</file>
+        <file>res/5_sharp.png</file>
+        <file>res/5_sharp_t.png</file>
+        <file>res/6_flat.png</file>
+        <file>res/6_sharp.png</file>
+        <file>res/6_sharp_t.png</file>
+        <file>res/7_flat.png</file>
+        <file>res/7_sharp.png</file>
+        <file>res/7_sharp_t.png</file>
+        <file>res/save_icon.png</file>
+        <file>res/new_icon.png</file>
     </qresource>
 </RCC>

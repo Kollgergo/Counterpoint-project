@@ -9,6 +9,7 @@
 #include <QDebug>
 #include "vstaff.h"
 #include "scoreviewmodel.h"
+#include "newstaffdialog.h"
 
 
 namespace Ui {
@@ -26,8 +27,8 @@ public:
     void setSvm(ScoreViewModel *value);
     void showScore();
     void showNextVStaff(VStaff * vstaff);
-    void updateNoteData(VNote *note);
-    void addStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble);
+    void updateNoteData(VNote *vnote);
+    void addVStaff(VStaff *vstaff);
 
     QList<VStaff *> getVstaffs() const;
 
@@ -35,7 +36,6 @@ protected:
     void keyPressEvent(QKeyEvent * event);
 
 private slots:
-    void on_addNoteButton_clicked();
 
     void on_actionExit_triggered();
 
@@ -43,16 +43,44 @@ private slots:
 
     void on_actionOpen_LilyPond_file_triggered();
 
-    void on_addStaffButton_clicked();
+    void on_actionAddNote_triggered(bool checked);
+
+    void on_actionAddRest_triggered(bool checked);
+
+    void on_actionWhole_triggered(bool checked);
+
+    void on_actionHalf_triggered(bool checked);
+
+    void on_actionQuarter_triggered(bool checked);
+
+    void on_actionEighth_triggered(bool checked);
+
+    void on_action_newStaff_triggered();
+
+    void on_actionAddSharp_triggered(bool checked);
+
+    void on_actionAddFlat_triggered(bool checked);
+
+    void on_actionOpenLilypondToolBar_triggered();
+
+    void on_actionSaveLilypondToolBar_triggered();
+
+    void on_actionNewScore_triggered();
+
+    void on_actionScore_triggered();
 
 public slots:
-    void notePosChanged(VNote *note);
+    void vNoteSelected(VNote *note);
+    void vNotePosChanged(VNote *note);
+    void vstaffSelected(VStaff *vstaff);
+    void newVNoteAdded(VNote *vnote);
 
 private:
     Ui::MainWindow *ui;
     ScoreViewModel *svm;
     QGraphicsScene *scene;
     QList<VStaff*> vstaffs;
+    VStaff *selectedvstaff;
 
 };
 

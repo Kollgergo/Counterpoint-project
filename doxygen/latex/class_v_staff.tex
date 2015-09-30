@@ -1,0 +1,83 @@
+\hypertarget{class_v_staff}{}\section{V\+Staff Class Reference}
+\label{class_v_staff}\index{V\+Staff@{V\+Staff}}
+Inheritance diagram for V\+Staff\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_v_staff}
+\end{center}
+\end{figure}
+\subsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_v_staff_a79cbbcba090397f001af49c89516d88e}{}void {\bfseries vstaff\+Select} (\hyperlink{class_v_staff}{V\+Staff} $\ast$vstaff)\label{class_v_staff_a79cbbcba090397f001af49c89516d88e}
+
+\item 
+\hypertarget{class_v_staff_a7cb560594badc35f609ed4dc183ab030}{}void {\bfseries new\+V\+Note\+Add} (\hyperlink{class_v_note}{V\+Note} $\ast$vnote)\label{class_v_staff_a7cb560594badc35f609ed4dc183ab030}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_v_staff_af020580c558ab24a9af2bccbab36ec33}{}{\bfseries V\+Staff} (Score\+View\+Model\+::clef\+Names clef=Score\+View\+Model\+::treble, \hyperlink{class_key_signature}{Key\+Signature} keysig=0, Q\+Graphics\+Object $\ast$parent=0)\label{class_v_staff_af020580c558ab24a9af2bccbab36ec33}
+
+\item 
+\hypertarget{class_v_staff_ade19faa451d9ce058cddcafeacb5a432}{}Q\+Rect\+F {\bfseries bounding\+Rect} () const \label{class_v_staff_ade19faa451d9ce058cddcafeacb5a432}
+
+\item 
+\hypertarget{class_v_staff_aeefc796be13d05ddc8bfee7ff49ee5b6}{}void {\bfseries paint} (Q\+Painter $\ast$painter, const Q\+Style\+Option\+Graphics\+Item $\ast$option, Q\+Widget $\ast$widget)\label{class_v_staff_aeefc796be13d05ddc8bfee7ff49ee5b6}
+
+\item 
+\hypertarget{class_v_staff_af6260222d1f6c5af860edeee4e5ad2e2}{}Q\+List$<$ \hyperlink{class_v_staff_line}{V\+Staff\+Line} $\ast$ $>$ {\bfseries get\+Vstafflines} () const \label{class_v_staff_af6260222d1f6c5af860edeee4e5ad2e2}
+
+\item 
+\hypertarget{class_v_staff_a37e2606c7ff7e487059337274c706c2b}{}Q\+List$<$ \hyperlink{class_v_note}{V\+Note} $\ast$ $>$ {\bfseries get\+Vnotes} () const \label{class_v_staff_a37e2606c7ff7e487059337274c706c2b}
+
+\item 
+\hypertarget{class_v_staff_af0e303b975eb997e6e11bd7696bf8ead}{}void {\bfseries show\+Next\+V\+Note} (\hyperlink{class_v_note}{V\+Note} $\ast$vnote)\label{class_v_staff_af0e303b975eb997e6e11bd7696bf8ead}
+
+\item 
+\hypertarget{class_v_staff_a7ca9cc1d027b2796047aff5020fa195b}{}void {\bfseries set\+New\+V\+Note} (Score\+View\+Model\+::note\+Types notetype, Score\+View\+Model\+::accents accent)\label{class_v_staff_a7ca9cc1d027b2796047aff5020fa195b}
+
+\item 
+\hypertarget{class_v_staff_a5560aebaca63c903d6514674a090716a}{}void {\bfseries add\+New\+V\+Note} ()\label{class_v_staff_a5560aebaca63c903d6514674a090716a}
+
+\item 
+\hypertarget{class_v_staff_ac7e53a5a6092b7b57ab0a1f36d2357d9}{}void {\bfseries delete\+Selected\+V\+Note} ()\label{class_v_staff_ac7e53a5a6092b7b57ab0a1f36d2357d9}
+
+\item 
+\hypertarget{class_v_staff_ad42533b9604fd8abec281dcf6d1be8ee}{}\hyperlink{class_v_note}{V\+Note} $\ast$ {\bfseries get\+Newvnote} () const \label{class_v_staff_ad42533b9604fd8abec281dcf6d1be8ee}
+
+\item 
+\hypertarget{class_v_staff_a2b8d021fd00eaf7e4fda38a2c58b8d9e}{}void {\bfseries set\+Newvnote} (\hyperlink{class_v_note}{V\+Note} $\ast$value)\label{class_v_staff_a2b8d021fd00eaf7e4fda38a2c58b8d9e}
+
+\item 
+\hypertarget{class_v_staff_aaf1790a96768e184d2b6c1299d4eb230}{}Score\+View\+Model\+::clef\+Names {\bfseries get\+Clef} () const \label{class_v_staff_aaf1790a96768e184d2b6c1299d4eb230}
+
+\item 
+\hypertarget{class_v_staff_ae38cc7590d13e6992e996c91dd209cb4}{}\hyperlink{class_v_note}{V\+Note} $\ast$ {\bfseries get\+Selectedvnote} () const \label{class_v_staff_ae38cc7590d13e6992e996c91dd209cb4}
+
+\item 
+\hypertarget{class_v_staff_a2c1531ee4734bccf5ffe7bd66f988583}{}void {\bfseries set\+Selectedvnote} (\hyperlink{class_v_note}{V\+Note} $\ast$value)\label{class_v_staff_a2c1531ee4734bccf5ffe7bd66f988583}
+
+\item 
+\hypertarget{class_v_staff_ac96715515c3f55229ba114293ece82fd}{}void {\bfseries update\+Staff\+Width} ()\label{class_v_staff_ac96715515c3f55229ba114293ece82fd}
+
+\item 
+\hypertarget{class_v_staff_aa4d00861f977630d44c8c19a09c05da5}{}void {\bfseries update\+V\+Staff} ()\label{class_v_staff_aa4d00861f977630d44c8c19a09c05da5}
+
+\item 
+\hypertarget{class_v_staff_a95b415e2f53afe972263f62149203710}{}\hyperlink{class_key_signature}{Key\+Signature} {\bfseries get\+Keysignature} () const \label{class_v_staff_a95b415e2f53afe972263f62149203710}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{class_v_staff_a570bacf43a4ba401525bda3b037d3c0d}{}void {\bfseries mouse\+Press\+Event} (Q\+Graphics\+Scene\+Mouse\+Event $\ast$event)\label{class_v_staff_a570bacf43a4ba401525bda3b037d3c0d}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/vstaff.\+h\item 
+C\+:/\+Users/kollg/\+Documents/\+Git\+Hub/\+Counterpoint-\/project/vstaff.\+cpp\end{DoxyCompactItemize}

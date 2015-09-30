@@ -1,13 +1,25 @@
 #include "vstaffline.h"
 
-VStaffLine::VStaffLine(QGraphicsObject *parent) : QGraphicsObject(parent)
+VStaffLine::VStaffLine(bool iswhite, int initstaffwidth ,QGraphicsObject *parent) : QGraphicsObject(parent)
 {
-    setAcceptHoverEvents(true);
+    this->iswhite = iswhite;
+    setAcceptHoverEvents(false);
+    setFlag(ItemStacksBehindParent, true);
+    this->initstaffwidth = initstaffwidth;
+    staffwidth = initstaffwidth;
 }
 
 QRectF VStaffLine::boundingRect() const
 {
-    return QRectF(0,0,1500,1);
+    QRectF rect(0,0,staffwidth,1);
+
+    //qDebug() << rect;
+
+    //rect.setWidth(rect.width()+extrawidth);
+
+    //qDebug() << extrawidth;
+
+    return rect;
 }
 
 void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
@@ -17,27 +29,45 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
     QRectF rect = boundingRect();
 
-    QBrush brush(Qt::black);
+    QPen pen(Qt::black);
 
-    painter->setBrush(brush);
+    if(iswhite == true) pen.setColor(Qt::white);
+
+
+    painter->setPen(pen);
     painter->drawRect(rect);
 }
 
 void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    qDebug() << "hover enter";
+    //qDebug() << "hover enter";
     emit hoverEntering(this);
-    this->parentItem()->scene()->update();
+    //this->scene()->update();
 
-    QGraphicsItem::hoverEnterEvent(event);
+    //QGraphicsItem::hoverEnterEvent(event);
 }
 
-void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+void VStaffLine::addStaffwidth(int value)
 {
-    qDebug() << "hover leave";
+    prepareGeometryChange();
+    if(value == 0){
+        staffwidth = initstaffwidth;
+    }else{
+        staffwidth += value;
+    }
+
+    //qDebug() << staffwidth;
+    //qDebug() << this->boundingRect().width();
+    this->scene()->update();
+}
+
+
+/*void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
+{
+    //qDebug() << "hover leave";
 
     this->parentItem()->scene()->update();
 
     QGraphicsItem::hoverLeaveEvent(event);
 
-}
+}*/

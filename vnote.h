@@ -24,6 +24,12 @@ public:
     void setScorepos(int value);
 
     ScoreViewModel::noteTypes getNotetype() const;
+    void setNotetype(const ScoreViewModel::noteTypes &value);
+
+    ScoreViewModel::accents getAccent() const;
+    void setAccent(const ScoreViewModel::accents &value);
+
+    void changeToRest();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -31,7 +37,11 @@ protected:
     void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 signals:
-    void notePosChanging(VNote *note);
+    void vNoteSelecting(VNote *note);
+    void vNotePosChanging(VNote *note);
+
+public slots:
+    void hoverEntered(VStaffLine *staffline);
 
 private:
     QPixmap pixmap;
