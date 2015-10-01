@@ -114,6 +114,8 @@
    <addaction name="actionNewScore"/>
    <addaction name="actionOpenLilypondToolBar"/>
    <addaction name="actionSaveLilypondToolBar"/>
+   <addaction name="separator"/>
+   <addaction name="actionNewCounterpoint"/>
   </widget>
   <action name="actionScore">
    <property name="text">
@@ -265,6 +267,15 @@
    </property>
    <property name="text">
     <string>Új kotta</string>
+   </property>
+  </action>
+  <action name="actionNewCounterpoint">
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/CP_icon.png</normaloff>:/res/CP_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Új Ellenpont feladat</string>
    </property>
   </action>
  </widget>

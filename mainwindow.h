@@ -10,6 +10,7 @@
 #include "vstaff.h"
 #include "scoreviewmodel.h"
 #include "newstaffdialog.h"
+#include "newcpdialog.h"
 
 
 namespace Ui {
@@ -25,7 +26,7 @@ public:
     ~MainWindow();
 
     void setSvm(ScoreViewModel *value);
-    void showScore();
+    void showScore(bool isCF = false);
     void showNextVStaff(VStaff * vstaff);
     void updateNoteData(VNote *vnote);
     void addVStaff(VStaff *vstaff);
@@ -68,6 +69,8 @@ private slots:
     void on_actionNewScore_triggered();
 
     void on_actionScore_triggered();
+
+    void on_actionNewCounterpoint_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);

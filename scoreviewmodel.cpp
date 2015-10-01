@@ -539,9 +539,9 @@ void ScoreViewModel::makeLilyPond(QString destination)
 
 }
 
-void ScoreViewModel::readLilyPond(QString file)
+void ScoreViewModel::readLilyPond(QString file, bool isCF)
 {
-    int staffnum = -1;
+    int staffnum = 0;
     accents accent;
     //accentsMap.clear();
     //accentsMap[0];
@@ -562,8 +562,16 @@ void ScoreViewModel::readLilyPond(QString file)
 //    qDebug() << keyregexp.isValid();
 //    qDebug() << keyregexp.errorString();
 
+
+
     while(!inlilyfile.atEnd()){
         line = inlilyfile.readLine();
+
+        if(isCF == true){
+            if(staffnum == 1 && line == "\\new Staff{\n"){
+                return;
+            }
+        }
 
         if(line == "\\new Staff{\n"){ //new Staff
             addStaff(treble, 0, 0);

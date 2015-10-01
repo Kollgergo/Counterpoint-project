@@ -44,5 +44,6 @@
         <file>res/7_sharp_t.png</file>
         <file>res/save_icon.png</file>
         <file>res/new_icon.png</file>
+        <file>res/CP_icon.png</file>
     </qresource>
 </RCC>

@@ -1,8 +1,12 @@
 #include "vstaff.h"
 
-VStaff::VStaff(ScoreViewModel::clefNames clef, KeySignature keysig, QGraphicsObject *parent) : QGraphicsObject(parent)
+VStaff::VStaff(bool isCF, ScoreViewModel::clefNames clef, KeySignature keysig, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
-    setFlag(ItemIsSelectable);
+    if(!isCF){
+        setFlag(ItemIsSelectable);
+    }else{
+        setEnabled(false);
+    }
 
     this->clef = clef;
     this->keysignature = keysig;
@@ -369,7 +373,7 @@ void VStaff::showNextVNote(VNote *vnote)
 
 void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent)
 {
-    newvnote = new VNote(true,9,notetype,accent,this);
+    newvnote = new VNote(false,true,9,notetype,accent,this);
 
     newvnote->setOpacity(0.5);
 
@@ -481,7 +485,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::acc
 void VStaff::addNewVNote()
 {
     newvnote->setOpacity(1);
-    vnotes.push_back(new VNote(false, newvnote->getScorepos(), newvnote->getNotetype(), newvnote->getAccent(), this));
+    vnotes.push_back(new VNote(false,false, newvnote->getScorepos(), newvnote->getNotetype(), newvnote->getAccent(), this));
 
 
     vnotes.last()->setX(newvnote->x());

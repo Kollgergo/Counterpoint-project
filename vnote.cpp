@@ -1,6 +1,6 @@
 #include "vnote.h"
 
-VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, ScoreViewModel::accents acc, QGraphicsObject *parent) : QGraphicsObject(parent)
+VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, ScoreViewModel::accents acc, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
     pixmap = QPixmap();
     shadow = NULL;
@@ -19,12 +19,16 @@ VNote::VNote(bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, S
 
     }else{
         this->newnote = false;
-        setFlag(ItemIsSelectable);
+        if(!isCF){
+            setFlag(ItemIsSelectable);
 
-        if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
-            setFlag(ItemIsMovable);
-            setCursor(Qt::OpenHandCursor);
-            setAcceptedMouseButtons(Qt::LeftButton);
+            if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
+                setFlag(ItemIsMovable);
+                setCursor(Qt::OpenHandCursor);
+                setAcceptedMouseButtons(Qt::LeftButton);
+            }
+        }else{
+            setEnabled(false);
         }
 
         if(this->parentItem() != 0){ // process scorepos
@@ -210,19 +214,19 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
             switch (this->getNotetype()) {
             case ScoreViewModel::whole:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::half:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::quarter:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, this->parentObject());
                 break;
             case ScoreViewModel::eight:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, this->parentObject());
                 break;
             default:
-                this->shadow = new VNote(false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
                 break;
             }
 

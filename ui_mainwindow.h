@@ -44,6 +44,7 @@ public:
     QAction *actionOpenLilypondToolBar;
     QAction *actionSaveLilypondToolBar;
     QAction *actionNewScore;
+    QAction *actionNewCounterpoint;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -140,6 +141,11 @@ public:
         QIcon icon12;
         icon12.addFile(QStringLiteral(":/res/new_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionNewScore->setIcon(icon12);
+        actionNewCounterpoint = new QAction(MainWindow);
+        actionNewCounterpoint->setObjectName(QStringLiteral("actionNewCounterpoint"));
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/res/CP_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNewCounterpoint->setIcon(icon13);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -202,6 +208,8 @@ public:
         toolBar->addAction(actionNewScore);
         toolBar->addAction(actionOpenLilypondToolBar);
         toolBar->addAction(actionSaveLilypondToolBar);
+        toolBar->addSeparator();
+        toolBar->addAction(actionNewCounterpoint);
 
         retranslateUi(MainWindow);
 
@@ -227,6 +235,7 @@ public:
         actionOpenLilypondToolBar->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
         actionSaveLilypondToolBar->setText(QApplication::translate("MainWindow", "Kotta ment\303\251se", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));
+        actionNewCounterpoint->setText(QApplication::translate("MainWindow", "\303\232j Ellenpont feladat", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));

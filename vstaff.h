@@ -14,7 +14,7 @@ class VStaff : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VStaff(ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
+    VStaff(bool isCF = false ,ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);

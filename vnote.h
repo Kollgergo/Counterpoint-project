@@ -14,7 +14,7 @@ class VNote : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VNote(bool newnote = false, unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half,
+    VNote(bool isCF = false, bool newnote = false, unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half,
           ScoreViewModel::accents acc = ScoreViewModel::none, QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;

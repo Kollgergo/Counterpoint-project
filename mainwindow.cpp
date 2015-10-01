@@ -27,18 +27,27 @@ void MainWindow::setSvm(ScoreViewModel *value)
     svm = value;
 }
 
-void MainWindow::showScore()
+void MainWindow::showScore(bool isCF)
 {
     vstaffs.clear();
     //svm->deleteStaff(0);
     scene->clear();
 
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
-        this->showNextVStaff(new VStaff(svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
+        if(i == 1){
+            this->showNextVStaff(new VStaff(isCF,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
+        }else{
+           this->showNextVStaff(new VStaff(false,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
+        }
+
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
-            vstaffs.last()->showNextVNote(new VNote(false, svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
+            if(i == 1){
+               vstaffs.last()->showNextVNote(new VNote(isCF,false, svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
+            }else{
+               vstaffs.last()->showNextVNote(new VNote(false,false, svm->getPosition(i,j), svm->getType(i,j), svm->getAccent(i,j), vstaffs.last()));
+            }
 
             //qDebug() << vstaffs.last();
 
@@ -164,7 +173,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_Enter){
 
-        showScore();
+        showScore(false);
     }
 
     if(event->key() == Qt::Key_Delete){
@@ -201,8 +210,9 @@ void MainWindow::on_actionOpen_LilyPond_file_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond fájl megnyitása", "./export", "*.ly");
     if(!filename.isEmpty()){
-        svm->readLilyPond(filename);
-        showScore();
+        svm->readLilyPond(filename, false);
+        showScore(false);
+        ui->action_newStaff->setDisabled(false);
     }
 }
 
@@ -542,38 +552,11 @@ void MainWindow::on_actionEighth_triggered(bool checked)
 
 void MainWindow::on_action_newStaff_triggered()
 {
-    /*QStringList clefs;
-    clefs << tr("Violin kulcs") << tr("Alt kulcs") << tr("Tenor kulcs") << tr("Basszus kulcs");
-
-    bool ok;
-
-    QString clef = QInputDialog::getItem(this, tr("Válasszon kulcsot"), tr("Kulcsok:"), clefs, 0, false, &ok);
-
-    if(ok){
-        if(clef == "Violin kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::treble,1,0));
-        }else if(clef == "Alt kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::alto,-4,0));
-        }else if(clef == "Tenor kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::tenor,-5,0));
-        }else if(clef == "Basszus kulcs"){
-            addVStaff(new VStaff(ScoreViewModel::bass,0,0));
-        }
-    }*/
-
-//    bool ok = false;
-//    ScoreViewModel::clefNames tempclef;
-//    int tempkey;
-
     NewStaffDialog *staffdialog = new NewStaffDialog(this);
     if(staffdialog->exec() == QDialog::Accepted){
-        addVStaff(new VStaff(staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+        addVStaff(new VStaff(false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+
     }
-    /*staffdialog->show();
-    staffdialog->
-    if(ok){
-        addVStaff(new VStaff(staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
-    }*/
 }
 
 
@@ -770,8 +753,9 @@ void MainWindow::on_actionOpenLilypondToolBar_triggered()
 {
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
     if(!filename.isEmpty()){
-        svm->readLilyPond(filename);
-        showScore();
+        svm->readLilyPond(filename, false);
+        showScore(false);
+        ui->action_newStaff->setDisabled(false);
     }
 }
 
@@ -785,7 +769,7 @@ void MainWindow::on_actionSaveLilypondToolBar_triggered()
 
 void MainWindow::on_actionNewScore_triggered()
 {
-    QMessageBox msgbox;
+    QMessageBox msgbox(this);
     msgbox.setText("Új kotta megnyitása.");
     msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
     msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
@@ -799,6 +783,7 @@ void MainWindow::on_actionNewScore_triggered()
         svm->deleteStaff(0);
         vstaffs.clear();
         scene->clear();
+        ui->action_newStaff->setDisabled(false);
         break;
     case QMessageBox::Cancel:
 
@@ -825,11 +810,40 @@ void MainWindow::on_actionScore_triggered()
         svm->deleteStaff(0);
         vstaffs.clear();
         scene->clear();
+        ui->action_newStaff->setDisabled(false);
         break;
     case QMessageBox::Cancel:
 
         break;
     default:
         break;
+    }
+}
+
+void MainWindow::on_actionNewCounterpoint_triggered()
+{
+    QMessageBox msgbox(this);
+    msgbox.setWindowTitle("Új Ellenpont feladat");
+    msgbox.setText("Új Ellenpont feladat megnyitása");
+    msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
+    msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
+    msgbox.setDefaultButton(QMessageBox::Cancel);
+    msgbox.setButtonText(QMessageBox::Ok, "Igen");
+    msgbox.setButtonText(QMessageBox::Cancel, "Mégse");
+    int ret = msgbox.exec();
+
+    if(ret == QMessageBox::Ok){
+        svm->deleteStaff(0);
+        vstaffs.clear();
+        scene->clear();
+
+        NewCPDialog *cpdialog = new NewCPDialog(this);
+        if(cpdialog->exec() == QDialog::Accepted){
+            svm->readLilyPond(cpdialog->getFileName(), true);
+            svm->addStaff(cpdialog->getClef(), svm->getClefByNum(1), 0);
+            showScore(true);
+            ui->action_newStaff->setDisabled(true);
+
+        }
     }
 }
