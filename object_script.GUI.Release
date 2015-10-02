@@ -13,6 +13,7 @@ INPUT(
 ./release\scoreview.o
 ./release\newstaffdialog.o
 ./release\newcpdialog.o
+./release\tester.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o

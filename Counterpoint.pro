@@ -18,7 +18,8 @@ SOURCES += main.cpp \
     vstaffline.cpp \
     scoreview.cpp \
     newstaffdialog.cpp \
-    newcpdialog.cpp
+    newcpdialog.cpp \
+    tester.cpp
 
 HEADERS += \
     score.h \
@@ -33,7 +34,8 @@ HEADERS += \
     vstaffline.h \
     scoreview.h \
     newstaffdialog.h \
-    newcpdialog.h
+    newcpdialog.h \
+    tester.h
 
 FORMS    += mainwindow.ui \
     newstaffdialog.ui \

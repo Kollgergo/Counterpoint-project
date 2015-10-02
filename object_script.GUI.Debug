@@ -13,6 +13,7 @@ INPUT(
 ./debug\scoreview.o
 ./debug\newstaffdialog.o
 ./debug\newcpdialog.o
+./debug\tester.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o

@@ -596,8 +596,6 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
                                 }
                             }
                         }
-                    }else{
-                        ui->actionAddSharp->setChecked(false);
                     }
                 }
 
@@ -608,14 +606,22 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
         }
 
     }else{
-        ui->actionAddFlat->setChecked(false);
 
-        if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
-                selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
-            selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
-            updateNoteData(selectedvstaff->getSelectedvnote());
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionAddFlat->setChecked(false);
+            selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::none);
+            scene->update();
+
+        }else{
+            ui->actionAddFlat->setChecked(false);
+
+            if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
+                    selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
+                selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
+                updateNoteData(selectedvstaff->getSelectedvnote());
+                scene->update();
+            }
         }
-        scene->update();
     }
 }
 
@@ -655,9 +661,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
                                 }
                             }
                         }
-                    }else{
-                        ui->actionAddFlat->setChecked(false);
-                     }
+                    }
                 }
                 //ui->actionWhole->setChecked(false);
             }
@@ -666,15 +670,22 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
         }
 
     }else{
-        ui->actionAddFlat->setChecked(false);
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            ui->actionAddFlat->setChecked(false);
 
-        if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
-                selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
-            selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
-            updateNoteData(selectedvstaff->getSelectedvnote());
+            selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::none);
+            scene->update();
 
+        }else{
+            ui->actionAddFlat->setChecked(false);
+
+            if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
+                    selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
+                selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
+                updateNoteData(selectedvstaff->getSelectedvnote());
+                scene->update();
+            }
         }
-        scene->update();
     }
 }
 
