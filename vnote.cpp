@@ -250,27 +250,31 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     //qDebug() << "mousmoveevent call";
 
     if(newnote == false){
-        QList <QGraphicsItem *> colList = this->scene()->collidingItems(this);
+        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
+            QList <QGraphicsItem *> colList = this->scene()->collidingItems(this);
 
-        if(!colList.isEmpty()){
+            if(!colList.isEmpty()){
 
-            shadow->setOpacity(0.5);
+                shadow->setOpacity(0.5);
 
-            //qDebug() << colList;
+                //qDebug() << colList;
 
-            if(colList.last()->parentItem() == this->parentItem() && colList.startsWith(shadow)){ // evade collision with shadow
-                //qDebug() << colList.first()->pos();
-                if(colList.size() > 1){
-                    shadow->setY((colList.at(1)->pos().y())-10);
-                    //qDebug() << colList.at(1)->y()-10;
+                if(colList.last()->parentItem() == this->parentItem() && colList.startsWith(shadow)){ // evade collision with shadow
+                    //qDebug() << colList.first()->pos();
+                    if(colList.size() > 1){
+                        shadow->setY((colList.at(1)->pos().y())-10);
+                        //qDebug() << colList.at(1)->y()-10;
+                    }
+
+                }else if(colList.first()->parentItem() == this->parentItem()){
+                    //qDebug() << colList.first()->pos();
+                    shadow->setY((colList.first()->pos().y())-10);
+                    //qDebug() << colList.first()->y()-10;
                 }
-
-            }else if(colList.first()->parentItem() == this->parentItem()){
-                //qDebug() << colList.first()->pos();
-                shadow->setY((colList.first()->pos().y())-10);
-                //qDebug() << colList.first()->y()-10;
             }
+
         }
+
 
         //this->scene()->update(boundingRect().x()-10,boundingRect().y()-80,boundingRect().right()+10,boundingRect().bottom());
         //this->scene()->update();
@@ -284,30 +288,32 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
     if(newnote == false){
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
            setCursor(Qt::OpenHandCursor);
+
+           this->setPos(shadow->pos());
+
+           //qDebug() << "After note pos" << this->pos();
+           //qDebug() << "After note scenepos" << this->scenePos();
+
+           if(this->parentItem() != 0){ // if not shadow, update scorepos
+
+               QList <QGraphicsItem *> colList = this->scene()->collidingItems(shadow);
+               VStaff *tempparent = (VStaff *)this->parentItem();
+
+               VStaffLine *colStaffLine = (VStaffLine *)colList.last();
+               this->setScorepos(tempparent->getVstafflines().indexOf(colStaffLine));
+
+               emit this->vNotePosChanging(this);
+
+               this->scene()->update();
+           }
+
+           if(shadow != NULL){
+               delete shadow;
+               shadow = NULL;
+           }
+
         }
 
-        this->setPos(shadow->pos());
-
-        //qDebug() << "After note pos" << this->pos();
-        //qDebug() << "After note scenepos" << this->scenePos();
-
-        if(this->parentItem() != 0){ // if not shadow, update scorepos
-
-            QList <QGraphicsItem *> colList = this->scene()->collidingItems(shadow);
-            VStaff *tempparent = (VStaff *)this->parentItem();
-
-            VStaffLine *colStaffLine = (VStaffLine *)colList.last();
-            this->setScorepos(tempparent->getVstafflines().indexOf(colStaffLine));
-
-            emit this->vNotePosChanging(this);
-
-            this->scene()->update();
-        }
-
-        if(shadow != NULL){
-            delete shadow;
-            shadow = NULL;
-        }
 
         this->scene()->update();
         //qDebug() << this->pos();
@@ -386,23 +392,32 @@ void VNote::setScorepos(int value)
 
 void VNote::changeToRest()
 {
+    //qDebug() << this->x();
+
     switch (notetype) {
     case ScoreViewModel::whole:
         notetype = ScoreViewModel::whole_rest;
+        scorepos = 9;
+        setFlag(ItemIsMovable, false);
         break;
     case ScoreViewModel::half:
         notetype = ScoreViewModel::half_rest;
+        setFlag(ItemIsMovable, false);
         break;
     case ScoreViewModel::quarter:
         notetype = ScoreViewModel::quarter_rest;
+        setFlag(ItemIsMovable, false);
         break;
     case ScoreViewModel::eight:
         notetype = ScoreViewModel::eight_rest;
+        setFlag(ItemIsMovable, false);
         break;
     default:
         notetype = ScoreViewModel::half_rest;
+        setFlag(ItemIsMovable, false);
         break;
     }
+
 }
 
 

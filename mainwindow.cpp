@@ -78,6 +78,15 @@ void MainWindow::showNextVStaff(VStaff *vstaff)
     scene->addItem(vstaffs.last());
 }
 
+void MainWindow::updateScore()
+{
+    scene->clear();
+
+    /*foreach (VStaff *vstaff, vstaffs) {
+
+    }*/
+}
+
 void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
 {
     for(int i=0; i<vstaffs.size(); i++){
@@ -176,20 +185,36 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         showScore(false);
     }
 
+    /*if(event->key() == Qt::Key_Escape){
+        if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
+            delete(selectedvstaff->getNewvnote());
+            ui->actionAddNote->setChecked(false);
+            ui->actionAddRest->setChecked(false);
+            selectedvstaff->updateStaffWidth();
+        }
+
+        foreach (QGraphicsItem *item, scene->selectedItems()) {
+            item->setSelected(false);
+        }
+        scene->update();
+
+    }*/
+
     if(event->key() == Qt::Key_Delete){
         for(int i=0; i<vstaffs.size(); i++){
             if(vstaffs.at(i) == selectedvstaff){
                 for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
                     if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
                         svm->changeToRest(i+1, j+1);
-                        vstaffs.at(i)->deleteSelectedVNote();
+                        //vstaffs.at(i)->changeToRestSelectedVNote();
                     }
                 }
-                vstaffs.at(i)->updateVStaff();
-                vstaffs.at(i)->updateStaffWidth();
+                //vstaffs.at(i)->updateVStaff();
+                //vstaffs.at(i)->updateStaffWidth();
             }
         }
-        //selectedvstaff->deleteSelectedVNote();
+        //scene->update();
+        showScore();
     }
 }
 
@@ -221,10 +246,10 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
     if(checked){ //check
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
-                if(vstaff == selectedvstaff){
+                if(vstaff->isSelected()){
                     ui->actionAddNote->setChecked(true);
                     ui->actionAddRest->setChecked(false);
-                    ui->actionHalf->setChecked(true);
+                    ui->actionHalf->setChecked(false);
                     ui->actionWhole->setChecked(false);
                     ui->actionQuarter->setChecked(false);
                     ui->actionEighth->setChecked(false);
@@ -235,22 +260,44 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     }
                     if(vstaff->getVnotes().isEmpty()){
                         vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
+                        ui->actionHalf->setChecked(true);
                     }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half ||
                              vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight){
                         vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), ScoreViewModel::none);
+                        switch (vstaff->getVnotes().last()->getNotetype()) {
+                        case ScoreViewModel::whole:
+                            ui->actionWhole->setChecked(true);
+                            break;
+                        case ScoreViewModel::half:
+                            ui->actionHalf->setChecked(true);
+                            break;
+                        case ScoreViewModel::quarter:
+                            ui->actionQuarter->setChecked(true);
+                            break;
+                        case ScoreViewModel::eight:
+                            ui->actionEighth->setChecked(true);
+                            break;
+                        default:
+                            break;
+                        }
+
                     }else{
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole_rest:
                             vstaff->setNewVNote(ScoreViewModel::whole, ScoreViewModel::none);
+                            ui->actionWhole->setChecked(true);
                             break;
                         case ScoreViewModel::half_rest:
                             vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
+                            ui->actionHalf->setChecked(true);
                             break;
                         case ScoreViewModel::quarter_rest:
                             vstaff->setNewVNote(ScoreViewModel::quarter, ScoreViewModel::none);
+                            ui->actionQuarter->setChecked(true);
                             break;
                         case ScoreViewModel::eight_rest:
                             vstaff->setNewVNote(ScoreViewModel::eight, ScoreViewModel::none);
+                            ui->actionEighth->setChecked(true);
                             break;
                         default:
                             vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
@@ -301,10 +348,10 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
     if(checked){
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
-                if(vstaff == selectedvstaff){
+                if(vstaff->isSelected()){
                     ui->actionAddRest->setChecked(true);
                     ui->actionAddNote->setChecked(false);
-                    ui->actionHalf->setChecked(true);
+                    ui->actionHalf->setChecked(false);
                     ui->actionWhole->setChecked(false);
                     ui->actionQuarter->setChecked(false);
                     ui->actionEighth->setChecked(false);
@@ -314,22 +361,43 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     }
                     if(vstaff->getVnotes().isEmpty()){
                         vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);
+                        ui->actionHalf->setChecked(true);
                     }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half_rest ||
                              vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight_rest){
                         vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), ScoreViewModel::none);
+                        switch (vstaff->getVnotes().last()->getNotetype()) {
+                        case ScoreViewModel::whole:
+                            ui->actionWhole->setChecked(true);
+                            break;
+                        case ScoreViewModel::half:
+                            ui->actionHalf->setChecked(true);
+                            break;
+                        case ScoreViewModel::quarter:
+                            ui->actionQuarter->setChecked(true);
+                            break;
+                        case ScoreViewModel::eight:
+                            ui->actionEighth->setChecked(true);
+                            break;
+                        default:
+                            break;
+                        }
                     }else{
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole:
                             vstaff->setNewVNote(ScoreViewModel::whole_rest, ScoreViewModel::none);
+                            ui->actionWhole->setChecked(true);
                             break;
                         case ScoreViewModel::half:
                             vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);
+                            ui->actionHalf->setChecked(true);
                             break;
                         case ScoreViewModel::quarter:
                             vstaff->setNewVNote(ScoreViewModel::quarter_rest, ScoreViewModel::none);
+                            ui->actionQuarter->setChecked(true);
                             break;
                         case ScoreViewModel::eight:
                             vstaff->setNewVNote(ScoreViewModel::eight_rest, ScoreViewModel::none);
+                            ui->actionEighth->setChecked(true);
                             break;
                         default:
                             vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);

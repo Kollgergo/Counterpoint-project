@@ -554,7 +554,7 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
     QString line;
     QRegularExpression clefregexp("\\b(treble|alto|tenor|bass)");
     QRegularExpression keyregexp("\key (g|d|a|e|b|fis|cis|f|bes|ees|aes|des|ges)");
-    QRegularExpression noteregexp("\\b[c,d,e,f,g,a,b](is|es)*('+|,+)*\\d");
+    QRegularExpression noteregexp("\\b[r,c,d,e,f,g,a,b](is|es)*('+|,+)*\\d");
     QRegularExpressionMatch match;
 
     //keyregexp.setPattern("key");
@@ -782,7 +782,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
 
     switch (note) { //calculate position
     case -32767:
-        pos = 7;
+        pos = 9;
         break;
     case -11:
         if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
@@ -1086,10 +1086,10 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = 8;
                 break;
             case flat:
-                newdatapos = 7;
+                newdatapos = 6;
                 break;
             default:
-                newdatapos = 6;
+                newdatapos = 7;
                 break;
             }
 
@@ -2002,18 +2002,22 @@ void ScoreViewModel::updateType(unsigned int staffnumber, unsigned int notenumbe
     case eight:
         getNoteByNum(staffnumber, notenumber).setDuration(8);
         break;
-    /*case whole_rest:
+    case whole_rest:
         getNoteByNum(staffnumber, notenumber).setDuration(1);
+        getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
         break;
     case half_rest:
         getNoteByNum(staffnumber, notenumber).setDuration(2);
+        getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
         break;
     case quarter_rest:
         getNoteByNum(staffnumber, notenumber).setDuration(4);
+        getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
         break;
     case eight_rest:
         getNoteByNum(staffnumber, notenumber).setDuration(8);
-        break;*/
+        getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
+        break;
     default:
         getNoteByNum(staffnumber, notenumber).setDuration(2);
         break;

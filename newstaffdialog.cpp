@@ -6,6 +6,8 @@ NewStaffDialog::NewStaffDialog(QWidget *parent) :
     ui(new Ui::NewStaffDialog)
 {
     ui->setupUi(this);
+    selectedclef = ScoreViewModel::treble;
+    selectedkeysignature = 0;
     ui->trebleRadioButton->setChecked(true);
 }
 

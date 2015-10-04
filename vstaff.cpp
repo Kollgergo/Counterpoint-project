@@ -501,11 +501,13 @@ void VStaff::addNewVNote()
 
 }
 
-void VStaff::deleteSelectedVNote()
+void VStaff::changeToRestSelectedVNote()
 {
     foreach (VNote *note, vnotes) {
         if(note->isSelected()){
             note->changeToRest();
+            //qDebug() << note->x();
+            break;
         }
     }
 }
@@ -596,6 +598,7 @@ void VStaff::updateStaffWidth()
 
 void VStaff::updateVStaff()
 {
+
     for(int i=0; i<vnotes.size(); i++){
         if(i==0){
             if(vnotes.isEmpty()){

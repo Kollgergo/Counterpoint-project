@@ -6,7 +6,7 @@
 	\set Score.timing = ##f
 	\clef treble
 	{
-	c''4	c'2	b'2	a'2
+	a'2	g'4	r4	r4	b'4
 	\bar "|."
 	}
 }
@@ -15,7 +15,7 @@
 	\set Score.timing = ##f
 	\clef bass
 	{
-	b,2	c2	c2	d4
+	c4	d8	e8	c2	b,4	c4
 	\bar "|."
 	}
 }

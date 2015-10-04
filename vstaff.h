@@ -37,7 +37,7 @@ public:
 
     void addNewVNote();
 
-    void deleteSelectedVNote();
+    void changeToRestSelectedVNote();
 
     void updateStaffWidth();
     void updateVStaff();

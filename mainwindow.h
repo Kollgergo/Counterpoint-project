@@ -28,6 +28,7 @@ public:
     void setSvm(ScoreViewModel *value);
     void showScore(bool isCF = false);
     void showNextVStaff(VStaff * vstaff);
+    void updateScore();
     void updateNoteData(VNote *vnote);
     void addVStaff(VStaff *vstaff);
 
