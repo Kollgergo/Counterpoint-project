@@ -92,10 +92,16 @@ void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
     for(int i=0; i<vstaffs.size(); i++){
         if(vstaffs.at(i)->getVnotes().contains(vnote)){
             //qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
-            svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
-            svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
 
-            if(svm->getType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
+            if(svm->getAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getAccent()){
+                svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
+            }
+
+            if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
+                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
+            }
+
+            if(svm->getType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getNotetype()){
                 svm->updateType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getNotetype());
             }
         }
@@ -205,16 +211,22 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             if(vstaffs.at(i) == selectedvstaff){
                 for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
                     if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
-                        svm->changeToRest(i+1, j+1);
-                        //vstaffs.at(i)->changeToRestSelectedVNote();
+                        if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){
+                            svm->deleteNote(i+1,j+1);
+                            //vstaffs.at(i)->getVnotes().removeAt(j);
+                            showScore();
+                        }else{
+                            svm->changeToRest(i+1, j+1);
+                            vstaffs.at(i)->changeToRestSelectedVNote();
+                            vstaffs.at(i)->updateVStaff();
+                            vstaffs.at(i)->updateStaffWidth();
+                        }
                     }
-                }
-                //vstaffs.at(i)->updateVStaff();
-                //vstaffs.at(i)->updateStaffWidth();
+                }           
             }
         }
         //scene->update();
-        showScore();
+
     }
 }
 
@@ -247,6 +259,7 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
                 if(vstaff->isSelected()){
+                    vstaff->updateStaffWidth();
                     ui->actionAddNote->setChecked(true);
                     ui->actionAddRest->setChecked(false);
                     ui->actionHalf->setChecked(false);
@@ -346,9 +359,12 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
 void MainWindow::on_actionAddRest_triggered(bool checked)
 {
     if(checked){
+        ui->actionAddSharp->setChecked(false);
+        ui->actionAddFlat->setChecked(false);
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
                 if(vstaff->isSelected()){
+                    vstaff->updateStaffWidth();
                     ui->actionAddRest->setChecked(true);
                     ui->actionAddNote->setChecked(false);
                     ui->actionHalf->setChecked(false);
@@ -415,7 +431,6 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
             ui->actionAddRest->setChecked(false);
         }
 
-
     }else{
         ui->actionHalf->setChecked(false);
         ui->actionWhole->setChecked(false);
@@ -454,10 +469,10 @@ void MainWindow::on_actionWhole_triggered(bool checked)
                 selectedvstaff->getNewvnote()->setNotetype(ScoreViewModel::whole);
                 scene->update();
             }else{
-
-                ui->actionEighth->setChecked(false);
+                ui->actionWhole->setChecked(false);
                 ui->actionHalf->setChecked(false);
                 ui->actionQuarter->setChecked(false);
+                ui->actionEighth->setChecked(false);
 
                 for(int i=0; i<vstaffs.size(); i++){
                     if(vstaffs.at(i)->isSelected()){
@@ -470,11 +485,10 @@ void MainWindow::on_actionWhole_triggered(bool checked)
                                 selectedvstaff->updateVStaff();
                                 selectedvstaff->getVnotes().at(j)->setSelected(true);
                                 scene->update();
+                                ui->actionWhole->setChecked(true);
                                 break;
                             }
                         }
-                    }else{
-                        ui->actionWhole->setChecked(false);
                     }
                 }
 
@@ -501,6 +515,7 @@ void MainWindow::on_actionHalf_triggered(bool checked)
             }else{
 
                 ui->actionWhole->setChecked(false);
+                ui->actionHalf->setChecked(false);
                 ui->actionQuarter->setChecked(false);
                 ui->actionEighth->setChecked(false);
 
@@ -514,12 +529,11 @@ void MainWindow::on_actionHalf_triggered(bool checked)
                                 selectedvstaff->updateVStaff();
                                 selectedvstaff->getVnotes().at(j)->setSelected(true);
                                 scene->update();
+                                ui->actionHalf->setChecked(true);
                                 break;
 
                             }
                         }
-                    }else{
-                        ui->actionHalf->setChecked(false);
                     }
                 }
                 //ui->actionWhole->setChecked(false);
@@ -546,6 +560,7 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
 
                 ui->actionWhole->setChecked(false);
                 ui->actionHalf->setChecked(false);
+                ui->actionQuarter->setChecked(false);
                 ui->actionEighth->setChecked(false);
 
                 for(int i=0; i<vstaffs.size(); i++){
@@ -558,12 +573,11 @@ void MainWindow::on_actionQuarter_triggered(bool checked)
                                 selectedvstaff->updateVStaff();
                                 selectedvstaff->getVnotes().at(j)->setSelected(true);
                                 scene->update();
+                                ui->actionQuarter->setChecked(true);
                                 break;
 
                             }
                         }
-                    }else{
-                        ui->actionQuarter->setChecked(false);
                     }
                 }
                 //ui->actionWhole->setChecked(false);
@@ -591,6 +605,7 @@ void MainWindow::on_actionEighth_triggered(bool checked)
                 ui->actionWhole->setChecked(false);
                 ui->actionHalf->setChecked(false);
                 ui->actionQuarter->setChecked(false);
+                ui->actionEighth->setChecked(false);
 
                 for(int i=0; i<vstaffs.size(); i++){
                     if(vstaffs.at(i)->isSelected()){
@@ -602,11 +617,10 @@ void MainWindow::on_actionEighth_triggered(bool checked)
                                 selectedvstaff->updateVStaff();
                                 selectedvstaff->getVnotes().at(j)->setSelected(true);
                                 scene->update();
+                                ui->actionEighth->setChecked(true);
                                 break;
                             }
                         }
-                    }else{
-                        ui->actionEighth->setChecked(false);
                     }
                 }
                 //ui->actionWhole->setChecked(false);
@@ -646,6 +660,8 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
                 scene->update();
 
             }else{
+                ui->actionAddSharp->setChecked(false);
+                ui->actionAddFlat->setChecked(false);
 
                 for(int i=0; i<vstaffs.size(); i++){
                     if(vstaffs.at(i)->isSelected()){
@@ -655,11 +671,12 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
                                         selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::eight){
                                     //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
                                     selectedvstaff->getVnotes().at(j)->setAccent(ScoreViewModel::sharp);
-                                    ui->actionAddFlat->setChecked(false);
+
                                     updateNoteData(selectedvstaff->getVnotes().at(j));
                                     scene->update();
                                     //showScore();
                                     selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                    ui->actionAddSharp->setChecked(true);
                                     break;
                                 }
                             }
@@ -710,6 +727,8 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
                 scene->update();
 
             }else{
+                ui->actionAddSharp->setChecked(false);
+                ui->actionAddFlat->setChecked(false);
 
                 for(int i=0; i<vstaffs.size(); i++){
                     if(vstaffs.at(i)->isSelected()){
@@ -725,6 +744,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
                                     scene->update();
                                     //showScore();
                                     selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                    ui->actionAddFlat->setChecked(true);
                                     break;
                                 }
                             }

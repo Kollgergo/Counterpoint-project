@@ -568,7 +568,6 @@ void VStaff::updateStaffWidth()
 
             break;
         case ScoreViewModel::half_rest:
-            vnotes.last()->setX(100);
             foreach (VStaffLine *staffline, vstafflines) {
                 staffline->addStaffwidth(200);
             }
