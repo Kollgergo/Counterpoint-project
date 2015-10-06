@@ -501,17 +501,6 @@ void VStaff::addNewVNote()
 
 }
 
-void VStaff::changeToRestSelectedVNote()
-{
-    foreach (VNote *note, vnotes) {
-        if(note->isSelected()){
-            note->changeToRest();
-            //qDebug() << note->x();
-            break;
-        }
-    }
-}
-
 void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     emit vstaffSelect(this);
@@ -674,6 +663,7 @@ void VStaff::updateVStaff()
             }
         }
     }
+
 }
 
 VNote *VStaff::getSelectedvnote() const

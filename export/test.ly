@@ -6,7 +6,7 @@
 	\set Score.timing = ##f
 	\clef treble
 	{
-	c''4	b'4	c''4	b'4	c''4
+	e''4	b'4	c''4	b'4	c''4
 	\bar "|."
 	}
 }

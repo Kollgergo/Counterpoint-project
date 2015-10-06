@@ -30,6 +30,7 @@ public:
     void setAccent(const ScoreViewModel::accents &value);
 
     void changeToRest();
+    void changeToNote();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

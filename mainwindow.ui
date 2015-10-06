@@ -99,6 +99,7 @@
    <addaction name="actionAddSharp"/>
    <addaction name="actionAddFlat"/>
    <addaction name="separator"/>
+   <addaction name="actionChangeNoteRest"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -276,6 +277,21 @@
    </property>
    <property name="text">
     <string>Új Ellenpont feladat</string>
+   </property>
+  </action>
+  <action name="actionChangeNoteRest">
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/changeicon.png</normaloff>:/res/changeicon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hang cseréje hang-szünet</string>
+   </property>
+   <property name="toolTip">
+    <string>Hang - Szünet csere, gyorsbillenytű: M</string>
+   </property>
+   <property name="shortcut">
+    <string>M</string>
    </property>
   </action>
  </widget>

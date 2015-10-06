@@ -73,6 +73,8 @@ private slots:
 
     void on_actionNewCounterpoint_triggered();
 
+    void on_actionChangeNoteRest_triggered();
+
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);

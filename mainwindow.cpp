@@ -186,9 +186,34 @@ QList<VStaff *> MainWindow::getVstaffs() const
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
-    if(event->key() == Qt::Key_Enter){
+    switch (event->key()) {
+    case Qt::Key_Delete:
+        for(int i=0; i<vstaffs.size(); i++){
+            if(vstaffs.at(i) == selectedvstaff){
+                for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
+                    if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
+                        if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){
+                            svm->deleteNote(i+1,j+1);
+                            //vstaffs.at(i)->getVnotes().removeAt(j);
+                            showScore();
+                            break;
+                        }else{
+                            svm->changeToRest(i+1, j+1);
+                            vstaffs.at(i)->getVnotes().at(j)->changeToRest();
+                            vstaffs.at(i)->updateVStaff();
+                            vstaffs.at(i)->updateStaffWidth();
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        break;
+    case Qt::Key_Escape:
 
-        showScore(false);
+        break;
+    default:
+        break;
     }
 
     /*if(event->key() == Qt::Key_Escape){
@@ -205,29 +230,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         scene->update();
 
     }*/
-
-    if(event->key() == Qt::Key_Delete){
-        for(int i=0; i<vstaffs.size(); i++){
-            if(vstaffs.at(i) == selectedvstaff){
-                for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
-                    if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
-                        if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){
-                            svm->deleteNote(i+1,j+1);
-                            //vstaffs.at(i)->getVnotes().removeAt(j);
-                            showScore();
-                        }else{
-                            svm->changeToRest(i+1, j+1);
-                            vstaffs.at(i)->changeToRestSelectedVNote();
-                            vstaffs.at(i)->updateVStaff();
-                            vstaffs.at(i)->updateStaffWidth();
-                        }
-                    }
-                }           
-            }
-        }
-        //scene->update();
-
-    }
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -943,6 +945,32 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             showScore(true);
             ui->action_newStaff->setDisabled(true);
 
+        }
+    }
+}
+
+void MainWindow::on_actionChangeNoteRest_triggered()
+{
+    for(int i=0; i<vstaffs.size(); i++){
+        if(vstaffs.at(i)->isSelected()){
+            for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
+                if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
+                    if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){
+                        vstaffs.at(i)->getVnotes().at(j)->changeToNote();
+                        updateNoteData(vstaffs.at(i)->getVnotes().at(j));
+                        vstaffs.at(i)->updateVStaff();
+                        vstaffs.at(i)->updateStaffWidth();
+                        break;
+
+                    }else{
+                        svm->changeToRest(i+1, j+1);
+                        vstaffs.at(i)->getVnotes().at(j)->changeToRest();
+                        vstaffs.at(i)->updateVStaff();
+                        vstaffs.at(i)->updateStaffWidth();
+                        break;
+                    }
+                }
+            }
         }
     }
 }

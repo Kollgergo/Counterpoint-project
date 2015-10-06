@@ -45,5 +45,6 @@
         <file>res/save_icon.png</file>
         <file>res/new_icon.png</file>
         <file>res/CP_icon.png</file>
+        <file>res/changeicon.png</file>
     </qresource>
 </RCC>

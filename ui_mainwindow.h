@@ -45,6 +45,7 @@ public:
     QAction *actionSaveLilypondToolBar;
     QAction *actionNewScore;
     QAction *actionNewCounterpoint;
+    QAction *actionChangeNoteRest;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -146,6 +147,11 @@ public:
         QIcon icon13;
         icon13.addFile(QStringLiteral(":/res/CP_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionNewCounterpoint->setIcon(icon13);
+        actionChangeNoteRest = new QAction(MainWindow);
+        actionChangeNoteRest->setObjectName(QStringLiteral("actionChangeNoteRest"));
+        QIcon icon14;
+        icon14.addFile(QStringLiteral(":/res/changeicon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionChangeNoteRest->setIcon(icon14);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -205,6 +211,7 @@ public:
         mainToolBar->addAction(actionAddSharp);
         mainToolBar->addAction(actionAddFlat);
         mainToolBar->addSeparator();
+        mainToolBar->addAction(actionChangeNoteRest);
         toolBar->addAction(actionNewScore);
         toolBar->addAction(actionOpenLilypondToolBar);
         toolBar->addAction(actionSaveLilypondToolBar);
@@ -236,6 +243,11 @@ public:
         actionSaveLilypondToolBar->setText(QApplication::translate("MainWindow", "Kotta ment\303\251se", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));
         actionNewCounterpoint->setText(QApplication::translate("MainWindow", "\303\232j Ellenpont feladat", 0));
+        actionChangeNoteRest->setText(QApplication::translate("MainWindow", "Hang cser\303\251je hang-sz\303\274net", 0));
+#ifndef QT_NO_TOOLTIP
+        actionChangeNoteRest->setToolTip(QApplication::translate("MainWindow", "Hang - Sz\303\274net csere, gyorsbillenyt\305\261: M", 0));
+#endif // QT_NO_TOOLTIP
+        actionChangeNoteRest->setShortcut(QApplication::translate("MainWindow", "M", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));
