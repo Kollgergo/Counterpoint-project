@@ -46,6 +46,11 @@ void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 
     //QGraphicsItem::hoverEnterEvent(event);
 }
+int VStaffLine::getStaffwidth() const
+{
+    return staffwidth;
+}
+
 
 void VStaffLine::addStaffwidth(int value)
 {

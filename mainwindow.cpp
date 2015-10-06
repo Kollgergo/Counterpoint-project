@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     scene = new QGraphicsScene(this);
     ui->scoreView->setScene(scene);
     ui->scoreView->setMouseTracking(true);
+    CPmode = false;
 
     //vstaff = new VStaff;
     //scene->addItem(vstaff);
@@ -169,8 +170,31 @@ void MainWindow::newVNoteAdded(VNote *vnote)
             connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(vNoteSelecting(VNote*)), this, SLOT(vNoteSelected(VNote*)));
             connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(vNotePosChanging(VNote*)), this, SLOT(vNotePosChanged(VNote*)));
 
-            vstaffs.at(i)->setNewVNote(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
-            connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+            if(CPmode){
+                if(vstaffs.at(0)->getDurationSum() > vstaffs.at(1)->getDurationSum()){
+                    ui->actionAddNote->setEnabled(true);
+                    ui->actionAddRest->setEnabled(true);
+
+                    vstaffs.at(i)->setNewVNote(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
+                    connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+
+                }else{
+                    ui->actionAddNote->setChecked(false);
+                    ui->actionAddRest->setChecked(false);
+                    ui->actionWhole->setChecked(false);
+                    ui->actionHalf->setChecked(false);
+                    ui->actionAddNote->setEnabled(false);
+                    ui->actionAddRest->setEnabled(false);
+                    ui->actionWhole->setEnabled(false);
+                    ui->actionHalf->setEnabled(false);
+
+                    vstaffs.at(i)->updateStaffWidth();
+                }
+
+            }else{
+                vstaffs.at(i)->setNewVNote(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
+                connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+            }
         }
     }
 
@@ -196,6 +220,12 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                             svm->deleteNote(i+1,j+1);
                             //vstaffs.at(i)->getVnotes().removeAt(j);
                             showScore();
+                            if(CPmode){
+                                ui->actionAddNote->setEnabled(true);
+                                ui->actionAddRest->setEnabled(true);
+                                ui->actionWhole->setEnabled(true);
+                                ui->actionHalf->setEnabled(true);
+                            }
                             break;
                         }else{
                             svm->changeToRest(i+1, j+1);
@@ -235,24 +265,6 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
 void MainWindow::on_actionExit_triggered()
 {
     QApplication::quit();
-}
-
-void MainWindow::on_actionLilyPond_triggered()
-{
-    QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
-    if(!filename.isEmpty()){
-        svm->makeLilyPond(filename);
-    }
-}
-
-void MainWindow::on_actionOpen_LilyPond_file_triggered()
-{
-    QString filename = QFileDialog::getOpenFileName(this, "LilyPond fájl megnyitása", "./export", "*.ly");
-    if(!filename.isEmpty()){
-        svm->readLilyPond(filename, false);
-        showScore(false);
-        ui->action_newStaff->setDisabled(false);
-    }
 }
 
 void MainWindow::on_actionAddNote_triggered(bool checked)
@@ -533,6 +545,84 @@ void MainWindow::on_actionHalf_triggered(bool checked)
                                 scene->update();
                                 ui->actionHalf->setChecked(true);
                                 break;
+                                /*if(CPmode){
+                                    if(ui->actionAddNote->isEnabled()){
+                                        if(vstaffs.at(1)->getDurationSum()+4 < vstaffs.at(0)->getDurationSum()){
+
+                                        }
+                                        svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                                        selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                                        selectedvstaff->updateVStaff();
+                                        selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                        scene->update();
+                                        ui->actionHalf->setChecked(true);
+                                        break;
+                                    }else{
+                                        int tempdur = selectedvstaff->getDurationSum();
+                                        switch (selectedvstaff->getVnotes().at(j)->getNotetype()) {
+                                        case ScoreViewModel::whole:
+                                            tempdur-=4;
+                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
+                                               ui->actionAddNote->setEnabled(true);
+                                               ui->actionAddRest->setEnabled(true);
+                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                                               selectedvstaff->updateVStaff();
+                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                               scene->update();
+                                               ui->actionHalf->setChecked(true);
+                                            }
+                                            break;
+                                        case ScoreViewModel::half:
+                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
+                                               ui->actionAddNote->setEnabled(true);
+                                               ui->actionAddRest->setEnabled(true);
+                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                                               selectedvstaff->updateVStaff();
+                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                               scene->update();
+                                               ui->actionHalf->setChecked(true);
+                                            }
+                                            break;
+                                        case ScoreViewModel::whole_rest:
+                                            tempdur-=4;
+                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
+                                               ui->actionAddNote->setEnabled(true);
+                                               ui->actionAddRest->setEnabled(true);
+                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                                               selectedvstaff->updateVStaff();
+                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                               scene->update();
+                                               ui->actionHalf->setChecked(true);
+                                            }
+                                            break;
+                                        case ScoreViewModel::half_rest:
+                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
+                                               ui->actionAddNote->setEnabled(true);
+                                               ui->actionAddRest->setEnabled(true);
+                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
+                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
+
+                                               selectedvstaff->updateVStaff();
+                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
+                                               scene->update();
+                                               ui->actionHalf->setChecked(true);
+                                            }
+                                            break;
+                                        default:
+                                            break;
+                                        }
+                                    }
+
+                                }else{*/
+
+                                //}
 
                             }
                         }
@@ -850,54 +940,18 @@ void MainWindow::vNoteSelected(VNote *note)
 
 }
 
-void MainWindow::on_actionOpenLilypondToolBar_triggered()
-{
-    QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
-    if(!filename.isEmpty()){
-        svm->readLilyPond(filename, false);
-        showScore(false);
-        ui->action_newStaff->setDisabled(false);
-    }
-}
-
-void MainWindow::on_actionSaveLilypondToolBar_triggered()
-{
-    QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
-    if(!filename.isEmpty()){
-        svm->makeLilyPond(filename);
-    }
-}
-
 void MainWindow::on_actionNewScore_triggered()
 {
+    CPmode = false;
+    ui->action_newStaff->setEnabled(true);
+    ui->actionAddNote->setEnabled(true);
+    ui->actionAddRest->setEnabled(true);
+    ui->actionWhole->setEnabled(true);
+    ui->actionHalf->setEnabled(true);
+    ui->actionQuarter->setEnabled(true);
+    ui->actionEighth->setEnabled(true);
+
     QMessageBox msgbox(this);
-    msgbox.setText("Új kotta megnyitása.");
-    msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
-    msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
-    msgbox.setDefaultButton(QMessageBox::Cancel);
-    msgbox.setButtonText(QMessageBox::Ok, "Igen");
-    msgbox.setButtonText(QMessageBox::Cancel, "Mégse");
-    int ret = msgbox.exec();
-
-    switch (ret) {
-    case QMessageBox::Ok:
-        svm->deleteStaff(0);
-        vstaffs.clear();
-        scene->clear();
-        ui->action_newStaff->setDisabled(false);
-        break;
-    case QMessageBox::Cancel:
-
-        break;
-    default:
-        break;
-    }
-}
-
-void MainWindow::on_actionScore_triggered()
-{
-    QMessageBox msgbox(this);
-    msgbox.setWindowTitle("Új kotta");
     msgbox.setText("Új kotta megnyitása.");
     msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
     msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);
@@ -923,6 +977,8 @@ void MainWindow::on_actionScore_triggered()
 
 void MainWindow::on_actionNewCounterpoint_triggered()
 {
+    CPmode = true;
+
     QMessageBox msgbox(this);
     msgbox.setWindowTitle("Új Ellenpont feladat");
     msgbox.setText("Új Ellenpont feladat megnyitása");
@@ -944,6 +1000,8 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             svm->addStaff(cpdialog->getClef(), svm->getClefByNum(1), 0);
             showScore(true);
             ui->action_newStaff->setDisabled(true);
+            ui->actionQuarter->setDisabled(true);
+            ui->actionEighth->setDisabled(true);
 
         }
     }
@@ -972,5 +1030,32 @@ void MainWindow::on_actionChangeNoteRest_triggered()
                 }
             }
         }
+    }
+}
+
+void MainWindow::on_actionOpenLilypond_triggered()
+{
+    CPmode = false;
+    CPmode = false;
+    ui->action_newStaff->setEnabled(true);
+    ui->actionAddNote->setEnabled(true);
+    ui->actionAddRest->setEnabled(true);
+    ui->actionWhole->setEnabled(true);
+    ui->actionHalf->setEnabled(true);
+    ui->actionQuarter->setEnabled(true);
+    ui->actionEighth->setEnabled(true);
+
+    QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
+    if(!filename.isEmpty()){
+        svm->readLilyPond(filename, false);
+        showScore(false);
+    }
+}
+
+void MainWindow::on_actionSaveLilypond_triggered()
+{
+    QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
+    if(!filename.isEmpty()){
+        svm->makeLilyPond(filename);
     }
 }

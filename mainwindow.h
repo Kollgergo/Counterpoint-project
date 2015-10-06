@@ -41,10 +41,6 @@ private slots:
 
     void on_actionExit_triggered();
 
-    void on_actionLilyPond_triggered();
-
-    void on_actionOpen_LilyPond_file_triggered();
-
     void on_actionAddNote_triggered(bool checked);
 
     void on_actionAddRest_triggered(bool checked);
@@ -63,17 +59,15 @@ private slots:
 
     void on_actionAddFlat_triggered(bool checked);
 
-    void on_actionOpenLilypondToolBar_triggered();
-
-    void on_actionSaveLilypondToolBar_triggered();
-
     void on_actionNewScore_triggered();
-
-    void on_actionScore_triggered();
 
     void on_actionNewCounterpoint_triggered();
 
     void on_actionChangeNoteRest_triggered();
+
+    void on_actionOpenLilypond_triggered();
+
+    void on_actionSaveLilypond_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);
@@ -87,6 +81,7 @@ private:
     QGraphicsScene *scene;
     QList<VStaff*> vstaffs;
     VStaff *selectedvstaff;
+    bool CPmode;
 
 };
 

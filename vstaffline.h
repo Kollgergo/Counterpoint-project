@@ -16,6 +16,8 @@ public:
 
     void addStaffwidth(int value);
 
+    int getStaffwidth() const;
+
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
     //void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);

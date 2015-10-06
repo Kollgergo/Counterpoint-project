@@ -666,6 +666,44 @@ void VStaff::updateVStaff()
 
 }
 
+int VStaff::getDurationSum()
+{
+    int dur = 0;
+    foreach (VNote *vnote, vnotes) {
+        switch (vnote->getNotetype()) {
+        case ScoreViewModel::whole:
+            dur+=8;
+            break;
+        case ScoreViewModel::half:
+            dur+=4;
+            break;
+        case ScoreViewModel::quarter:
+            dur+=2;
+            break;
+        case ScoreViewModel::eight:
+            dur+=1;
+            break;
+        case ScoreViewModel::whole_rest:
+            dur+=8;
+            break;
+        case ScoreViewModel::half_rest:
+            dur+=4;
+            break;
+        case ScoreViewModel::quarter_rest:
+            dur+=2;
+            break;
+        case ScoreViewModel::eight_rest:
+            dur+=1;
+            break;
+        default:
+
+            break;
+        }
+    }
+
+    return dur;
+}
+
 VNote *VStaff::getSelectedvnote() const
 {
     return selectedvnote;

@@ -40,6 +40,8 @@ public:
     void updateStaffWidth();
     void updateVStaff();
 
+    int getDurationSum();
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);

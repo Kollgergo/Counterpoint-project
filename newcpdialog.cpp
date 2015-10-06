@@ -8,6 +8,8 @@ NewCPDialog::NewCPDialog(QWidget *parent) :
     ui->setupUi(this);
     clef = ScoreViewModel::treble;
     ui->trebleRadioButton->setChecked(true);
+    QPushButton *okButton=ui->buttonBox->button(QDialogButtonBox::Ok);
+    okButton->setEnabled(false);
 }
 
 NewCPDialog::~NewCPDialog()
@@ -30,6 +32,8 @@ void NewCPDialog::on_browseFileButton_clicked()
         QString filename = QFileDialog::getOpenFileName(this, "Cantus Firmus megnyitása", "./export", "*.ly");
         if(!filename.isEmpty()){
             ui->lineCF->setText(filename);
+            QPushButton *okButton=ui->buttonBox->button(QDialogButtonBox::Ok);
+            okButton->setEnabled(true);
         }
     }
 

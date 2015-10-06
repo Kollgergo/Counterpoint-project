@@ -28,10 +28,7 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
-    QAction *actionScore;
-    QAction *actionOpen_LilyPond_file;
     QAction *actionExit;
-    QAction *actionLilyPond;
     QAction *actionAddNote;
     QAction *actionAddRest;
     QAction *actionHalf;
@@ -41,11 +38,11 @@ public:
     QAction *action_newStaff;
     QAction *actionAddSharp;
     QAction *actionAddFlat;
-    QAction *actionOpenLilypondToolBar;
-    QAction *actionSaveLilypondToolBar;
     QAction *actionNewScore;
     QAction *actionNewCounterpoint;
     QAction *actionChangeNoteRest;
+    QAction *actionOpenLilypond;
+    QAction *actionSaveLilypond;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -66,14 +63,8 @@ public:
         QIcon icon;
         icon.addFile(QStringLiteral(":/res/half_note.png"), QSize(), QIcon::Normal, QIcon::On);
         MainWindow->setWindowIcon(icon);
-        actionScore = new QAction(MainWindow);
-        actionScore->setObjectName(QStringLiteral("actionScore"));
-        actionOpen_LilyPond_file = new QAction(MainWindow);
-        actionOpen_LilyPond_file->setObjectName(QStringLiteral("actionOpen_LilyPond_file"));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QStringLiteral("actionExit"));
-        actionLilyPond = new QAction(MainWindow);
-        actionLilyPond->setObjectName(QStringLiteral("actionLilyPond"));
         actionAddNote = new QAction(MainWindow);
         actionAddNote->setObjectName(QStringLiteral("actionAddNote"));
         actionAddNote->setCheckable(true);
@@ -127,31 +118,31 @@ public:
         QIcon icon9;
         icon9.addFile(QStringLiteral(":/res/flat.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionAddFlat->setIcon(icon9);
-        actionOpenLilypondToolBar = new QAction(MainWindow);
-        actionOpenLilypondToolBar->setObjectName(QStringLiteral("actionOpenLilypondToolBar"));
-        QIcon icon10;
-        icon10.addFile(QStringLiteral("res/open.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionOpenLilypondToolBar->setIcon(icon10);
-        actionSaveLilypondToolBar = new QAction(MainWindow);
-        actionSaveLilypondToolBar->setObjectName(QStringLiteral("actionSaveLilypondToolBar"));
-        QIcon icon11;
-        icon11.addFile(QStringLiteral(":/res/save_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionSaveLilypondToolBar->setIcon(icon11);
         actionNewScore = new QAction(MainWindow);
         actionNewScore->setObjectName(QStringLiteral("actionNewScore"));
-        QIcon icon12;
-        icon12.addFile(QStringLiteral(":/res/new_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionNewScore->setIcon(icon12);
+        QIcon icon10;
+        icon10.addFile(QStringLiteral(":/res/new_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNewScore->setIcon(icon10);
         actionNewCounterpoint = new QAction(MainWindow);
         actionNewCounterpoint->setObjectName(QStringLiteral("actionNewCounterpoint"));
-        QIcon icon13;
-        icon13.addFile(QStringLiteral(":/res/CP_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionNewCounterpoint->setIcon(icon13);
+        QIcon icon11;
+        icon11.addFile(QStringLiteral(":/res/CP_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNewCounterpoint->setIcon(icon11);
         actionChangeNoteRest = new QAction(MainWindow);
         actionChangeNoteRest->setObjectName(QStringLiteral("actionChangeNoteRest"));
+        QIcon icon12;
+        icon12.addFile(QStringLiteral(":/res/changeicon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionChangeNoteRest->setIcon(icon12);
+        actionOpenLilypond = new QAction(MainWindow);
+        actionOpenLilypond->setObjectName(QStringLiteral("actionOpenLilypond"));
+        QIcon icon13;
+        icon13.addFile(QStringLiteral(":/res/open.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionOpenLilypond->setIcon(icon13);
+        actionSaveLilypond = new QAction(MainWindow);
+        actionSaveLilypond->setObjectName(QStringLiteral("actionSaveLilypond"));
         QIcon icon14;
-        icon14.addFile(QStringLiteral(":/res/changeicon.png"), QSize(), QIcon::Normal, QIcon::Off);
-        actionChangeNoteRest->setIcon(icon14);
+        icon14.addFile(QStringLiteral(":/res/save_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionSaveLilypond->setIcon(icon14);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -195,9 +186,10 @@ public:
         menuFile->addAction(menuOpen->menuAction());
         menuFile->addAction(menuExport->menuAction());
         menuFile->addAction(actionExit);
-        menuNew->addAction(actionScore);
-        menuOpen->addAction(actionOpen_LilyPond_file);
-        menuExport->addAction(actionLilyPond);
+        menuNew->addAction(actionNewScore);
+        menuNew->addAction(actionNewCounterpoint);
+        menuOpen->addAction(actionOpenLilypond);
+        menuExport->addAction(actionSaveLilypond);
         mainToolBar->addAction(action_newStaff);
         mainToolBar->addSeparator();
         mainToolBar->addAction(actionAddNote);
@@ -213,8 +205,8 @@ public:
         mainToolBar->addSeparator();
         mainToolBar->addAction(actionChangeNoteRest);
         toolBar->addAction(actionNewScore);
-        toolBar->addAction(actionOpenLilypondToolBar);
-        toolBar->addAction(actionSaveLilypondToolBar);
+        toolBar->addAction(actionOpenLilypond);
+        toolBar->addAction(actionSaveLilypond);
         toolBar->addSeparator();
         toolBar->addAction(actionNewCounterpoint);
 
@@ -226,10 +218,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Ellenpont", 0));
-        actionScore->setText(QApplication::translate("MainWindow", "Kotta", 0));
-        actionOpen_LilyPond_file->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Kil\303\251p\303\251s", 0));
-        actionLilyPond->setText(QApplication::translate("MainWindow", "LilyPond", 0));
         actionAddNote->setText(QApplication::translate("MainWindow", "\303\232j Hangjegy", 0));
         actionAddRest->setText(QApplication::translate("MainWindow", "\303\232j Sz\303\274net", 0));
         actionHalf->setText(QApplication::translate("MainWindow", "F\303\251l", 0));
@@ -239,8 +228,6 @@ public:
         action_newStaff->setText(QApplication::translate("MainWindow", "\303\232j kottasor", 0));
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
-        actionOpenLilypondToolBar->setText(QApplication::translate("MainWindow", "LilyPond f\303\241jl megnyit\303\241sa", 0));
-        actionSaveLilypondToolBar->setText(QApplication::translate("MainWindow", "Kotta ment\303\251se", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));
         actionNewCounterpoint->setText(QApplication::translate("MainWindow", "\303\232j Ellenpont feladat", 0));
         actionChangeNoteRest->setText(QApplication::translate("MainWindow", "Hang cser\303\251je hang-sz\303\274net", 0));
@@ -248,6 +235,8 @@ public:
         actionChangeNoteRest->setToolTip(QApplication::translate("MainWindow", "Hang - Sz\303\274net csere, gyorsbillenyt\305\261: M", 0));
 #endif // QT_NO_TOOLTIP
         actionChangeNoteRest->setShortcut(QApplication::translate("MainWindow", "M", 0));
+        actionOpenLilypond->setText(QApplication::translate("MainWindow", "LilyPond file megnyit\303\241sa", 0));
+        actionSaveLilypond->setText(QApplication::translate("MainWindow", "Ment\303\251s LilyPond f\303\241jlba", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));

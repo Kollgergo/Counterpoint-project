@@ -2,7 +2,7 @@
 
 ScoreView::ScoreView(QWidget *parent) : QGraphicsView(parent)
 {
-    //SmartViewportUpdate
+
 }
 
 void ScoreView::wheelEvent(QWheelEvent *event)

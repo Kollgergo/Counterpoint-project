@@ -58,19 +58,20 @@
      <property name="title">
       <string>Új</string>
      </property>
-     <addaction name="actionScore"/>
+     <addaction name="actionNewScore"/>
+     <addaction name="actionNewCounterpoint"/>
     </widget>
     <widget class="QMenu" name="menuOpen">
      <property name="title">
       <string>Megnyitás</string>
      </property>
-     <addaction name="actionOpen_LilyPond_file"/>
+     <addaction name="actionOpenLilypond"/>
     </widget>
     <widget class="QMenu" name="menuExport">
      <property name="title">
       <string>Export</string>
      </property>
-     <addaction name="actionLilyPond"/>
+     <addaction name="actionSaveLilypond"/>
     </widget>
     <addaction name="menuNew"/>
     <addaction name="menuOpen"/>
@@ -113,29 +114,14 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionNewScore"/>
-   <addaction name="actionOpenLilypondToolBar"/>
-   <addaction name="actionSaveLilypondToolBar"/>
+   <addaction name="actionOpenLilypond"/>
+   <addaction name="actionSaveLilypond"/>
    <addaction name="separator"/>
    <addaction name="actionNewCounterpoint"/>
   </widget>
-  <action name="actionScore">
-   <property name="text">
-    <string>Kotta</string>
-   </property>
-  </action>
-  <action name="actionOpen_LilyPond_file">
-   <property name="text">
-    <string>LilyPond fájl megnyitása</string>
-   </property>
-  </action>
   <action name="actionExit">
    <property name="text">
     <string>Kilépés</string>
-   </property>
-  </action>
-  <action name="actionLilyPond">
-   <property name="text">
-    <string>LilyPond</string>
    </property>
   </action>
   <action name="actionAddNote">
@@ -243,24 +229,6 @@
     <string>B hozzáadása</string>
    </property>
   </action>
-  <action name="actionOpenLilypondToolBar">
-   <property name="icon">
-    <iconset>
-     <normaloff>res/open.png</normaloff>res/open.png</iconset>
-   </property>
-   <property name="text">
-    <string>LilyPond fájl megnyitása</string>
-   </property>
-  </action>
-  <action name="actionSaveLilypondToolBar">
-   <property name="icon">
-    <iconset resource="GUI.qrc">
-     <normaloff>:/res/save_icon.png</normaloff>:/res/save_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Kotta mentése</string>
-   </property>
-  </action>
   <action name="actionNewScore">
    <property name="icon">
     <iconset resource="GUI.qrc">
@@ -292,6 +260,24 @@
    </property>
    <property name="shortcut">
     <string>M</string>
+   </property>
+  </action>
+  <action name="actionOpenLilypond">
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/open.png</normaloff>:/res/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>LilyPond file megnyitása</string>
+   </property>
+  </action>
+  <action name="actionSaveLilypond">
+   <property name="icon">
+    <iconset resource="GUI.qrc">
+     <normaloff>:/res/save_icon.png</normaloff>:/res/save_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Mentés LilyPond fájlba</string>
    </property>
   </action>
  </widget>
