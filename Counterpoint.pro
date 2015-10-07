@@ -6,40 +6,46 @@ TARGET = Counterpoint
 TEMPLATE = app
 
 SOURCES += main.cpp \
-    score.cpp \
-    note.cpp \
-    staff.cpp \
-    cpsystem.cpp \
-    keysignature.cpp \
-    scoreviewmodel.cpp \
-    mainwindow.cpp \
-    vnote.cpp \
-    vstaff.cpp \
-    vstaffline.cpp \
+    Datamodel/score.cpp \
+    Datamodel/note.cpp \
+    Datamodel/staff.cpp \
+    Datamodel/cpsystem.cpp \
+    Datamodel/keysignature.cpp \
+    Datamodel/scoreviewmodel.cpp \
+    GUI/mainwindow.cpp \
+    GUI/vnote.cpp \
+    GUI/vstaff.cpp \
+    GUI/vstaffline.cpp \
     scoreview.cpp \
-    newstaffdialog.cpp \
-    newcpdialog.cpp \
-    tester.cpp
+    GUI/newstaffdialog.cpp \
+    GUI/newcpdialog.cpp \
+    Rules/tester.cpp \
+    Rules/error.cpp \
+    Rules/onlyconsonancerule.cpp
+
 
 HEADERS += \
-    score.h \
-    note.h \
-    staff.h \
-    cpsystem.h \
-    keysignature.h \
-    scoreviewmodel.h \
-    mainwindow.h \
-    vnote.h \
-    vstaff.h \
-    vstaffline.h \
+    Datamodel/score.h \
+    Datamodel/note.h \
+    Datamodel/staff.h \
+    Datamodel/cpsystem.h \
+    Datamodel/keysignature.h \
+    Datamodel/scoreviewmodel.h \
+    GUI/mainwindow.h \
+    GUI/vnote.h \
+    GUI/vstaff.h \
+    GUI/vstaffline.h \
     scoreview.h \
-    newstaffdialog.h \
-    newcpdialog.h \
-    tester.h
+    GUI/newstaffdialog.h \
+    GUI/newcpdialog.h \
+    Rules/tester.h \
+    Rules/error.h \
+    Rules/onlyconsonancerule.h
 
-FORMS    += mainwindow.ui \
-    newstaffdialog.ui \
-    newcpdialog.ui
+
+FORMS    += GUI/mainwindow.ui \
+    GUI/newstaffdialog.ui \
+    GUI/newcpdialog.ui
 
 RESOURCES += \
     GUI.qrc

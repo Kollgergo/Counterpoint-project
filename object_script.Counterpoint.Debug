@@ -14,6 +14,8 @@ INPUT(
 ./debug\newstaffdialog.o
 ./debug\newcpdialog.o
 ./debug\tester.o
+./debug\error.o
+./debug\onlyconsonancerule.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
