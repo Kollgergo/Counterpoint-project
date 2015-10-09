@@ -16,6 +16,7 @@ INPUT(
 ./debug\tester.o
 ./debug\error.o
 ./debug\onlyconsonancerule.o
+./debug\errormarker.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
@@ -23,4 +24,5 @@ INPUT(
 ./debug\moc_vstaffline.o
 ./debug\moc_newstaffdialog.o
 ./debug\moc_newcpdialog.o
+./debug\moc_errormarker.o
 );

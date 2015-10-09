@@ -16,6 +16,7 @@ INPUT(
 ./release\tester.o
 ./release\error.o
 ./release\onlyconsonancerule.o
+./release\errormarker.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o
@@ -23,4 +24,5 @@ INPUT(
 ./release\moc_vstaffline.o
 ./release\moc_newstaffdialog.o
 ./release\moc_newcpdialog.o
+./release\moc_errormarker.o
 );

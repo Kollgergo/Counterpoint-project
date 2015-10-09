@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     GUI/newcpdialog.cpp \
     Rules/tester.cpp \
     Rules/error.cpp \
-    Rules/onlyconsonancerule.cpp
+    Rules/onlyconsonancerule.cpp \
+    GUI/errormarker.cpp
 
 
 HEADERS += \
@@ -40,7 +41,8 @@ HEADERS += \
     GUI/newcpdialog.h \
     Rules/tester.h \
     Rules/error.h \
-    Rules/onlyconsonancerule.h
+    Rules/onlyconsonancerule.h \
+    GUI/errormarker.h
 
 
 FORMS    += GUI/mainwindow.ui \
