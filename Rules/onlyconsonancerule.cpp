@@ -10,7 +10,7 @@ QList<Error *> OnlyConsonanceRule::test(vector<Staff> staffs)
     int interval = 0;
     QList<Error *> errors;
 
-    for(int i=1; i<staffs.size(); i++){
+    for(unsigned int i=1; i<staffs.size(); i++){
         for(unsigned int j=0; j<staffs[0].getNumOfNotes(); j++){
 
             interval = qAbs(staffs[0].getNoteByNum(j+1) - staffs[i].getNoteByNum(j+1));
