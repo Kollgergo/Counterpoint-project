@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->scoreView->setMouseTracking(true);
     CPmode = false;
 
+    ui->actionTest->setEnabled(false);
+
     //vstaff = new VStaff;
     //scene->addItem(vstaff);
 
@@ -187,6 +189,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
                     ui->actionAddRest->setEnabled(false);
                     ui->actionWhole->setEnabled(false);
                     ui->actionHalf->setEnabled(false);
+                    ui->actionTest->setEnabled(true);
 
                     vstaffs.at(i)->updateStaffWidth();
                 }
@@ -225,6 +228,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                                 ui->actionAddRest->setEnabled(true);
                                 ui->actionWhole->setEnabled(true);
                                 ui->actionHalf->setEnabled(true);
+                                ui->actionTest->setEnabled(false);
                             }
                             break;
                         }else{
@@ -724,17 +728,6 @@ void MainWindow::on_actionEighth_triggered(bool checked)
     }
 }
 
-void MainWindow::on_action_newStaff_triggered()
-{
-    NewStaffDialog *staffdialog = new NewStaffDialog(this);
-    if(staffdialog->exec() == QDialog::Accepted){
-        addVStaff(new VStaff(false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
-
-    }
-}
-
-
-
 void MainWindow::on_actionAddSharp_triggered(bool checked)
 {
     if(checked){
@@ -943,13 +936,14 @@ void MainWindow::vNoteSelected(VNote *note)
 void MainWindow::on_actionNewScore_triggered()
 {
     CPmode = false;
-    ui->action_newStaff->setEnabled(true);
+    ui->actionNewStaff->setEnabled(true);
     ui->actionAddNote->setEnabled(true);
     ui->actionAddRest->setEnabled(true);
     ui->actionWhole->setEnabled(true);
     ui->actionHalf->setEnabled(true);
     ui->actionQuarter->setEnabled(true);
     ui->actionEighth->setEnabled(true);
+    ui->actionTest->setEnabled(false);
 
     QMessageBox msgbox(this);
     msgbox.setText("Új kotta megnyitása.");
@@ -965,7 +959,7 @@ void MainWindow::on_actionNewScore_triggered()
         svm->deleteStaff(0);
         vstaffs.clear();
         scene->clear();
-        ui->action_newStaff->setDisabled(false);
+        ui->actionNewStaff->setDisabled(false);
         break;
     case QMessageBox::Cancel:
 
@@ -999,7 +993,7 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             svm->readLilyPond(cpdialog->getFileName(), true);
             svm->addStaff(cpdialog->getClef(), svm->getClefByNum(1), 0);
             showScore(true);
-            ui->action_newStaff->setDisabled(true);
+            ui->actionNewStaff->setDisabled(true);
             ui->actionQuarter->setDisabled(true);
             ui->actionEighth->setDisabled(true);
 
@@ -1037,13 +1031,14 @@ void MainWindow::on_actionOpenLilypond_triggered()
 {
     CPmode = false;
     CPmode = false;
-    ui->action_newStaff->setEnabled(true);
+    ui->actionNewStaff->setEnabled(true);
     ui->actionAddNote->setEnabled(true);
     ui->actionAddRest->setEnabled(true);
     ui->actionWhole->setEnabled(true);
     ui->actionHalf->setEnabled(true);
     ui->actionQuarter->setEnabled(true);
     ui->actionEighth->setEnabled(true);
+    ui->actionTest->setEnabled(false);
 
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
     if(!filename.isEmpty()){
@@ -1057,5 +1052,43 @@ void MainWindow::on_actionSaveLilypond_triggered()
     QString filename = QFileDialog::getSaveFileName(this, "Exportálás LilyPond fájlba", "./export", "*.ly");
     if(!filename.isEmpty()){
         svm->makeLilyPond(filename);
+    }
+}
+
+void MainWindow::on_actionTest_triggered()
+{
+    QList<Error *> errors = svm->testScore();
+
+    if(errors.isEmpty()){
+        QMessageBox okBox(this);
+        okBox.setWindowTitle("Az feladat ellenőrizve");
+        okBox.setText("Az ellenpont hibátlan!");
+        okBox.exec();
+
+    }else{
+        QString errorstring;
+        foreach (Error *error, errors) {
+            errorstring.append(QString::number(error->getLocation().second+1));
+            errorstring.append(" -> ");
+            errorstring.append(error->getErrormessage());
+            errorstring.append("\n");
+        }
+        QMessageBox errorBox(this);
+        errorBox.setWindowTitle("Az feladat ellenőrizve");
+        errorBox.setText(errorstring);
+        errorBox.exec();
+    }
+
+//    QMessageBox warningBox();
+
+//    svm->testScore();
+}
+
+void MainWindow::on_actionNewStaff_triggered()
+{
+    NewStaffDialog *staffdialog = new NewStaffDialog(this);
+    if(staffdialog->exec() == QDialog::Accepted){
+        addVStaff(new VStaff(false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+
     }
 }

@@ -18,7 +18,6 @@
         <file>res/half_note_icon.png</file>
         <file>res/quarter_note_icon.png</file>
         <file>res/eighth_note_icon.png</file>
-        <file>res/staff_icon.png</file>
         <file>res/flag.png</file>
         <file>res/open.png</file>
         <file>res/1_flat.png</file>
@@ -46,5 +45,7 @@
         <file>res/new_icon.png</file>
         <file>res/CP_icon.png</file>
         <file>res/changeicon.png</file>
+        <file>res/test_icon.png</file>
+        <file>res/staff_icon.png</file>
     </qresource>
 </RCC>

@@ -53,8 +53,6 @@ private slots:
 
     void on_actionEighth_triggered(bool checked);
 
-    void on_action_newStaff_triggered();
-
     void on_actionAddSharp_triggered(bool checked);
 
     void on_actionAddFlat_triggered(bool checked);
@@ -68,6 +66,10 @@ private slots:
     void on_actionOpenLilypond_triggered();
 
     void on_actionSaveLilypond_triggered();
+
+    void on_actionTest_triggered();
+
+    void on_actionNewStaff_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);

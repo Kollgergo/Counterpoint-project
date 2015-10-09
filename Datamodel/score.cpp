@@ -38,9 +38,14 @@ Staff& Score::getStaffByNum(unsigned int which)
     return staffs.at(which-1);
 }
 
+
+vector<Staff> Score::getStaffs() const
+{
+    return staffs;
+}
 Score::Score()
 {
-
+    
 }
 
 Score::Score(const vector<Staff> &staffs)

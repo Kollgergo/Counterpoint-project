@@ -756,6 +756,18 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
 }
 
+QList<Error *> ScoreViewModel::testScore()
+{
+//    QList<Error *> errors = consonancerule->test(score->getStaffs());
+
+//    foreach (Error *error, errors) {
+//        qDebug() << error->getLocation();
+//        qDebug() << error->getErrormessage();
+//    }
+
+    return consonancerule->test(score->getStaffs());
+}
+
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
 {
     int pos;

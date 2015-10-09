@@ -87,7 +87,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action_newStaff"/>
+   <addaction name="actionNewStaff"/>
    <addaction name="separator"/>
    <addaction name="actionAddNote"/>
    <addaction name="actionAddRest"/>
@@ -118,6 +118,7 @@
    <addaction name="actionSaveLilypond"/>
    <addaction name="separator"/>
    <addaction name="actionNewCounterpoint"/>
+   <addaction name="actionTest"/>
   </widget>
   <action name="actionExit">
    <property name="text">
@@ -196,15 +197,6 @@
     <string>Nyolcad</string>
    </property>
   </action>
-  <action name="action_newStaff">
-   <property name="icon">
-    <iconset>
-     <normaloff>res/staff_icon.png</normaloff>res/staff_icon.png</iconset>
-   </property>
-   <property name="text">
-    <string>Új kottasor</string>
-   </property>
-  </action>
   <action name="actionAddSharp">
    <property name="checkable">
     <bool>true</bool>
@@ -278,6 +270,27 @@
    </property>
    <property name="text">
     <string>Mentés LilyPond fájlba</string>
+   </property>
+  </action>
+  <action name="actionTest">
+   <property name="icon">
+    <iconset resource="../GUI.qrc">
+     <normaloff>:/res/test_icon.png</normaloff>:/res/test_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Ellenőrzés</string>
+   </property>
+   <property name="shortcut">
+    <string>T</string>
+   </property>
+  </action>
+  <action name="actionNewStaff">
+   <property name="icon">
+    <iconset resource="../GUI.qrc">
+     <normaloff>:/res/staff_icon.png</normaloff>:/res/staff_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Új Kottasor</string>
    </property>
   </action>
  </widget>

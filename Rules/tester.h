@@ -9,7 +9,7 @@ class Tester
 public:
     Tester();
 
-    virtual QList<Error> test(QList<Staff> staffs) const = 0;
+    virtual QList<Error *> test(QList<Staff> staffs) = 0;
 
 };
 

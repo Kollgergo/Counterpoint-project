@@ -5,15 +5,16 @@ OnlyConsonanceRule::OnlyConsonanceRule()
 
 }
 
-QList<Error *> OnlyConsonanceRule::test(QList<Staff> staffs)
+QList<Error *> OnlyConsonanceRule::test(vector<Staff> staffs)
 {
     int interval = 0;
     QList<Error *> errors;
 
     for(int i=1; i<staffs.size(); i++){
-        for(unsigned int j=0; j<staffs.first().getNumOfNotes(); j++){
+        for(unsigned int j=0; j<staffs[0].getNumOfNotes(); j++){
 
-            interval = qAbs(staffs.first().getNoteByNum(j+1) - staffs.at(j).getNoteByNum(j+1));
+            interval = qAbs(staffs[0].getNoteByNum(j+1) - staffs[i].getNoteByNum(j+1));
+
             QPair<int, int> currentloc(i,j);
 
             while(interval > 12){
@@ -28,7 +29,7 @@ QList<Error *> OnlyConsonanceRule::test(QList<Staff> staffs)
                 errors.push_back(new Error(currentloc, "Ez nem konszonáns hangköz: K2"));
                 break;
             case 2:
-                errors.push_back(new Error(currentloc, "Ez nem konszonáns hangköz: K2"));
+                errors.push_back(new Error(currentloc, "Ez nem konszonáns hangköz: N2"));
                 break;
             case 3:
 

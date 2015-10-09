@@ -19,6 +19,7 @@ public:
     bool deleteStaff(unsigned int which);
     Staff &getStaffByNum(unsigned int which);
 
+    vector<Staff> getStaffs() const;
 };
 
 #endif // SCORE_H

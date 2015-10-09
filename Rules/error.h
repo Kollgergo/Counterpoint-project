@@ -8,6 +8,10 @@ class Error
 public:
     Error(QPair <int,int> loc, QString message);
 
+    QPair<int, int> getLocation() const;
+
+    QString getErrormessage() const;
+
 private:
     QPair <int,int> location;
     QString errormessage;

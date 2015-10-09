@@ -12,6 +12,7 @@
 #include <fstream>
 #include "score.h"
 #include "keysignature.h"
+#include "Rules/onlyconsonancerule.h"
 
 class ScoreViewModel
 {
@@ -27,6 +28,8 @@ private:
     vector<clefNames> clefs;
     vector<KeySignature> keysignatures;
     map<int,vector<accents> > accentsMap;
+
+    OnlyConsonanceRule *consonancerule;
 
 public:
     ScoreViewModel();
@@ -56,6 +59,8 @@ public:
 
     void makeLilyPond(QString destination);
     void readLilyPond(QString file, bool isCF);
+
+    QList<Error *> testScore();
 
 };
 
