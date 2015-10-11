@@ -6,6 +6,7 @@
 #include "vstaffline.h"
 #include "vnote.h"
 #include "Datamodel/scoreviewmodel.h"
+#include "errormarker.h"
 
 class VNote;
 
@@ -42,6 +43,10 @@ public:
 
     int getDurationSum();
 
+    void setNewError(int location, QString errormessage);
+
+    void deleteErrorMarkers();
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);
@@ -56,6 +61,7 @@ private:
     QList<VNote *> vnotes;
     VNote *newvnote;
     VNote *selectedvnote;
+    QList<ErrorMarker *> errormarkers;
 
 };
 

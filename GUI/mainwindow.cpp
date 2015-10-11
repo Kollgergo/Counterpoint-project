@@ -1060,28 +1060,28 @@ void MainWindow::on_actionTest_triggered()
     QList<Error *> errors = svm->testScore();
 
     if(errors.isEmpty()){
+        foreach (VStaff *vstaff, vstaffs) {
+            vstaff->deleteErrorMarkers();
+        }
+
         QMessageBox okBox(this);
         okBox.setWindowTitle("Az feladat ellenőrizve");
         okBox.setText("Az ellenpont hibátlan!");
         okBox.exec();
 
     }else{
-        QString errorstring;
-        foreach (Error *error, errors) {
-            errorstring.append(QString::number(error->getLocation().second+1));
-            errorstring.append(" -> ");
-            errorstring.append(error->getErrormessage());
-            errorstring.append("\n");
+
+        foreach (VStaff *vstaff, vstaffs) {
+            vstaff->deleteErrorMarkers();
         }
-        QMessageBox errorBox(this);
-        errorBox.setWindowTitle("Az feladat ellenőrizve");
-        errorBox.setText(errorstring);
-        errorBox.exec();
+
+        foreach (Error *error, errors) {
+            //errormarkers.push_back(new ErrorMarker(error->getErrormessage(), this));
+            vstaffs[error->getLocation().first]->setNewError(error->getLocation().second,error->getErrormessage());
+        }
     }
 
-//    QMessageBox warningBox();
 
-//    svm->testScore();
 }
 
 void MainWindow::on_actionNewStaff_triggered()

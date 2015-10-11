@@ -704,6 +704,23 @@ int VStaff::getDurationSum()
     return dur;
 }
 
+void VStaff::setNewError(int location, QString errormessage)
+{
+    errormarkers.push_back(new ErrorMarker(errormessage, this));
+    errormarkers.back()->setY(80);
+    errormarkers.back()->setPos(vnotes[location]->x()-10,80);
+
+}
+
+void VStaff::deleteErrorMarkers()
+{
+    foreach (ErrorMarker *marker, errormarkers) {
+        this->scene()->removeItem(marker);
+    }
+
+    errormarkers.clear();
+}
+
 VNote *VStaff::getSelectedvnote() const
 {
     return selectedvnote;
