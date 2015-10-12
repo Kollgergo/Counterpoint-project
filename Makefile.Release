@@ -710,6 +710,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
+		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
@@ -1188,6 +1189,7 @@ release/moc_vnote.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
+		GUI/errormarker.h \
 		GUI/vnote.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\vnote.h -o release\moc_vnote.cpp
 
@@ -1662,6 +1664,7 @@ release/moc_vstaff.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
+		GUI/errormarker.h \
 		GUI/vstaff.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\vstaff.h -o release\moc_vstaff.cpp
 
@@ -2227,16 +2230,6 @@ release/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog 
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -2338,6 +2331,7 @@ release/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog 
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -2345,6 +2339,15 @@ release/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog 
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		GUI/newstaffdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\newstaffdialog.h -o release\moc_newstaffdialog.cpp
@@ -2459,16 +2462,6 @@ release/moc_newcpdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -2568,6 +2561,7 @@ release/moc_newcpdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -2575,6 +2569,15 @@ release/moc_newcpdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		GUI/newcpdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\newcpdialog.h -o release\moc_newcpdialog.cpp
@@ -3632,16 +3635,6 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -3741,6 +3734,7 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -3748,6 +3742,15 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
@@ -3998,6 +4001,7 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		GUI/vnote.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtDebug \
+		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
@@ -4006,6 +4010,191 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 
 release/score.o: Datamodel/score.cpp Datamodel/score.h \
 		Datamodel/staff.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qflags.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qparallelanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpauseanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpropertyanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariantanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeasingcurve.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsequentialanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextcodec.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qendian.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlibraryinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbuffer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdir.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdiriterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfileselector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QStringList \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfilesystemwatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlockfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qloggingcategory.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qprocess.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qresource.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsavefile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsettings.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstandardpaths.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstorageinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtemporarydir.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QScopedPointer \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtemporaryfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qidentityproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsortfilterproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlistmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonarray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonvalue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsondocument.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractnativeeventfilter.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbasictimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetaobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimedata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectcleanuphandler.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedmemory.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsignalmapper.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsocketnotifier.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsystemsemaphore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtranslator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qwineventnotifier.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimedatabase.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimetype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfactoryinterface.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlibrary.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qplugin.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpluginloader.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/quuid.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstracttransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeventtransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfinalstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhistorystate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsignaltransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstatemachine.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qexception.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuture.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfutureinterface.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrunnable.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qresultstore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuturesynchronizer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuturewatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qreadwritelock.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsemaphore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthread.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthreadpool.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthreadstorage.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qwaitcondition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydataops.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydatapointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbitarray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraymatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcollator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcommandlineoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcommandlineparser.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcryptographichash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qelapsedtimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimeline.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/note.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\score.o Datamodel\score.cpp
 
@@ -4013,6 +4202,191 @@ release/note.o: Datamodel/note.cpp Datamodel/note.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\note.o Datamodel\note.cpp
 
 release/staff.o: Datamodel/staff.cpp Datamodel/staff.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsystemdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qprocessordetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcompilerdetection.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypeinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtypetraits.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsysinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlogging.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qflags.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbasicatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_bootstrap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qgenericatomic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_cxx11.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_gcc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_msvc.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv7.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv6.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_armv5.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_ia64.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_mips.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_x86.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qatomic_unix.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qparallelanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpauseanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpropertyanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariantanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeasingcurve.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsequentialanimationgroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextcodec.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qendian.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlibraryinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatetime.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbuffer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdir.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdiriterator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfileselector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QStringList \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfilesystemwatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlockfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qloggingcategory.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qprocess.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qresource.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsavefile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsettings.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstandardpaths.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstorageinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtemporarydir.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QScopedPointer \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtemporaryfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qurlquery.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractitemmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qidentityproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qitemselectionmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsortfilterproxymodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlistmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonarray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonvalue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsondocument.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qjsonobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstracteventdispatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeventloop.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractnativeeventfilter.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbasictimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmath.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmetaobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimedata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectcleanuphandler.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedpointer_impl.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsharedmemory.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsignalmapper.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsocketnotifier.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsystemsemaphore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtranslator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qwineventnotifier.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimedatabase.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmimetype.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfactoryinterface.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlibrary.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qplugin.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpluginloader.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/quuid.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstracttransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qeventtransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfinalstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhistorystate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsignaltransition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstate.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstatemachine.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qexception.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuture.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfutureinterface.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrunnable.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qresultstore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuturesynchronizer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfuturewatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qreadwritelock.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsemaphore.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthread.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthreadpool.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qthreadstorage.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qwaitcondition.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydataops.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydatapointer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbitarray.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraymatcher.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcache.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcollator.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcommandlineoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcommandlineparser.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcryptographichash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qelapsedtimer.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qline.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmargins.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimeline.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/note.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\staff.o Datamodel\staff.cpp
 
@@ -4126,16 +4500,6 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -4235,6 +4599,7 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -4242,6 +4607,15 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
@@ -4492,6 +4866,7 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		GUI/vnote.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtDebug \
+		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
@@ -4502,8 +4877,12 @@ release/keysignature.o: Datamodel/keysignature.cpp Datamodel/keysignature.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\keysignature.o Datamodel\keysignature.cpp
 
 release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobal.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qconfig.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfeatures.h \
@@ -4532,62 +4911,46 @@ release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.
 		C:/Qt/5.5/mingw492_32/include/QtCore/qglobalstatic.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmutex.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qnumeric.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstring.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qchar.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearray.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrefcount.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qnamespace.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qarraydata.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringbuilder.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qalgorithms.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qiterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qbytearraylist.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qstringlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qregexp.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstringmatcher.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmetatype.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qvarlengtharray.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qcontainerfwd.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qisenum.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobjectdefs_impl.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcoreevent.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedpointer.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qobject_impl.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qanimationgroup.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qparallelanimationgroup.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpauseanimation.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qpropertyanimation.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qvariantanimation.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qeasingcurve.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvector.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpoint.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qvariant.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qmap.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qpair.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qdebug.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qhash.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qtextstream.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qiodevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qlocale.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qshareddata.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qset.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qcontiguouscache.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsequentialanimationgroup.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextcodec.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qendian.h \
@@ -4597,6 +4960,8 @@ release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdatastream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdir.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfileinfo.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfile.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qdiriterator.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfileselector.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
@@ -4689,6 +5054,7 @@ release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qrect.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qsize.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -4696,6 +5062,15 @@ release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\scoreviewmodel.o Datamodel\scoreviewmodel.cpp
 
@@ -5173,6 +5548,7 @@ release/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
+		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
@@ -5650,7 +6026,8 @@ release/vnote.o: GUI/vnote.cpp GUI/vnote.h \
 		Datamodel/keysignature.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
-		Rules/error.h
+		Rules/error.h \
+		GUI/errormarker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\vnote.o GUI\vnote.cpp
 
 release/vstaff.o: GUI/vstaff.cpp GUI/vstaff.h \
@@ -6123,7 +6500,8 @@ release/vstaff.o: GUI/vstaff.cpp GUI/vstaff.h \
 		Datamodel/keysignature.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
-		Rules/error.h
+		Rules/error.h \
+		GUI/errormarker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\vstaff.o GUI\vstaff.cpp
 
 release/vstaffline.o: GUI/vstaffline.cpp GUI/vstaffline.h \
@@ -7148,16 +7526,6 @@ release/newstaffdialog.o: GUI/newstaffdialog.cpp GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -7259,6 +7627,7 @@ release/newstaffdialog.o: GUI/newstaffdialog.cpp GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -7266,6 +7635,15 @@ release/newstaffdialog.o: GUI/newstaffdialog.cpp GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		ui_newstaffdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\newstaffdialog.o GUI\newstaffdialog.cpp
@@ -7381,16 +7759,6 @@ release/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmessagebox.h \
 		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/staff.h \
-		Datamodel/note.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
-		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -7490,6 +7858,7 @@ release/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qlinkedlist.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qmessageauthenticationcode.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qqueue.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/qregularexpression.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qscopedvaluerollback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qstack.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtextboundaryfinder.h \
@@ -7497,6 +7866,15 @@ release/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtimezone.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qxmlstream.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/staff.h \
+		Datamodel/note.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
+		Rules/tester.h \
 		Rules/error.h \
 		ui_newcpdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\newcpdialog.o GUI\newcpdialog.cpp
@@ -7689,6 +8067,13 @@ release/tester.o: Rules/tester.cpp Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
+		Datamodel/scoreviewmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/keysignature.h \
+		Rules/onlyconsonancerule.h \
 		Rules/error.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tester.o Rules\tester.cpp
 
@@ -8069,6 +8454,12 @@ release/onlyconsonancerule.o: Rules/onlyconsonancerule.cpp Rules/onlyconsonancer
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
+		Datamodel/scoreviewmodel.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
+		Datamodel/score.h \
+		Datamodel/keysignature.h \
 		Rules/error.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\onlyconsonancerule.o Rules\onlyconsonancerule.cpp
 

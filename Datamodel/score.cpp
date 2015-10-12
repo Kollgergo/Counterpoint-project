@@ -35,20 +35,20 @@ bool Score::deleteStaff(unsigned int which)
 
 Staff& Score::getStaffByNum(unsigned int which)
 {
-    return staffs.at(which-1);
+    return staffs[which-1];
 }
 
-
-vector<Staff> Score::getStaffs() const
+QVector<Staff> Score::getStaffs() const
 {
     return staffs;
 }
+
 Score::Score()
 {
     
 }
 
-Score::Score(const vector<Staff> &staffs)
+Score::Score(const QVector<Staff> &staffs)
 {
     this->staffs = staffs;
 }

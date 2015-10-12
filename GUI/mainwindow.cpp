@@ -98,6 +98,7 @@ void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
 
             if(svm->getAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getAccent()){
                 svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
+                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
             }
 
             if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
@@ -284,6 +285,8 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     ui->actionWhole->setChecked(false);
                     ui->actionQuarter->setChecked(false);
                     ui->actionEighth->setChecked(false);
+                    ui->actionAddSharp->setChecked(false);
+                    ui->actionAddFlat->setChecked(false);
                     if(vstaff->getNewvnote() != NULL){
                         delete(vstaff->getNewvnote());
                         //vstaff->setNewvnote(NULL);
@@ -389,6 +392,8 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     ui->actionWhole->setChecked(false);
                     ui->actionQuarter->setChecked(false);
                     ui->actionEighth->setChecked(false);
+                    ui->actionAddSharp->setChecked(false);
+                    ui->actionAddFlat->setChecked(false);
                     if(vstaff->getNewvnote() != NULL){
                         delete(vstaff->getNewvnote());
                         //vstaff->getNewvnote() = NULL;
@@ -946,6 +951,7 @@ void MainWindow::on_actionNewScore_triggered()
     ui->actionTest->setEnabled(false);
 
     QMessageBox msgbox(this);
+    msgbox.setWindowTitle("Új kotta megnyitása");
     msgbox.setText("Új kotta megnyitása.");
     msgbox.setInformativeText("Minden, el nem mentett változás elvész. Folytatja?");
     msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);

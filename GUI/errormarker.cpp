@@ -4,6 +4,7 @@ ErrorMarker::ErrorMarker(QString errormes, QGraphicsObject *parent) : QGraphicsO
 {
     errormessage = errormes;
     setAcceptHoverEvents(true);
+    errortext = NULL;
 }
 
 ErrorMarker::~ErrorMarker()
@@ -38,7 +39,6 @@ void ErrorMarker::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
     errortext->setDefaultTextColor(Qt::red);
     errortext->setFont(QFont("Times",15,-1, false));
     errortext->setY(50);
-
 }
 
 void ErrorMarker::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)

@@ -1,15 +1,9 @@
 #ifndef SCOREVIEWMODEL_H
 #define SCOREVIEWMODEL_H
+#include <QtCore>
 #include <QRegularExpression>
 #include <QFile>
-#include <vector>
-#include <iostream>
-#include <string>
 #include <QDebug>
-#include <stdlib.h>
-#include <map>
-#include <sstream>
-#include <fstream>
 #include "score.h"
 #include "keysignature.h"
 #include "Rules/onlyconsonancerule.h"
@@ -22,14 +16,6 @@ public:
     enum accents{flat, none, sharp, natural};
     enum noteTypes{whole_rest, half_rest, quarter_rest, eight_rest,
                    whole, half, quarter, eight};
-
-private:
-    Score *score;
-    vector<clefNames> clefs;
-    vector<KeySignature> keysignatures;
-    map<int,vector<accents> > accentsMap;
-
-    OnlyConsonanceRule *consonancerule;
 
 public:
     ScoreViewModel();
@@ -61,6 +47,14 @@ public:
     void readLilyPond(QString file, bool isCF);
 
     QList<Error *> testScore();
+
+private:
+    Score *score;
+    QVector<clefNames> clefs;
+    QVector<KeySignature> keysignatures;
+    QMap<int,QVector<accents> > accentsMap;
+
+    OnlyConsonanceRule *consonancerule;
 
 };
 

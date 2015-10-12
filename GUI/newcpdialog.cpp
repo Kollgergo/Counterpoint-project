@@ -20,6 +20,7 @@ NewCPDialog::~NewCPDialog()
 void NewCPDialog::on_browseFileButton_clicked()
 {
     QMessageBox msgbox(this);
+    msgbox.setWindowTitle("Cantus Firmus megnyitása");
     msgbox.setText("Cantus Firmus megnyitása");
     msgbox.setInformativeText("A megnyitott kottának egy szólamúnak kell lennie! Ha több mint egy szólam, akkor csak az első szólam lesz feldolgozva. Folytatja?");
     msgbox.setStandardButtons(QMessageBox::Ok | QMessageBox::Cancel);

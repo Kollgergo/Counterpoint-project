@@ -5,6 +5,8 @@ ScoreViewModel::ScoreViewModel()
     score = new Score();
     accentsMap.clear();
     accentsMap[0];
+
+    consonancerule = new OnlyConsonanceRule();
 }
 
 ScoreViewModel::~ScoreViewModel()
@@ -1007,7 +1009,7 @@ ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsi
 
 void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos)
 {
-    int newdatapos;
+    int newdatapos = 0;
 
     switch (clefs.at(staffnumber-1)) {
     case ScoreViewModel::treble:
@@ -1995,7 +1997,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
 void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::accents newaccent)
 {
-    accentsMap[staffnumber-1].at(notenumber-1) = newaccent;
+    accentsMap[staffnumber-1][notenumber-1] = newaccent;
 
 }
 

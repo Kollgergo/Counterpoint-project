@@ -1,5 +1,9 @@
 #include "staff.h"
 
+Staff::Staff()
+{
+
+}
 
 void Staff::addNote(int pitch, int duration, unsigned int where)
 {
@@ -22,7 +26,7 @@ bool Staff::deleteNote(unsigned int which)
 
 Note &Staff::getNoteByNum(unsigned int which)
 {
-    return notes.at(which-1);
+    return notes[which-1];
 }
 
 unsigned int Staff::getNumOfNotes() const
@@ -33,16 +37,11 @@ unsigned int Staff::getNumOfNotes() const
 void Staff::transpose(int interval)
 {
     for(unsigned int i=0; i<notes.size(); i++){
-        notes.at(i).setPitch(notes.at(i).getPitch()+interval);
+        notes[i].setPitch(notes.at(i).getPitch()+interval);
     }
 }
 
-Staff::Staff()
-{
-
-}
-
-Staff::Staff(const vector<Note> &notes)
+Staff::Staff(const QVector<Note> &notes)
 {
     this->notes = notes;
 }

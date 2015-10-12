@@ -7,11 +7,11 @@
 class Score
 {
 private:
-    vector<Staff> staffs;
+    QVector<Staff> staffs;
 
 public:
     Score();
-    Score(const vector<Staff> &staffs);
+    Score(const QVector<Staff> &staffs);
 
     unsigned int getNumOfStaffs() const;
     unsigned int getNumOfNotes(unsigned int staffnum);
@@ -19,7 +19,7 @@ public:
     bool deleteStaff(unsigned int which);
     Staff &getStaffByNum(unsigned int which);
 
-    vector<Staff> getStaffs() const;
+    QVector<Staff> getStaffs() const;
 };
 
 #endif // SCORE_H

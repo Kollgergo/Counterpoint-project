@@ -1,7 +1,6 @@
 #ifndef STAFF_H
 #define STAFF_H
-#include <iostream>
-#include <vector>
+#include <QtCore>
 #include "note.h"
 
 
@@ -11,11 +10,11 @@ using namespace std;
 class Staff
 {
 private:
-    vector<Note> notes;
+    QVector<Note> notes;
 
 public:
     Staff();
-    Staff(const vector<Note> &notes);
+    Staff(const QVector<Note> &notes);
     Staff(const Staff &obj);
 
     void addNote(int pitch, int duration, unsigned int where = 0);

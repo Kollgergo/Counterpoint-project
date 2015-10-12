@@ -5,7 +5,7 @@ OnlyConsonanceRule::OnlyConsonanceRule()
 
 }
 
-QList<Error *> OnlyConsonanceRule::test(vector<Staff> staffs)
+QList<Error *> OnlyConsonanceRule::test(QVector<Staff> staffs)
 {
     int interval = 0;
     QList<Error *> errors;

@@ -8,7 +8,7 @@ class OnlyConsonanceRule : public Tester
 public:
     OnlyConsonanceRule();
 
-    QList<Error *> test(vector<Staff> staffs);
+    QList<Error *> test(QVector<Staff> staffs);
 };
 
 #endif // ONLYCONSONANCERULE_H
