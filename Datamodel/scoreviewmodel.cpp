@@ -59,10 +59,10 @@ KeySignature ScoreViewModel::getKeySignatureByNum(int which)
     return keysignatures.at(which-1);
 }
 
-void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, accents accent, unsigned int where)
+void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, Accent::accents accent, unsigned int where)
 {
     score->getStaffByNum(staffnum).addNote(pitch, duration, where);
-    accentsMap[staffnum-1].push_back(accent);
+    accentsMap[staffnum-1].push_back(new Accent(accent));
 }
 
 bool ScoreViewModel::deleteNote(unsigned int staffnum, unsigned int which)
@@ -207,7 +207,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
             }else{
                 switch (note) {
                 case -11:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("cis");
                     }else{
                        lilynote.append("des");
@@ -230,7 +230,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -9:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("dis");
                     }else{
                        lilynote.append("ees");
@@ -243,7 +243,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -8:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("eis");
                     }else{
                        lilynote.append("e");
@@ -256,7 +256,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -7:
-                    if(accentsMap[i].at(j) == flat){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::flat){
                         lilynote.append("fes");
                     }else{
                        lilynote.append("f");
@@ -269,7 +269,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -6:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("fis");
                     }else{
                        lilynote.append("ges");
@@ -291,7 +291,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -4:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("gis");
                     }else{
                        lilynote.append("aes");
@@ -313,7 +313,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -2:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("ais");
                     }else{
                        lilynote.append("bes");
@@ -326,7 +326,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case -1:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("bis");
                     }else{
                        lilynote.append("b");
@@ -340,7 +340,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     break;
 
                 case 0:
-                    if(accentsMap[i].at(j) == flat){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::flat){
                         lilynote.append("ces");
                     }else{
                        lilynote.append("c");
@@ -364,7 +364,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     }
                     break;
                 case 1:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("cis");
                     }else{
                        lilynote.append("des");
@@ -390,7 +390,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 3:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("dis");
                     }else{
                        lilynote.append("ees");
@@ -405,7 +405,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 4:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("eis");
                     }else{
                        lilynote.append("e");
@@ -420,7 +420,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 5:
-                    if(accentsMap[i].at(j) == flat){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::flat){
                         lilynote.append("fes");
                     }else{
                        lilynote.append("f");
@@ -435,7 +435,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 6:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("fis");
                     }else{
                        lilynote.append("ges");
@@ -461,7 +461,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 8:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("gis");
                     }else{
                        lilynote.append("aes");
@@ -487,7 +487,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 10:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("ais");
                     }else{
                        lilynote.append("bes");
@@ -502,7 +502,7 @@ void ScoreViewModel::makeLilyPond(QString destination)
                     lilynote.append(durationstring);
                     break;
                 case 11:
-                    if(accentsMap[i].at(j) == sharp){
+                    if(accentsMap[i].at(j)->getAccent() == Accent::Accent::sharp){
                         lilynote.append("bis");
                     }else{
                        lilynote.append("b");
@@ -544,10 +544,10 @@ void ScoreViewModel::makeLilyPond(QString destination)
 void ScoreViewModel::readLilyPond(QString file, bool isCF)
 {
     int staffnum = 0;
-    accents accent;
+    Accent::accents accent;
     //accentsMap.clear();
     //accentsMap[0];
-    accent = none;
+    accent = Accent::none;
 
     deleteStaff(0);
 
@@ -663,13 +663,13 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
                                         pitch++;
                                     }
 
-                                    accent = sharp;
+                                    accent = Accent::Accent::sharp;
                                 }else if(notestring.at(i) == 'e'){
                                     if(notestring.at(i-1) != 'c' && notestring.at(i-1) != 'f'){
                                         pitch--;
                                     }
 
-                                    accent = flat;
+                                    accent = Accent::Accent::flat;
                                 }
                             }else if(notestring.at(i)=='\''){
                                 octave_counter++;
@@ -691,7 +691,7 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
                                 addNote(getNumOfStaffs(),pitch,duration,accent,0);
                                 //accentsMap[staffnum].push_back(accent);
-                                accent = none;
+                                accent = Accent::none;
                             }else if(notestring.at(i)=='2'){
                                 duration = 2;
 
@@ -708,7 +708,7 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
                                 addNote(getNumOfStaffs(),pitch,duration,accent,0);
                                 //accentsMap[staffnum].push_back(accent);
-                                accent = none;
+                                accent = Accent::none;
                             }else if(notestring.at(i)=='4'){
                                 duration = 4;
 
@@ -726,7 +726,7 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
                                 addNote(getNumOfStaffs(),pitch,duration,accent,0);
                                 //accentsMap[staffnum].push_back(accent);
-                                accent = none;
+                                accent = Accent::none;
                             }else if(notestring.at(i)=='8'){
                                 duration = 8;
 
@@ -743,7 +743,7 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
                                 addNote(getNumOfStaffs(),pitch,duration,accent,0);
                                 //accentsMap[staffnum].push_back(accent);
-                                accent = none;
+                                accent = Accent::none;
                             }
                         }
 
@@ -767,7 +767,7 @@ QList<Error *> ScoreViewModel::testScore()
 //        qDebug() << error->getErrormessage();
 //    }
 
-    return consonancerule->test(score->getStaffs());
+    return consonancerule->test(score->getStaffs(), accentsMap);
 }
 
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
@@ -799,7 +799,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 9;
         break;
     case -11:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 2;
         }else{
             pos = 3;
@@ -809,7 +809,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 3;
         break;
     case -9:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 3;
         }else{
             pos = 4;
@@ -819,7 +819,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 4;
         break;
     case -7:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
 //            pos = 4;
 //        }else{
 //            pos = 3;
@@ -827,7 +827,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 5;
         break;
     case -6:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 5;
         }else{
             pos = 6;
@@ -837,7 +837,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 6;
         break;
     case -4:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 6;
         }else{
             pos = 7;
@@ -847,14 +847,14 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 7;
         break;
     case -2:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 7;
         }else{
             pos = 8;
         }
         break;
     case -1:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
 //            pos = 7;
 //        }else{
 //            pos = 6;
@@ -867,7 +867,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         break;
 
     case 1:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 9;
         }else{
             pos = 10;
@@ -877,7 +877,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 10;
         break;
     case 3:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 10;
         }else{
             pos = 11;
@@ -887,7 +887,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 11;
         break;
     case 5:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
 //            pos = 11;
 //        }else{
 //            pos = 10;
@@ -895,7 +895,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 12;
         break;
     case 6:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 12;
         }else{
             pos = 13;
@@ -905,7 +905,7 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 13;
         break;
     case 8:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 13;
         }else{
             pos = 14;
@@ -915,14 +915,14 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 14;
         break;
     case 10:
-        if(accentsMap[staffnumber-1].at(notenumber-1) == sharp){
+        if(accentsMap[staffnumber-1].at(notenumber-1)->getAccent() == Accent::Accent::sharp){
             pos = 14;
         }else{
             pos = 15;
         }
         break;
     case 11:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == flat){
+//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
 //            pos = 14;
 //        }else{
 //            pos = 13;
@@ -957,9 +957,9 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
     return pos;
 }
 
-ScoreViewModel::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
+Accent::accents ScoreViewModel::getAccent(unsigned int staffnumber, unsigned int notenumber)
 {
-    return accentsMap[staffnumber-1].at(notenumber-1);
+    return accentsMap[staffnumber-1].at(notenumber-1)->getAccent();
 }
 
 ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsigned int notenumber)
@@ -1015,11 +1015,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::treble:
         switch (newscorepos) {
         case 0:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::Accent::sharp:
                 newdatapos = -2;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -4;
                 break;
             default:
@@ -1027,11 +1027,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             }
         case 1:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -2;
                 break;
             default:
@@ -1039,11 +1039,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             }
         case 2:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 0;
                 break;
             default:
@@ -1053,11 +1053,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 3:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 3;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 1;
                 break;
             default:
@@ -1067,11 +1067,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 4:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 3;
                 break;
             default:
@@ -1081,11 +1081,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 5:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 5;
                 break;
             default:
@@ -1095,11 +1095,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 6:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 6;
                 break;
             default:
@@ -1109,11 +1109,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 7:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 10;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 8;
                 break;
             default:
@@ -1123,11 +1123,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 8:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 10;
                 break;
             default:
@@ -1137,11 +1137,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 9:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 13;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 12;
                 break;
             default:
@@ -1151,11 +1151,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 10:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 15;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 13;
                 break;
             default:
@@ -1165,11 +1165,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 11:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 16;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 15;
                 break;
             default:
@@ -1179,11 +1179,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 12:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 18;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 17;
                 break;
             default:
@@ -1193,11 +1193,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 13:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 20;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 18;
                 break;
             default:
@@ -1207,11 +1207,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 14:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 21;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 20;
                 break;
             default:
@@ -1221,11 +1221,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 15:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 23;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 22;
                 break;
             default:
@@ -1235,11 +1235,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 16:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 25;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 24;
                 break;
             default:
@@ -1257,11 +1257,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::alto:
         switch (newscorepos) {
         case 0:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -13;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -14;
                 break;
             default:
@@ -1269,11 +1269,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             }
         case 1:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -12;
                 break;
             default:
@@ -1281,11 +1281,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 break;
             }
         case 2:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -9;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -11;
                 break;
             default:
@@ -1295,11 +1295,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 3:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -9;
                 break;
             default:
@@ -1309,11 +1309,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 4:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -7;
                 break;
             default:
@@ -1323,11 +1323,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 5:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -6;
                 break;
             default:
@@ -1337,11 +1337,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 6:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -2;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -4;
                 break;
             default:
@@ -1351,11 +1351,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 7:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -2;
                 break;
             default:
@@ -1365,11 +1365,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 8:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 0;
                 break;
             default:
@@ -1379,11 +1379,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 9:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 3;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 1;
                 break;
             default:
@@ -1393,11 +1393,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 10:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 3;
                 break;
             default:
@@ -1407,11 +1407,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 11:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 5;
                 break;
             default:
@@ -1421,11 +1421,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 12:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 6;
                 break;
             default:
@@ -1435,11 +1435,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 13:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 10;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 8;
                 break;
             default:
@@ -1449,11 +1449,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 14:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 10;
                 break;
             default:
@@ -1463,11 +1463,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 15:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 13;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 12;
                 break;
             default:
@@ -1477,11 +1477,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 16:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 15;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 13;
                 break;
             default:
@@ -1499,11 +1499,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::tenor:
         switch (newscorepos) {
         case 0:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -16;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -18;
                 break;
             default:
@@ -1513,11 +1513,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 1:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -14;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -16;
                 break;
             default:
@@ -1527,11 +1527,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 2:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -13;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -12;
                 break;
             default:
@@ -1541,11 +1541,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 3:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -12;
                 break;
             default:
@@ -1555,11 +1555,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 4:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -9;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -11;
                 break;
             default:
@@ -1569,11 +1569,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 5:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -9;
                 break;
             default:
@@ -1583,11 +1583,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 6:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -7;
                 break;
             default:
@@ -1597,11 +1597,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 7:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -6;
                 break;
             default:
@@ -1611,11 +1611,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 8:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -2;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -4;
                 break;
             default:
@@ -1625,11 +1625,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 9:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -2;
                 break;
             default:
@@ -1639,11 +1639,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 10:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 0;
                 break;
             default:
@@ -1653,11 +1653,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 11:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 3;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 1;
                 break;
             default:
@@ -1667,11 +1667,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 12:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 3;
                 break;
             default:
@@ -1681,11 +1681,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 13:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 5;
                 break;
             default:
@@ -1695,11 +1695,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 14:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 6;
                 break;
             default:
@@ -1709,11 +1709,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 15:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 10;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 8;
                 break;
             default:
@@ -1723,11 +1723,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 16:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 10;
                 break;
             default:
@@ -1745,11 +1745,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     case ScoreViewModel::bass:
         switch (newscorepos) {
         case 0:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -23;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -24;
                 break;
             default:
@@ -1759,11 +1759,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 1:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -21;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -23;
                 break;
             default:
@@ -1773,11 +1773,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 2:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -20;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -21;
                 break;
             default:
@@ -1787,11 +1787,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 3:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -18;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -19;
                 break;
             default:
@@ -1801,11 +1801,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 4:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -16;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -18;
                 break;
             default:
@@ -1815,11 +1815,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 5:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -14;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -16;
                 break;
             default:
@@ -1829,11 +1829,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 6:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -13;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -12;
                 break;
             default:
@@ -1843,11 +1843,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 7:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -11;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -12;
                 break;
             default:
@@ -1857,11 +1857,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 8:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -9;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -11;
                 break;
             default:
@@ -1871,11 +1871,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 9:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -8;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -9;
                 break;
             default:
@@ -1885,11 +1885,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 10:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -6;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -7;
                 break;
             default:
@@ -1899,11 +1899,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 11:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -6;
                 break;
             default:
@@ -1913,11 +1913,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 12:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -2;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -4;
                 break;
             default:
@@ -1927,11 +1927,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 13:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = -1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = -2;
                 break;
             default:
@@ -1941,11 +1941,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 14:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 1;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 0;
                 break;
             default:
@@ -1955,11 +1955,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 15:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 3;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 1;
                 break;
             default:
@@ -1969,11 +1969,11 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
 
             break;
         case 16:
-            switch (accentsMap[staffnumber-1].at(notenumber-1)) {
-            case sharp:
+            switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
+            case Accent::sharp:
                 newdatapos = 4;
                 break;
-            case flat:
+            case Accent::flat:
                 newdatapos = 3;
                 break;
             default:
@@ -1995,9 +1995,9 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
     score->getStaffByNum(staffnumber).getNoteByNum(notenumber).setPitch(newdatapos);
 }
 
-void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, ScoreViewModel::accents newaccent)
+void ScoreViewModel::updateAccent(unsigned int staffnumber, unsigned int notenumber, Accent::accents newaccent)
 {
-    accentsMap[staffnumber-1][notenumber-1] = newaccent;
+    accentsMap[staffnumber-1][notenumber-1]->setAccent(newaccent);
 
 }
 

@@ -22,7 +22,8 @@ SOURCES += main.cpp \
     Rules/tester.cpp \
     Rules/error.cpp \
     Rules/onlyconsonancerule.cpp \
-    GUI/errormarker.cpp
+    GUI/errormarker.cpp \
+    Datamodel/accent.cpp
 
 
 HEADERS += \
@@ -42,7 +43,8 @@ HEADERS += \
     Rules/tester.h \
     Rules/error.h \
     Rules/onlyconsonancerule.h \
-    GUI/errormarker.h
+    GUI/errormarker.h \
+    Datamodel/accent.h
 
 
 FORMS    += GUI/mainwindow.ui \

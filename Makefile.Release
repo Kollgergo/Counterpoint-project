@@ -60,7 +60,8 @@ SOURCES       = main.cpp \
 		Rules\tester.cpp \
 		Rules\error.cpp \
 		Rules\onlyconsonancerule.cpp \
-		GUI\errormarker.cpp release\qrc_GUI.cpp \
+		GUI\errormarker.cpp \
+		Datamodel\accent.cpp release\qrc_GUI.cpp \
 		release\moc_mainwindow.cpp \
 		release\moc_vnote.cpp \
 		release\moc_vstaff.cpp \
@@ -86,6 +87,7 @@ OBJECTS       = release/main.o \
 		release/error.o \
 		release/onlyconsonancerule.o \
 		release/errormarker.o \
+		release/accent.o \
 		release/qrc_GUI.o \
 		release/moc_mainwindow.o \
 		release/moc_vnote.o \
@@ -111,7 +113,8 @@ DIST          =  Datamodel\score.h \
 		Rules\tester.h \
 		Rules\error.h \
 		Rules\onlyconsonancerule.h \
-		GUI\errormarker.h main.cpp \
+		GUI\errormarker.h \
+		Datamodel\accent.h main.cpp \
 		Datamodel\score.cpp \
 		Datamodel\note.cpp \
 		Datamodel\staff.cpp \
@@ -128,7 +131,8 @@ DIST          =  Datamodel\score.h \
 		Rules\tester.cpp \
 		Rules\error.cpp \
 		Rules\onlyconsonancerule.cpp \
-		GUI\errormarker.cpp
+		GUI\errormarker.cpp \
+		Datamodel\accent.cpp
 QMAKE_TARGET  = Counterpoint
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = Counterpoint.exe
@@ -167,7 +171,7 @@ dist:
 	$(ZIP) Counterpoint.zip $(SOURCES) $(DIST) Counterpoint.pro C:\Qt\5.5\mingw492_32\mkspecs\features\spec_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\qdevice.pri C:\Qt\5.5\mingw492_32\mkspecs\features\device_config.prf C:\Qt\5.5\mingw492_32\mkspecs\qconfig.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.5\mingw492_32\mkspecs\features\qt_functions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\win32-g++\qmake.conf C:\Qt\5.5\mingw492_32\mkspecs\features\spec_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resolve_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\build_pass.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\rtti.prf C:\Qt\5.5\mingw492_32\mkspecs\features\precompile_header.prf C:\Qt\5.5\mingw492_32\mkspecs\features\warn_on.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resources.prf C:\Qt\5.5\mingw492_32\mkspecs\features\moc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\opengl.prf C:\Qt\5.5\mingw492_32\mkspecs\features\uic.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\windows.prf C:\Qt\5.5\mingw492_32\mkspecs\features\testcase_targets.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exceptions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\yacc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\lex.prf Counterpoint.pro GUI.qrc C:/Qt/5.5/mingw492_32/lib/qtmain.prl C:/Qt/5.5/mingw492_32/lib/Qt5Widgets.prl C:/Qt/5.5/mingw492_32/lib/Qt5Gui.prl C:/Qt/5.5/mingw492_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\score.o release\note.o release\staff.o release\cpsystem.o release\keysignature.o release\scoreviewmodel.o release\mainwindow.o release\vnote.o release\vstaff.o release\vstaffline.o release\scoreview.o release\newstaffdialog.o release\newcpdialog.o release\tester.o release\error.o release\onlyconsonancerule.o release\errormarker.o release\qrc_GUI.o release\moc_mainwindow.o release\moc_vnote.o release\moc_vstaff.o release\moc_vstaffline.o release\moc_newstaffdialog.o release\moc_newcpdialog.o release\moc_errormarker.o
+	-$(DEL_FILE) release\main.o release\score.o release\note.o release\staff.o release\cpsystem.o release\keysignature.o release\scoreviewmodel.o release\mainwindow.o release\vnote.o release\vstaff.o release\vstaffline.o release\scoreview.o release\newstaffdialog.o release\newcpdialog.o release\tester.o release\error.o release\onlyconsonancerule.o release\errormarker.o release\accent.o release\qrc_GUI.o release\moc_mainwindow.o release\moc_vnote.o release\moc_vstaff.o release\moc_vstaffline.o release\moc_newstaffdialog.o release\moc_newcpdialog.o release\moc_errormarker.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -707,6 +711,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -1186,6 +1191,7 @@ release/moc_vnote.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -1661,6 +1667,7 @@ release/moc_vstaff.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -2346,6 +2353,7 @@ release/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog 
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -2576,6 +2584,7 @@ release/moc_newcpdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -3749,6 +3758,7 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -4614,6 +4624,7 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -5069,6 +5080,7 @@ release/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h
@@ -5545,6 +5557,7 @@ release/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -5553,7 +5566,18 @@ release/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		scoreview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsView
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\mainwindow.o GUI\mainwindow.cpp
 
 release/vnote.o: GUI/vnote.cpp GUI/vnote.h \
@@ -6024,6 +6048,7 @@ release/vnote.o: GUI/vnote.cpp GUI/vnote.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -6498,6 +6523,7 @@ release/vstaff.o: GUI/vstaff.cpp GUI/vstaff.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
@@ -7642,10 +7668,53 @@ release/newstaffdialog.o: GUI/newstaffdialog.cpp GUI/newstaffdialog.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
-		ui_newstaffdialog.h
+		ui_newstaffdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\newstaffdialog.o GUI\newstaffdialog.cpp
 
 release/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
@@ -7873,10 +7942,59 @@ release/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
 		Datamodel/keysignature.h \
+		Datamodel/accent.h \
 		Rules/onlyconsonancerule.h \
 		Rules/tester.h \
 		Rules/error.h \
-		ui_newcpdialog.h
+		ui_newcpdialog.h \
+		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qpen.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\newcpdialog.o GUI\newcpdialog.cpp
 
 release/tester.o: Rules/tester.cpp Rules/tester.h \
@@ -8067,13 +8185,6 @@ release/tester.o: Rules/tester.cpp Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
-		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/keysignature.h \
-		Rules/onlyconsonancerule.h \
 		Rules/error.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\tester.o Rules\tester.cpp
 
@@ -8454,12 +8565,6 @@ release/onlyconsonancerule.o: Rules/onlyconsonancerule.cpp Rules/onlyconsonancer
 		C:/Qt/5.5/mingw492_32/include/QtCore/qtcoreversion.h \
 		Datamodel/staff.h \
 		Datamodel/note.h \
-		Datamodel/scoreviewmodel.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QRegularExpression \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QFile \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QDebug \
-		Datamodel/score.h \
-		Datamodel/keysignature.h \
 		Rules/error.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\onlyconsonancerule.o Rules\onlyconsonancerule.cpp
 
@@ -8922,6 +9027,9 @@ release/errormarker.o: GUI/errormarker.cpp GUI/errormarker.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsItem \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtDebug
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\errormarker.o GUI\errormarker.cpp
+
+release/accent.o: Datamodel/accent.cpp Datamodel/accent.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\accent.o Datamodel\accent.cpp
 
 release/qrc_GUI.o: release/qrc_GUI.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_GUI.o release\qrc_GUI.cpp

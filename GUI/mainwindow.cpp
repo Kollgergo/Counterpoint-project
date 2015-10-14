@@ -167,7 +167,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
 {
     for(int i=0; i<vstaffs.size(); i++){
         if(vstaffs.at(i) == vnote->parentItem()){
-            svm->addNote(i+1, 0, 2, ScoreViewModel::none, 0);
+            svm->addNote(i+1, 0, 2, Accent::none, 0);
             updateNoteData(vnote);
             disconnect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
             connect(vstaffs.at(i)->getVnotes().last(), SIGNAL(vNoteSelecting(VNote*)), this, SLOT(vNoteSelected(VNote*)));
@@ -293,11 +293,11 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                         //vstaff->getNewvnote() = NULL;
                     }
                     if(vstaff->getVnotes().isEmpty()){
-                        vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
+                        vstaff->setNewVNote(ScoreViewModel::half, Accent::none);
                         ui->actionHalf->setChecked(true);
                     }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half ||
                              vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight){
-                        vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), ScoreViewModel::none);
+                        vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), Accent::none);
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole:
                             ui->actionWhole->setChecked(true);
@@ -318,23 +318,23 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     }else{
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole_rest:
-                            vstaff->setNewVNote(ScoreViewModel::whole, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::whole, Accent::none);
                             ui->actionWhole->setChecked(true);
                             break;
                         case ScoreViewModel::half_rest:
-                            vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::half, Accent::none);
                             ui->actionHalf->setChecked(true);
                             break;
                         case ScoreViewModel::quarter_rest:
-                            vstaff->setNewVNote(ScoreViewModel::quarter, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::quarter, Accent::none);
                             ui->actionQuarter->setChecked(true);
                             break;
                         case ScoreViewModel::eight_rest:
-                            vstaff->setNewVNote(ScoreViewModel::eight, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::eight, Accent::none);
                             ui->actionEighth->setChecked(true);
                             break;
                         default:
-                            vstaff->setNewVNote(ScoreViewModel::half, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::half, Accent::none);
                             break;
                         }
                     }
@@ -399,11 +399,11 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                         //vstaff->getNewvnote() = NULL;
                     }
                     if(vstaff->getVnotes().isEmpty()){
-                        vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);
+                        vstaff->setNewVNote(ScoreViewModel::half_rest, Accent::none);
                         ui->actionHalf->setChecked(true);
                     }else if(vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::whole_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::half_rest ||
                              vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::quarter_rest || vstaff->getVnotes().last()->getNotetype() == ScoreViewModel::eight_rest){
-                        vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), ScoreViewModel::none);
+                        vstaff->setNewVNote(vstaff->getVnotes().last()->getNotetype(), Accent::none);
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole:
                             ui->actionWhole->setChecked(true);
@@ -423,23 +423,23 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     }else{
                         switch (vstaff->getVnotes().last()->getNotetype()) {
                         case ScoreViewModel::whole:
-                            vstaff->setNewVNote(ScoreViewModel::whole_rest, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::whole_rest, Accent::none);
                             ui->actionWhole->setChecked(true);
                             break;
                         case ScoreViewModel::half:
-                            vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::half_rest, Accent::none);
                             ui->actionHalf->setChecked(true);
                             break;
                         case ScoreViewModel::quarter:
-                            vstaff->setNewVNote(ScoreViewModel::quarter_rest, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::quarter_rest, Accent::none);
                             ui->actionQuarter->setChecked(true);
                             break;
                         case ScoreViewModel::eight:
-                            vstaff->setNewVNote(ScoreViewModel::eight_rest, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::eight_rest, Accent::none);
                             ui->actionEighth->setChecked(true);
                             break;
                         default:
-                            vstaff->setNewVNote(ScoreViewModel::half_rest, ScoreViewModel::none);
+                            vstaff->setNewVNote(ScoreViewModel::half_rest, Accent::none);
                             break;
                         }
                     }
@@ -742,7 +742,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
                 if(selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::half ||
                         selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::eight){
-                    selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::sharp);
+                    selectedvstaff->getNewvnote()->setAccent(Accent::sharp);
 
                 }else{
                    ui->actionAddSharp->setChecked(false);
@@ -760,7 +760,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
                                 if(selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::whole || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::half ||
                                         selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::eight){
                                     //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
-                                    selectedvstaff->getVnotes().at(j)->setAccent(ScoreViewModel::sharp);
+                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::sharp);
 
                                     updateNoteData(selectedvstaff->getVnotes().at(j));
                                     scene->update();
@@ -784,7 +784,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
         if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
             ui->actionAddFlat->setChecked(false);
-            selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::none);
+            selectedvstaff->getNewvnote()->setAccent(Accent::none);
             scene->update();
 
         }else{
@@ -792,7 +792,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
-                selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
+                selectedvstaff->getSelectedvnote()->setAccent(Accent::none);
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -809,7 +809,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
                 if(selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::half ||
                         selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::eight){
-                    selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::flat);
+                    selectedvstaff->getNewvnote()->setAccent(Accent::flat);
 
                 }else{
                    ui->actionAddFlat->setChecked(false);
@@ -828,7 +828,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
                                         selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::eight){
                                     //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
                                     ui->actionAddSharp->setChecked(false);
-                                    selectedvstaff->getVnotes().at(j)->setAccent(ScoreViewModel::flat);
+                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::flat);
 
                                     updateNoteData(selectedvstaff->getVnotes().at(j));
                                     scene->update();
@@ -851,7 +851,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
         if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
             ui->actionAddFlat->setChecked(false);
 
-            selectedvstaff->getNewvnote()->setAccent(ScoreViewModel::none);
+            selectedvstaff->getNewvnote()->setAccent(Accent::none);
             scene->update();
 
         }else{
@@ -859,7 +859,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eight){
-                selectedvstaff->getSelectedvnote()->setAccent(ScoreViewModel::none);
+                selectedvstaff->getSelectedvnote()->setAccent(Accent::none);
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -907,10 +907,10 @@ void MainWindow::vNoteSelected(VNote *note)
     }
 
     switch (note->getAccent()) {
-    case ScoreViewModel::sharp:
+    case Accent::sharp:
         ui->actionAddSharp->setChecked(true);
         break;
-    case ScoreViewModel::flat:
+    case Accent::flat:
         ui->actionAddFlat->setChecked(true);
         break;
     default:
@@ -999,9 +999,19 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             svm->readLilyPond(cpdialog->getFileName(), true);
             svm->addStaff(cpdialog->getClef(), svm->getClefByNum(1), 0);
             showScore(true);
+            ui->actionAddNote->setEnabled(true);
+            ui->actionAddRest->setEnabled(true);
+            ui->actionWhole->setEnabled(true);
+            ui->actionHalf->setEnabled(true);
             ui->actionNewStaff->setDisabled(true);
             ui->actionQuarter->setDisabled(true);
             ui->actionEighth->setDisabled(true);
+            ui->actionAddSharp->setChecked(false);
+            ui->actionAddFlat->setChecked(false);
+            ui->actionAddNote->setChecked(false);
+            ui->actionAddRest->setChecked(false);
+            ui->actionWhole->setChecked(false);
+            ui->actionHalf->setChecked(false);
 
         }
     }

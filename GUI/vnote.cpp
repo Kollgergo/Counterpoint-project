@@ -1,6 +1,6 @@
 #include "vnote.h"
 
-VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, ScoreViewModel::accents acc, QGraphicsObject *parent) : QGraphicsObject(parent)
+VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTypes ntype, Accent::accents acc, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
     pixmap = QPixmap();
     shadow = NULL;
@@ -122,15 +122,15 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QPixmap accentpixmap = QPixmap();
 
         switch (accent) {
-        case ScoreViewModel::sharp:
+        case Accent::sharp:
             accentpixmap.load("./res/sharp.png");
             painter->drawPixmap(-20,-5,16,35,accentpixmap);
             break;
-        case ScoreViewModel::flat:
+        case Accent::flat:
             accentpixmap.load("./res/flat.png");
             painter->drawPixmap(-20,-15,16,35,accentpixmap);
             break;
-        case ScoreViewModel::none:
+        case Accent::none:
 
             break;
         default:
@@ -214,19 +214,19 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
             switch (this->getNotetype()) {
             case ScoreViewModel::whole:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, Accent::none, this->parentObject());
                 break;
             case ScoreViewModel::half:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
                 break;
             case ScoreViewModel::quarter:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
                 break;
             case ScoreViewModel::eight:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eight, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eight, Accent::none, this->parentObject());
                 break;
             default:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, ScoreViewModel::none, this->parentObject());
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
                 break;
             }
 
@@ -338,12 +338,12 @@ void VNote::hoverEntered(VStaffLine *staffline)
 
 
 }
-void VNote::setAccent(const ScoreViewModel::accents &value)
+void VNote::setAccent(const Accent::accents &value)
 {
     accent = value;
 }
 
-ScoreViewModel::accents VNote::getAccent() const
+Accent::accents VNote::getAccent() const
 {
     return accent;
 }

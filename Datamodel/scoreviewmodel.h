@@ -6,6 +6,7 @@
 #include <QDebug>
 #include "score.h"
 #include "keysignature.h"
+#include "accent.h"
 #include "Rules/onlyconsonancerule.h"
 
 class ScoreViewModel
@@ -13,7 +14,6 @@ class ScoreViewModel
 
 public:
     enum clefNames{treble, alto, tenor, bass};
-    enum accents{flat, none, sharp, natural};
     enum noteTypes{whole_rest, half_rest, quarter_rest, eight_rest,
                    whole, half, quarter, eight};
 
@@ -27,18 +27,18 @@ public:
     clefNames getClefByNum(int which);
     KeySignature getKeySignatureByNum(int which);
 
-    void addNote(unsigned int staffnum, int pitch, int duration, accents accent, unsigned int where = 0);
+    void addNote(unsigned int staffnum, int pitch, int duration, Accent::accents accent, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);
     Note& getNoteByNum(unsigned int staffnum, unsigned int which);
     unsigned int getNumOfNotes(unsigned int staffnum) const;
     void transpose(int interval);
 
     int getPosition(unsigned int staffnumber, unsigned int notenumber);
-    accents getAccent(unsigned int staffnumber, unsigned int notenumber);
+    Accent::accents getAccent(unsigned int staffnumber, unsigned int notenumber);
     noteTypes getType(unsigned int staffnumber, unsigned int notenumber);
 
     void updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos);
-    void updateAccent(unsigned int staffnumber, unsigned int notenumber, accents newaccent);
+    void updateAccent(unsigned int staffnumber, unsigned int notenumber, Accent::accents newaccent);
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
 
     void changeToRest(unsigned int staffnumber, unsigned int notenumber);
@@ -52,7 +52,7 @@ private:
     Score *score;
     QVector<clefNames> clefs;
     QVector<KeySignature> keysignatures;
-    QMap<int,QVector<accents> > accentsMap;
+    QMap<int,QVector<Accent *> > accentsMap;
 
     OnlyConsonanceRule *consonancerule;
 

@@ -36,12 +36,12 @@ bool Note::isRest() const
     }
 }
 
-void Note::operator++()
+void Note::operator++(int)
 {
     this->pitch++;
 }
 
-void Note::operator--()
+void Note::operator--(int)
 {
     this->pitch--;
 }

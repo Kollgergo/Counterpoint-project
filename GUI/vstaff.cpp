@@ -371,7 +371,7 @@ void VStaff::showNextVNote(VNote *vnote)
     //vnotes.last()->setX(50*vnotes.size());
 }
 
-void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent)
+void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents accent)
 {
     newvnote = new VNote(false,true,9,notetype,accent,this);
 

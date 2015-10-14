@@ -15,7 +15,7 @@ class VNote : public QGraphicsObject
 
 public:
     VNote(bool isCF = false, bool newnote = false, unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half,
-          ScoreViewModel::accents acc = ScoreViewModel::none, QGraphicsObject *parent = 0);
+          Accent::accents acc = Accent::none, QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -26,8 +26,8 @@ public:
     ScoreViewModel::noteTypes getNotetype() const;
     void setNotetype(const ScoreViewModel::noteTypes &value);
 
-    ScoreViewModel::accents getAccent() const;
-    void setAccent(const ScoreViewModel::accents &value);
+    Accent::accents getAccent() const;
+    void setAccent(const Accent::accents &value);
 
     void changeToRest();
     void changeToNote();
@@ -48,7 +48,7 @@ private:
     QPixmap pixmap;
     VNote *shadow;
     unsigned int scorepos;
-    ScoreViewModel::accents accent;
+    Accent::accents accent;
     ScoreViewModel::noteTypes notetype;
     bool newnote;
 };

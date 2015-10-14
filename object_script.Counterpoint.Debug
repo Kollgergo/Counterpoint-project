@@ -17,6 +17,7 @@ INPUT(
 ./debug\error.o
 ./debug\onlyconsonancerule.o
 ./debug\errormarker.o
+./debug\accent.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o

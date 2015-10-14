@@ -17,6 +17,7 @@ INPUT(
 ./release\error.o
 ./release\onlyconsonancerule.o
 ./release\errormarker.o
+./release\accent.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o

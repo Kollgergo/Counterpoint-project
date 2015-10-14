@@ -22,8 +22,8 @@ public:
     void setDuration(unsigned value);
     bool isRest() const;
 
-    void operator ++();
-    void operator --();
+    void operator ++(int);
+    void operator --(int);
     bool oneDurationUp();
     bool oneDurationDown();
     int operator -(const Note& other) const;

@@ -3,6 +3,7 @@
 #include <QtCore>
 #include "Datamodel/staff.h"
 #include "error.h"
+#include "Datamodel/accent.h"
 
 class ScoreViewModel;
 
@@ -11,7 +12,7 @@ class Tester
 public:
     Tester();
 
-    virtual QList<Error *> test(QVector<Staff> staffs/*, QMap<int, vector<ScoreViewModel::accents> > accentsMap*/) = 0;
+    virtual QList<Error *> test(QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap) = 0;
 
 };
 

@@ -26,7 +26,7 @@ public:
 
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
-    void setNewVNote(ScoreViewModel::noteTypes notetype, ScoreViewModel::accents accent);
+    void setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents accent);
 
     ScoreViewModel::clefNames getClef() const;
     KeySignature getKeysignature() const;
