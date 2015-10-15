@@ -54,7 +54,8 @@ private:
     QVector<KeySignature> keysignatures;
     QMap<int,QVector<Accent *> > accentsMap;
 
-    OnlyConsonanceRule *consonancerule;
+    QList<Tester *> ruleList;
+    //OnlyConsonanceRule *consonancerule;
 
 };
 
