@@ -44,6 +44,7 @@ public:
     QAction *actionSaveLilypond;
     QAction *actionTest;
     QAction *actionNewStaff;
+    QAction *actionPlayMIDI;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -149,6 +150,11 @@ public:
         QIcon icon15;
         icon15.addFile(QStringLiteral(":/res/staff_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionNewStaff->setIcon(icon15);
+        actionPlayMIDI = new QAction(MainWindow);
+        actionPlayMIDI->setObjectName(QStringLiteral("actionPlayMIDI"));
+        QIcon icon16;
+        icon16.addFile(QStringLiteral(":/res/play_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionPlayMIDI->setIcon(icon16);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -216,6 +222,8 @@ public:
         toolBar->addSeparator();
         toolBar->addAction(actionNewCounterpoint);
         toolBar->addAction(actionTest);
+        toolBar->addSeparator();
+        toolBar->addAction(actionPlayMIDI);
 
         retranslateUi(MainWindow);
 
@@ -246,6 +254,7 @@ public:
         actionTest->setText(QApplication::translate("MainWindow", "Ellen\305\221rz\303\251s", 0));
         actionTest->setShortcut(QApplication::translate("MainWindow", "T", 0));
         actionNewStaff->setText(QApplication::translate("MainWindow", "\303\232j Kottasor", 0));
+        actionPlayMIDI->setText(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));

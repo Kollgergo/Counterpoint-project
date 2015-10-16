@@ -38,9 +38,9 @@ void MainWindow::showScore(bool isCF)
 
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
         if(i == 1){
-            this->showNextVStaff(new VStaff(isCF,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
+            this->showNextVStaff(new VStaff(CPmode, isCF,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
         }else{
-           this->showNextVStaff(new VStaff(false,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
+           this->showNextVStaff(new VStaff(CPmode, false,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
         }
 
 
@@ -1104,7 +1104,29 @@ void MainWindow::on_actionNewStaff_triggered()
 {
     NewStaffDialog *staffdialog = new NewStaffDialog(this);
     if(staffdialog->exec() == QDialog::Accepted){
-        addVStaff(new VStaff(false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+        addVStaff(new VStaff(false, false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
 
     }
+}
+
+void MainWindow::on_actionPlayMIDI_triggered()
+{
+    QMap<QString, QString> vals = QMidiOut::devices();
+    qDebug() << vals.firstKey();
+    QMidiOut midi;
+    midi.connect(vals.firstKey());
+    midi.setInstrument(/* voice */ 0, /* instrument */ 0);
+    midi.setInstrument(/* voice */ 1, /* instrument */ 0);
+
+    for(int i=0; i<svm->getNumOfNotes(1); i++){
+        midi.noteOn(/* note */ svm->getNoteByNum(1,i+1).getPitch()+60, /* voice */ 0 /* , velocity */);
+        midi.noteOn(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
+        QThread::sleep(1);
+        midi.noteOff(/* note */ svm->getNoteByNum(1,i+1).getPitch()+60, /* voice */ 0 /* , velocity */);
+        midi.noteOff(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
+    }
+
+    midi.disconnect();
+
+    //midi.connect(/* one of the keys (IDs) from `devices()` */);
 }

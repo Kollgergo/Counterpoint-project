@@ -11,7 +11,10 @@
 #include "Datamodel/scoreviewmodel.h"
 #include "GUI/newstaffdialog.h"
 #include "GUI/newcpdialog.h"
+#include "QMidiOut.h"
+#include "QMidiFile.h"
 
+class QMidiOut;
 
 namespace Ui {
 class MainWindow;
@@ -70,6 +73,8 @@ private slots:
     void on_actionTest_triggered();
 
     void on_actionNewStaff_triggered();
+
+    void on_actionPlayMIDI_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);

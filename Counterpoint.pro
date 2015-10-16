@@ -5,6 +5,21 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = Counterpoint
 TEMPLATE = app
 
+CONFIG += c++11
+
+INCLUDEPATH += Datamodel
+INCLUDEPATH += GUI
+INCLUDEPATH += Rules
+INCLUDEPATH += QMidi/src
+
+win32{
+    LIBS += -lwinmm
+}
+
+unix{
+
+}
+
 SOURCES += main.cpp \
     Datamodel/score.cpp \
     Datamodel/note.cpp \
@@ -23,7 +38,12 @@ SOURCES += main.cpp \
     Rules/error.cpp \
     Rules/onlyconsonancerule.cpp \
     GUI/errormarker.cpp \
-    Datamodel/accent.cpp
+    Datamodel/accent.cpp \
+    QMidi/src/OS/QMidi_Win32.cpp \
+    QMidi/src/QMidiFile.cpp \
+    QMidi/src/QMidiOut.cpp \
+    Rules/directmotionrule.cpp \
+    GUI/playbackthread.cpp
 
 
 HEADERS += \
@@ -44,7 +64,11 @@ HEADERS += \
     Rules/error.h \
     Rules/onlyconsonancerule.h \
     GUI/errormarker.h \
-    Datamodel/accent.h
+    Datamodel/accent.h \
+    QMidi/src/QMidiFile.h \
+    QMidi/src/QMidiOut.h \
+    Rules/directmotionrule.h \
+    GUI/playbackthread.h
 
 
 FORMS    += GUI/mainwindow.ui \

@@ -15,7 +15,7 @@ class VStaff : public QGraphicsObject
     Q_OBJECT
 
 public:
-    VStaff(bool isCF = false ,ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
+    VStaff(bool CPmode, bool isCF = false ,ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -61,6 +61,7 @@ private:
     QList<VNote *> vnotes;
     VNote *newvnote;
     VNote *selectedvnote;
+    bool CPmode;
     QList<ErrorMarker *> errormarkers;
 
 };

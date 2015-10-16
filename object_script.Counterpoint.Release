@@ -18,6 +18,11 @@ INPUT(
 ./release\onlyconsonancerule.o
 ./release\errormarker.o
 ./release\accent.o
+./release\QMidi_Win32.o
+./release\QMidiFile.o
+./release\QMidiOut.o
+./release\directmotionrule.o
+./release\playbackthread.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o
@@ -26,4 +31,6 @@ INPUT(
 ./release\moc_newstaffdialog.o
 ./release\moc_newcpdialog.o
 ./release\moc_errormarker.o
+./release\moc_QMidiOut.o
+./release\moc_playbackthread.o
 );

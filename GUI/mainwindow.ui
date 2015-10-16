@@ -119,6 +119,8 @@
    <addaction name="separator"/>
    <addaction name="actionNewCounterpoint"/>
    <addaction name="actionTest"/>
+   <addaction name="separator"/>
+   <addaction name="actionPlayMIDI"/>
   </widget>
   <action name="actionExit">
    <property name="text">
@@ -291,6 +293,15 @@
    </property>
    <property name="text">
     <string>Új Kottasor</string>
+   </property>
+  </action>
+  <action name="actionPlayMIDI">
+   <property name="icon">
+    <iconset resource="../GUI.qrc">
+     <normaloff>:/res/play_icon.png</normaloff>:/res/play_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Lejátszás</string>
    </property>
   </action>
  </widget>

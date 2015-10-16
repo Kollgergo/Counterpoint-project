@@ -47,5 +47,6 @@
         <file>res/changeicon.png</file>
         <file>res/test_icon.png</file>
         <file>res/staff_icon.png</file>
+        <file>res/play_icon.png</file>
     </qresource>
 </RCC>

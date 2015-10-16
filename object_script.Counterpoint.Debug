@@ -18,6 +18,11 @@ INPUT(
 ./debug\onlyconsonancerule.o
 ./debug\errormarker.o
 ./debug\accent.o
+./debug\QMidi_Win32.o
+./debug\QMidiFile.o
+./debug\QMidiOut.o
+./debug\directmotionrule.o
+./debug\playbackthread.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
@@ -26,4 +31,6 @@ INPUT(
 ./debug\moc_newstaffdialog.o
 ./debug\moc_newcpdialog.o
 ./debug\moc_errormarker.o
+./debug\moc_QMidiOut.o
+./debug\moc_playbackthread.o
 );
