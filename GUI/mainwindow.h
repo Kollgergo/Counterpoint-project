@@ -7,12 +7,12 @@
 #include <QtGui>
 #include <QtWidgets>
 #include <QDebug>
-#include "GUI/vstaff.h"
-#include "Datamodel/scoreviewmodel.h"
-#include "GUI/newstaffdialog.h"
-#include "GUI/newcpdialog.h"
-#include "QMidiOut.h"
-#include "QMidiFile.h"
+#include "vstaff.h"
+#include "scoreviewmodel.h"
+#include "newstaffdialog.h"
+#include "newcpdialog.h"
+#include "playback.h"
+
 
 class QMidiOut;
 

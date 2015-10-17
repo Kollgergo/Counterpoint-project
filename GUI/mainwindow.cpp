@@ -1111,22 +1111,123 @@ void MainWindow::on_actionNewStaff_triggered()
 
 void MainWindow::on_actionPlayMIDI_triggered()
 {
-    QMap<QString, QString> vals = QMidiOut::devices();
-    qDebug() << vals.firstKey();
-    QMidiOut midi;
-    midi.connect(vals.firstKey());
-    midi.setInstrument(/* voice */ 0, /* instrument */ 0);
-    midi.setInstrument(/* voice */ 1, /* instrument */ 0);
+//    int maxnotenum = 0;
+//    QMap<QString, QString> vals = QMidiOut::devices();
+//    qDebug() << vals.firstKey();
+//    QMidiOut midi;
+//    midi.connect(vals.firstKey());
+//    for(int i=0; i<svm->getNumOfStaffs(); i++){
+//        if(svm->getStaffByNum(i+1).getNumOfNotes() > maxnotenum){
+//            maxnotenum = svm->getStaffByNum(i+1).getNumOfNotes();
+//        }
+//        midi.setInstrument(/* voice */ i, /* instrument */ 0);
+//    }
 
-    for(int i=0; i<svm->getNumOfNotes(1); i++){
-        midi.noteOn(/* note */ svm->getNoteByNum(1,i+1).getPitch()+60, /* voice */ 0 /* , velocity */);
-        midi.noteOn(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
-        QThread::sleep(1);
-        midi.noteOff(/* note */ svm->getNoteByNum(1,i+1).getPitch()+60, /* voice */ 0 /* , velocity */);
-        midi.noteOff(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
-    }
+//    Note note;
+//    for(int i=0; i<maxnotenum; i++){
+//        for(int j=0; j<svm->getNumOfStaffs(); j++){
+//            if(i<=svm->getNumOfNotes(j+1)){
+//                note = svm->getNoteByNum(j+1, i+1);
 
-    midi.disconnect();
+//                switch (note.getPitch()) {
+//                case -24:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case -20:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case -19:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case -13:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case -12:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case -8:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case -7:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case -1:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case 0:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case 4:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case 5:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case 11:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case 12:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                case 16:
+//                    if(svm->getAccent(j+1, i+1) == Accent::sharp){
+//                        note++;
+//                    }
+//                    break;
+//                case 17:
+//                    if(svm->getAccent(j+1, i+1) == Accent::flat){
+//                        note--;
+//                    }
+//                    break;
+//                default:
 
-    //midi.connect(/* one of the keys (IDs) from `devices()` */);
+//                    break;
+//                }
+//            }
+//        }
+
+//        midi.noteOn(/* note */ note.getPitch()+60, /* voice */ 0 /* , velocity */);
+//        midi.noteOn(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
+//        QThread::sleep(1);
+//        midi.noteOff(/* note */ note.getPitch()+60, /* voice */ 0 /* , velocity */);
+//        midi.noteOff(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
+//    }
+
+//    midi.disconnect();
+
+    PlayBack playback;
+    //QThread playthreadone;
+   // qDebug() << this->thread()->currentThreadId();
+   // playback.moveToThread(&playthreadone);
+    //playthreadone.start();
+   // qDebug() << playback.thread()->currentThreadId();
+    playback.startPlayBack(svm->getStaffByNum(1), svm->getStaffAccentByNum(1));
+
+    //playback.startPlayBack(svm->getStaffByNum(2), svm->getStaffAccentByNum(2));
 }

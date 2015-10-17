@@ -49,6 +49,11 @@ void ScoreViewModel::deleteStaff(unsigned int which)
     }
 }
 
+Staff &ScoreViewModel::getStaffByNum(unsigned int which)
+{
+    return score->getStaffByNum(which);
+}
+
 ScoreViewModel::clefNames ScoreViewModel::getClefByNum(int which)
 {
     return clefs.at(which-1);
@@ -775,6 +780,11 @@ QList<Error *> ScoreViewModel::testScore()
 
     return errorlist;
 }
+Score *ScoreViewModel::getScore() const
+{
+    return score;
+}
+
 
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
 {
@@ -1011,6 +1021,11 @@ ScoreViewModel::noteTypes ScoreViewModel::getType(unsigned int staffnumber, unsi
     }
 
     return type;
+}
+
+QVector<Accent *> ScoreViewModel::getStaffAccentByNum(unsigned int which)
+{
+    return accentsMap[which-1];
 }
 
 void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos)

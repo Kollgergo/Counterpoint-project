@@ -24,6 +24,7 @@ public:
     unsigned int getNumOfStaffs() const;
     void addStaff(clefNames clef = treble, int keysig = 0, unsigned int where = 0);
     void deleteStaff(unsigned int which);
+    Staff &getStaffByNum(unsigned int which);
     clefNames getClefByNum(int which);
     KeySignature getKeySignatureByNum(int which);
 
@@ -37,6 +38,8 @@ public:
     Accent::accents getAccent(unsigned int staffnumber, unsigned int notenumber);
     noteTypes getType(unsigned int staffnumber, unsigned int notenumber);
 
+    QVector<Accent *> getStaffAccentByNum(unsigned int which);
+
     void updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos);
     void updateAccent(unsigned int staffnumber, unsigned int notenumber, Accent::accents newaccent);
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
@@ -47,6 +50,8 @@ public:
     void readLilyPond(QString file, bool isCF);
 
     QList<Error *> testScore();
+
+    Score *getScore() const;
 
 private:
     Score *score;

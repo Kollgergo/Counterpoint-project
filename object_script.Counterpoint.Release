@@ -22,7 +22,7 @@ INPUT(
 ./release\QMidiFile.o
 ./release\QMidiOut.o
 ./release\directmotionrule.o
-./release\playbackthread.o
+./release\playback.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o
@@ -32,5 +32,5 @@ INPUT(
 ./release\moc_newcpdialog.o
 ./release\moc_errormarker.o
 ./release\moc_QMidiOut.o
-./release\moc_playbackthread.o
+./release\moc_playback.o
 );
