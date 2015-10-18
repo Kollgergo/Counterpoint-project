@@ -66,7 +66,7 @@ SOURCES       = main.cpp \
 		QMidi\src\QMidiFile.cpp \
 		QMidi\src\QMidiOut.cpp \
 		Rules\directmotionrule.cpp \
-		GUI\playback.cpp release\qrc_GUI.cpp \
+		GUI\playbackthread.cpp release\qrc_GUI.cpp \
 		release\moc_mainwindow.cpp \
 		release\moc_vnote.cpp \
 		release\moc_vstaff.cpp \
@@ -75,7 +75,7 @@ SOURCES       = main.cpp \
 		release\moc_newcpdialog.cpp \
 		release\moc_errormarker.cpp \
 		release\moc_QMidiOut.cpp \
-		release\moc_playback.cpp
+		release\moc_playbackthread.cpp
 OBJECTS       = release/main.o \
 		release/score.o \
 		release/note.o \
@@ -99,7 +99,7 @@ OBJECTS       = release/main.o \
 		release/QMidiFile.o \
 		release/QMidiOut.o \
 		release/directmotionrule.o \
-		release/playback.o \
+		release/playbackthread.o \
 		release/qrc_GUI.o \
 		release/moc_mainwindow.o \
 		release/moc_vnote.o \
@@ -109,7 +109,7 @@ OBJECTS       = release/main.o \
 		release/moc_newcpdialog.o \
 		release/moc_errormarker.o \
 		release/moc_QMidiOut.o \
-		release/moc_playback.o
+		release/moc_playbackthread.o
 
 DIST          =  Datamodel\score.h \
 		Datamodel\note.h \
@@ -132,7 +132,7 @@ DIST          =  Datamodel\score.h \
 		QMidi\src\QMidiFile.h \
 		QMidi\src\QMidiOut.h \
 		Rules\directmotionrule.h \
-		GUI\playback.h main.cpp \
+		GUI\playbackthread.h main.cpp \
 		Datamodel\score.cpp \
 		Datamodel\note.cpp \
 		Datamodel\staff.cpp \
@@ -155,7 +155,7 @@ DIST          =  Datamodel\score.h \
 		QMidi\src\QMidiFile.cpp \
 		QMidi\src\QMidiOut.cpp \
 		Rules\directmotionrule.cpp \
-		GUI\playback.cpp
+		GUI\playbackthread.cpp
 QMAKE_TARGET  = Counterpoint
 DESTDIR        = release\ #avoid trailing-slash linebreak
 TARGET         = Counterpoint.exe
@@ -194,7 +194,7 @@ dist:
 	$(ZIP) Counterpoint.zip $(SOURCES) $(DIST) Counterpoint.pro C:\Qt\5.5\mingw492_32\mkspecs\features\spec_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\qdevice.pri C:\Qt\5.5\mingw492_32\mkspecs\features\device_config.prf C:\Qt\5.5\mingw492_32\mkspecs\qconfig.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dcore_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dinput_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3dquickrenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_3drenderer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axbase_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axcontainer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_axserver_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bluetooth_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_bootstrap_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_clucene_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_concurrent_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_core_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_dbus_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_declarative_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designer_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_designercomponents_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_enginio_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_gui_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_help_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_location_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimedia_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_network_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_nfc_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_opengl_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_openglextensions_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_platformsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_positioning_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_printsupport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmldevtools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qmltest_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quick_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickparticles_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_quickwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_script_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_scripttools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sensors_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_serialport_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_sql_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_svg_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_testlib_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uiplugin.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_uitools_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webchannel_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkit_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_webkitwidgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_websockets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_widgets_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_winextras_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xml_private.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns.pri C:\Qt\5.5\mingw492_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri C:\Qt\5.5\mingw492_32\mkspecs\features\qt_functions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\qt_config.prf C:\Qt\5.5\mingw492_32\mkspecs\win32-g++\qmake.conf C:\Qt\5.5\mingw492_32\mkspecs\features\spec_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\default_pre.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resolve_config.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exclusive_builds_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\default_post.prf C:\Qt\5.5\mingw492_32\mkspecs\features\build_pass.prf C:\Qt\5.5\mingw492_32\mkspecs\features\c++11.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\rtti.prf C:\Qt\5.5\mingw492_32\mkspecs\features\precompile_header.prf C:\Qt\5.5\mingw492_32\mkspecs\features\warn_on.prf C:\Qt\5.5\mingw492_32\mkspecs\features\qt.prf C:\Qt\5.5\mingw492_32\mkspecs\features\resources.prf C:\Qt\5.5\mingw492_32\mkspecs\features\moc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\opengl.prf C:\Qt\5.5\mingw492_32\mkspecs\features\uic.prf C:\Qt\5.5\mingw492_32\mkspecs\features\win32\windows.prf C:\Qt\5.5\mingw492_32\mkspecs\features\testcase_targets.prf C:\Qt\5.5\mingw492_32\mkspecs\features\exceptions.prf C:\Qt\5.5\mingw492_32\mkspecs\features\yacc.prf C:\Qt\5.5\mingw492_32\mkspecs\features\lex.prf Counterpoint.pro GUI.qrc C:/Qt/5.5/mingw492_32/lib/qtmain.prl C:/Qt/5.5/mingw492_32/lib/Qt5Widgets.prl C:/Qt/5.5/mingw492_32/lib/Qt5Gui.prl C:/Qt/5.5/mingw492_32/lib/Qt5Core.prl  NO_PCH_SOURCES RESOURCES HEADERS SOURCES OBJECTIVE_SOURCES FORMS YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) release\main.o release\score.o release\note.o release\staff.o release\cpsystem.o release\keysignature.o release\scoreviewmodel.o release\mainwindow.o release\vnote.o release\vstaff.o release\vstaffline.o release\scoreview.o release\newstaffdialog.o release\newcpdialog.o release\tester.o release\error.o release\onlyconsonancerule.o release\errormarker.o release\accent.o release\QMidi_Win32.o release\QMidiFile.o release\QMidiOut.o release\directmotionrule.o release\playback.o release\qrc_GUI.o release\moc_mainwindow.o release\moc_vnote.o release\moc_vstaff.o release\moc_vstaffline.o release\moc_newstaffdialog.o release\moc_newcpdialog.o release\moc_errormarker.o release\moc_QMidiOut.o release\moc_playback.o
+	-$(DEL_FILE) release\main.o release\score.o release\note.o release\staff.o release\cpsystem.o release\keysignature.o release\scoreviewmodel.o release\mainwindow.o release\vnote.o release\vstaff.o release\vstaffline.o release\scoreview.o release\newstaffdialog.o release\newcpdialog.o release\tester.o release\error.o release\onlyconsonancerule.o release\errormarker.o release\accent.o release\QMidi_Win32.o release\QMidiFile.o release\QMidiOut.o release\directmotionrule.o release\playbackthread.o release\qrc_GUI.o release\moc_mainwindow.o release\moc_vnote.o release\moc_vstaff.o release\moc_vstaffline.o release\moc_newstaffdialog.o release\moc_newcpdialog.o release\moc_errormarker.o release\moc_QMidiOut.o release\moc_playbackthread.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -262,9 +262,9 @@ release/qrc_GUI.cpp: GUI.qrc \
 		res/whole_rest.png
 	C:\Qt\5.5\mingw492_32\bin\rcc.exe -name GUI GUI.qrc -o release\qrc_GUI.cpp
 
-compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_vnote.cpp release/moc_vstaff.cpp release/moc_vstaffline.cpp release/moc_newstaffdialog.cpp release/moc_newcpdialog.cpp release/moc_errormarker.cpp release/moc_QMidiOut.cpp release/moc_playback.cpp
+compiler_moc_header_make_all: release/moc_mainwindow.cpp release/moc_vnote.cpp release/moc_vstaff.cpp release/moc_vstaffline.cpp release/moc_newstaffdialog.cpp release/moc_newcpdialog.cpp release/moc_errormarker.cpp release/moc_QMidiOut.cpp release/moc_playbackthread.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_vnote.cpp release\moc_vstaff.cpp release\moc_vstaffline.cpp release\moc_newstaffdialog.cpp release\moc_newcpdialog.cpp release\moc_errormarker.cpp release\moc_QMidiOut.cpp release\moc_playback.cpp
+	-$(DEL_FILE) release\moc_mainwindow.cpp release\moc_vnote.cpp release\moc_vstaff.cpp release\moc_vstaffline.cpp release\moc_newstaffdialog.cpp release\moc_newcpdialog.cpp release\moc_errormarker.cpp release\moc_QMidiOut.cpp release\moc_playbackthread.cpp
 release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qwidget.h \
@@ -744,7 +744,7 @@ release/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow 
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		GUI/playback.h \
+		GUI/playbackthread.h \
 		QMidi/src/QMidiOut.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -3151,7 +3151,7 @@ release/moc_QMidiOut.cpp: C:/Qt/5.5/mingw492_32/include/QtCore/QObject \
 		QMidi/src/QMidiOut.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore QMidi\src\QMidiOut.h -o release\moc_QMidiOut.cpp
 
-release/moc_playback.cpp: C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
+release/moc_playbackthread.cpp: C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qobject.h \
@@ -3344,8 +3344,8 @@ release/moc_playback.cpp: C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
 		QMidi/src/QMidiFile.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QList \
-		GUI/playback.h
-	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\playback.h -o release\moc_playback.cpp
+		GUI/playbackthread.h
+	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\playbackthread.h -o release\moc_playbackthread.cpp
 
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
@@ -4312,7 +4312,7 @@ release/main.o: main.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		GUI/playback.h \
+		GUI/playbackthread.h \
 		QMidi/src/QMidiOut.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -5183,7 +5183,7 @@ release/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		GUI/playback.h \
+		GUI/playbackthread.h \
 		QMidi/src/QMidiOut.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -5872,7 +5872,7 @@ release/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		GUI/newcpdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMessageBox \
-		GUI/playback.h \
+		GUI/playbackthread.h \
 		QMidi/src/QMidiOut.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
@@ -9759,7 +9759,7 @@ release/directmotionrule.o: Rules/directmotionrule.cpp Rules/directmotionrule.h 
 		Datamodel/accent.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\directmotionrule.o Rules\directmotionrule.cpp
 
-release/playback.o: GUI/playback.cpp GUI/playback.h \
+release/playbackthread.o: GUI/playbackthread.cpp GUI/playbackthread.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
 		C:/Qt/5.5/mingw492_32/include/QtCore/qabstractanimation.h \
@@ -9953,7 +9953,7 @@ release/playback.o: GUI/playback.cpp GUI/playback.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
 		QMidi/src/QMidiFile.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QList
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\playback.o GUI\playback.cpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\playbackthread.o GUI\playbackthread.cpp
 
 release/qrc_GUI.o: release/qrc_GUI.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\qrc_GUI.o release\qrc_GUI.cpp
@@ -9982,8 +9982,8 @@ release/moc_errormarker.o: release/moc_errormarker.cpp
 release/moc_QMidiOut.o: release/moc_QMidiOut.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_QMidiOut.o release\moc_QMidiOut.cpp
 
-release/moc_playback.o: release/moc_playback.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_playback.o release\moc_playback.cpp
+release/moc_playbackthread.o: release/moc_playbackthread.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\moc_playbackthread.o release\moc_playbackthread.cpp
 
 ####### Install
 

@@ -43,7 +43,7 @@ SOURCES += main.cpp \
     QMidi/src/QMidiFile.cpp \
     QMidi/src/QMidiOut.cpp \
     Rules/directmotionrule.cpp \
-    GUI/playback.cpp
+    GUI/playbackthread.cpp
 
 
 HEADERS += \
@@ -68,7 +68,7 @@ HEADERS += \
     QMidi/src/QMidiFile.h \
     QMidi/src/QMidiOut.h \
     Rules/directmotionrule.h \
-    GUI/playback.h
+    GUI/playbackthread.h
 
 
 FORMS    += GUI/mainwindow.ui \
