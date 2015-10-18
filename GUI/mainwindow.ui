@@ -162,6 +162,9 @@
    <property name="text">
     <string>Fél</string>
    </property>
+   <property name="shortcut">
+    <string>2</string>
+   </property>
   </action>
   <action name="actionWhole">
    <property name="checkable">
@@ -173,6 +176,9 @@
    </property>
    <property name="text">
     <string>Egész</string>
+   </property>
+   <property name="shortcut">
+    <string>1</string>
    </property>
   </action>
   <action name="actionQuarter">
@@ -186,6 +192,9 @@
    <property name="text">
     <string>Negyed</string>
    </property>
+   <property name="shortcut">
+    <string>3</string>
+   </property>
   </action>
   <action name="actionEighth">
    <property name="checkable">
@@ -197,6 +206,9 @@
    </property>
    <property name="text">
     <string>Nyolcad</string>
+   </property>
+   <property name="shortcut">
+    <string>4</string>
    </property>
   </action>
   <action name="actionAddSharp">

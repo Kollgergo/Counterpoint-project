@@ -765,41 +765,40 @@ void VStaff::updateVStaff()
 
     for(int i=0; i<vnotes.size(); i++){
         if(i==0){
-            if(vnotes.isEmpty()){
-                switch (qAbs(keysignature.getKeysig())) {
-                case 0:
-                    vnotes.at(0)->setX(100);
-                    break;
-                case 1:
-                    vnotes.at(0)->setX(120);
-                    break;
-                case 2:
-                    vnotes.at(0)->setX(140);
-                    break;
-                case 3:
-                    vnotes.at(0)->setX(160);
-                    break;
-                case 4:
-                    vnotes.at(0)->setX(180);
-                    break;
-                case 5:
-                    vnotes.at(0)->setX(200);
-                    break;
-                case 6:
-                    vnotes.at(0)->setX(220);
-                    break;
-                case 7:
-                    vnotes.at(0)->setX(240);
-                    break;
-                default:
-                    vnotes.at(0)->setX(100);
-                    break;
-                }
+            switch (qAbs(keysignature.getKeysig())) {
+            case 0:
+                vnotes.at(0)->setX(100);
+                break;
+            case 1:
+                vnotes.at(0)->setX(120);
+                break;
+            case 2:
+                vnotes.at(0)->setX(140);
+                break;
+            case 3:
+                vnotes.at(0)->setX(160);
+                break;
+            case 4:
+                vnotes.at(0)->setX(180);
+                break;
+            case 5:
+                vnotes.at(0)->setX(200);
+                break;
+            case 6:
+                vnotes.at(0)->setX(220);
+                break;
+            case 7:
+                vnotes.at(0)->setX(240);
+                break;
+            default:
+                vnotes.at(0)->setX(100);
+                break;
             }
+
             updateStaffWidth();
 
         }else{
-            if(CPmode){
+            if(!CPmode){
                 switch (vnotes.at(i-1)->getNotetype()) {
                 case ScoreViewModel::whole:
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+400);

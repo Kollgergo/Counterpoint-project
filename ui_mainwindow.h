@@ -237,9 +237,13 @@ public:
         actionAddNote->setText(QApplication::translate("MainWindow", "\303\232j Hangjegy", 0));
         actionAddRest->setText(QApplication::translate("MainWindow", "\303\232j Sz\303\274net", 0));
         actionHalf->setText(QApplication::translate("MainWindow", "F\303\251l", 0));
+        actionHalf->setShortcut(QApplication::translate("MainWindow", "2", 0));
         actionWhole->setText(QApplication::translate("MainWindow", "Eg\303\251sz", 0));
+        actionWhole->setShortcut(QApplication::translate("MainWindow", "1", 0));
         actionQuarter->setText(QApplication::translate("MainWindow", "Negyed", 0));
+        actionQuarter->setShortcut(QApplication::translate("MainWindow", "3", 0));
         actionEighth->setText(QApplication::translate("MainWindow", "Nyolcad", 0));
+        actionEighth->setShortcut(QApplication::translate("MainWindow", "4", 0));
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));

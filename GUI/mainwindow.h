@@ -11,7 +11,7 @@
 #include "scoreviewmodel.h"
 #include "newstaffdialog.h"
 #include "newcpdialog.h"
-#include "playback.h"
+#include "playbackthread.h"
 
 
 class QMidiOut;
@@ -81,6 +81,7 @@ public slots:
     void vNotePosChanged(VNote *note);
     void vstaffSelected(VStaff *vstaff);
     void newVNoteAdded(VNote *vnote);
+    void playBackEnded();
 
 private:
     Ui::MainWindow *ui;
@@ -89,6 +90,8 @@ private:
     QList<VStaff*> vstaffs;
     VStaff *selectedvstaff;
     bool CPmode;
+    QMidiOut *midi;
+    unsigned int playbackcounter;
 
 };
 
