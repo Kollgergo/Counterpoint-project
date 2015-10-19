@@ -21,8 +21,11 @@ INPUT(
 ./release\QMidi_Win32.o
 ./release\QMidiFile.o
 ./release\QMidiOut.o
-./release\directmotionrule.o
 ./release\playbackthread.o
+./release\firstrule.o
+./release\secondrule.o
+./release\thirdrule.o
+./release\fourthrule.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o

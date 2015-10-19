@@ -45,6 +45,7 @@ public:
     QAction *actionTest;
     QAction *actionNewStaff;
     QAction *actionPlayMIDI;
+    QAction *actionStopPlayBack;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -155,6 +156,11 @@ public:
         QIcon icon16;
         icon16.addFile(QStringLiteral(":/res/play_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionPlayMIDI->setIcon(icon16);
+        actionStopPlayBack = new QAction(MainWindow);
+        actionStopPlayBack->setObjectName(QStringLiteral("actionStopPlayBack"));
+        QIcon icon17;
+        icon17.addFile(QStringLiteral(":/res/stop_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionStopPlayBack->setIcon(icon17);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -224,6 +230,7 @@ public:
         toolBar->addAction(actionTest);
         toolBar->addSeparator();
         toolBar->addAction(actionPlayMIDI);
+        toolBar->addAction(actionStopPlayBack);
 
         retranslateUi(MainWindow);
 
@@ -259,6 +266,10 @@ public:
         actionTest->setShortcut(QApplication::translate("MainWindow", "T", 0));
         actionNewStaff->setText(QApplication::translate("MainWindow", "\303\232j Kottasor", 0));
         actionPlayMIDI->setText(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s", 0));
+        actionStopPlayBack->setText(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s meg\303\241ll\303\255t\303\241sa", 0));
+#ifndef QT_NO_TOOLTIP
+        actionStopPlayBack->setToolTip(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s le\303\241ll\303\255t\303\241sa", 0));
+#endif // QT_NO_TOOLTIP
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));

@@ -31,6 +31,8 @@ public:
 	void stopAll();
 	void stopAll(int voice);
 
+    bool isConnected() const;
+
 signals:
 	void allNotesStopped(int voice);
 

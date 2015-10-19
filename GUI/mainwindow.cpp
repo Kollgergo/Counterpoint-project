@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     CPmode = false;
 
     ui->actionTest->setEnabled(false);
+    ui->actionStopPlayBack->setEnabled(false);
 
     //vstaff = new VStaff;
     //scene->addItem(vstaff);
@@ -213,7 +214,29 @@ void MainWindow::playBackEnded()
 
     if(playbackcounter == svm->getNumOfStaffs()){
         midi->disconnect();
-        ui->actionPlayMIDI->setEnabled(true);
+        if(CPmode){
+            ui->actionPlayMIDI->setEnabled(true);
+            ui->actionNewScore->setEnabled(true);
+            ui->actionOpenLilypond->setEnabled(true);
+            ui->actionSaveLilypond->setEnabled(true);
+            ui->actionNewCounterpoint->setEnabled(true);
+            //ui->actionTest->setEnabled(true);
+            ui->mainToolBar->setEnabled(true);
+            ui->actionNewStaff->setEnabled(false);
+            ui->actionQuarter->setEnabled(false);
+            ui->actionEighth->setEnabled(false);
+            if(vstaffs.at(0)->getDurationSum() == vstaffs.at(1)->getDurationSum()){
+                ui->actionTest->setEnabled(true);
+            }
+        }else{
+            ui->actionPlayMIDI->setEnabled(true);
+            ui->actionNewScore->setEnabled(true);
+            ui->actionOpenLilypond->setEnabled(true);
+            ui->actionSaveLilypond->setEnabled(true);
+            ui->actionNewCounterpoint->setEnabled(true);
+            ui->mainToolBar->setEnabled(true);
+        }
+
     }
 }
 
@@ -564,85 +587,6 @@ void MainWindow::on_actionHalf_triggered(bool checked)
                                 scene->update();
                                 ui->actionHalf->setChecked(true);
                                 break;
-                                /*if(CPmode){
-                                    if(ui->actionAddNote->isEnabled()){
-                                        if(vstaffs.at(1)->getDurationSum()+4 < vstaffs.at(0)->getDurationSum()){
-
-                                        }
-                                        svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
-                                        selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
-
-                                        selectedvstaff->updateVStaff();
-                                        selectedvstaff->getVnotes().at(j)->setSelected(true);
-                                        scene->update();
-                                        ui->actionHalf->setChecked(true);
-                                        break;
-                                    }else{
-                                        int tempdur = selectedvstaff->getDurationSum();
-                                        switch (selectedvstaff->getVnotes().at(j)->getNotetype()) {
-                                        case ScoreViewModel::whole:
-                                            tempdur-=4;
-                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
-                                               ui->actionAddNote->setEnabled(true);
-                                               ui->actionAddRest->setEnabled(true);
-                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
-                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
-
-                                               selectedvstaff->updateVStaff();
-                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
-                                               scene->update();
-                                               ui->actionHalf->setChecked(true);
-                                            }
-                                            break;
-                                        case ScoreViewModel::half:
-                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
-                                               ui->actionAddNote->setEnabled(true);
-                                               ui->actionAddRest->setEnabled(true);
-                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
-                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
-
-                                               selectedvstaff->updateVStaff();
-                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
-                                               scene->update();
-                                               ui->actionHalf->setChecked(true);
-                                            }
-                                            break;
-                                        case ScoreViewModel::whole_rest:
-                                            tempdur-=4;
-                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
-                                               ui->actionAddNote->setEnabled(true);
-                                               ui->actionAddRest->setEnabled(true);
-                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
-                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
-
-                                               selectedvstaff->updateVStaff();
-                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
-                                               scene->update();
-                                               ui->actionHalf->setChecked(true);
-                                            }
-                                            break;
-                                        case ScoreViewModel::half_rest:
-                                            if(tempdur < vstaffs.at(0)->getDurationSum()){
-                                               ui->actionAddNote->setEnabled(true);
-                                               ui->actionAddRest->setEnabled(true);
-                                               svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::half);
-                                               selectedvstaff->getVnotes().at(j)->setNotetype(ScoreViewModel::half);
-
-                                               selectedvstaff->updateVStaff();
-                                               selectedvstaff->getVnotes().at(j)->setSelected(true);
-                                               scene->update();
-                                               ui->actionHalf->setChecked(true);
-                                            }
-                                            break;
-                                        default:
-                                            break;
-                                        }
-                                    }
-
-                                }else{*/
-
-                                //}
-
                             }
                         }
                     }
@@ -1123,6 +1067,13 @@ void MainWindow::on_actionPlayMIDI_triggered()
 {
     if(svm->getNumOfStaffs() > 0){
         ui->actionPlayMIDI->setEnabled(false);
+        ui->actionStopPlayBack->setEnabled(true);
+        ui->actionNewScore->setEnabled(false);
+        ui->actionOpenLilypond->setEnabled(false);
+        ui->actionSaveLilypond->setEnabled(false);
+        ui->actionNewCounterpoint->setEnabled(false);
+        ui->actionTest->setEnabled(false);
+        ui->mainToolBar->setEnabled(false);
         playbackcounter = 0;
         QMap<QString, QString> vals = QMidiOut::devices();
         qDebug() << vals.firstKey();
@@ -1142,4 +1093,11 @@ void MainWindow::on_actionPlayMIDI_triggered()
             playback->start();
         }
     }
+}
+
+void MainWindow::on_actionStopPlayBack_triggered()
+{
+    ui->actionStopPlayBack->setEnabled(false);
+    //midi->stopAll();
+    midi->disconnect();
 }

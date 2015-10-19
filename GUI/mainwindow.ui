@@ -121,6 +121,7 @@
    <addaction name="actionTest"/>
    <addaction name="separator"/>
    <addaction name="actionPlayMIDI"/>
+   <addaction name="actionStopPlayBack"/>
   </widget>
   <action name="actionExit">
    <property name="text">
@@ -314,6 +315,18 @@
    </property>
    <property name="text">
     <string>Lejátszás</string>
+   </property>
+  </action>
+  <action name="actionStopPlayBack">
+   <property name="icon">
+    <iconset resource="../GUI.qrc">
+     <normaloff>:/res/stop_icon.png</normaloff>:/res/stop_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Lejátszás megállítása</string>
+   </property>
+   <property name="toolTip">
+    <string>Lejátszás leállítása</string>
    </property>
   </action>
  </widget>

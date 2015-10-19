@@ -66,5 +66,10 @@ void QMidiOut::stopAll()
 
 void QMidiOut::stopAll(int voice)
 {
-	sendMsg((0xB0 | voice) | (0x7B << 8));
+    sendMsg((0xB0 | voice) | (0x7B << 8));
+}
+
+bool QMidiOut::isConnected() const
+{
+    return fConnected;
 }

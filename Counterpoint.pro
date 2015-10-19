@@ -42,8 +42,11 @@ SOURCES += main.cpp \
     QMidi/src/OS/QMidi_Win32.cpp \
     QMidi/src/QMidiFile.cpp \
     QMidi/src/QMidiOut.cpp \
-    Rules/directmotionrule.cpp \
-    GUI/playbackthread.cpp
+    GUI/playbackthread.cpp \
+    Rules/firstrule.cpp \
+    Rules/secondrule.cpp \
+    Rules/thirdrule.cpp \
+    Rules/fourthrule.cpp
 
 
 HEADERS += \
@@ -67,8 +70,11 @@ HEADERS += \
     Datamodel/accent.h \
     QMidi/src/QMidiFile.h \
     QMidi/src/QMidiOut.h \
-    Rules/directmotionrule.h \
-    GUI/playbackthread.h
+    GUI/playbackthread.h \
+    Rules/firstrule.h \
+    Rules/secondrule.h \
+    Rules/thirdrule.h \
+    Rules/fourthrule.h
 
 
 FORMS    += GUI/mainwindow.ui \

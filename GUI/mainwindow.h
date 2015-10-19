@@ -76,6 +76,8 @@ private slots:
 
     void on_actionPlayMIDI_triggered();
 
+    void on_actionStopPlayBack_triggered();
+
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);
