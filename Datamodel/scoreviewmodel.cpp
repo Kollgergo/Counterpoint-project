@@ -7,6 +7,7 @@ ScoreViewModel::ScoreViewModel()
     accentsMap[0];
 
     ruleList.push_back(new OnlyConsonanceRule());
+    ruleList.push_back(new MainRules());
 }
 
 ScoreViewModel::~ScoreViewModel()

@@ -2,7 +2,7 @@
 
 ErrorMarker::ErrorMarker(QString errormes, QGraphicsObject *parent) : QGraphicsObject(parent)
 {
-    errormessage = errormes;
+    errormessage.append("\n" + errormes);
     setAcceptHoverEvents(true);
     errortext = NULL;
 }

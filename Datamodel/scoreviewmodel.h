@@ -7,7 +7,8 @@
 #include "score.h"
 #include "keysignature.h"
 #include "accent.h"
-#include "Rules/onlyconsonancerule.h"
+#include "onlyconsonancerule.h"
+#include "mainrules.h"
 
 class ScoreViewModel
 {

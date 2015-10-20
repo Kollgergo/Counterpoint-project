@@ -43,10 +43,7 @@ SOURCES += main.cpp \
     QMidi/src/QMidiFile.cpp \
     QMidi/src/QMidiOut.cpp \
     GUI/playbackthread.cpp \
-    Rules/firstrule.cpp \
-    Rules/secondrule.cpp \
-    Rules/thirdrule.cpp \
-    Rules/fourthrule.cpp
+    Rules/mainrules.cpp
 
 
 HEADERS += \
@@ -71,10 +68,7 @@ HEADERS += \
     QMidi/src/QMidiFile.h \
     QMidi/src/QMidiOut.h \
     GUI/playbackthread.h \
-    Rules/firstrule.h \
-    Rules/secondrule.h \
-    Rules/thirdrule.h \
-    Rules/fourthrule.h
+    Rules/mainrules.h
 
 
 FORMS    += GUI/mainwindow.ui \

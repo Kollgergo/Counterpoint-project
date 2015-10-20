@@ -14,6 +14,8 @@ public:
 
     virtual QList<Error *> test(QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap) = 0;
 
+    unsigned int getInterval(unsigned int staffnum, unsigned int notenum, QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap);
+
 };
 
 #endif // TESTER_H

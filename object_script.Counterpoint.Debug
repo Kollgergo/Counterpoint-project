@@ -22,10 +22,7 @@ INPUT(
 ./debug\QMidiFile.o
 ./debug\QMidiOut.o
 ./debug\playbackthread.o
-./debug\firstrule.o
-./debug\secondrule.o
-./debug\thirdrule.o
-./debug\fourthrule.o
+./debug\mainrules.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o

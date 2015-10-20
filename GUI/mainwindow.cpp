@@ -214,6 +214,7 @@ void MainWindow::playBackEnded()
 
     if(playbackcounter == svm->getNumOfStaffs()){
         midi->disconnect();
+        ui->actionStopPlayBack->setEnabled(false);
         if(CPmode){
             ui->actionPlayMIDI->setEnabled(true);
             ui->actionNewScore->setEnabled(true);
