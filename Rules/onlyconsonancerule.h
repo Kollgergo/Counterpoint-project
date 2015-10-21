@@ -2,7 +2,6 @@
 #define ONLYCONSONANCERULE_H
 
 #include "tester.h"
-//#include "Datamodel/scoreviewmodel.h"
 
 class ScoreViewModel;
 

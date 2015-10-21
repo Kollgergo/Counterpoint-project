@@ -10,7 +10,7 @@ QList<Error *> OnlyConsonanceRule::test(QVector<Staff> staffs, QMap<int, QVector
     int interval = 0;
     QList<Error *> errors;
 
-    for(unsigned int i=1; i<staffs.size(); i++){
+    for(int i=1; i<staffs.size(); i++){
         for(unsigned int j=0; j<staffs[0].getNumOfNotes(); j++){
 
             interval = this->getInterval(i,j,staffs,accentsMap);

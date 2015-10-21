@@ -28,6 +28,8 @@ public:
     bool oneDurationDown();
     int operator -(const Note& other) const;
     bool operator ==(const Note& other) const;
+    bool operator <(const Note& other) const;
+    bool operator >(const Note& other) const;
     Note& operator =(const Note& obj);    
     
 };

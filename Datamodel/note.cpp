@@ -76,6 +76,24 @@ bool Note::operator ==(const Note &other) const
     return operator -(other) == 0;
 }
 
+bool Note::operator <(const Note &other) const
+{
+    if(pitch < other.getPitch()){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+bool Note::operator >(const Note &other) const
+{
+    if(pitch > other.getPitch()){
+        return true;
+    }else{
+        return false;
+    }
+}
+
 Note &Note::operator =(const Note &obj)
 {
     if(this != &obj){

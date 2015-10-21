@@ -23,6 +23,11 @@ INPUT(
 ./release\QMidiOut.o
 ./release\playbackthread.o
 ./release\mainrules.o
+./release\beginendrule.o
+./release\nexttothelastrule.o
+./release\moderule.o
+./release\maxintervalrule.o
+./release\forbiddenskipsrule.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o

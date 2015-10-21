@@ -9,6 +9,11 @@
 #include "accent.h"
 #include "onlyconsonancerule.h"
 #include "mainrules.h"
+#include "beginendrule.h"
+#include "nexttothelastrule.h"
+#include "moderule.h"
+#include "maxintervalrule.h"
+#include "forbiddenskipsrule.h"
 
 class ScoreViewModel
 {

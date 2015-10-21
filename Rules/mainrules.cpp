@@ -22,38 +22,33 @@ QList<Error *> MainRules::test(QVector<Staff> staffs, QMap<int, QVector<Accent *
                 switch (interval) {
                 case 0:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
-                        }else{
-                           errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
                         }
-
                     }
                     break;
                 case 1:
-
                     break;
                 case 2:
-
                     break;
                 case 3:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
-                        }else{
-                           errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!!"));
                         }
-
                     }
                     break;
                 case 4:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
-                        }else{
-                           errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!!"));
                         }
-
                     }
                     break;
                 case 5:
@@ -64,44 +59,42 @@ QList<Error *> MainRules::test(QVector<Staff> staffs, QMap<int, QVector<Accent *
                     break;
                 case 7:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
                         }
-                        errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
                     }
                     break;
                 case 8:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
-                        }else{
-                           errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!!"));
                         }
-
                     }
                     break;
                 case 9:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
-                        }else{
-                           errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Harmadik szabály nem teljesül!!"));
                         }
-
                     }
                     break;
                 case 10:
-
                     break;
                 case 11:
-
                     break;
                 case 12:
                     if(nextinterval == 12 || nextinterval == 7 || nextinterval == 0){
-                        if(interval > nextinterval || interval < nextinterval){
-
+                        if(staffs[0].getNoteByNum(j+1) < staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) < staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
+                        }else if(staffs[0].getNoteByNum(j+1) > staffs[0].getNoteByNum(j+2) && staffs[i].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+2)){
+                            errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
                         }
-                        errors.push_back(new Error(currentloc,"Első szabály nem teljesül!"));
                     }
                     break;
                 default:

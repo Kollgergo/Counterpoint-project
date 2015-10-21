@@ -1,7 +1,6 @@
 #ifndef FIRSTRULE_H
 #define FIRSTRULE_H
 
-#include <QtCore>
 #include "tester.h"
 
 class MainRules : public Tester

@@ -8,6 +8,11 @@ ScoreViewModel::ScoreViewModel()
 
     ruleList.push_back(new OnlyConsonanceRule());
     ruleList.push_back(new MainRules());
+    ruleList.push_back(new BeginEndRule());
+    ruleList.push_back(new NextToTheLastRule());
+    ruleList.push_back(new ModeRule);
+    ruleList.push_back(new MaxIntervalRule());
+    ruleList.push_back(new ForbiddenSkipsRule());
 }
 
 ScoreViewModel::~ScoreViewModel()

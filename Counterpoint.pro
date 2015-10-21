@@ -17,7 +17,7 @@ win32{
 }
 
 unix{
-
+    LIBS += -lasound
 }
 
 SOURCES += main.cpp \
@@ -43,7 +43,12 @@ SOURCES += main.cpp \
     QMidi/src/QMidiFile.cpp \
     QMidi/src/QMidiOut.cpp \
     GUI/playbackthread.cpp \
-    Rules/mainrules.cpp
+    Rules/mainrules.cpp \
+    Rules/beginendrule.cpp \
+    Rules/nexttothelastrule.cpp \
+    Rules/moderule.cpp \
+    Rules/maxintervalrule.cpp \
+    Rules/forbiddenskipsrule.cpp
 
 
 HEADERS += \
@@ -68,7 +73,12 @@ HEADERS += \
     QMidi/src/QMidiFile.h \
     QMidi/src/QMidiOut.h \
     GUI/playbackthread.h \
-    Rules/mainrules.h
+    Rules/mainrules.h \
+    Rules/beginendrule.h \
+    Rules/nexttothelastrule.h \
+    Rules/moderule.h \
+    Rules/maxintervalrule.h \
+    Rules/forbiddenskipsrule.h
 
 
 FORMS    += GUI/mainwindow.ui \

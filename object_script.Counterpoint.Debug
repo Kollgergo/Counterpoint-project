@@ -23,6 +23,11 @@ INPUT(
 ./debug\QMidiOut.o
 ./debug\playbackthread.o
 ./debug\mainrules.o
+./debug\beginendrule.o
+./debug\nexttothelastrule.o
+./debug\moderule.o
+./debug\maxintervalrule.o
+./debug\forbiddenskipsrule.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
