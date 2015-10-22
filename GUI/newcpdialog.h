@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QFileDialog>
 #include <QMessageBox>
-#include "Datamodel/scoreviewmodel.h"
+#include "scoreviewmodel.h"
 
 namespace Ui {
 class NewCPDialog;

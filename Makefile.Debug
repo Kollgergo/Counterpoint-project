@@ -765,6 +765,7 @@ debug/moc_mainwindow.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
@@ -1255,6 +1256,7 @@ debug/moc_vnote.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h \
 		GUI/vnote.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\vnote.h -o debug\moc_vnote.cpp
@@ -1736,6 +1738,7 @@ debug/moc_vstaff.cpp: C:/Qt/5.5/mingw492_32/include/QtGui/QtGui \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h \
 		GUI/vstaff.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\vstaff.h -o debug\moc_vstaff.cpp
@@ -2427,6 +2430,7 @@ debug/moc_newstaffdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/newstaffdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\newstaffdialog.h -o debug\moc_newstaffdialog.cpp
 
@@ -2663,6 +2667,7 @@ debug/moc_newcpdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/newcpdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\newcpdialog.h -o debug\moc_newcpdialog.cpp
 
@@ -4109,6 +4114,7 @@ debug/main.o: main.cpp Datamodel/cpsystem.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
@@ -4985,6 +4991,7 @@ debug/cpsystem.o: Datamodel/cpsystem.cpp Datamodel/cpsystem.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMainWindow \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/qmainwindow.h \
@@ -5450,7 +5457,8 @@ debug/scoreviewmodel.o: Datamodel/scoreviewmodel.cpp Datamodel/scoreviewmodel.h 
 		Rules/beginendrule.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
-		Rules/maxintervalrule.h
+		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\scoreviewmodel.o Datamodel\scoreviewmodel.cpp
 
 debug/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
@@ -5933,6 +5941,7 @@ debug/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h \
 		GUI/newstaffdialog.h \
 		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialog \
@@ -5943,18 +5952,7 @@ debug/mainwindow.o: GUI/mainwindow.cpp GUI/mainwindow.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QMap \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QString \
 		QMidi/src/QMidiFile.h \
-		ui_mainwindow.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenu \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QMenuBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QStatusBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QToolBar \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
-		scoreview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGraphicsView
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o GUI\mainwindow.cpp
 
 debug/vnote.o: GUI/vnote.cpp GUI/vnote.h \
@@ -6434,6 +6432,7 @@ debug/vnote.o: GUI/vnote.cpp GUI/vnote.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\vnote.o GUI\vnote.cpp
 
@@ -6914,6 +6913,7 @@ debug/vstaff.o: GUI/vstaff.cpp GUI/vstaff.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
+		Rules/forbiddenskipsrule.h \
 		GUI/errormarker.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\vstaff.o GUI\vstaff.cpp
 
@@ -8064,49 +8064,8 @@ debug/newstaffdialog.o: GUI/newstaffdialog.cpp GUI/newstaffdialog.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
-		ui_newstaffdialog.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QComboBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qcombobox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
+		Rules/forbiddenskipsrule.h \
+		ui_newstaffdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\newstaffdialog.o GUI\newstaffdialog.cpp
 
 debug/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
@@ -8343,55 +8302,8 @@ debug/newcpdialog.o: GUI/newcpdialog.cpp GUI/newcpdialog.h \
 		Rules/nexttothelastrule.h \
 		Rules/moderule.h \
 		Rules/maxintervalrule.h \
-		ui_newcpdialog.h \
-		C:/Qt/5.5/mingw492_32/include/QtCore/QVariant \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QAction \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qaction.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qactiongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QApplication \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdesktopwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qguiapplication.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qinputmethod.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QButtonGroup \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qbuttongroup.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QDialogButtonBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qdialogbuttonbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QGroupBox \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgroupbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qframe.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QHeaderView \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qheaderview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemview.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractscrollarea.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractitemdelegate.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyleoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractspinbox.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qvalidator.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractslider.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qstyle.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabbar.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qtabwidget.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qrubberband.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QLineEdit \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlineedit.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextcursor.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextformat.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qpen.h \
-		C:/Qt/5.5/mingw492_32/include/QtGui/qtextoption.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QRadioButton \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qradiobutton.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QVBoxLayout \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qboxlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qlayoutitem.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/qgridlayout.h \
-		C:/Qt/5.5/mingw492_32/include/QtWidgets/QWidget
+		Rules/forbiddenskipsrule.h \
+		ui_newcpdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\newcpdialog.o GUI\newcpdialog.cpp
 
 debug/tester.o: Rules/tester.cpp Rules/tester.h \

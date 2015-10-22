@@ -2,7 +2,10 @@
 #define NEWSTAFFDIALOG_H
 
 #include <QDialog>
-#include "Datamodel/scoreviewmodel.h"
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QPushButton>
+#include "scoreviewmodel.h"
 
 namespace Ui {
 class NewStaffDialog;

@@ -9,6 +9,11 @@ NewStaffDialog::NewStaffDialog(QWidget *parent) :
     selectedclef = ScoreViewModel::treble;
     selectedkeysignature = 0;
     ui->trebleRadioButton->setChecked(true);
+    QPushButton *cancelButton=ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setText("Mégse");
+    //cancelButton
+    setWindowTitle("Új kottasor hozzáadása");
+    //ui->buttonBox->
 }
 
 NewStaffDialog::~NewStaffDialog()

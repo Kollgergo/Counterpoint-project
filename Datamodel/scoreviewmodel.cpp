@@ -51,7 +51,7 @@ void ScoreViewModel::deleteStaff(unsigned int which)
         score->deleteStaff(which);
         clefs.erase(clefs.begin()+(which-1));
         keysignatures.erase(keysignatures.begin()+(which-1));
-        // itt hiányzik az adott staff törlése az accentsMap-ből
+        accentsMap.erase(accentsMap.begin()+which-1);
     }
 }
 
@@ -73,7 +73,166 @@ KeySignature ScoreViewModel::getKeySignatureByNum(int which)
 void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, Accent::accents accent, unsigned int where)
 {
     score->getStaffByNum(staffnum).addNote(pitch, duration, where);
-    accentsMap[staffnum-1].push_back(new Accent(accent));
+    switch (keysignatures.at(staffnum-1).getKeysig()) { // előjegyzéseket le kell kezelni, de nem itt
+    case -7:
+
+        break;
+    case -6:
+
+        break;
+    case -5:
+
+        break;
+    case -4:
+
+        break;
+    case -3:
+
+        break;
+    case -2:
+
+        break;
+    case -1:
+
+        break;
+    case 1:
+        switch (pitch) {
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 2:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 3:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 7:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 4:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 2:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 7:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 5:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 2:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 7:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 9:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 6:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 2:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 4:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 7:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 9:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    case 7:
+        switch (pitch) {
+        case 0:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 2:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 4:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 5:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 7:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 9:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        case 11:
+            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+            break;
+        default:
+            accentsMap[staffnum-1].push_back(new Accent(accent));
+            break;
+        }
+        break;
+    default:
+        accentsMap[staffnum-1].push_back(new Accent(accent));
+        break;
+    }
+
 }
 
 bool ScoreViewModel::deleteNote(unsigned int staffnum, unsigned int which)
@@ -841,11 +1000,6 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 4;
         break;
     case -7:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
-//            pos = 4;
-//        }else{
-//            pos = 3;
-//        }
         pos = 5;
         break;
     case -6:
@@ -876,11 +1030,6 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         }
         break;
     case -1:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
-//            pos = 7;
-//        }else{
-//            pos = 6;
-//        }
         pos = 8;
         break;
 
@@ -909,11 +1058,6 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         pos = 11;
         break;
     case 5:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
-//            pos = 11;
-//        }else{
-//            pos = 10;
-//        }
         pos = 12;
         break;
     case 6:
@@ -944,11 +1088,6 @@ int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumbe
         }
         break;
     case 11:
-//        if(accentsMap[staffnumber-1].at(notenumber-1) == Accent::flat){
-//            pos = 14;
-//        }else{
-//            pos = 13;
-//        }
         pos = 15;
         break;
     default:
@@ -1053,6 +1192,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -3;
                 break;
             }
+            break;
         case 1:
             switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
             case Accent::sharp:
@@ -1065,6 +1205,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -1;
                 break;
             }
+            break;
         case 2:
             switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
             case Accent::sharp:

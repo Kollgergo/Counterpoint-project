@@ -13,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent) :
     CPmode = false;
 
     ui->actionTest->setEnabled(false);
+    ui->actionPlayMIDI->setEnabled(false);
     ui->actionStopPlayBack->setEnabled(false);
 
     //vstaff = new VStaff;
@@ -321,6 +322,7 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     ui->actionEighth->setChecked(false);
                     ui->actionAddSharp->setChecked(false);
                     ui->actionAddFlat->setChecked(false);
+                    ui->actionPlayMIDI->setEnabled(true);
                     if(vstaff->getNewvnote() != NULL){
                         delete(vstaff->getNewvnote());
                         //vstaff->setNewvnote(NULL);
@@ -428,6 +430,7 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     ui->actionEighth->setChecked(false);
                     ui->actionAddSharp->setChecked(false);
                     ui->actionAddFlat->setChecked(false);
+                    ui->actionPlayMIDI->setEnabled(true);
                     if(vstaff->getNewvnote() != NULL){
                         delete(vstaff->getNewvnote());
                         //vstaff->getNewvnote() = NULL;
@@ -904,6 +907,7 @@ void MainWindow::on_actionNewScore_triggered()
     ui->actionQuarter->setEnabled(true);
     ui->actionEighth->setEnabled(true);
     ui->actionTest->setEnabled(false);
+    ui->actionPlayMIDI->setEnabled(false);
 
     QMessageBox msgbox(this);
     msgbox.setWindowTitle("Új kotta megnyitása");
@@ -967,6 +971,7 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             ui->actionAddRest->setChecked(false);
             ui->actionWhole->setChecked(false);
             ui->actionHalf->setChecked(false);
+            ui->actionPlayMIDI->setEnabled(true);
 
         }
     }
@@ -1001,7 +1006,7 @@ void MainWindow::on_actionChangeNoteRest_triggered()
 void MainWindow::on_actionOpenLilypond_triggered()
 {
     CPmode = false;
-    CPmode = false;
+
     ui->actionNewStaff->setEnabled(true);
     ui->actionAddNote->setEnabled(true);
     ui->actionAddRest->setEnabled(true);
@@ -1010,6 +1015,7 @@ void MainWindow::on_actionOpenLilypond_triggered()
     ui->actionQuarter->setEnabled(true);
     ui->actionEighth->setEnabled(true);
     ui->actionTest->setEnabled(false);
+    ui->actionPlayMIDI->setEnabled(true);
 
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
     if(!filename.isEmpty()){
@@ -1060,7 +1066,6 @@ void MainWindow::on_actionNewStaff_triggered()
     NewStaffDialog *staffdialog = new NewStaffDialog(this);
     if(staffdialog->exec() == QDialog::Accepted){
         addVStaff(new VStaff(false, false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
-
     }
 }
 

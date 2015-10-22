@@ -16,6 +16,7 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
@@ -39,6 +40,11 @@ public:
     QGroupBox *groupBox_2;
     QLineEdit *lineCF;
     QPushButton *browseFileButton;
+    QGroupBox *groupBox_3;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
+    QRadioButton *upperRadioButton;
+    QRadioButton *lowerRadioButton;
 
     void setupUi(QDialog *NewCPDialog)
     {
@@ -47,7 +53,7 @@ public:
         NewCPDialog->resize(451, 253);
         buttonBox = new QDialogButtonBox(NewCPDialog);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(90, 210, 341, 32));
+        buttonBox->setGeometry(QRect(70, 220, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         groupBox = new QGroupBox(NewCPDialog);
@@ -90,6 +96,25 @@ public:
         browseFileButton = new QPushButton(groupBox_2);
         browseFileButton->setObjectName(QStringLiteral("browseFileButton"));
         browseFileButton->setGeometry(QRect(64, 60, 161, 23));
+        groupBox_3 = new QGroupBox(NewCPDialog);
+        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
+        groupBox_3->setGeometry(QRect(150, 110, 291, 101));
+        widget = new QWidget(groupBox_3);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(30, 40, 271, 20));
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        upperRadioButton = new QRadioButton(widget);
+        upperRadioButton->setObjectName(QStringLiteral("upperRadioButton"));
+
+        horizontalLayout->addWidget(upperRadioButton);
+
+        lowerRadioButton = new QRadioButton(widget);
+        lowerRadioButton->setObjectName(QStringLiteral("lowerRadioButton"));
+
+        horizontalLayout->addWidget(lowerRadioButton);
+
 
         retranslateUi(NewCPDialog);
         QObject::connect(buttonBox, SIGNAL(accepted()), NewCPDialog, SLOT(accept()));
@@ -108,6 +133,9 @@ public:
         bassRadioButton->setText(QApplication::translate("NewCPDialog", "Basszus kulcs", 0));
         groupBox_2->setTitle(QApplication::translate("NewCPDialog", "Cantus Firmus f\303\241jl helye", 0));
         browseFileButton->setText(QApplication::translate("NewCPDialog", "Cantus Firmus kiv\303\241laszt\303\241sa", 0));
+        groupBox_3->setTitle(QApplication::translate("NewCPDialog", "Ellenpont helye", 0));
+        upperRadioButton->setText(QApplication::translate("NewCPDialog", "Fels\305\221 ellenpont", 0));
+        lowerRadioButton->setText(QApplication::translate("NewCPDialog", "Als\303\263 ellenpont", 0));
     } // retranslateUi
 
 };
