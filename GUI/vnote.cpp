@@ -397,29 +397,24 @@ void VNote::changeToRest()
     switch (notetype) {
     case ScoreViewModel::whole:
         notetype = ScoreViewModel::whole_rest;
-        this->setY(-20);
-        setFlag(ItemIsMovable, false);
         break;
     case ScoreViewModel::half:
         notetype = ScoreViewModel::half_rest;
-        setFlag(ItemIsMovable, false);
-        this->setY(-20);
         break;
     case ScoreViewModel::quarter:
         notetype = ScoreViewModel::quarter_rest;
-        setFlag(ItemIsMovable, false);
-        this->setY(-20);
         break;
     case ScoreViewModel::eight:
         notetype = ScoreViewModel::eight_rest;
-        setFlag(ItemIsMovable, false);
-        this->setY(-20);
         break;
     default:
 
         break;
     }
 
+    this->setY(-20);
+    setFlag(ItemIsMovable, false);
+    setAccent(Accent::none);
 }
 
 void VNote::changeToNote()

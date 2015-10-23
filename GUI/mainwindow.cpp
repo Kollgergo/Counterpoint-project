@@ -986,14 +986,14 @@ void MainWindow::on_actionChangeNoteRest_triggered()
         if(vstaffs.at(i)->isSelected()){
             for(int j=0; j<vstaffs.at(i)->getVnotes().size(); j++){
                 if(vstaffs.at(i)->getVnotes().at(j)->isSelected()){
-                    if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){
+                    if(svm->getNoteByNum(i+1, j+1).getPitch() == Note::rest){ //change to note
                         vstaffs.at(i)->getVnotes().at(j)->changeToNote();
                         updateNoteData(vstaffs.at(i)->getVnotes().at(j));
                         vstaffs.at(i)->updateVStaff();
                         vstaffs.at(i)->updateStaffWidth();
                         break;
 
-                    }else{
+                    }else{ //change to rest
                         svm->changeToRest(i+1, j+1);
                         vstaffs.at(i)->getVnotes().at(j)->changeToRest();
                         vstaffs.at(i)->updateVStaff();

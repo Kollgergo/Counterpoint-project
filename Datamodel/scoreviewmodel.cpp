@@ -2209,6 +2209,7 @@ void ScoreViewModel::updateType(unsigned int staffnumber, unsigned int notenumbe
 void ScoreViewModel::changeToRest(unsigned int staffnumber, unsigned int notenumber)
 {
     getNoteByNum(staffnumber, notenumber).setPitch(Note::rest);
+    accentsMap[staffnumber-1].at(notenumber-1)->setAccent(Accent::none);
 }
 
 
