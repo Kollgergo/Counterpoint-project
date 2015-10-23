@@ -280,26 +280,29 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
         }
         break;
     case Qt::Key_Escape:
-
-        break;
-    default:
-        break;
-    }
-
-    /*if(event->key() == Qt::Key_Escape){
         if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
             delete(selectedvstaff->getNewvnote());
             ui->actionAddNote->setChecked(false);
             ui->actionAddRest->setChecked(false);
+
             selectedvstaff->updateStaffWidth();
         }
+        ui->actionHalf->setChecked(false);
+        ui->actionWhole->setChecked(false);
+        ui->actionQuarter->setChecked(false);
+        ui->actionEighth->setChecked(false);
+        ui->actionAddSharp->setChecked(false);
+        ui->actionAddFlat->setChecked(false);
 
         foreach (QGraphicsItem *item, scene->selectedItems()) {
             item->setSelected(false);
         }
         scene->update();
+        break;
+    default:
+        break;
+    }
 
-    }*/
 }
 
 void MainWindow::on_actionExit_triggered()
@@ -323,11 +326,11 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     ui->actionAddSharp->setChecked(false);
                     ui->actionAddFlat->setChecked(false);
                     ui->actionPlayMIDI->setEnabled(true);
-                    if(vstaff->getNewvnote() != NULL){
-                        delete(vstaff->getNewvnote());
+                    //if(vstaff->getNewvnote() != NULL){
+                        //delete(vstaff->getNewvnote());
                         //vstaff->setNewvnote(NULL);
                         //vstaff->getNewvnote() = NULL;
-                    }
+                    //}
                     if(vstaff->getVnotes().isEmpty()){
                         vstaff->setNewVNote(ScoreViewModel::half, Accent::none);
                         ui->actionHalf->setChecked(true);
@@ -431,10 +434,10 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     ui->actionAddSharp->setChecked(false);
                     ui->actionAddFlat->setChecked(false);
                     ui->actionPlayMIDI->setEnabled(true);
-                    if(vstaff->getNewvnote() != NULL){
-                        delete(vstaff->getNewvnote());
-                        //vstaff->getNewvnote() = NULL;
-                    }
+//                    if(vstaff->getNewvnote() != NULL){
+//                        delete(vstaff->getNewvnote());
+//                        //vstaff->getNewvnote() = NULL;
+//                    }
                     if(vstaff->getVnotes().isEmpty()){
                         vstaff->setNewVNote(ScoreViewModel::half_rest, Accent::none);
                         ui->actionHalf->setChecked(true);
