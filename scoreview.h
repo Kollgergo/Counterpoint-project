@@ -12,6 +12,7 @@ public:
 
 protected:
     virtual void wheelEvent(QWheelEvent *event);
+    void contextMenuEvent(QContextMenuEvent *event);
 
 };
 

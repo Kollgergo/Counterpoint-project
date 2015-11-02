@@ -42,7 +42,7 @@ void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
     //qDebug() << "hover enter";
     emit hoverEntering(this);
-    //this->scene()->update();
+    this->scene()->update();
 
     //QGraphicsItem::hoverEnterEvent(event);
 }

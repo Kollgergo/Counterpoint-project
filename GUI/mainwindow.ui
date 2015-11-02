@@ -101,6 +101,7 @@
    <addaction name="actionAddFlat"/>
    <addaction name="separator"/>
    <addaction name="actionChangeNoteRest"/>
+   <addaction name="actionCutHalf"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QToolBar" name="toolBar">
@@ -327,6 +328,15 @@
    </property>
    <property name="toolTip">
     <string>Lejátszás leállítása</string>
+   </property>
+  </action>
+  <action name="actionCutHalf">
+   <property name="icon">
+    <iconset resource="../GUI.qrc">
+     <normaloff>:/res/split_icon.png</normaloff>:/res/split_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Hang elfelezése</string>
    </property>
   </action>
  </widget>

@@ -31,11 +31,16 @@ public:
     void setSvm(ScoreViewModel *value);
     void showScore(bool isCF = false);
     void showNextVStaff(VStaff * vstaff);
-    void updateScore();
     void updateNoteData(VNote *vnote);
+
     void addVStaff(VStaff *vstaff);
+    void addVNote(VStaff *vstaff, unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where);
+
+    void initToolBars(bool isCP);
 
     QList<VStaff *> getVstaffs() const;
+
+    VStaff* getSelectedVStaff() const;
 
 protected:
     void keyPressEvent(QKeyEvent * event);
@@ -77,6 +82,8 @@ private slots:
     void on_actionPlayMIDI_triggered();
 
     void on_actionStopPlayBack_triggered();
+
+    void on_actionCutHalf_triggered();
 
 public slots:
     void vNoteSelected(VNote *note);

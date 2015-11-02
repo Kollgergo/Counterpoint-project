@@ -46,6 +46,7 @@ public:
     QAction *actionNewStaff;
     QAction *actionPlayMIDI;
     QAction *actionStopPlayBack;
+    QAction *actionCutHalf;
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     ScoreView *scoreView;
@@ -161,6 +162,11 @@ public:
         QIcon icon17;
         icon17.addFile(QStringLiteral(":/res/stop_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionStopPlayBack->setIcon(icon17);
+        actionCutHalf = new QAction(MainWindow);
+        actionCutHalf->setObjectName(QStringLiteral("actionCutHalf"));
+        QIcon icon18;
+        icon18.addFile(QStringLiteral(":/res/split_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionCutHalf->setIcon(icon18);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -222,6 +228,7 @@ public:
         mainToolBar->addAction(actionAddFlat);
         mainToolBar->addSeparator();
         mainToolBar->addAction(actionChangeNoteRest);
+        mainToolBar->addAction(actionCutHalf);
         toolBar->addAction(actionNewScore);
         toolBar->addAction(actionOpenLilypond);
         toolBar->addAction(actionSaveLilypond);
@@ -270,6 +277,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionStopPlayBack->setToolTip(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s le\303\241ll\303\255t\303\241sa", 0));
 #endif // QT_NO_TOOLTIP
+        actionCutHalf->setText(QApplication::translate("MainWindow", "Hang elfelez\303\251se", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));

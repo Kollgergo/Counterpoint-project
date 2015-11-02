@@ -47,7 +47,7 @@ public slots:
 private:
     QPixmap pixmap;
     VNote *shadow;
-    unsigned int scorepos;
+    unsigned int staffpos;
     Accent::accents accent;
     ScoreViewModel::noteTypes notetype;
     bool newnote;

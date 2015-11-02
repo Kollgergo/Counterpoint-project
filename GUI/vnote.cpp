@@ -4,7 +4,7 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
 {
     pixmap = QPixmap();
     shadow = NULL;
-    scorepos = spos;
+    staffpos = spos;
     notetype = ntype;
     accent = acc;
 
@@ -14,7 +14,7 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
 
         if(this->parentItem() != 0){ // process scorepos
             VStaff *temp = (VStaff *)this->parentItem();
-            this->setY(temp->getVstafflines().at(scorepos)->y()-10);
+            this->setY(temp->getVstafflines().at(staffpos)->y()-10);
         }
 
     }else{
@@ -22,7 +22,7 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
         if(!isCF){
             setFlag(ItemIsSelectable);
 
-            if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eight){
+            if(ntype == ScoreViewModel::whole || ntype == ScoreViewModel::half || ntype == ScoreViewModel::quarter || ntype == ScoreViewModel::eighth){
                 setFlag(ItemIsMovable);
                 setCursor(Qt::OpenHandCursor);
                 setAcceptedMouseButtons(Qt::LeftButton);
@@ -33,7 +33,7 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
 
         if(this->parentItem() != 0){ // process scorepos
             VStaff *temp = (VStaff *)this->parentItem();
-            this->setY(temp->getVstafflines().at(scorepos)->y()-10);
+            this->setY(temp->getVstafflines().at(staffpos)->y()-10);
         }
     }
 }
@@ -52,7 +52,7 @@ QRectF VNote::boundingRect() const
     case ScoreViewModel::quarter:
         rect = QRectF(0,0,24,20);
         break;
-    case ScoreViewModel::eight:
+    case ScoreViewModel::eighth:
         rect = QRectF(0,0,24,20);
         break;
     case ScoreViewModel::whole_rest:
@@ -64,7 +64,7 @@ QRectF VNote::boundingRect() const
     case ScoreViewModel::quarter_rest:
         rect = QRectF(0,-10,20,63);
         break;
-    case ScoreViewModel::eight_rest:
+    case ScoreViewModel::eighth_rest:
         rect = QRectF(0,2.5,20,36);
         break;
     default:
@@ -93,7 +93,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             pixmap.load("./res/quarter_note.png");
             painter->drawPixmap(0,0,24,20,pixmap);
             break;
-        case ScoreViewModel::eight:
+        case ScoreViewModel::eighth:
             pixmap.load("./res/quarter_note.png");
             painter->drawPixmap(0,0,24,20,pixmap);
             break;
@@ -109,7 +109,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             pixmap.load("./res/quarter_rest.png");
             painter->drawPixmap(0,-10,20,63,pixmap);
             break;
-        case ScoreViewModel::eight_rest:
+        case ScoreViewModel::eighth_rest:
             pixmap.load("./res/eighth_rest.png");
             painter->drawPixmap(0,2.5,20,36,pixmap);
             break;
@@ -140,18 +140,18 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         QPen pen(Qt::black);
         pen.setWidth(2);
 
-        if(notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+        if(notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eighth){
             painter->setPen(pen);
 
             if(getScorepos() < 8){
                 painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60); //note line
-                if(notetype == ScoreViewModel::eight){
+                if(notetype == ScoreViewModel::eighth){
                     QPixmap flagpixmap("./res/flag.png");
                     painter->drawPixmap(boundingRect().right(), -60, 26, 60, flagpixmap); //eighth flag
                 }
             }else{
                 painter->drawLine(boundingRect().left()+1, 15, boundingRect().left()+1, 80);
-                if(notetype == ScoreViewModel::eight){
+                if(notetype == ScoreViewModel::eighth){
                     QPixmap flagpixmap("./res/flag_flip.png");
                     painter->drawPixmap(boundingRect().left(), 20, 26, 60, flagpixmap);
                 }
@@ -160,17 +160,17 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
         }
 
-        if(scorepos == 0){
+        if(staffpos == 0){
             painter->drawLine(-10, 10, 35, 10);
             painter->drawLine(-10, -10, 35, -10);
-        }else if(scorepos == 1){
+        }else if(staffpos == 1){
             painter->drawLine(-10, 0, 35, 0);
-        }else if(scorepos == 15){
+        }else if(staffpos == 15){
             painter->drawLine(-10, 20, 35, 20);
-        }else if(scorepos == 16){
+        }else if(staffpos == 16){
             painter->drawLine(-10, 10, 35, 10);
             painter->drawLine(-10, 30, 35, 30);
-        }else if(scorepos == 2 || scorepos == 14){
+        }else if(staffpos == 2 || staffpos == 14){
             painter->drawLine(-10, 10, 35, 10);
         }
 
@@ -198,7 +198,7 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if(newnote == true){
 
         VStaff *tempparent = (VStaff *)this->parentItem();
-        tempparent->addNewVNote();
+        tempparent->finalizeNewVNote();
 
     }else{
         emit vNoteSelecting(this);
@@ -206,7 +206,7 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
         VStaff *tempparent = (VStaff *)this->parentItem();
         tempparent->setSelectedvnote(this);
 
-        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
+        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
            setCursor(Qt::ClosedHandCursor);
         }
 
@@ -222,8 +222,8 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
             case ScoreViewModel::quarter:
                 this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
                 break;
-            case ScoreViewModel::eight:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eight, Accent::none, this->parentObject());
+            case ScoreViewModel::eighth:
+                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eighth, Accent::none, this->parentObject());
                 break;
             default:
                 this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
@@ -250,7 +250,7 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     //qDebug() << "mousmoveevent call";
 
     if(newnote == false){
-        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
+        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
             QList <QGraphicsItem *> colList = this->scene()->collidingItems(this);
 
             if(!colList.isEmpty()){
@@ -275,7 +275,7 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
         }
 
-
+        this->scene()->update();
         //this->scene()->update(boundingRect().x()-10,boundingRect().y()-80,boundingRect().right()+10,boundingRect().bottom());
         //this->scene()->update();
     }
@@ -286,7 +286,7 @@ void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(newnote == false){
-        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eight){
+        if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
            setCursor(Qt::OpenHandCursor);
 
            this->setPos(shadow->pos());
@@ -324,7 +324,7 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 
 void VNote::hoverEntered(VStaffLine *staffline)
 {
-    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eighth){
         this->setY(staffline->y()-10);
         VStaff *tempparent = (VStaff *)this->parentItem();
 
@@ -350,7 +350,7 @@ Accent::accents VNote::getAccent() const
 
 void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
 {
-    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eight){
+    if(notetype == ScoreViewModel::whole || notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eighth){
         notetype = value;
     }else{
         switch (value) {
@@ -363,8 +363,8 @@ void VNote::setNotetype(const ScoreViewModel::noteTypes &value)
         case ScoreViewModel::quarter:
             notetype = ScoreViewModel::quarter_rest;
             break;
-        case ScoreViewModel::eight:
-            notetype = ScoreViewModel::eight_rest;
+        case ScoreViewModel::eighth:
+            notetype = ScoreViewModel::eighth_rest;
             break;
         default:
             notetype = ScoreViewModel::half_rest;
@@ -382,12 +382,12 @@ ScoreViewModel::noteTypes VNote::getNotetype() const
 
 int VNote::getScorepos() const
 {
-    return scorepos;
+    return staffpos;
 }
 
 void VNote::setScorepos(int value)
 {
-    scorepos = value;
+    staffpos = value;
 }
 
 void VNote::changeToRest()
@@ -404,8 +404,8 @@ void VNote::changeToRest()
     case ScoreViewModel::quarter:
         notetype = ScoreViewModel::quarter_rest;
         break;
-    case ScoreViewModel::eight:
-        notetype = ScoreViewModel::eight_rest;
+    case ScoreViewModel::eighth:
+        notetype = ScoreViewModel::eighth_rest;
         break;
     default:
 
@@ -438,8 +438,8 @@ void VNote::changeToNote()
         this->setScorepos(8);
         setFlag(ItemIsMovable, true);
         break;
-    case ScoreViewModel::eight_rest:
-        notetype = ScoreViewModel::eight;
+    case ScoreViewModel::eighth_rest:
+        notetype = ScoreViewModel::eighth;
         this->setY(-10);
         this->setScorepos(8);
         setFlag(ItemIsMovable, true);

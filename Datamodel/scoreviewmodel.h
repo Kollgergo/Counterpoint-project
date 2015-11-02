@@ -20,8 +20,8 @@ class ScoreViewModel
 
 public:
     enum clefNames{treble, alto, tenor, bass};
-    enum noteTypes{whole_rest, half_rest, quarter_rest, eight_rest,
-                   whole, half, quarter, eight};
+    enum noteTypes{whole_rest, half_rest, quarter_rest, eighth_rest,
+                   whole, half, quarter, eighth};
 
 public:
     ScoreViewModel();

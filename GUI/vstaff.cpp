@@ -340,7 +340,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
                 vnote->setX(lastX+50);
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 vnote->setX(lastX+25);
 
                 break;
@@ -356,7 +356,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
                 vnote->setX(lastX+50);
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 vnote->setX(lastX+25);
 
                 break;
@@ -379,7 +379,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
                 vnote->setX(lastX+100);
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 vnote->setX(lastX+50);
 
                 break;
@@ -395,7 +395,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
                 vnote->setX(lastX+100);
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 vnote->setX(lastX+50);
 
                 break;
@@ -416,7 +416,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
     //vnotes.last()->setX(50*vnotes.size());
 }
 
-void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents accent)
+void VStaff::setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accents accent)
 {
     newvnote = new VNote(false,true,9,notetype,accent,this);
 
@@ -477,7 +477,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
                 }
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 newvnote->setX(vnotes.last()->x()+25);
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(25);
@@ -505,7 +505,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
                 }
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 newvnote->setX(vnotes.last()->x()+25);
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(25);
@@ -542,7 +542,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
                 }
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 newvnote->setX(vnotes.last()->x()+50);
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(50);
@@ -570,7 +570,7 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
                 }
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 newvnote->setX(vnotes.last()->x()+50);
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(50);
@@ -586,9 +586,6 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
                 break;
             }
         }
-
-
-
     }
 
     foreach (VStaffLine *staffline, vstafflines) {
@@ -597,7 +594,14 @@ void VStaff::setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents acc
     }
 }
 
-void VStaff::addNewVNote()
+void VStaff::addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where)
+{
+    vnotes.insert(where-1, new VNote(false, false, staffpos, notetype, accent, this));
+    updateStaffWidth();
+    updateVStaff();
+}
+
+void VStaff::finalizeNewVNote()
 {
     newvnote->setOpacity(1);
     vnotes.push_back(new VNote(false,false, newvnote->getScorepos(), newvnote->getNotetype(), newvnote->getAccent(), this));
@@ -660,7 +664,7 @@ void VStaff::updateStaffWidth()
                 }
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(25);
                 }
@@ -684,7 +688,7 @@ void VStaff::updateStaffWidth()
                 }
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(25);
                 }
@@ -717,7 +721,7 @@ void VStaff::updateStaffWidth()
                 }
 
                 break;
-            case ScoreViewModel::eight:
+            case ScoreViewModel::eighth:
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(50);
                 }
@@ -741,7 +745,7 @@ void VStaff::updateStaffWidth()
                 }
 
                 break;
-            case ScoreViewModel::eight_rest:
+            case ScoreViewModel::eighth_rest:
                 foreach (VStaffLine *staffline, vstafflines) {
                     staffline->addStaffwidth(50);
                 }
@@ -812,7 +816,7 @@ void VStaff::updateVStaff()
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+100);
 
                     break;
-                case ScoreViewModel::eight:
+                case ScoreViewModel::eighth:
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
 
                     break;
@@ -828,7 +832,7 @@ void VStaff::updateVStaff()
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+100);
 
                     break;
-                case ScoreViewModel::eight_rest:
+                case ScoreViewModel::eighth_rest:
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
 
                     break;
@@ -851,7 +855,7 @@ void VStaff::updateVStaff()
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
 
                     break;
-                case ScoreViewModel::eight:
+                case ScoreViewModel::eighth:
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+25);
 
                     break;
@@ -867,7 +871,7 @@ void VStaff::updateVStaff()
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+50);
 
                     break;
-                case ScoreViewModel::eight_rest:
+                case ScoreViewModel::eighth_rest:
                     vnotes.at(i)->setX(vnotes.at(i-1)->x()+25);
 
                     break;
@@ -896,7 +900,7 @@ int VStaff::getDurationSum()
         case ScoreViewModel::quarter:
             dur+=2;
             break;
-        case ScoreViewModel::eight:
+        case ScoreViewModel::eighth:
             dur+=1;
             break;
         case ScoreViewModel::whole_rest:
@@ -908,7 +912,7 @@ int VStaff::getDurationSum()
         case ScoreViewModel::quarter_rest:
             dur+=2;
             break;
-        case ScoreViewModel::eight_rest:
+        case ScoreViewModel::eighth_rest:
             dur+=1;
             break;
         default:
@@ -939,7 +943,13 @@ void VStaff::deleteErrorMarkers()
 
 VNote *VStaff::getSelectedvnote() const
 {
-    return selectedvnote;
+    foreach (VNote *vnote, vnotes) {
+        if(vnote->isSelected()){
+            return vnote;
+        }
+    }
+
+    return NULL;
 }
 
 ScoreViewModel::clefNames VStaff::getClef() const

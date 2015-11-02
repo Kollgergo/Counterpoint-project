@@ -49,5 +49,6 @@
         <file>res/staff_icon.png</file>
         <file>res/play_icon.png</file>
         <file>res/stop_icon.png</file>
+        <file>res/split_icon.png</file>
     </qresource>
 </RCC>

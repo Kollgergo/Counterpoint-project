@@ -26,7 +26,8 @@ public:
 
     VNote *getNewvnote() const;
     void setNewvnote(VNote *value);
-    void setNewVNote(ScoreViewModel::noteTypes notetype, Accent::accents accent);
+    void setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accents accent);
+    void addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where);
 
     ScoreViewModel::clefNames getClef() const;
     KeySignature getKeysignature() const;
@@ -36,7 +37,7 @@ public:
 
     void showNextVNote(VNote *vnote);
 
-    void addNewVNote();
+    void finalizeNewVNote();
 
     void updateStaffWidth();
     void updateVStaff();
