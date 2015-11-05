@@ -8,7 +8,6 @@ NewCPDialog::NewCPDialog(QWidget *parent) :
     ui->setupUi(this);
     clef = ScoreViewModel::treble;
     ui->trebleRadioButton->setChecked(true);
-    ui->upperRadioButton->setChecked(true);
     QPushButton *okButton=ui->buttonBox->button(QDialogButtonBox::Ok);
     okButton->setEnabled(false);
     QPushButton *cancelButton=ui->buttonBox->button(QDialogButtonBox::Cancel);

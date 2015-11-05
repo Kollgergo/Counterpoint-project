@@ -48,7 +48,8 @@ SOURCES += main.cpp \
     Rules/nexttothelastrule.cpp \
     Rules/moderule.cpp \
     Rules/maxintervalrule.cpp \
-    Rules/forbiddenskipsrule.cpp
+    Rules/forbiddenskipsrule.cpp \
+    GUI/midisettingsdialog.cpp
 
 
 HEADERS += \
@@ -78,12 +79,14 @@ HEADERS += \
     Rules/nexttothelastrule.h \
     Rules/moderule.h \
     Rules/maxintervalrule.h \
-    Rules/forbiddenskipsrule.h
+    Rules/forbiddenskipsrule.h \
+    GUI/midisettingsdialog.h
 
 
 FORMS    += GUI/mainwindow.ui \
     GUI/newstaffdialog.ui \
-    GUI/newcpdialog.ui
+    GUI/newcpdialog.ui \
+    GUI/midisettingsdialog.ui
 
 RESOURCES += \
     GUI.qrc

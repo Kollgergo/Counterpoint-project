@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newstaffdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -16,9 +16,12 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QRadioButton>
+#include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -27,7 +30,9 @@ QT_BEGIN_NAMESPACE
 class Ui_NewStaffDialog
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QVBoxLayout *verticalLayout_2;
+    QGridLayout *gridLayout_2;
+    QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
@@ -36,22 +41,24 @@ public:
     QRadioButton *tenorRadioButton;
     QRadioButton *bassRadioButton;
     QGroupBox *groupBox_2;
+    QGridLayout *gridLayout;
     QComboBox *comboBox;
+    QSpacerItem *verticalSpacer;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *NewStaffDialog)
     {
         if (NewStaffDialog->objectName().isEmpty())
             NewStaffDialog->setObjectName(QStringLiteral("NewStaffDialog"));
         NewStaffDialog->resize(400, 300);
-        buttonBox = new QDialogButtonBox(NewStaffDialog);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(30, 240, 341, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        buttonBox->setCenterButtons(false);
+        verticalLayout_2 = new QVBoxLayout(NewStaffDialog);
+        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
+        gridLayout_2 = new QGridLayout();
+        gridLayout_2->setObjectName(QStringLiteral("gridLayout_2"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         groupBox = new QGroupBox(NewStaffDialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 151, 201));
         layoutWidget = new QWidget(groupBox);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(30, 30, 89, 151));
@@ -78,12 +85,39 @@ public:
 
         verticalLayout->addWidget(bassRadioButton);
 
+
+        horizontalLayout->addWidget(groupBox);
+
         groupBox_2 = new QGroupBox(NewStaffDialog);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(170, 10, 221, 80));
+        gridLayout = new QGridLayout(groupBox_2);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
         comboBox = new QComboBox(groupBox_2);
         comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setGeometry(QRect(20, 30, 181, 22));
+
+        gridLayout->addWidget(comboBox, 0, 0, 1, 1);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout->addItem(verticalSpacer, 1, 0, 1, 1);
+
+
+        horizontalLayout->addWidget(groupBox_2);
+
+
+        gridLayout_2->addLayout(horizontalLayout, 0, 0, 1, 1);
+
+        buttonBox = new QDialogButtonBox(NewStaffDialog);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(false);
+
+        gridLayout_2->addWidget(buttonBox, 1, 0, 1, 1);
+
+
+        verticalLayout_2->addLayout(gridLayout_2);
+
 
         retranslateUi(NewStaffDialog);
         QObject::connect(buttonBox, SIGNAL(accepted()), NewStaffDialog, SLOT(accept()));

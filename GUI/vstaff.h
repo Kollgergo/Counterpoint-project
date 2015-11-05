@@ -52,6 +52,9 @@ signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);
 
+public slots:
+    void setVNoteDistance(int dist);
+
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
 
@@ -59,11 +62,13 @@ private:
     ScoreViewModel::clefNames clef;
     KeySignature keysignature;
     QList <VStaffLine *> vstafflines;
+    QGraphicsPixmapItem *barline;
     QList<VNote *> vnotes;
     VNote *newvnote;
     VNote *selectedvnote;
     bool CPmode;
     QList<ErrorMarker *> errormarkers;
+    int vnotedistance;
 
 };
 

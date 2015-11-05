@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'vstaff.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.5.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,15 +12,15 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'vstaff.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.5.0. It"
+#error "This file was generated using the moc from 5.5.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_VStaff_t {
-    QByteArrayData data[8];
-    char stringdata0[61];
+    QByteArrayData data[10];
+    char stringdata0[83];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -36,11 +36,14 @@ QT_MOC_LITERAL(3, 21, 7), // "VStaff*"
 QT_MOC_LITERAL(4, 29, 6), // "vstaff"
 QT_MOC_LITERAL(5, 36, 11), // "newVNoteAdd"
 QT_MOC_LITERAL(6, 48, 6), // "VNote*"
-QT_MOC_LITERAL(7, 55, 5) // "vnote"
+QT_MOC_LITERAL(7, 55, 5), // "vnote"
+QT_MOC_LITERAL(8, 61, 16), // "setVNoteDistance"
+QT_MOC_LITERAL(9, 78, 4) // "dist"
 
     },
     "VStaff\0vstaffSelect\0\0VStaff*\0vstaff\0"
-    "newVNoteAdd\0VNote*\0vnote"
+    "newVNoteAdd\0VNote*\0vnote\0setVNoteDistance\0"
+    "dist"
 };
 #undef QT_MOC_LITERAL
 
@@ -50,7 +53,7 @@ static const uint qt_meta_data_VStaff[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -58,12 +61,18 @@ static const uint qt_meta_data_VStaff[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   24,    2, 0x06 /* Public */,
-       5,    1,   27,    2, 0x06 /* Public */,
+       1,    1,   29,    2, 0x06 /* Public */,
+       5,    1,   32,    2, 0x06 /* Public */,
+
+ // slots: name, argc, parameters, tag, flags
+       8,    1,   35,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
     QMetaType::Void, 0x80000000 | 6,    7,
+
+ // slots: parameters
+    QMetaType::Void, QMetaType::Int,    9,
 
        0        // eod
 };
@@ -76,6 +85,7 @@ void VStaff::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         switch (_id) {
         case 0: _t->vstaffSelect((*reinterpret_cast< VStaff*(*)>(_a[1]))); break;
         case 1: _t->newVNoteAdd((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 2: _t->setVNoteDistance((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
@@ -139,13 +149,13 @@ int VStaff::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
 }

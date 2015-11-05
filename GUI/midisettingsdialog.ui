@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MidiSettingsDialog</class>
+ <widget class="QDialog" name="MidiSettingsDialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MIDI beállítások</string>
+  </property>
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_2">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QGroupBox" name="groupBox">
+       <property name="title">
+        <string>MIDI beállítások</string>
+       </property>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLabel" name="label">
+            <property name="text">
+             <string>Hangszer</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboBox">
+            <item>
+             <property name="text">
+              <string>Acoustic Grand Piano</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Bright Acoustic Piano</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Grand Piano</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Honky-tonk Piano</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Piano 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Piano 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Harpsichord</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Clavinet</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Celesta</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Glockenspiel</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Music Box</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Vibraphone</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Marimba</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Xylophone</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tubular Bells</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Dulcimer</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Drawbar Organ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Percussive Organ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Rock Organ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Church Organ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Reed Organ</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Accordion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Harmonica</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Tango Accordion</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acoustic Guitar (nylon)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acoustic Guitar (steel)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Guitar (jazz)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Guitar (clean)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Guitar (muted)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Overdriven Guitar</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Distortion Guitar</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Guitar harmonics</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Acoustic Bass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Bass (finger)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Electric Bass (pick)</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Fretless Bass</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Slap Bass 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Slap Bass 2</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synth Bass 1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Synth Bass 2</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <item>
+           <widget class="QLabel" name="label_2">
+            <property name="text">
+             <string>Hangerő</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="label_3">
+            <property name="text">
+             <string>Tempo</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="0">
+         <layout class="QHBoxLayout" name="horizontalLayout_8">
+          <item>
+           <spacer name="horizontalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>150</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QSlider" name="volumeSlider">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="volumeLine"/>
+          </item>
+         </layout>
+        </item>
+        <item row="2" column="1">
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <spacer name="horizontalSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>150</width>
+              <height>20</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QSlider" name="tempoSlider">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="tempoLine"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>MidiSettingsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>254</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>MidiSettingsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>316</x>
+     <y>260</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

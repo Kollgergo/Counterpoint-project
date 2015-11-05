@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -13,13 +13,13 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include "scoreview.h"
 
@@ -47,14 +47,17 @@ public:
     QAction *actionPlayMIDI;
     QAction *actionStopPlayBack;
     QAction *actionCutHalf;
+    QAction *actionScoreSettings;
+    QAction *actionMidiSettings;
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     ScoreView *scoreView;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuNew;
     QMenu *menuOpen;
     QMenu *menuExport;
+    QMenu *menuBe_ll_t_sok;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
     QToolBar *toolBar;
@@ -167,12 +170,16 @@ public:
         QIcon icon18;
         icon18.addFile(QStringLiteral(":/res/split_icon.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionCutHalf->setIcon(icon18);
+        actionScoreSettings = new QAction(MainWindow);
+        actionScoreSettings->setObjectName(QStringLiteral("actionScoreSettings"));
+        actionMidiSettings = new QAction(MainWindow);
+        actionMidiSettings->setObjectName(QStringLiteral("actionMidiSettings"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout(centralWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         scoreView = new ScoreView(centralWidget);
         scoreView->setObjectName(QStringLiteral("scoreView"));
         scoreView->setMinimumSize(QSize(0, 0));
@@ -180,7 +187,7 @@ public:
         scoreView->setFrameShadow(QFrame::Sunken);
         scoreView->setRenderHints(QPainter::Antialiasing|QPainter::HighQualityAntialiasing|QPainter::SmoothPixmapTransform|QPainter::TextAntialiasing);
 
-        verticalLayout->addWidget(scoreView);
+        horizontalLayout->addWidget(scoreView);
 
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -194,6 +201,8 @@ public:
         menuOpen->setObjectName(QStringLiteral("menuOpen"));
         menuExport = new QMenu(menuFile);
         menuExport->setObjectName(QStringLiteral("menuExport"));
+        menuBe_ll_t_sok = new QMenu(menuBar);
+        menuBe_ll_t_sok->setObjectName(QStringLiteral("menuBe_ll_t_sok"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -206,6 +215,7 @@ public:
         MainWindow->addToolBar(Qt::TopToolBarArea, toolBar);
 
         menuBar->addAction(menuFile->menuAction());
+        menuBar->addAction(menuBe_ll_t_sok->menuAction());
         menuFile->addAction(menuNew->menuAction());
         menuFile->addAction(menuOpen->menuAction());
         menuFile->addAction(menuExport->menuAction());
@@ -214,6 +224,8 @@ public:
         menuNew->addAction(actionNewCounterpoint);
         menuOpen->addAction(actionOpenLilypond);
         menuExport->addAction(actionSaveLilypond);
+        menuBe_ll_t_sok->addAction(actionScoreSettings);
+        menuBe_ll_t_sok->addAction(actionMidiSettings);
         mainToolBar->addAction(actionNewStaff);
         mainToolBar->addSeparator();
         mainToolBar->addAction(actionAddNote);
@@ -261,6 +273,7 @@ public:
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));
+        actionNewScore->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", 0));
         actionNewCounterpoint->setText(QApplication::translate("MainWindow", "\303\232j Ellenpont feladat", 0));
         actionChangeNoteRest->setText(QApplication::translate("MainWindow", "Hang cser\303\251je hang-sz\303\274net", 0));
 #ifndef QT_NO_TOOLTIP
@@ -268,7 +281,9 @@ public:
 #endif // QT_NO_TOOLTIP
         actionChangeNoteRest->setShortcut(QApplication::translate("MainWindow", "M", 0));
         actionOpenLilypond->setText(QApplication::translate("MainWindow", "LilyPond file megnyit\303\241sa", 0));
+        actionOpenLilypond->setShortcut(QApplication::translate("MainWindow", "Ctrl+O", 0));
         actionSaveLilypond->setText(QApplication::translate("MainWindow", "Ment\303\251s LilyPond f\303\241jlba", 0));
+        actionSaveLilypond->setShortcut(QApplication::translate("MainWindow", "Ctrl+S", 0));
         actionTest->setText(QApplication::translate("MainWindow", "Ellen\305\221rz\303\251s", 0));
         actionTest->setShortcut(QApplication::translate("MainWindow", "T", 0));
         actionNewStaff->setText(QApplication::translate("MainWindow", "\303\232j Kottasor", 0));
@@ -278,10 +293,14 @@ public:
         actionStopPlayBack->setToolTip(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s le\303\241ll\303\255t\303\241sa", 0));
 #endif // QT_NO_TOOLTIP
         actionCutHalf->setText(QApplication::translate("MainWindow", "Hang elfelez\303\251se", 0));
+        actionCutHalf->setShortcut(QApplication::translate("MainWindow", "N", 0));
+        actionScoreSettings->setText(QApplication::translate("MainWindow", "Kotta", 0));
+        actionMidiSettings->setText(QApplication::translate("MainWindow", "MIDI", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));
         menuNew->setTitle(QApplication::translate("MainWindow", "\303\232j", 0));
         menuOpen->setTitle(QApplication::translate("MainWindow", "Megnyit\303\241s", 0));
         menuExport->setTitle(QApplication::translate("MainWindow", "Export", 0));
+        menuBe_ll_t_sok->setTitle(QApplication::translate("MainWindow", "Be\303\241ll\303\255t\303\241sok", 0));
         toolBar->setWindowTitle(QApplication::translate("MainWindow", "toolBar", 0));
     } // retranslateUi
 

@@ -28,14 +28,17 @@ INPUT(
 ./debug\moderule.o
 ./debug\maxintervalrule.o
 ./debug\forbiddenskipsrule.o
+./debug\midisettingsdialog.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
 ./debug\moc_vstaff.o
 ./debug\moc_vstaffline.o
+./debug\moc_scoreview.o
 ./debug\moc_newstaffdialog.o
 ./debug\moc_newcpdialog.o
 ./debug\moc_errormarker.o
 ./debug\moc_QMidiOut.o
 ./debug\moc_playbackthread.o
+./debug\moc_midisettingsdialog.o
 );

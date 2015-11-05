@@ -11,6 +11,7 @@
 #include "scoreviewmodel.h"
 #include "newstaffdialog.h"
 #include "newcpdialog.h"
+#include "midisettingsdialog.h"
 #include "playbackthread.h"
 
 
@@ -85,6 +86,8 @@ private slots:
 
     void on_actionCutHalf_triggered();
 
+    void on_actionMidiSettings_triggered();
+
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);
@@ -100,6 +103,8 @@ private:
     VStaff *selectedvstaff;
     bool CPmode;
     QMidiOut *midi;
+    unsigned int instrument;
+    unsigned int midivelocity;
     unsigned int playbackcounter;
 
 };

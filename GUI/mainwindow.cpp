@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->actionPlayMIDI->setEnabled(false);
     ui->actionStopPlayBack->setEnabled(false);
 
+    instrument = 0;
+    midivelocity = 64;
 
 }
 
@@ -43,6 +45,7 @@ void MainWindow::showScore(bool isCF)
            this->showNextVStaff(new VStaff(CPmode, false,svm->getClefByNum(i), svm->getKeySignatureByNum(i).getKeysig(), 0));
         }
 
+        connect(ui->scoreView, SIGNAL(ctrlWheelChanging(int)), vstaffs.last(), SLOT(setVNoteDistance(int)));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
@@ -103,6 +106,8 @@ void MainWindow::addVStaff(VStaff *vstaff)
     vstaffs.last()->setY((vstaffs.size()-1)*200);
 
     scene->addItem(vstaffs.last());
+    connect(ui->scoreView, SIGNAL(ctrlWheelChanging(int)), vstaffs.last(), SLOT(setVNoteDistance(int)));
+
 }
 
 void MainWindow::addVNote(VStaff *vstaff, unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where)
@@ -122,6 +127,7 @@ void MainWindow::initToolBars(bool isCP)
         ui->actionNewCounterpoint->setEnabled(true);
 
         ui->actionStopPlayBack->setEnabled(false);
+        ui->actionPlayMIDI->setEnabled(true);
 
         ui->actionAddNote->setChecked(false);
         ui->actionAddRest->setChecked(false);
@@ -1003,20 +1009,23 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             svm->readLilyPond(cpdialog->getFileName(), true);
             svm->addStaff(cpdialog->getClef(), svm->getClefByNum(1), 0);
             showScore(true);
-            ui->actionAddNote->setEnabled(true);
-            ui->actionAddRest->setEnabled(true);
-            ui->actionWhole->setEnabled(true);
-            ui->actionHalf->setEnabled(true);
-            ui->actionNewStaff->setDisabled(true);
-            ui->actionQuarter->setDisabled(true);
-            ui->actionEighth->setDisabled(true);
-            ui->actionAddSharp->setChecked(false);
-            ui->actionAddFlat->setChecked(false);
-            ui->actionAddNote->setChecked(false);
-            ui->actionAddRest->setChecked(false);
-            ui->actionWhole->setChecked(false);
-            ui->actionHalf->setChecked(false);
-            ui->actionPlayMIDI->setEnabled(true);
+            initToolBars(true);
+
+            vstaffs.last()->setSelected(true);
+//            ui->actionAddNote->setEnabled(true);
+//            ui->actionAddRest->setEnabled(true);
+//            ui->actionWhole->setEnabled(true);
+//            ui->actionHalf->setEnabled(true);
+//            ui->actionNewStaff->setDisabled(true);
+//            ui->actionQuarter->setDisabled(true);
+//            ui->actionEighth->setDisabled(true);
+//            ui->actionAddSharp->setChecked(false);
+//            ui->actionAddFlat->setChecked(false);
+//            ui->actionAddNote->setChecked(false);
+//            ui->actionAddRest->setChecked(false);
+//            ui->actionWhole->setChecked(false);
+//            ui->actionHalf->setChecked(false);
+//            ui->actionPlayMIDI->setEnabled(true);
 
         }
     }
@@ -1052,14 +1061,15 @@ void MainWindow::on_actionOpenLilypond_triggered()
 {
     CPmode = false;
 
-    ui->actionNewStaff->setEnabled(true);
-    ui->actionAddNote->setEnabled(true);
-    ui->actionAddRest->setEnabled(true);
-    ui->actionWhole->setEnabled(true);
-    ui->actionHalf->setEnabled(true);
-    ui->actionQuarter->setEnabled(true);
-    ui->actionEighth->setEnabled(true);
-    ui->actionTest->setEnabled(false);
+    initToolBars(false);
+//    ui->actionNewStaff->setEnabled(true);
+//    ui->actionAddNote->setEnabled(true);
+//    ui->actionAddRest->setEnabled(true);
+//    ui->actionWhole->setEnabled(true);
+//    ui->actionHalf->setEnabled(true);
+//    ui->actionQuarter->setEnabled(true);
+//    ui->actionEighth->setEnabled(true);
+//    ui->actionTest->setEnabled(false);
     ui->actionPlayMIDI->setEnabled(true);
 
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
@@ -1111,6 +1121,10 @@ void MainWindow::on_actionNewStaff_triggered()
     NewStaffDialog *staffdialog = new NewStaffDialog(this);
     if(staffdialog->exec() == QDialog::Accepted){
         addVStaff(new VStaff(false, false, staffdialog->getSelectedclef(), staffdialog->getSelectedkeysignature(), 0));
+        foreach (VStaff *vstaff, vstaffs) {
+            vstaff->setSelected(false);
+        }
+        vstaffs.last()->setSelected(true);
     }
 }
 
@@ -1134,8 +1148,8 @@ void MainWindow::on_actionPlayMIDI_triggered()
         QList<PlayBackThread *> voices;
 
         for(unsigned int i=0; i<svm->getNumOfStaffs(); i++){
-            midi->setInstrument(/* voice */ i, /* instrument */ 0);
-            voices.push_back(new PlayBackThread(midi, i, svm->getStaffByNum(i+1), svm->getStaffAccentByNum(i+1), this));
+            midi->setInstrument(/* voice */ i, /* instrument */ instrument);
+            voices.push_back(new PlayBackThread(midi, i, midivelocity, svm->getStaffByNum(i+1), svm->getStaffAccentByNum(i+1), this));
             connect(voices.last(), &PlayBackThread::finished, voices.last(), &QObject::deleteLater);
             connect(voices.last(), SIGNAL(playBackEnding()), this, SLOT(playBackEnded()));
         }
@@ -1218,4 +1232,10 @@ void MainWindow::on_actionCutHalf_triggered()
             }
         }
     }
+}
+
+void MainWindow::on_actionMidiSettings_triggered()
+{
+    MidiSettingsDialog *dialog = new MidiSettingsDialog(this);
+    dialog->exec();
 }

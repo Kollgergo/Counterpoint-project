@@ -12,7 +12,7 @@ class PlayBackThread : public QThread
     Q_OBJECT
 
 public:
-    PlayBackThread(QMidiOut *midi, int voice, Staff staff, QVector<Accent *> accents, QObject *parent);
+    PlayBackThread(QMidiOut *midi, int voice, unsigned int velocity, Staff staff, QVector<Accent *> accents, QObject *parent);
 
     void run();
 
@@ -25,6 +25,8 @@ private:
 
     Staff staff;
     QVector<Accent *> accents;
+
+    unsigned int velocity;
 };
 
 #endif // PLAYBACK_H

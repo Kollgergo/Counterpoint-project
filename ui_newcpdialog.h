@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'newcpdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.5.0
+** Created by: Qt User Interface Compiler version 5.5.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
@@ -29,7 +30,9 @@ QT_BEGIN_NAMESPACE
 class Ui_NewCPDialog
 {
 public:
-    QDialogButtonBox *buttonBox;
+    QVBoxLayout *verticalLayout_3;
+    QGridLayout *gridLayout;
+    QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox;
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
@@ -38,27 +41,25 @@ public:
     QRadioButton *tenorRadioButton;
     QRadioButton *bassRadioButton;
     QGroupBox *groupBox_2;
+    QWidget *widget;
+    QVBoxLayout *verticalLayout_4;
     QLineEdit *lineCF;
     QPushButton *browseFileButton;
-    QGroupBox *groupBox_3;
-    QWidget *widget;
-    QHBoxLayout *horizontalLayout;
-    QRadioButton *upperRadioButton;
-    QRadioButton *lowerRadioButton;
+    QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *NewCPDialog)
     {
         if (NewCPDialog->objectName().isEmpty())
             NewCPDialog->setObjectName(QStringLiteral("NewCPDialog"));
-        NewCPDialog->resize(451, 253);
-        buttonBox = new QDialogButtonBox(NewCPDialog);
-        buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(70, 220, 341, 32));
-        buttonBox->setOrientation(Qt::Horizontal);
-        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        NewCPDialog->resize(552, 290);
+        verticalLayout_3 = new QVBoxLayout(NewCPDialog);
+        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         groupBox = new QGroupBox(NewCPDialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        groupBox->setGeometry(QRect(10, 10, 131, 201));
         layoutWidget = new QWidget(groupBox);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
         layoutWidget->setGeometry(QRect(20, 30, 89, 141));
@@ -85,35 +86,44 @@ public:
 
         verticalLayout->addWidget(bassRadioButton);
 
+
+        horizontalLayout->addWidget(groupBox);
+
         groupBox_2 = new QGroupBox(NewCPDialog);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        groupBox_2->setGeometry(QRect(150, 10, 291, 101));
-        lineCF = new QLineEdit(groupBox_2);
+        widget = new QWidget(groupBox_2);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(10, 30, 241, 71));
+        verticalLayout_4 = new QVBoxLayout(widget);
+        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
+        lineCF = new QLineEdit(widget);
         lineCF->setObjectName(QStringLiteral("lineCF"));
-        lineCF->setGeometry(QRect(10, 30, 271, 20));
         lineCF->setCursor(QCursor(Qt::ArrowCursor));
         lineCF->setReadOnly(true);
-        browseFileButton = new QPushButton(groupBox_2);
+
+        verticalLayout_4->addWidget(lineCF);
+
+        browseFileButton = new QPushButton(widget);
         browseFileButton->setObjectName(QStringLiteral("browseFileButton"));
-        browseFileButton->setGeometry(QRect(64, 60, 161, 23));
-        groupBox_3 = new QGroupBox(NewCPDialog);
-        groupBox_3->setObjectName(QStringLiteral("groupBox_3"));
-        groupBox_3->setGeometry(QRect(150, 110, 291, 101));
-        widget = new QWidget(groupBox_3);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(30, 40, 271, 20));
-        horizontalLayout = new QHBoxLayout(widget);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        upperRadioButton = new QRadioButton(widget);
-        upperRadioButton->setObjectName(QStringLiteral("upperRadioButton"));
 
-        horizontalLayout->addWidget(upperRadioButton);
+        verticalLayout_4->addWidget(browseFileButton);
 
-        lowerRadioButton = new QRadioButton(widget);
-        lowerRadioButton->setObjectName(QStringLiteral("lowerRadioButton"));
 
-        horizontalLayout->addWidget(lowerRadioButton);
+        horizontalLayout->addWidget(groupBox_2);
+
+
+        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 1);
+
+        buttonBox = new QDialogButtonBox(NewCPDialog);
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
+        buttonBox->setOrientation(Qt::Horizontal);
+        buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+
+        gridLayout->addWidget(buttonBox, 1, 0, 1, 1);
+
+
+        verticalLayout_3->addLayout(gridLayout);
 
 
         retranslateUi(NewCPDialog);
@@ -133,9 +143,6 @@ public:
         bassRadioButton->setText(QApplication::translate("NewCPDialog", "Basszus kulcs", 0));
         groupBox_2->setTitle(QApplication::translate("NewCPDialog", "Cantus Firmus f\303\241jl helye", 0));
         browseFileButton->setText(QApplication::translate("NewCPDialog", "Cantus Firmus kiv\303\241laszt\303\241sa", 0));
-        groupBox_3->setTitle(QApplication::translate("NewCPDialog", "Ellenpont helye", 0));
-        upperRadioButton->setText(QApplication::translate("NewCPDialog", "Fels\305\221 ellenpont", 0));
-        lowerRadioButton->setText(QApplication::translate("NewCPDialog", "Als\303\263 ellenpont", 0));
     } // retranslateUi
 
 };

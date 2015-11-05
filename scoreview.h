@@ -7,12 +7,18 @@
 
 class ScoreView : public QGraphicsView
 {
+    Q_OBJECT
+
 public:
     ScoreView(QWidget *parent = 0);
 
 protected:
-    virtual void wheelEvent(QWheelEvent *event);
+    void mouseReleaseEvent(QMouseEvent* event);
+    void wheelEvent(QWheelEvent *event);
     void contextMenuEvent(QContextMenuEvent *event);
+
+signals:
+    void ctrlWheelChanging(int value);
 
 };
 
