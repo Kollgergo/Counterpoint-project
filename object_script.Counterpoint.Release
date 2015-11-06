@@ -21,7 +21,6 @@ INPUT(
 ./release\QMidi_Win32.o
 ./release\QMidiFile.o
 ./release\QMidiOut.o
-./release\playbackthread.o
 ./release\mainrules.o
 ./release\beginendrule.o
 ./release\nexttothelastrule.o
@@ -29,6 +28,7 @@ INPUT(
 ./release\maxintervalrule.o
 ./release\forbiddenskipsrule.o
 ./release\midisettingsdialog.o
+./release\playback.o
 ./release\qrc_GUI.o
 ./release\moc_mainwindow.o
 ./release\moc_vnote.o
@@ -39,6 +39,6 @@ INPUT(
 ./release\moc_newcpdialog.o
 ./release\moc_errormarker.o
 ./release\moc_QMidiOut.o
-./release\moc_playbackthread.o
 ./release\moc_midisettingsdialog.o
+./release\moc_playback.o
 );

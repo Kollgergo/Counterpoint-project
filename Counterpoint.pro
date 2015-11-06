@@ -42,14 +42,14 @@ SOURCES += main.cpp \
     QMidi/src/OS/QMidi_Win32.cpp \
     QMidi/src/QMidiFile.cpp \
     QMidi/src/QMidiOut.cpp \
-    GUI/playbackthread.cpp \
     Rules/mainrules.cpp \
     Rules/beginendrule.cpp \
     Rules/nexttothelastrule.cpp \
     Rules/moderule.cpp \
     Rules/maxintervalrule.cpp \
     Rules/forbiddenskipsrule.cpp \
-    GUI/midisettingsdialog.cpp
+    GUI/midisettingsdialog.cpp \
+    GUI/playback.cpp
 
 
 HEADERS += \
@@ -73,14 +73,14 @@ HEADERS += \
     Datamodel/accent.h \
     QMidi/src/QMidiFile.h \
     QMidi/src/QMidiOut.h \
-    GUI/playbackthread.h \
     Rules/mainrules.h \
     Rules/beginendrule.h \
     Rules/nexttothelastrule.h \
     Rules/moderule.h \
     Rules/maxintervalrule.h \
     Rules/forbiddenskipsrule.h \
-    GUI/midisettingsdialog.h
+    GUI/midisettingsdialog.h \
+    GUI/playback.h
 
 
 FORMS    += GUI/mainwindow.ui \

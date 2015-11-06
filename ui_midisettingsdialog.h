@@ -21,7 +21,6 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
@@ -35,20 +34,20 @@ public:
     QVBoxLayout *verticalLayout;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QComboBox *comboBox;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_2;
-    QLabel *label_3;
     QHBoxLayout *horizontalLayout_8;
     QSpacerItem *horizontalSpacer_4;
     QSlider *volumeSlider;
-    QLineEdit *volumeLine;
+    QLabel *label_4;
     QHBoxLayout *horizontalLayout_9;
     QSpacerItem *horizontalSpacer;
     QSlider *tempoSlider;
-    QLineEdit *tempoLine;
+    QLabel *label_5;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QLabel *label_3;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label;
+    QComboBox *comboBox;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *MidiSettingsDialog)
@@ -66,20 +65,70 @@ public:
         groupBox->setObjectName(QStringLiteral("groupBox"));
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setObjectName(QStringLiteral("gridLayout"));
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(groupBox);
-        label->setObjectName(QStringLiteral("label"));
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
+        horizontalSpacer_4 = new QSpacerItem(150, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        horizontalLayout->addWidget(label);
+        horizontalLayout_8->addItem(horizontalSpacer_4);
 
-        comboBox = new QComboBox(groupBox);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
+        volumeSlider = new QSlider(groupBox);
+        volumeSlider->setObjectName(QStringLiteral("volumeSlider"));
+        volumeSlider->setMinimum(1);
+        volumeSlider->setMaximum(100);
+        volumeSlider->setOrientation(Qt::Vertical);
 
-        horizontalLayout->addWidget(comboBox);
+        horizontalLayout_8->addWidget(volumeSlider);
+
+        label_4 = new QLabel(groupBox);
+        label_4->setObjectName(QStringLiteral("label_4"));
+        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_4->sizePolicy().hasHeightForWidth());
+        label_4->setSizePolicy(sizePolicy);
+        label_4->setMinimumSize(QSize(25, 15));
+        label_4->setMaximumSize(QSize(25, 15));
+        label_4->setFrameShape(QFrame::StyledPanel);
+        label_4->setFrameShadow(QFrame::Sunken);
+        label_4->setScaledContents(false);
+        label_4->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+
+        horizontalLayout_8->addWidget(label_4);
 
 
-        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 2);
+        gridLayout->addLayout(horizontalLayout_8, 2, 0, 1, 1);
+
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
+        horizontalSpacer = new QSpacerItem(150, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer);
+
+        tempoSlider = new QSlider(groupBox);
+        tempoSlider->setObjectName(QStringLiteral("tempoSlider"));
+        tempoSlider->setMinimum(1);
+        tempoSlider->setMaximum(100);
+        tempoSlider->setOrientation(Qt::Vertical);
+
+        horizontalLayout_9->addWidget(tempoSlider);
+
+        label_5 = new QLabel(groupBox);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        sizePolicy.setHeightForWidth(label_5->sizePolicy().hasHeightForWidth());
+        label_5->setSizePolicy(sizePolicy);
+        label_5->setMinimumSize(QSize(25, 15));
+        label_5->setMaximumSize(QSize(25, 15));
+        label_5->setFrameShape(QFrame::Panel);
+        label_5->setFrameShadow(QFrame::Sunken);
+        label_5->setLineWidth(1);
+        label_5->setMidLineWidth(0);
+        label_5->setScaledContents(false);
+        label_5->setWordWrap(true);
+
+        horizontalLayout_9->addWidget(label_5);
+
+
+        gridLayout->addLayout(horizontalLayout_9, 2, 1, 1, 1);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
@@ -96,45 +145,20 @@ public:
 
         gridLayout->addLayout(horizontalLayout_2, 1, 0, 1, 2);
 
-        horizontalLayout_8 = new QHBoxLayout();
-        horizontalLayout_8->setObjectName(QStringLiteral("horizontalLayout_8"));
-        horizontalSpacer_4 = new QSpacerItem(150, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        label = new QLabel(groupBox);
+        label->setObjectName(QStringLiteral("label"));
 
-        horizontalLayout_8->addItem(horizontalSpacer_4);
+        horizontalLayout->addWidget(label);
 
-        volumeSlider = new QSlider(groupBox);
-        volumeSlider->setObjectName(QStringLiteral("volumeSlider"));
-        volumeSlider->setOrientation(Qt::Vertical);
+        comboBox = new QComboBox(groupBox);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
 
-        horizontalLayout_8->addWidget(volumeSlider);
-
-        volumeLine = new QLineEdit(groupBox);
-        volumeLine->setObjectName(QStringLiteral("volumeLine"));
-
-        horizontalLayout_8->addWidget(volumeLine);
+        horizontalLayout->addWidget(comboBox);
 
 
-        gridLayout->addLayout(horizontalLayout_8, 2, 0, 1, 1);
-
-        horizontalLayout_9 = new QHBoxLayout();
-        horizontalLayout_9->setObjectName(QStringLiteral("horizontalLayout_9"));
-        horizontalSpacer = new QSpacerItem(150, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_9->addItem(horizontalSpacer);
-
-        tempoSlider = new QSlider(groupBox);
-        tempoSlider->setObjectName(QStringLiteral("tempoSlider"));
-        tempoSlider->setOrientation(Qt::Vertical);
-
-        horizontalLayout_9->addWidget(tempoSlider);
-
-        tempoLine = new QLineEdit(groupBox);
-        tempoLine->setObjectName(QStringLiteral("tempoLine"));
-
-        horizontalLayout_9->addWidget(tempoLine);
-
-
-        gridLayout->addLayout(horizontalLayout_9, 2, 1, 1, 1);
+        gridLayout->addLayout(horizontalLayout, 0, 0, 1, 2);
 
 
         verticalLayout->addWidget(groupBox);
@@ -153,6 +177,8 @@ public:
         retranslateUi(MidiSettingsDialog);
         QObject::connect(buttonBox, SIGNAL(accepted()), MidiSettingsDialog, SLOT(accept()));
         QObject::connect(buttonBox, SIGNAL(rejected()), MidiSettingsDialog, SLOT(reject()));
+        QObject::connect(volumeSlider, SIGNAL(valueChanged(int)), label_4, SLOT(setNum(int)));
+        QObject::connect(tempoSlider, SIGNAL(valueChanged(int)), label_5, SLOT(setNum(int)));
 
         QMetaObject::connectSlotsByName(MidiSettingsDialog);
     } // setupUi
@@ -161,6 +187,10 @@ public:
     {
         MidiSettingsDialog->setWindowTitle(QApplication::translate("MidiSettingsDialog", "MIDI be\303\241ll\303\255t\303\241sok", 0));
         groupBox->setTitle(QApplication::translate("MidiSettingsDialog", "MIDI be\303\241ll\303\255t\303\241sok", 0));
+        label_4->setText(QApplication::translate("MidiSettingsDialog", "TextLabel", 0));
+        label_5->setText(QApplication::translate("MidiSettingsDialog", "TextLabel", 0));
+        label_2->setText(QApplication::translate("MidiSettingsDialog", "Hanger\305\221", 0));
+        label_3->setText(QApplication::translate("MidiSettingsDialog", "Tempo", 0));
         label->setText(QApplication::translate("MidiSettingsDialog", "Hangszer", 0));
         comboBox->clear();
         comboBox->insertItems(0, QStringList()
@@ -205,8 +235,6 @@ public:
          << QApplication::translate("MidiSettingsDialog", "Synth Bass 1", 0)
          << QApplication::translate("MidiSettingsDialog", "Synth Bass 2", 0)
         );
-        label_2->setText(QApplication::translate("MidiSettingsDialog", "Hanger\305\221", 0));
-        label_3->setText(QApplication::translate("MidiSettingsDialog", "Tempo", 0));
     } // retranslateUi
 
 };

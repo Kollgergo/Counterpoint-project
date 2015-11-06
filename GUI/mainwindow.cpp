@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     instrument = 0;
     midivelocity = 64;
+    tempo = 400;
 
 }
 
@@ -276,7 +277,6 @@ void MainWindow::playBackEnded()
             ui->actionNewCounterpoint->setEnabled(true);
             ui->mainToolBar->setEnabled(true);
         }
-
     }
 }
 
@@ -950,6 +950,7 @@ void MainWindow::vNoteSelected(VNote *note)
 void MainWindow::on_actionNewScore_triggered()
 {
     CPmode = false;
+    tempo = 400;
     ui->actionNewStaff->setEnabled(true);
     ui->actionAddNote->setEnabled(true);
     ui->actionAddRest->setEnabled(true);
@@ -989,6 +990,8 @@ void MainWindow::on_actionNewCounterpoint_triggered()
 {
     CPmode = true;
 
+    tempo = 200;
+
     QMessageBox msgbox(this);
     msgbox.setWindowTitle("Új Ellenpont feladat");
     msgbox.setText("Új Ellenpont feladat megnyitása");
@@ -1012,20 +1015,6 @@ void MainWindow::on_actionNewCounterpoint_triggered()
             initToolBars(true);
 
             vstaffs.last()->setSelected(true);
-//            ui->actionAddNote->setEnabled(true);
-//            ui->actionAddRest->setEnabled(true);
-//            ui->actionWhole->setEnabled(true);
-//            ui->actionHalf->setEnabled(true);
-//            ui->actionNewStaff->setDisabled(true);
-//            ui->actionQuarter->setDisabled(true);
-//            ui->actionEighth->setDisabled(true);
-//            ui->actionAddSharp->setChecked(false);
-//            ui->actionAddFlat->setChecked(false);
-//            ui->actionAddNote->setChecked(false);
-//            ui->actionAddRest->setChecked(false);
-//            ui->actionWhole->setChecked(false);
-//            ui->actionHalf->setChecked(false);
-//            ui->actionPlayMIDI->setEnabled(true);
 
         }
     }
@@ -1060,16 +1049,9 @@ void MainWindow::on_actionChangeNoteRest_triggered()
 void MainWindow::on_actionOpenLilypond_triggered()
 {
     CPmode = false;
+    tempo = 400;
 
     initToolBars(false);
-//    ui->actionNewStaff->setEnabled(true);
-//    ui->actionAddNote->setEnabled(true);
-//    ui->actionAddRest->setEnabled(true);
-//    ui->actionWhole->setEnabled(true);
-//    ui->actionHalf->setEnabled(true);
-//    ui->actionQuarter->setEnabled(true);
-//    ui->actionEighth->setEnabled(true);
-//    ui->actionTest->setEnabled(false);
     ui->actionPlayMIDI->setEnabled(true);
 
     QString filename = QFileDialog::getOpenFileName(this, "LilyPond file megnyitása", "./export", "*.ly");
@@ -1145,18 +1127,21 @@ void MainWindow::on_actionPlayMIDI_triggered()
         midi = new QMidiOut;
         midi->connect(vals.firstKey());
 
-        QList<PlayBackThread *> voices;
+        voices.clear();
 
         for(unsigned int i=0; i<svm->getNumOfStaffs(); i++){
             midi->setInstrument(/* voice */ i, /* instrument */ instrument);
-            voices.push_back(new PlayBackThread(midi, i, midivelocity, svm->getStaffByNum(i+1), svm->getStaffAccentByNum(i+1), this));
-            connect(voices.last(), &PlayBackThread::finished, voices.last(), &QObject::deleteLater);
-            connect(voices.last(), SIGNAL(playBackEnding()), this, SLOT(playBackEnded()));
+            QThread* thread = new QThread;
+            voices.push_back(new PlayBack(midi, i, midivelocity, tempo,svm->getStaffByNum(i+1), svm->getStaffAccentByNum(i+1)));
+            voices.last()->moveToThread(thread);
+            connect(thread, SIGNAL(started()), voices.last(), SLOT(process()));
+            connect(voices.last(), SIGNAL(finished()), thread, SLOT(quit()));
+            connect(voices.last(), SIGNAL(finished()), voices.last(), SLOT(deleteLater()));
+            connect(thread, SIGNAL(finished()), thread, SLOT(deleteLater()));
+            connect(voices.last(), SIGNAL(finished()), this, SLOT(playBackEnded()));
+            thread->start();
         }
 
-        foreach (PlayBackThread *playback, voices) {
-            playback->start();
-        }
     }
 }
 
@@ -1164,7 +1149,33 @@ void MainWindow::on_actionStopPlayBack_triggered()
 {
     ui->actionStopPlayBack->setEnabled(false);
     //midi->stopAll();
-    midi->disconnect();
+    foreach (PlayBack *playback, voices) {
+        playback->finished();
+    }
+
+    if(CPmode){
+        ui->actionPlayMIDI->setEnabled(true);
+        ui->actionNewScore->setEnabled(true);
+        ui->actionOpenLilypond->setEnabled(true);
+        ui->actionSaveLilypond->setEnabled(true);
+        ui->actionNewCounterpoint->setEnabled(true);
+        //ui->actionTest->setEnabled(true);
+        ui->mainToolBar->setEnabled(true);
+        ui->actionNewStaff->setEnabled(false);
+        ui->actionQuarter->setEnabled(false);
+        ui->actionEighth->setEnabled(false);
+        if(vstaffs.at(0)->getDurationSum() == vstaffs.at(1)->getDurationSum()){
+            ui->actionTest->setEnabled(true);
+        }
+    }else{
+        ui->actionPlayMIDI->setEnabled(true);
+        ui->actionNewScore->setEnabled(true);
+        ui->actionOpenLilypond->setEnabled(true);
+        ui->actionSaveLilypond->setEnabled(true);
+        ui->actionNewCounterpoint->setEnabled(true);
+        ui->mainToolBar->setEnabled(true);
+    }
+
 }
 
 void MainWindow::on_actionCutHalf_triggered()
@@ -1236,6 +1247,12 @@ void MainWindow::on_actionCutHalf_triggered()
 
 void MainWindow::on_actionMidiSettings_triggered()
 {
-    MidiSettingsDialog *dialog = new MidiSettingsDialog(this);
-    dialog->exec();
+    qDebug() << midivelocity;
+    MidiSettingsDialog *dialog = new MidiSettingsDialog(instrument, midivelocity, tempo/8, this);
+
+    if(dialog->exec() == QDialog::Accepted){
+        instrument = dialog->getInstrument();
+        midivelocity = dialog->getVolume()-1;
+        tempo = dialog->getTempo()*8;
+    }
 }

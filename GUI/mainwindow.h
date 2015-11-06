@@ -12,7 +12,7 @@
 #include "newstaffdialog.h"
 #include "newcpdialog.h"
 #include "midisettingsdialog.h"
-#include "playbackthread.h"
+#include "playback.h"
 
 
 class QMidiOut;
@@ -102,9 +102,12 @@ private:
     QList<VStaff*> vstaffs;
     VStaff *selectedvstaff;
     bool CPmode;
+
+    QList<PlayBack *> voices;
     QMidiOut *midi;
     unsigned int instrument;
     unsigned int midivelocity;
+    unsigned int tempo;
     unsigned int playbackcounter;
 
 };

@@ -21,7 +21,6 @@ INPUT(
 ./debug\QMidi_Win32.o
 ./debug\QMidiFile.o
 ./debug\QMidiOut.o
-./debug\playbackthread.o
 ./debug\mainrules.o
 ./debug\beginendrule.o
 ./debug\nexttothelastrule.o
@@ -29,6 +28,7 @@ INPUT(
 ./debug\maxintervalrule.o
 ./debug\forbiddenskipsrule.o
 ./debug\midisettingsdialog.o
+./debug\playback.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
@@ -39,6 +39,6 @@ INPUT(
 ./debug\moc_newcpdialog.o
 ./debug\moc_errormarker.o
 ./debug\moc_QMidiOut.o
-./debug\moc_playbackthread.o
 ./debug\moc_midisettingsdialog.o
+./debug\moc_playback.o
 );
