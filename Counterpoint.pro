@@ -2,7 +2,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = Counterpoint
+TARGET = CounterScore
 TEMPLATE = app
 
 CONFIG += c++11
@@ -90,4 +90,3 @@ FORMS    += GUI/mainwindow.ui \
 
 RESOURCES += \
     GUI.qrc
-

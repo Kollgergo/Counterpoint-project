@@ -28,6 +28,19 @@ MainWindow::~MainWindow()
     delete scene;
 }
 
+void MainWindow::updateSceneRect()
+{
+    int maxstaffwidth = 0;
+
+    foreach (VStaff *vstaff, vstaffs) {
+        if(vstaff->getVStaffWidth() > maxstaffwidth){
+            maxstaffwidth = vstaff->getVStaffWidth();
+        }
+    }
+
+    scene->setSceneRect(QRectF(0,-100,maxstaffwidth,vstaffs.size()*200));
+}
+
 void MainWindow::setSvm(ScoreViewModel *value)
 {
     svm = value;
@@ -38,6 +51,8 @@ void MainWindow::showScore(bool isCF)
     vstaffs.clear();
     //svm->deleteStaff(0);
     scene->clear();
+
+    qDebug() << scene->sceneRect();
 
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
         if(i == 1){
@@ -62,6 +77,10 @@ void MainWindow::showScore(bool isCF)
             connect(vstaffs.last()->getVnotes().last(), SIGNAL(vNotePosChanging(VNote*)), this, SLOT(vNotePosChanged(VNote*)));
         }
     }
+
+    updateSceneRect();
+
+    qDebug() << scene->sceneRect();
 
 }
 
@@ -109,6 +128,8 @@ void MainWindow::addVStaff(VStaff *vstaff)
     scene->addItem(vstaffs.last());
     connect(ui->scoreView, SIGNAL(ctrlWheelChanging(int)), vstaffs.last(), SLOT(setVNoteDistance(int)));
 
+    updateSceneRect();
+
 }
 
 void MainWindow::addVNote(VStaff *vstaff, unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where)
@@ -116,6 +137,9 @@ void MainWindow::addVNote(VStaff *vstaff, unsigned int staffpos, ScoreViewModel:
     vstaff->addVNote(staffpos, notetype, accent, where);
     connect(vstaff->getVnotes().at(where-1), SIGNAL(vNoteSelecting(VNote*)), this, SLOT(vNoteSelected(VNote*)));
     connect(vstaff->getVnotes().at(where-1), SIGNAL(vNotePosChanging(VNote*)), this, SLOT(vNotePosChanged(VNote*)));
+
+    updateSceneRect();
+
 }
 
 void MainWindow::initToolBars(bool isCP)
@@ -221,6 +245,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
 
                     vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
                     connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                    vstaffs.at(i)->updateVStaffWidth();
 
                 }else{
                     ui->actionAddNote->setChecked(false);
@@ -233,18 +258,19 @@ void MainWindow::newVNoteAdded(VNote *vnote)
                     ui->actionHalf->setEnabled(false);
                     ui->actionTest->setEnabled(true);
 
-                    vstaffs.at(i)->updateStaffWidth();
+                    vstaffs.at(i)->updateVStaffWidth();
                 }
 
             }else{
                 vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
                 connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                vstaffs.at(i)->updateVStaffWidth();
             }
         }
     }
 
     scene->update();
-
+    updateSceneRect();
 
 }
 
@@ -319,7 +345,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
                             svm->changeToRest(i+1, j+1);
                             vstaffs.at(i)->getVnotes().at(j)->changeToRest();
                             vstaffs.at(i)->updateVStaff();
-                            vstaffs.at(i)->updateStaffWidth();
+                            vstaffs.at(i)->updateVStaffWidth();
                             break;
                         }
                     }
@@ -333,7 +359,7 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             ui->actionAddNote->setChecked(false);
             ui->actionAddRest->setChecked(false);
 
-            selectedvstaff->updateStaffWidth();
+            selectedvstaff->updateVStaffWidth();
         }
         ui->actionHalf->setChecked(false);
         ui->actionWhole->setChecked(false);
@@ -364,7 +390,7 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
                 if(vstaff->isSelected()){
-                    vstaff->updateStaffWidth();
+                    vstaff->updateVStaffWidth();
                     ui->actionAddNote->setChecked(true);
                     ui->actionAddRest->setChecked(false);
                     ui->actionHalf->setChecked(false);
@@ -427,12 +453,14 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     }
 
                     connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                    vstaff->updateVStaffWidth();
                     break;
                 }else{
                     ui->actionAddNote->setChecked(false);
                 }
             }
             scene->update();
+
         }else{
             ui->actionAddNote->setChecked(false);
         }
@@ -454,6 +482,8 @@ void MainWindow::on_actionAddNote_triggered(bool checked)
                     disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
                 }
                 vstaff->updateVStaff();
+                vstaff->updateVStaffWidth();
+
             }
         }
 
@@ -472,7 +502,7 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
         if(!vstaffs.isEmpty()){
             foreach (VStaff *vstaff, vstaffs) {
                 if(vstaff->isSelected()){
-                    vstaff->updateStaffWidth();
+                    vstaff->updateVStaffWidth();
                     ui->actionAddRest->setChecked(true);
                     ui->actionAddNote->setChecked(false);
                     ui->actionHalf->setChecked(false);
@@ -532,6 +562,8 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                         }
                     }
                     connect(vstaff, SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
+                    vstaff->updateVStaffWidth();
+
                     break;
                 }else{
                     ui->actionAddRest->setChecked(false);
@@ -541,6 +573,7 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
         }else{
             ui->actionAddRest->setChecked(false);
         }
+
 
     }else{
         ui->actionHalf->setChecked(false);
@@ -558,6 +591,8 @@ void MainWindow::on_actionAddRest_triggered(bool checked)
                     disconnect(staffline,SIGNAL(hoverEntering(VStaffLine*)),vstaff->getNewvnote(),SLOT(hoverEntered(VStaffLine*)));
                 }
                 vstaff->updateVStaff();
+                vstaff->updateVStaffWidth();
+
             }
         }
 
@@ -1030,14 +1065,14 @@ void MainWindow::on_actionChangeNoteRest_triggered()
                         vstaffs.at(i)->getVnotes().at(j)->changeToNote();
                         updateNoteData(vstaffs.at(i)->getVnotes().at(j));
                         vstaffs.at(i)->updateVStaff();
-                        vstaffs.at(i)->updateStaffWidth();
+                        vstaffs.at(i)->updateVStaffWidth();
                         break;
 
                     }else{ //change to rest
                         svm->changeToRest(i+1, j+1);
                         vstaffs.at(i)->getVnotes().at(j)->changeToRest();
                         vstaffs.at(i)->updateVStaff();
-                        vstaffs.at(i)->updateStaffWidth();
+                        vstaffs.at(i)->updateVStaffWidth();
                         break;
                     }
                 }

@@ -85,7 +85,7 @@ VStaff::VStaff(bool CPmode, bool isCF, ScoreViewModel::clefNames clef, KeySignat
 
     barline = new QGraphicsPixmapItem(QPixmap("./res/double_barline.png"), this);
     barline->setScale(0.70);
-    barline->setPos(vstafflines.at(2)->boundingRect().right(), vstafflines.at(12)->y());
+    barline->setPos(vstafflines.at(2)->boundingRect().right()-22, vstafflines.at(12)->y()+1);
 }
 
 QRectF VStaff::boundingRect() const
@@ -313,7 +313,7 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
             vnote->setX(100);
             break;
         }
-        updateStaffWidth();
+        updateVStaffWidth();
 
     }else{
         lastX = vnotes.last()->x();
@@ -398,12 +398,10 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
                 break;
             }
         }
-
-
     }
 
     vnotes.push_back(vnote);
-    updateStaffWidth();
+    updateVStaffWidth();
     //qDebug() << vnotes.last()->x();
 
     //vnotes.last()->setX(50*vnotes.size());
@@ -590,8 +588,9 @@ void VStaff::setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accen
 void VStaff::addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where)
 {
     vnotes.insert(where-1, new VNote(false, false, staffpos, notetype, accent, this));
-    updateStaffWidth();
+    updateVStaffWidth();
     updateVStaff();
+
 }
 
 void VStaff::finalizeNewVNote()
@@ -613,6 +612,11 @@ void VStaff::finalizeNewVNote()
 
 }
 
+int VStaff::getVStaffWidth()
+{
+    return vstafflines.first()->boundingRect().right();
+}
+
 void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
 {
     emit vstaffSelect(this);
@@ -630,7 +634,7 @@ void VStaff::setSelectedvnote(VNote *value)
     selectedvnote = value;
 }
 
-void VStaff::updateStaffWidth()
+void VStaff::updateVStaffWidth()
 {
     foreach (VStaffLine *staffline, vstafflines) {
         staffline->addStaffwidth(0);
@@ -792,7 +796,7 @@ void VStaff::updateVStaff()
                 break;
             }
 
-            updateStaffWidth();
+            updateVStaffWidth();
 
         }else{
             if(!CPmode){
@@ -940,7 +944,7 @@ void VStaff::setVNoteDistance(int dist)
         vnotedistance += dist;
     }
 
-    updateStaffWidth();
+    updateVStaffWidth();
     updateVStaff();
 }
 

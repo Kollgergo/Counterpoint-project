@@ -29,6 +29,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    void updateSceneRect();
+
     void setSvm(ScoreViewModel *value);
     void showScore(bool isCF = false);
     void showNextVStaff(VStaff * vstaff);

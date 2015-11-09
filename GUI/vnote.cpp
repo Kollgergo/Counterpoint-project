@@ -208,35 +208,34 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
            setCursor(Qt::ClosedHandCursor);
+
+           if(this->shadow == NULL){
+
+               switch (this->getNotetype()) {
+               case ScoreViewModel::whole:
+                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, Accent::none, this->parentObject());
+                   break;
+               case ScoreViewModel::half:
+                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
+                   break;
+               case ScoreViewModel::quarter:
+                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
+                   break;
+               case ScoreViewModel::eighth:
+                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eighth, Accent::none, this->parentObject());
+                   break;
+               default:
+                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
+                   break;
+               }
+
+               shadow->setOpacity(0);
+               shadow->setX(this->pos().x());
+               shadow->setY(this->pos().y());
+               //qDebug() << "Current note pos" << this->pos();
+               //qDebug() << "Current note scenepos" << this->scenePos();
+           }
         }
-
-        if(this->shadow == NULL){
-
-            switch (this->getNotetype()) {
-            case ScoreViewModel::whole:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, Accent::none, this->parentObject());
-                break;
-            case ScoreViewModel::half:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
-                break;
-            case ScoreViewModel::quarter:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
-                break;
-            case ScoreViewModel::eighth:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eighth, Accent::none, this->parentObject());
-                break;
-            default:
-                this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
-                break;
-            }
-
-            shadow->setOpacity(0);
-            shadow->setX(this->pos().x());
-            shadow->setY(this->pos().y());
-            //qDebug() << "Current note pos" << this->pos();
-            //qDebug() << "Current note scenepos" << this->scenePos();
-        }
-
         //qDebug() << this->pos();
         QGraphicsItem::mousePressEvent(event);
     }

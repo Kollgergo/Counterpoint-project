@@ -39,7 +39,8 @@ public:
 
     void finalizeNewVNote();
 
-    void updateStaffWidth();
+    int getVStaffWidth();
+    void updateVStaffWidth();
     void updateVStaff();
 
     int getDurationSum();

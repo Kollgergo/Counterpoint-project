@@ -3,6 +3,7 @@
 ScoreView::ScoreView(QWidget *parent) : QGraphicsView(parent)
 {
     setDragMode(ScrollHandDrag);
+    setAlignment(Qt::AlignCenter);
 }
 
 void ScoreView::mouseReleaseEvent(QMouseEvent *event)
