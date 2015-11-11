@@ -73,165 +73,7 @@ KeySignature ScoreViewModel::getKeySignatureByNum(int which)
 void ScoreViewModel::addNote(unsigned int staffnum , int pitch, int duration, Accent::accents accent, unsigned int where)
 {
     score->getStaffByNum(staffnum).addNote(pitch, duration, where);
-    switch (keysignatures.at(staffnum-1).getKeysig()) { // előjegyzéseket le kell kezelni, de nem itt
-    case -7:
-
-        break;
-    case -6:
-
-        break;
-    case -5:
-
-        break;
-    case -4:
-
-        break;
-    case -3:
-
-        break;
-    case -2:
-
-        break;
-    case -1:
-
-        break;
-    case 1:
-        switch (pitch) {
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 2:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 3:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 7:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 4:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 2:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 7:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 5:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 2:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 7:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 9:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 6:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 2:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 4:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 7:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 9:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    case 7:
-        switch (pitch) {
-        case 0:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 2:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 4:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 5:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 7:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 9:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        case 11:
-            accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-            break;
-        default:
-            accentsMap[staffnum-1].push_back(new Accent(accent));
-            break;
-        }
-        break;
-    default:
-        accentsMap[staffnum-1].push_back(new Accent(accent));
-        break;
-    }
+    accentsMap[staffnum-1].push_back(new Accent(accent));
 
 }
 
@@ -950,6 +792,167 @@ Score *ScoreViewModel::getScore() const
     return score;
 }
 
+void ScoreViewModel::updateAccentByKeySig()
+{
+    for(unsigned int i=0; i<score->getNumOfStaffs(); i++){
+        for(unsigned int j=0; j<score->getStaffByNum(i+1).getNumOfNotes(); j++){
+            switch (keysignatures.at(i).getKeysig()) {
+            case -7:
+
+                break;
+            case -6:
+
+                break;
+            case -5:
+
+                break;
+            case -4:
+
+                break;
+            case -3:
+
+                break;
+            case -2:
+
+                break;
+            case -1:
+
+                break;
+            case 1:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 5:
+//                    accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 2:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 3:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 7:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 4:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 2:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 7:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 5:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 2:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 7:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 9:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 6:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 2:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 4:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 7:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 9:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            case 7:
+                switch (getNoteByNum(i+1, j+1).getPitch()) {
+                case 0:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 2:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 4:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 5:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 7:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 9:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                case 11:
+                    accentsMap[i][j]->setAccent(Accent::sharp);
+                    break;
+                default:
+                    break;
+                }
+                break;
+            default:
+
+                break;
+            }
+        }
+    }
+
+}
 
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
 {
@@ -1176,269 +1179,6 @@ QVector<Accent *> ScoreViewModel::getStaffAccentByNum(unsigned int which)
 void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos)
 {
     int newdatapos = 0;
-
-/*    switch (clefs.at(staffnumber-1)) {
-    case ScoreViewModel::treble:
-        newdatapos += 9;
-        break;
-    case ScoreViewModel::alto:
-        newdatapos -= 1;
-        break;
-    case ScoreViewModel::tenor:
-        //newdatapos += 5;
-        break;
-    case ScoreViewModel::bass:
-        newdatapos -= 12;
-        break;
-    default:
-        break;
-    }
-
-    switch (newscorepos) {
-    case 0:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -11;
-            break;
-        case Accent::flat:
-            newdatapos = -12;
-            break;
-        default:
-            newdatapos = -12;
-            break;
-        }
-        break;
-    case 1:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -9;
-            break;
-        case Accent::flat:
-            newdatapos = -11;
-            break;
-        default:
-            newdatapos = -10;
-            break;
-        }
-
-        break;
-    case 2:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -8;
-            break;
-        case Accent::flat:
-            newdatapos = -9;
-            break;
-        default:
-            newdatapos = -8;
-            break;
-        }
-
-        break;
-    case 3:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -6;
-            break;
-        case Accent::flat:
-            newdatapos = -7;
-            break;
-        default:
-            newdatapos = -7;
-            break;
-        }
-
-        break;
-    case 4:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -4;
-            break;
-        case Accent::flat:
-            newdatapos = -6;
-            break;
-        default:
-            newdatapos = -5;
-            break;
-        }
-
-        break;
-    case 5:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -2;
-            break;
-        case Accent::flat:
-            newdatapos = -4;
-            break;
-        default:
-            newdatapos = -3;
-            break;
-        }
-
-        break;
-    case 6:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = -1;
-            break;
-        case Accent::flat:
-            newdatapos = -2;
-            break;
-        default:
-            newdatapos = -1;
-            break;
-        }
-
-        break;
-    case 7:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 1;
-            break;
-        case Accent::flat:
-            newdatapos = 0;
-            break;
-        default:
-            newdatapos = 0;
-            break;
-        }
-
-        break;
-    case 8:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 3;
-            break;
-        case Accent::flat:
-            newdatapos = 1;
-            break;
-        default:
-            newdatapos = 2;
-            break;
-        }
-
-        break;
-    case 9:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 4;
-            break;
-        case Accent::flat:
-            newdatapos = 3;
-            break;
-        default:
-            newdatapos = 4;
-            break;
-        }
-
-        break;
-    case 10:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 6;
-            break;
-        case Accent::flat:
-            newdatapos = 5;
-            break;
-        default:
-            newdatapos = 5;
-            break;
-        }
-
-        break;
-    case 11:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 8;
-            break;
-        case Accent::flat:
-            newdatapos = 6;
-            break;
-        default:
-            newdatapos = 7;
-            break;
-        }
-
-        break;
-    case 12:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 10;
-            break;
-        case Accent::flat:
-            newdatapos = 8;
-            break;
-        default:
-            newdatapos = 9;
-            break;
-        }
-
-        break;
-    case 13:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 11;
-            break;
-        case Accent::flat:
-            newdatapos = 10;
-            break;
-        default:
-            newdatapos = 11;
-            break;
-        }
-
-        break;
-    case 14:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 13;
-            break;
-        case Accent::flat:
-            newdatapos = 12;
-            break;
-        default:
-            newdatapos = 12;
-            break;
-        }
-
-        break;
-    case 15:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 15;
-            break;
-        case Accent::flat:
-            newdatapos = 13;
-            break;
-        default:
-            newdatapos = 14;
-            break;
-        }
-
-        break;
-    case 16:
-        switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
-        case Accent::sharp:
-            newdatapos = 16;
-            break;
-        case Accent::flat:
-            newdatapos = 15;
-            break;
-        default:
-            newdatapos = 16;
-            break;
-        }
-
-        break;
-    default:
-        newdatapos = 0;
-        break;
-
-    }
-*/
-
 
     switch (clefs.at(staffnumber-1)) {
     case ScoreViewModel::treble:

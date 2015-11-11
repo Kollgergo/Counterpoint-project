@@ -96,6 +96,7 @@ public slots:
     void vstaffSelected(VStaff *vstaff);
     void newVNoteAdded(VNote *vnote);
     void playBackEnded();
+    void vNoteUpdate(VNote *vnote);
 
 private:
     Ui::MainWindow *ui;

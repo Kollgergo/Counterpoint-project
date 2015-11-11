@@ -7,6 +7,7 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
     staffpos = spos;
     notetype = ntype;
     accent = acc;
+    iskeysig = false;
 
     if(newnote == true){
         setFlag(ItemIsMovable);  
@@ -121,21 +122,23 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
 
         QPixmap accentpixmap = QPixmap();
 
-        switch (accent) {
-        case Accent::sharp:
-            accentpixmap.load("./res/sharp.png");
-            painter->drawPixmap(-20,-5,16,35,accentpixmap);
-            break;
-        case Accent::flat:
-            accentpixmap.load("./res/flat.png");
-            painter->drawPixmap(-20,-15,16,35,accentpixmap);
-            break;
-        case Accent::none:
+        if(!iskeysig){
+            switch (accent) {
+            case Accent::sharp:
+                accentpixmap.load("./res/sharp.png");
+                painter->drawPixmap(-20,-5,16,35,accentpixmap);
+                break;
+            case Accent::flat:
+                accentpixmap.load("./res/flat.png");
+                painter->drawPixmap(-20,-15,16,35,accentpixmap);
+                break;
+            case Accent::none:
 
-            break;
-        default:
-            break;
-        }        
+                break;
+            default:
+                break;
+            }
+        }
 
         QPen pen(Qt::black);
         pen.setWidth(2);
@@ -143,7 +146,7 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
         if(notetype == ScoreViewModel::half || notetype == ScoreViewModel::quarter || notetype == ScoreViewModel::eighth){
             painter->setPen(pen);
 
-            if(getScorepos() < 8){
+            if(getStaffpos() < 8){
                 painter->drawLine(boundingRect().right()-1, 5, boundingRect().right()-1, -60); //note line
                 if(notetype == ScoreViewModel::eighth){
                     QPixmap flagpixmap("./res/flag.png");
@@ -213,19 +216,19 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
                switch (this->getNotetype()) {
                case ScoreViewModel::whole:
-                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::whole, Accent::none, this->parentObject());
+                   this->shadow = new VNote(false,false, getStaffpos(),ScoreViewModel::whole, Accent::none, this->parentObject());
                    break;
                case ScoreViewModel::half:
-                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
+                   this->shadow = new VNote(false,false, getStaffpos(),ScoreViewModel::half, Accent::none, this->parentObject());
                    break;
                case ScoreViewModel::quarter:
-                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
+                   this->shadow = new VNote(false,false, getStaffpos(),ScoreViewModel::quarter, Accent::none, this->parentObject());
                    break;
                case ScoreViewModel::eighth:
-                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::eighth, Accent::none, this->parentObject());
+                   this->shadow = new VNote(false,false, getStaffpos(),ScoreViewModel::eighth, Accent::none, this->parentObject());
                    break;
                default:
-                   this->shadow = new VNote(false,false, getScorepos(),ScoreViewModel::half, Accent::none, this->parentObject());
+                   this->shadow = new VNote(false,false, getStaffpos(),ScoreViewModel::half, Accent::none, this->parentObject());
                    break;
                }
 
@@ -337,9 +340,16 @@ void VNote::hoverEntered(VStaffLine *staffline)
 
 
 }
-void VNote::setAccent(const Accent::accents &value)
+
+void VNote::setIskeysig(bool value)
+{
+    iskeysig = value;
+}
+void VNote::setAccent(const Accent::accents &value, bool iskeysig)
 {
     accent = value;
+    this->iskeysig = iskeysig;
+
 }
 
 Accent::accents VNote::getAccent() const
@@ -379,7 +389,7 @@ ScoreViewModel::noteTypes VNote::getNotetype() const
     return notetype;
 }
 
-int VNote::getScorepos() const
+int VNote::getStaffpos() const
 {
     return staffpos;
 }
@@ -413,7 +423,7 @@ void VNote::changeToRest()
 
     this->setY(-20);
     setFlag(ItemIsMovable, false);
-    setAccent(Accent::none);
+    setAccent(Accent::none, false);
 }
 
 void VNote::changeToNote()

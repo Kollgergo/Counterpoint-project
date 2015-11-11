@@ -52,6 +52,7 @@ void MainWindow::showScore(bool isCF)
     //svm->deleteStaff(0);
     scene->clear();
 
+//    svm->updateAccentByKeySig();
     qDebug() << scene->sceneRect();
 
     for(unsigned int i=1; i<=svm->getNumOfStaffs(); i++){
@@ -102,11 +103,11 @@ void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
 
             if(svm->getAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getAccent()){
                 svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
-                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
+                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getStaffpos());
             }
 
-            if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getScorepos()){
-                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getScorepos());
+            if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getStaffpos()){
+                svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getStaffpos());
             }
 
             if(svm->getType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getNotetype()){
@@ -120,6 +121,7 @@ void MainWindow::addVStaff(VStaff *vstaff)
 {
     vstaffs.push_back(vstaff);
     connect(vstaffs.last(), SIGNAL(vstaffSelect(VStaff*)), this, SLOT(vstaffSelected(VStaff*)));
+    connect(vstaffs.last(), SIGNAL(vNoteAccentChanged(VNote*)), this, SLOT(vNoteUpdate(VNote*)));
 
     svm->addStaff(vstaff->getClef(), vstaff->getKeysignature().getKeysig(), 0);
 
@@ -267,6 +269,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
                 vstaffs.at(i)->updateVStaffWidth();
             }
         }
+        vstaffs.at(i)->updateAccentByKeySig();
     }
 
     scene->update();
@@ -304,6 +307,11 @@ void MainWindow::playBackEnded()
             ui->mainToolBar->setEnabled(true);
         }
     }
+}
+
+void MainWindow::vNoteUpdate(VNote *vnote)
+{
+    updateNoteData(vnote);
 }
 
 QList<VStaff *> MainWindow::getVstaffs() const
@@ -786,7 +794,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
                 if(selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::half ||
                         selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::eighth){
-                    selectedvstaff->getNewvnote()->setAccent(Accent::sharp);
+                    selectedvstaff->getNewvnote()->setAccent(Accent::sharp, false);
 
                 }else{
                    ui->actionAddSharp->setChecked(false);
@@ -804,7 +812,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
                                 if(selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::whole || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::half ||
                                         selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::eighth){
                                     //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
-                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::sharp);
+                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::sharp, false);
 
                                     updateNoteData(selectedvstaff->getVnotes().at(j));
                                     scene->update();
@@ -828,7 +836,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
         if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
             ui->actionAddFlat->setChecked(false);
-            selectedvstaff->getNewvnote()->setAccent(Accent::none);
+            selectedvstaff->getNewvnote()->setAccent(Accent::none, false);
             scene->update();
 
         }else{
@@ -836,7 +844,7 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eighth){
-                selectedvstaff->getSelectedvnote()->setAccent(Accent::none);
+                selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -853,7 +861,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
                 if(selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::half ||
                         selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getNewvnote()->getNotetype() == ScoreViewModel::eighth){
-                    selectedvstaff->getNewvnote()->setAccent(Accent::flat);
+                    selectedvstaff->getNewvnote()->setAccent(Accent::flat, false);
 
                 }else{
                    ui->actionAddFlat->setChecked(false);
@@ -872,7 +880,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
                                         selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getVnotes().at(j)->getNotetype() == ScoreViewModel::eighth){
                                     //svm->updateType(vstaffs.indexOf(selectedvstaff)+1, j+1, ScoreViewModel::eight);
                                     ui->actionAddSharp->setChecked(false);
-                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::flat);
+                                    selectedvstaff->getVnotes().at(j)->setAccent(Accent::flat, false);
 
                                     updateNoteData(selectedvstaff->getVnotes().at(j));
                                     scene->update();
@@ -895,7 +903,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
         if(ui->actionAddNote->isChecked() || ui->actionAddRest->isChecked()){
             ui->actionAddFlat->setChecked(false);
 
-            selectedvstaff->getNewvnote()->setAccent(Accent::none);
+            selectedvstaff->getNewvnote()->setAccent(Accent::none, false);
             scene->update();
 
         }else{
@@ -903,7 +911,7 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eighth){
-                selectedvstaff->getSelectedvnote()->setAccent(Accent::none);
+                selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -1224,52 +1232,52 @@ void MainWindow::on_actionCutHalf_triggered()
             case ScoreViewModel::whole:
                 tempvnote->setNotetype(ScoreViewModel::half);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::half, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::half, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,0,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::half:
                 tempvnote->setNotetype(ScoreViewModel::quarter);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::quarter, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::quarter, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,0,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::quarter:
                 tempvnote->setNotetype(ScoreViewModel::eighth);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::eighth, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::eighth, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,0,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::eighth:
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::eighth, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::eighth, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,0,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::whole_rest:
                 tempvnote->setNotetype(ScoreViewModel::half);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::half_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::half_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,Note::rest,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::half_rest:
                 tempvnote->setNotetype(ScoreViewModel::quarter);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::quarter_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::quarter_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,Note::rest,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::quarter_rest:
                 tempvnote->setNotetype(ScoreViewModel::eighth);
                 updateNoteData(tempvnote);
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::eighth_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::eighth_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,Note::rest,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;
             case ScoreViewModel::eighth_rest:
-                addVNote(tempvstaff, tempvnote->getScorepos(),ScoreViewModel::eighth_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
+                addVNote(tempvstaff, tempvnote->getStaffpos(),ScoreViewModel::eighth_rest, tempvnote->getAccent(), tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 svm->addNote(vstaffs.indexOf(tempvstaff)+1,Note::rest,0,Accent::none,tempvstaff->getVnotes().indexOf(tempvnote)+1);
                 updateNoteData(tempvnote);
                 break;

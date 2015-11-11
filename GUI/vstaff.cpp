@@ -588,6 +588,7 @@ void VStaff::setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accen
 void VStaff::addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where)
 {
     vnotes.insert(where-1, new VNote(false, false, staffpos, notetype, accent, this));
+
     updateVStaffWidth();
     updateVStaff();
 
@@ -596,7 +597,7 @@ void VStaff::addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype,
 void VStaff::finalizeNewVNote()
 {
     newvnote->setOpacity(1);
-    vnotes.push_back(new VNote(false,false, newvnote->getScorepos(), newvnote->getNotetype(), newvnote->getAccent(), this));
+    vnotes.push_back(new VNote(false,false, newvnote->getStaffpos(), newvnote->getNotetype(), newvnote->getAccent(), this));
 
 
     vnotes.last()->setX(newvnote->x());
@@ -880,7 +881,6 @@ void VStaff::updateVStaff()
             }
         }
     }
-
 }
 
 int VStaff::getDurationSum()
@@ -936,6 +936,123 @@ void VStaff::deleteErrorMarkers()
     }
 
     errormarkers.clear();
+}
+
+void VStaff::updateAccentByKeySig()
+{
+    switch (clef) {
+    case ScoreViewModel::treble:
+        foreach (VNote *vnote, vnotes) {
+            int staffpos = vnote->getStaffpos();
+
+            switch (keysignature.getKeysig()) {
+            case -7:
+
+                break;
+            case -6:
+
+                break;
+            case -5:
+
+                break;
+            case -4:
+
+                break;
+            case -3:
+
+                break;
+            case -2:
+
+                break;
+            case -1:
+
+                break;
+            case 1:
+                if(staffpos == 5 || staffpos == 12){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 2:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 3:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 4:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 5:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
+                   || staffpos == 7 || staffpos == 14){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 6:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
+                   || staffpos == 7 || staffpos == 14 || staffpos == 4 || staffpos == 11){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            case 7:
+                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
+                   || staffpos == 7 || staffpos == 14 || staffpos == 4 || staffpos == 11 || staffpos == 8 || staffpos == 15){
+                    vnote->setAccent(Accent::sharp, true);
+                    emit vNoteAccentChanged(vnote);
+                    break;
+                }else{
+                    vnote->setIskeysig(false);
+                }
+                break;
+            default:
+
+                break;
+            }
+        }
+        break;
+    case ScoreViewModel::alto:
+
+        break;
+    case ScoreViewModel::tenor:
+
+        break;
+    case ScoreViewModel::bass:
+
+        break;
+    default:
+        break;
+    }
+
+
 }
 
 void VStaff::setVNoteDistance(int dist)

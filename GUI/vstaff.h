@@ -49,9 +49,12 @@ public:
 
     void deleteErrorMarkers();
 
+    void updateAccentByKeySig();
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);
+    void vNoteAccentChanged(VNote *vnote);
 
 public slots:
     void setVNoteDistance(int dist);

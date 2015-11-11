@@ -20,17 +20,19 @@ public:
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    int getScorepos() const;
+    int getStaffpos() const;
     void setScorepos(int value);
 
     ScoreViewModel::noteTypes getNotetype() const;
     void setNotetype(const ScoreViewModel::noteTypes &value);
 
     Accent::accents getAccent() const;
-    void setAccent(const Accent::accents &value);
+    void setAccent(const Accent::accents &value, bool iskeysig);
 
     void changeToRest();
     void changeToNote();
+
+    void setIskeysig(bool value);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -49,6 +51,7 @@ private:
     VNote *shadow;
     unsigned int staffpos;
     Accent::accents accent;
+    bool iskeysig;
     ScoreViewModel::noteTypes notetype;
     bool newnote;
 };

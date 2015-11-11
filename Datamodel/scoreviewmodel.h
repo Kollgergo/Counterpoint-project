@@ -1,4 +1,4 @@
-#ifndef SCOREVIEWMODEL_H
+    #ifndef SCOREVIEWMODEL_H
 #define SCOREVIEWMODEL_H
 #include <QtCore>
 #include <QRegularExpression>
@@ -58,6 +58,8 @@ public:
     QList<Error *> testScore();
 
     Score *getScore() const;
+
+    void updateAccentByKeySig();
 
 private:
     Score *score;
