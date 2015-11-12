@@ -2005,7 +2005,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -13;
                 break;
             case Accent::flat:
-                newdatapos = -12;
+                newdatapos = -14;
                 break;
             default:
                 newdatapos = -13;

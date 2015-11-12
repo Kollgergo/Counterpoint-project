@@ -940,119 +940,197 @@ void VStaff::deleteErrorMarkers()
 
 void VStaff::updateAccentByKeySig()
 {
+    QList<int> poslist;
+    int staffpos;
+    int x;
+
     switch (clef) {
     case ScoreViewModel::treble:
-        foreach (VNote *vnote, vnotes) {
-            int staffpos = vnote->getStaffpos();
-
-            switch (keysignature.getKeysig()) {
-            case -7:
-
-                break;
-            case -6:
-
-                break;
-            case -5:
-
-                break;
-            case -4:
-
-                break;
-            case -3:
-
-                break;
-            case -2:
-
-                break;
-            case -1:
-
-                break;
-            case 1:
-                if(staffpos == 5 || staffpos == 12){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 2:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 3:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 4:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 5:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
-                   || staffpos == 7 || staffpos == 14){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 6:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
-                   || staffpos == 7 || staffpos == 14 || staffpos == 4 || staffpos == 11){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            case 7:
-                if(staffpos == 2 || staffpos == 9 || staffpos == 5 || staffpos == 12 || staffpos == 6 || staffpos == 13 || staffpos == 3 || staffpos == 10
-                   || staffpos == 7 || staffpos == 14 || staffpos == 4 || staffpos == 11 || staffpos == 8 || staffpos == 15){
-                    vnote->setAccent(Accent::sharp, true);
-                    emit vNoteAccentChanged(vnote);
-                    break;
-                }else{
-                    vnote->setIskeysig(false);
-                }
-                break;
-            default:
-
-                break;
-            }
-        }
+        x=5;
         break;
     case ScoreViewModel::alto:
-
+        x=4;
         break;
     case ScoreViewModel::tenor:
-
+        x=6;
         break;
     case ScoreViewModel::bass:
-
+        x=3;
         break;
     default:
         break;
     }
 
+    foreach (VNote *vnote, vnotes) {
+        staffpos = vnote->getStaffpos();
+        poslist.clear();
 
+        switch (keysignature.getKeysig()) {
+        case -7:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            poslist.push_back(x+2);
+            poslist.push_back(x+5);
+            poslist.push_back(x+1);
+            poslist.push_back(x+4);
+            poslist.push_back(x);
+            break;
+        case -6:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            poslist.push_back(x+2);
+            poslist.push_back(x+5);
+            poslist.push_back(x+1);
+            poslist.push_back(x+4);
+            break;
+        case -5:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            poslist.push_back(x+2);
+            poslist.push_back(x+5);
+            poslist.push_back(x+1);
+            break;
+        case -4:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            poslist.push_back(x+2);
+            poslist.push_back(x+5);
+            break;
+        case -3:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            poslist.push_back(x+2);
+            break;
+        case -2:
+            poslist.push_back(x+3);
+            poslist.push_back(x+6);
+            break;
+        case -1:
+            poslist.push_back(x+3);
+            break;
+        case 1:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+            }else{
+                poslist.push_back(x+7);
+            }
+            break;
+        case 2:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+            }
+            break;
+        case 3:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+                poslist.push_back(7);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+                poslist.push_back(x+8);
+            }
+            break;
+        case 4:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+                poslist.push_back(7);
+                poslist.push_back(11);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+                poslist.push_back(x+8);
+                poslist.push_back(x+5);
+            }
+            break;
+        case 5:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+                poslist.push_back(7);
+                poslist.push_back(11);
+                poslist.push_back(8);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+                poslist.push_back(x+8);
+                poslist.push_back(x+5);
+                poslist.push_back(x+2);
+            }
+            break;
+        case 6:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+                poslist.push_back(7);
+                poslist.push_back(11);
+                poslist.push_back(8);
+                poslist.push_back(12);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+                poslist.push_back(x+8);
+                poslist.push_back(x+5);
+                poslist.push_back(x+2);
+                poslist.push_back(x+6);
+            }
+            break;
+        case 7:
+            if(clef == ScoreViewModel::tenor){
+                poslist.push_back(6);
+                poslist.push_back(10);
+                poslist.push_back(7);
+                poslist.push_back(11);
+                poslist.push_back(8);
+                poslist.push_back(12);
+                poslist.push_back(9);
+            }else {
+                poslist.push_back(x+7);
+                poslist.push_back(x+4);
+                poslist.push_back(x+8);
+                poslist.push_back(x+5);
+                poslist.push_back(x+2);
+                poslist.push_back(x+6);
+                poslist.push_back(x+3);
+            }
+            break;
+        default:
+            break;
+        }
+
+        if(clef == ScoreViewModel::tenor){
+
+        }
+
+        foreach (int pos, poslist) {
+            if(pos-7 >=0){
+                if(!poslist.contains(pos-7)){
+                    poslist.push_back(pos-7);
+                }
+            }
+            if(pos+7 <= 16){
+                if(!poslist.contains(pos+7)){
+                    poslist.push_back(pos+7);
+                }
+            }
+        }
+
+        if(poslist.contains(staffpos)){
+            if(keysignature.getKeysig() > 0){
+                vnote->setAccent(Accent::sharp, true);
+            }else{
+                vnote->setAccent(Accent::flat, true);
+            }
+            emit vNoteAccentChanged(vnote);
+        }else{
+            vnote->setIskeysig(false);
+        }
+    }
 }
 
 void VStaff::setVNoteDistance(int dist)
