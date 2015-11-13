@@ -20,7 +20,15 @@ QList<Error *> ModeRule::test(QVector<Staff> staffs, QMap<int, QVector<Accent *>
 
                 switch (interval) {
                 case 7:
-                    errors.push_back(new Error(currentloc,"Az első és utolsó hangköz nem lehet T5, mert kivezet a hangnemből!"));
+                    if(j == 0){
+                        if(staffs[0].getNoteByNum(j+1) > staffs[i].getNoteByNum(j+1)){
+                            errors.push_back(new Error(currentloc,"Az első hangköz nem lehet T5, ha az ellenpont az alsó szólam."));
+                        }
+
+                    }else{
+                        errors.push_back(new Error(currentloc,"Az utolsó hangköz nem lehet T5."));
+                    }
+
                     break;
                 default:
                     break;

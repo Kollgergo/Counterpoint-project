@@ -41,7 +41,7 @@ public:
     QRadioButton *tenorRadioButton;
     QRadioButton *bassRadioButton;
     QGroupBox *groupBox_2;
-    QWidget *widget;
+    QWidget *layoutWidget1;
     QVBoxLayout *verticalLayout_4;
     QLineEdit *lineCF;
     QPushButton *browseFileButton;
@@ -91,20 +91,20 @@ public:
 
         groupBox_2 = new QGroupBox(NewCPDialog);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        widget = new QWidget(groupBox_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 30, 241, 71));
-        verticalLayout_4 = new QVBoxLayout(widget);
+        layoutWidget1 = new QWidget(groupBox_2);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 70, 241, 71));
+        verticalLayout_4 = new QVBoxLayout(layoutWidget1);
         verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        lineCF = new QLineEdit(widget);
+        lineCF = new QLineEdit(layoutWidget1);
         lineCF->setObjectName(QStringLiteral("lineCF"));
         lineCF->setCursor(QCursor(Qt::ArrowCursor));
         lineCF->setReadOnly(true);
 
         verticalLayout_4->addWidget(lineCF);
 
-        browseFileButton = new QPushButton(widget);
+        browseFileButton = new QPushButton(layoutWidget1);
         browseFileButton->setObjectName(QStringLiteral("browseFileButton"));
 
         verticalLayout_4->addWidget(browseFileButton);

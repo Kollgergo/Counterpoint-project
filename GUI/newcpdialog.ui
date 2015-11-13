@@ -70,11 +70,11 @@
          <property name="title">
           <string>Cantus Firmus fájl helye</string>
          </property>
-         <widget class="QWidget" name="">
+         <widget class="QWidget" name="layoutWidget">
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>30</y>
+            <y>70</y>
             <width>241</width>
             <height>71</height>
            </rect>

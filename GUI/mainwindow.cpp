@@ -164,6 +164,8 @@ void MainWindow::initToolBars(bool isCP)
         ui->actionAddNote->setChecked(false);
         ui->actionAddRest->setChecked(false);
 
+        ui->actionNewStaff->setEnabled(false);
+
         ui->actionWhole->setChecked(false);
         ui->actionHalf->setChecked(false);
         ui->actionQuarter->setEnabled(false);
