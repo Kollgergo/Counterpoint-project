@@ -132,12 +132,12 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
                 accentpixmap.load("./res/flat.png");
                 painter->drawPixmap(-20,-15,16,35,accentpixmap);
                 break;
-            case Accent::none:
-
-                break;
             default:
                 break;
             }
+        }else if(accent == Accent::natural){
+            accentpixmap.load("./res/natural.png");
+            painter->drawPixmap(-20,-10,11,40,accentpixmap);
         }
 
         QPen pen(Qt::black);
@@ -302,9 +302,12 @@ void VNote::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
                VStaff *tempparent = (VStaff *)this->parentItem();
 
                VStaffLine *colStaffLine = (VStaffLine *)colList.last();
-               this->setScorepos(tempparent->getVstafflines().indexOf(colStaffLine));
 
-               emit this->vNotePosChanging(this);
+               if(staffpos != tempparent->getVstafflines().indexOf(colStaffLine)){
+                   this->setScorepos(tempparent->getVstafflines().indexOf(colStaffLine));
+                   accent = Accent::none;
+                   emit this->vNotePosChanging(this);
+               }
 
                this->scene()->update();
            }
@@ -339,6 +342,11 @@ void VNote::hoverEntered(VStaffLine *staffline)
 
 
 
+}
+
+bool VNote::getIskeysig() const
+{
+    return iskeysig;
 }
 
 void VNote::setIskeysig(bool value)

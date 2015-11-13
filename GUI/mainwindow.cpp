@@ -77,6 +77,7 @@ void MainWindow::showScore(bool isCF)
             connect(vstaffs.last()->getVnotes().last(), SIGNAL(vNoteSelecting(VNote*)), this, SLOT(vNoteSelected(VNote*)));
             connect(vstaffs.last()->getVnotes().last(), SIGNAL(vNotePosChanging(VNote*)), this, SLOT(vNotePosChanged(VNote*)));
         }
+        vstaffs.at(i-1)->updateAccentByKeySig();
     }
 
     updateSceneRect();
@@ -101,6 +102,7 @@ void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
         if(vstaffs.at(i)->getVnotes().contains(vnote)){
             //qDebug() << "changing note:" << i+1 << vstaffs.at(i)->getVnotes().indexOf(note)+1;
 
+            vstaffs.at(i)->updateAccentByKeySig();
             if(svm->getAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getAccent()){
                 svm->updateAccent(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getAccent());
                 svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getStaffpos());
@@ -108,11 +110,14 @@ void MainWindow::updateNoteData(VNote *vnote) //updates note properties in svm
 
             if(svm->getPosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getStaffpos()){
                 svm->updatePosition(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getStaffpos());
+                //vstaffs.at(i)->updateAccentByKeySig();
             }
 
             if(svm->getType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1) != vnote->getNotetype()){
                 svm->updateType(i+1, vstaffs.at(i)->getVnotes().indexOf(vnote)+1, vnote->getNotetype());
             }
+
+            //vstaffs.at(i)->updateAccentByKeySig();
         }
     }
 }
@@ -196,6 +201,7 @@ void MainWindow::vNotePosChanged(VNote *note)
     //qDebug() << "notepos changed";
 
     updateNoteData(note);
+    vNoteSelected(note);
 
 }
 
@@ -245,7 +251,7 @@ void MainWindow::newVNoteAdded(VNote *vnote)
                     ui->actionAddNote->setEnabled(true);
                     ui->actionAddRest->setEnabled(true);
 
-                    vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
+                    vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), Accent::none/*vstaffs.at(i)->getVnotes().last()->getAccent()*/);
                     connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
                     vstaffs.at(i)->updateVStaffWidth();
 
@@ -264,12 +270,12 @@ void MainWindow::newVNoteAdded(VNote *vnote)
                 }
 
             }else{
-                vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), vstaffs.at(i)->getVnotes().last()->getAccent());
+                vstaffs.at(i)->setNewVNoteByData(vstaffs.at(i)->getVnotes().last()->getNotetype(), Accent::none/*vstaffs.at(i)->getVnotes().last()->getAccent()*/);
                 connect(vstaffs.at(i), SIGNAL(newVNoteAdd(VNote*)), this, SLOT(newVNoteAdded(VNote*)));
                 vstaffs.at(i)->updateVStaffWidth();
             }
         }
-        vstaffs.at(i)->updateAccentByKeySig();
+        //vstaffs.at(i)->updateAccentByKeySig();
     }
 
     scene->update();
@@ -844,7 +850,11 @@ void MainWindow::on_actionAddSharp_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eighth){
-                selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
+                if(getSelectedVStaff()->getSelectedvnote()->getIskeysig()){
+                    getSelectedVStaff()->getSelectedvnote()->setAccent(Accent::natural, true);
+                }else{
+                    selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
+                }
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -911,7 +921,12 @@ void MainWindow::on_actionAddFlat_triggered(bool checked)
 
             if(selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::whole || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::half ||
                     selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::quarter || selectedvstaff->getSelectedvnote()->getNotetype() == ScoreViewModel::eighth){
-                selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
+                //selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
+                if(getSelectedVStaff()->getSelectedvnote()->getIskeysig()){
+                    getSelectedVStaff()->getSelectedvnote()->setAccent(Accent::natural, true);
+                }else{
+                    selectedvstaff->getSelectedvnote()->setAccent(Accent::none, false);
+                }
                 updateNoteData(selectedvstaff->getSelectedvnote());
                 scene->update();
             }
@@ -992,17 +1007,15 @@ void MainWindow::vNoteSelected(VNote *note)
 
 void MainWindow::on_actionNewScore_triggered()
 {
-    CPmode = false;
-    tempo = 400;
-    ui->actionNewStaff->setEnabled(true);
-    ui->actionAddNote->setEnabled(true);
-    ui->actionAddRest->setEnabled(true);
-    ui->actionWhole->setEnabled(true);
-    ui->actionHalf->setEnabled(true);
-    ui->actionQuarter->setEnabled(true);
-    ui->actionEighth->setEnabled(true);
-    ui->actionTest->setEnabled(false);
-    ui->actionPlayMIDI->setEnabled(false);
+//    ui->actionNewStaff->setEnabled(true);
+//    ui->actionAddNote->setEnabled(true);
+//    ui->actionAddRest->setEnabled(true);
+//    ui->actionWhole->setEnabled(true);
+//    ui->actionHalf->setEnabled(true);
+//    ui->actionQuarter->setEnabled(true);
+//    ui->actionEighth->setEnabled(true);
+//    ui->actionTest->setEnabled(false);
+//    ui->actionPlayMIDI->setEnabled(false);
 
     QMessageBox msgbox(this);
     msgbox.setWindowTitle("Új kotta megnyitása");
@@ -1020,6 +1033,9 @@ void MainWindow::on_actionNewScore_triggered()
         vstaffs.clear();
         scene->clear();
         ui->actionNewStaff->setDisabled(false);
+        initToolBars(false);
+        CPmode = false;
+        tempo = 400;
         break;
     case QMessageBox::Cancel:
 
@@ -1150,6 +1166,7 @@ void MainWindow::on_actionNewStaff_triggered()
             vstaff->setSelected(false);
         }
         vstaffs.last()->setSelected(true);
+        ui->actionPlayMIDI->setEnabled(true);
     }
 }
 

@@ -792,168 +792,6 @@ Score *ScoreViewModel::getScore() const
     return score;
 }
 
-void ScoreViewModel::updateAccentByKeySig()
-{
-    for(unsigned int i=0; i<score->getNumOfStaffs(); i++){
-        for(unsigned int j=0; j<score->getStaffByNum(i+1).getNumOfNotes(); j++){
-            switch (keysignatures.at(i).getKeysig()) {
-            case -7:
-
-                break;
-            case -6:
-
-                break;
-            case -5:
-
-                break;
-            case -4:
-
-                break;
-            case -3:
-
-                break;
-            case -2:
-
-                break;
-            case -1:
-
-                break;
-            case 1:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 5:
-//                    accentsMap[staffnum-1].push_back(new Accent(Accent::sharp));
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 2:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 3:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 7:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 4:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 2:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 7:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 5:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 2:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 7:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 9:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 6:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 2:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 4:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 7:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 9:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            case 7:
-                switch (getNoteByNum(i+1, j+1).getPitch()) {
-                case 0:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 2:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 4:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 5:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 7:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 9:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                case 11:
-                    accentsMap[i][j]->setAccent(Accent::sharp);
-                    break;
-                default:
-                    break;
-                }
-                break;
-            default:
-
-                break;
-            }
-        }
-    }
-
-}
-
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
 {
     int pos;
@@ -1439,6 +1277,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -13;
                 break;
             }
+            break;
         case 1:
             switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
             case Accent::sharp:
@@ -1451,6 +1290,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -12;
                 break;
             }
+            break;
         case 2:
             switch (accentsMap[staffnumber-1].at(notenumber-1)->getAccent()) {
             case Accent::sharp:
@@ -1703,7 +1543,7 @@ void ScoreViewModel::updatePosition(unsigned int staffnumber, unsigned int noten
                 newdatapos = -13;
                 break;
             case Accent::flat:
-                newdatapos = -12;
+                newdatapos = -14;
                 break;
             default:
                 newdatapos = -13;

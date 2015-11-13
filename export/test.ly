@@ -7,7 +7,7 @@
 	\clef treble
 	\key a \major
 	{
-	f'2	c'2	g'2
+	a'4	b'4	cis''4	d''4	e''4	fis''4	gis''4	a''4
 	\bar "|."
 	}
 }

@@ -32,6 +32,7 @@ public:
     void changeToRest();
     void changeToNote();
 
+    bool getIskeysig() const;
     void setIskeysig(bool value);
 
 protected:

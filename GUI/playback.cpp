@@ -97,6 +97,16 @@ void PlayBack::process()
                 note--;
             }
             break;
+        case 23:
+            if(accents.at(i)->getAccent() == Accent::sharp){
+                note++;
+            }
+            break;
+        case 24:
+            if(accents.at(i)->getAccent() == Accent::flat){
+                note--;
+            }
+            break;
         default:
 
             break;

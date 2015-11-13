@@ -961,172 +961,181 @@ void VStaff::updateAccentByKeySig()
         break;
     }
 
+    poslist.clear();
+
+    switch (keysignature.getKeysig()) {
+    case -7:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        poslist.push_back(x+2);
+        poslist.push_back(x+5);
+        poslist.push_back(x+1);
+        poslist.push_back(x+4);
+        poslist.push_back(x);
+        break;
+    case -6:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        poslist.push_back(x+2);
+        poslist.push_back(x+5);
+        poslist.push_back(x+1);
+        poslist.push_back(x+4);
+        break;
+    case -5:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        poslist.push_back(x+2);
+        poslist.push_back(x+5);
+        poslist.push_back(x+1);
+        break;
+    case -4:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        poslist.push_back(x+2);
+        poslist.push_back(x+5);
+        break;
+    case -3:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        poslist.push_back(x+2);
+        break;
+    case -2:
+        poslist.push_back(x+3);
+        poslist.push_back(x+6);
+        break;
+    case -1:
+        poslist.push_back(x+3);
+        break;
+    case 1:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+        }else{
+            poslist.push_back(x+7);
+        }
+        break;
+    case 2:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+        }
+        break;
+    case 3:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+            poslist.push_back(7);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+            poslist.push_back(x+8);
+        }
+        break;
+    case 4:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+            poslist.push_back(7);
+            poslist.push_back(11);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+            poslist.push_back(x+8);
+            poslist.push_back(x+5);
+        }
+        break;
+    case 5:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+            poslist.push_back(7);
+            poslist.push_back(11);
+            poslist.push_back(8);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+            poslist.push_back(x+8);
+            poslist.push_back(x+5);
+            poslist.push_back(x+2);
+        }
+        break;
+    case 6:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+            poslist.push_back(7);
+            poslist.push_back(11);
+            poslist.push_back(8);
+            poslist.push_back(12);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+            poslist.push_back(x+8);
+            poslist.push_back(x+5);
+            poslist.push_back(x+2);
+            poslist.push_back(x+6);
+        }
+        break;
+    case 7:
+        if(clef == ScoreViewModel::tenor){
+            poslist.push_back(6);
+            poslist.push_back(10);
+            poslist.push_back(7);
+            poslist.push_back(11);
+            poslist.push_back(8);
+            poslist.push_back(12);
+            poslist.push_back(9);
+        }else {
+            poslist.push_back(x+7);
+            poslist.push_back(x+4);
+            poslist.push_back(x+8);
+            poslist.push_back(x+5);
+            poslist.push_back(x+2);
+            poslist.push_back(x+6);
+            poslist.push_back(x+3);
+        }
+        break;
+    default:
+        break;
+    }
+
+    foreach (int pos, poslist) {
+        if(pos-7 >=0){
+            if(!poslist.contains(pos-7)){
+                poslist.push_back(pos-7);
+            }
+        }
+        if(pos+7 <= 16){
+            if(!poslist.contains(pos+7)){
+                poslist.push_back(pos+7);
+            }
+        }
+    }
+
     foreach (VNote *vnote, vnotes) {
         staffpos = vnote->getStaffpos();
-        poslist.clear();
-
-        switch (keysignature.getKeysig()) {
-        case -7:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            poslist.push_back(x+2);
-            poslist.push_back(x+5);
-            poslist.push_back(x+1);
-            poslist.push_back(x+4);
-            poslist.push_back(x);
-            break;
-        case -6:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            poslist.push_back(x+2);
-            poslist.push_back(x+5);
-            poslist.push_back(x+1);
-            poslist.push_back(x+4);
-            break;
-        case -5:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            poslist.push_back(x+2);
-            poslist.push_back(x+5);
-            poslist.push_back(x+1);
-            break;
-        case -4:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            poslist.push_back(x+2);
-            poslist.push_back(x+5);
-            break;
-        case -3:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            poslist.push_back(x+2);
-            break;
-        case -2:
-            poslist.push_back(x+3);
-            poslist.push_back(x+6);
-            break;
-        case -1:
-            poslist.push_back(x+3);
-            break;
-        case 1:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-            }else{
-                poslist.push_back(x+7);
-            }
-            break;
-        case 2:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-            }
-            break;
-        case 3:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-                poslist.push_back(7);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-                poslist.push_back(x+8);
-            }
-            break;
-        case 4:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-                poslist.push_back(7);
-                poslist.push_back(11);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-                poslist.push_back(x+8);
-                poslist.push_back(x+5);
-            }
-            break;
-        case 5:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-                poslist.push_back(7);
-                poslist.push_back(11);
-                poslist.push_back(8);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-                poslist.push_back(x+8);
-                poslist.push_back(x+5);
-                poslist.push_back(x+2);
-            }
-            break;
-        case 6:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-                poslist.push_back(7);
-                poslist.push_back(11);
-                poslist.push_back(8);
-                poslist.push_back(12);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-                poslist.push_back(x+8);
-                poslist.push_back(x+5);
-                poslist.push_back(x+2);
-                poslist.push_back(x+6);
-            }
-            break;
-        case 7:
-            if(clef == ScoreViewModel::tenor){
-                poslist.push_back(6);
-                poslist.push_back(10);
-                poslist.push_back(7);
-                poslist.push_back(11);
-                poslist.push_back(8);
-                poslist.push_back(12);
-                poslist.push_back(9);
-            }else {
-                poslist.push_back(x+7);
-                poslist.push_back(x+4);
-                poslist.push_back(x+8);
-                poslist.push_back(x+5);
-                poslist.push_back(x+2);
-                poslist.push_back(x+6);
-                poslist.push_back(x+3);
-            }
-            break;
-        default:
-            break;
-        }
-
-        if(clef == ScoreViewModel::tenor){
-
-        }
-
-        foreach (int pos, poslist) {
-            if(pos-7 >=0){
-                if(!poslist.contains(pos-7)){
-                    poslist.push_back(pos-7);
-                }
-            }
-            if(pos+7 <= 16){
-                if(!poslist.contains(pos+7)){
-                    poslist.push_back(pos+7);
-                }
-            }
-        }
 
         if(poslist.contains(staffpos)){
             if(keysignature.getKeysig() > 0){
-                vnote->setAccent(Accent::sharp, true);
+                if(vnote->getAccent() != Accent::natural){
+                   if(vnote->getAccent() == Accent::flat){
+                       vnote->setAccent(Accent::flat, false);
+                   }else{
+                       vnote->setAccent(Accent::sharp, true);
+                   }
+                }
             }else{
-                vnote->setAccent(Accent::flat, true);
+                if(vnote->getAccent() != Accent::natural){
+                    if(vnote->getAccent() == Accent::sharp){
+                        vnote->setAccent(Accent::sharp, false);
+                    }else{
+                        vnote->setAccent(Accent::flat, true);
+                    }
+                }
             }
-            emit vNoteAccentChanged(vnote);
+            //emit vNoteAccentChanged(vnote);
         }else{
             vnote->setIskeysig(false);
         }

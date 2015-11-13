@@ -59,8 +59,6 @@ public:
 
     Score *getScore() const;
 
-    void updateAccentByKeySig();
-
 private:
     Score *score;
     QVector<clefNames> clefs;
