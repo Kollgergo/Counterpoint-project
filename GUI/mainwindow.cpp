@@ -195,6 +195,11 @@ void MainWindow::initToolBars(bool isCP)
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
 
+        ui->actionWhole->setEnabled(true);
+        ui->actionHalf->setEnabled(true);
+        ui->actionQuarter->setEnabled(true);
+        ui->actionEighth->setEnabled(true);
+
         ui->actionAddSharp->setChecked(false);
         ui->actionAddFlat->setChecked(false);
     }

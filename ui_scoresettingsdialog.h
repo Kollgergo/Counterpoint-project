@@ -34,7 +34,7 @@ public:
     QGridLayout *gridLayout;
     QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox_2;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QCheckBox *mainRulesCheckBox;
     QCheckBox *onlyConsonanceCheckBox;
@@ -44,7 +44,7 @@ public:
     QCheckBox *modeRuleCheckBox;
     QCheckBox *forbiddenSkipsCheckBox;
     QGroupBox *groupBox;
-    QWidget *widget1;
+    QWidget *layoutWidget1;
     QFormLayout *formLayout;
     QLabel *label;
     QSpinBox *noteDistanceSpinBox;
@@ -61,43 +61,43 @@ public:
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         groupBox_2 = new QGroupBox(ScoreSettingsDialog);
         groupBox_2->setObjectName(QStringLiteral("groupBox_2"));
-        widget = new QWidget(groupBox_2);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 22, 211, 221));
-        verticalLayout = new QVBoxLayout(widget);
+        layoutWidget = new QWidget(groupBox_2);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(10, 22, 211, 221));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
-        mainRulesCheckBox = new QCheckBox(widget);
+        mainRulesCheckBox = new QCheckBox(layoutWidget);
         mainRulesCheckBox->setObjectName(QStringLiteral("mainRulesCheckBox"));
 
         verticalLayout->addWidget(mainRulesCheckBox);
 
-        onlyConsonanceCheckBox = new QCheckBox(widget);
+        onlyConsonanceCheckBox = new QCheckBox(layoutWidget);
         onlyConsonanceCheckBox->setObjectName(QStringLiteral("onlyConsonanceCheckBox"));
 
         verticalLayout->addWidget(onlyConsonanceCheckBox);
 
-        beginEndRuleCheckBox = new QCheckBox(widget);
+        beginEndRuleCheckBox = new QCheckBox(layoutWidget);
         beginEndRuleCheckBox->setObjectName(QStringLiteral("beginEndRuleCheckBox"));
 
         verticalLayout->addWidget(beginEndRuleCheckBox);
 
-        maxIntervalCheckBox = new QCheckBox(widget);
+        maxIntervalCheckBox = new QCheckBox(layoutWidget);
         maxIntervalCheckBox->setObjectName(QStringLiteral("maxIntervalCheckBox"));
 
         verticalLayout->addWidget(maxIntervalCheckBox);
 
-        nextToTheLastCheckBox = new QCheckBox(widget);
+        nextToTheLastCheckBox = new QCheckBox(layoutWidget);
         nextToTheLastCheckBox->setObjectName(QStringLiteral("nextToTheLastCheckBox"));
 
         verticalLayout->addWidget(nextToTheLastCheckBox);
 
-        modeRuleCheckBox = new QCheckBox(widget);
+        modeRuleCheckBox = new QCheckBox(layoutWidget);
         modeRuleCheckBox->setObjectName(QStringLiteral("modeRuleCheckBox"));
 
         verticalLayout->addWidget(modeRuleCheckBox);
 
-        forbiddenSkipsCheckBox = new QCheckBox(widget);
+        forbiddenSkipsCheckBox = new QCheckBox(layoutWidget);
         forbiddenSkipsCheckBox->setObjectName(QStringLiteral("forbiddenSkipsCheckBox"));
 
         verticalLayout->addWidget(forbiddenSkipsCheckBox);
@@ -107,18 +107,18 @@ public:
 
         groupBox = new QGroupBox(ScoreSettingsDialog);
         groupBox->setObjectName(QStringLiteral("groupBox"));
-        widget1 = new QWidget(groupBox);
-        widget1->setObjectName(QStringLiteral("widget1"));
-        widget1->setGeometry(QRect(10, 23, 191, 31));
-        formLayout = new QFormLayout(widget1);
+        layoutWidget1 = new QWidget(groupBox);
+        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
+        layoutWidget1->setGeometry(QRect(10, 23, 191, 31));
+        formLayout = new QFormLayout(layoutWidget1);
         formLayout->setObjectName(QStringLiteral("formLayout"));
         formLayout->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(widget1);
+        label = new QLabel(layoutWidget1);
         label->setObjectName(QStringLiteral("label"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        noteDistanceSpinBox = new QSpinBox(widget1);
+        noteDistanceSpinBox = new QSpinBox(layoutWidget1);
         noteDistanceSpinBox->setObjectName(QStringLiteral("noteDistanceSpinBox"));
         noteDistanceSpinBox->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         noteDistanceSpinBox->setMaximum(100);
@@ -126,9 +126,6 @@ public:
 
         formLayout->setWidget(0, QFormLayout::FieldRole, noteDistanceSpinBox);
 
-        label->raise();
-        noteDistanceSpinBox->raise();
-        groupBox_2->raise();
 
         horizontalLayout->addWidget(groupBox);
 
@@ -139,6 +136,7 @@ public:
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
+        buttonBox->setCenterButtons(false);
 
         gridLayout->addWidget(buttonBox, 1, 0, 1, 1);
 
@@ -152,7 +150,7 @@ public:
 
     void retranslateUi(QDialog *ScoreSettingsDialog)
     {
-        ScoreSettingsDialog->setWindowTitle(QApplication::translate("ScoreSettingsDialog", "Dialog", 0));
+        ScoreSettingsDialog->setWindowTitle(QApplication::translate("ScoreSettingsDialog", "Kotta be\303\241ll\303\255t\303\241sok", 0));
         groupBox_2->setTitle(QApplication::translate("ScoreSettingsDialog", "Ellenpont szab\303\241ly be\303\241ll\303\255t\303\241sok", 0));
         mainRulesCheckBox->setText(QApplication::translate("ScoreSettingsDialog", "Alapvet\305\221 szab\303\241lyok", 0));
         onlyConsonanceCheckBox->setText(QApplication::translate("ScoreSettingsDialog", "Csak konszon\303\241ns hangk\303\266z\303\266k", 0));

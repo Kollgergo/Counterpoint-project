@@ -258,7 +258,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Ellenpont", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "CounterScore", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Kil\303\251p\303\251s", 0));
         actionAddNote->setText(QApplication::translate("MainWindow", "\303\232j Hangjegy", 0));
         actionAddRest->setText(QApplication::translate("MainWindow", "\303\232j Sz\303\274net", 0));

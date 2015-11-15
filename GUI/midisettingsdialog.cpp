@@ -12,6 +12,12 @@ MidiSettingsDialog::MidiSettingsDialog(int instrument, int volume, int tempo, QW
     ui->volumeSlider->setValue(volume);
 
     ui->tempoSlider->setValue(tempo);
+
+    //QPushButton *cancelButton=ui->buttonBox->button(QDialogButtonBox::Cancel);
+    //cancelButton->setText("Mégse");
+
+    QPushButton *cancelButton=ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setText("Mégse");
 }
 
 MidiSettingsDialog::~MidiSettingsDialog()

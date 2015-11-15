@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Kotta beállítások</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -21,7 +21,7 @@
        <property name="title">
         <string>Ellenpont szabály beállítások</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -89,7 +89,7 @@
        <property name="title">
         <string>Kotta beállítások</string>
        </property>
-       <widget class="QWidget" name="">
+       <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
           <x>10</x>
@@ -121,10 +121,6 @@
          </item>
         </layout>
        </widget>
-       <zorder>label</zorder>
-       <zorder>noteDistanceSpinBox</zorder>
-       <zorder>horizontalSpacer</zorder>
-       <zorder>groupBox_2</zorder>
       </widget>
      </item>
     </layout>
@@ -136,6 +132,9 @@
      </property>
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>false</bool>
      </property>
     </widget>
    </item>

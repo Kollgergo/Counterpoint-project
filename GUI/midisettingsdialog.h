@@ -2,6 +2,7 @@
 #define MIDISETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QPushButton>
 
 namespace Ui {
 class MidiSettingsDialog;

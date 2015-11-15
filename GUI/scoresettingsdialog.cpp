@@ -47,6 +47,9 @@ ScoreSettingsDialog::ScoreSettingsDialog(QList<Tester *> rulelist, int vnotedist
 
     ui->noteDistanceSpinBox->setValue(vnotedistance);
 
+    QPushButton *cancelButton=ui->buttonBox->button(QDialogButtonBox::Cancel);
+    cancelButton->setText("Mégse");
+
 }
 
 ScoreSettingsDialog::~ScoreSettingsDialog()

@@ -2,6 +2,7 @@
 #define SCORESETTINGSDIALOG_H
 
 #include <QDialog>
+#include <QPushButton>
 #include "tester.h"
 
 namespace Ui {

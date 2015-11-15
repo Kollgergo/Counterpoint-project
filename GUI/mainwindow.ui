@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Ellenpont</string>
+   <string>CounterScore</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -142,7 +142,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/quarter_note.png</normaloff>:/res/quarter_note.png</iconset>
    </property>
    <property name="text">
@@ -154,7 +154,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/quarter_rest.png</normaloff>:/res/quarter_rest.png</iconset>
    </property>
    <property name="text">
@@ -166,7 +166,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/half_note_icon.png</normaloff>:/res/half_note_icon.png</iconset>
    </property>
    <property name="text">
@@ -181,7 +181,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/whole_note_icon.png</normaloff>:/res/whole_note_icon.png</iconset>
    </property>
    <property name="text">
@@ -196,7 +196,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/quarter_note_icon.png</normaloff>:/res/quarter_note_icon.png</iconset>
    </property>
    <property name="text">
@@ -211,7 +211,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/eighth_note_icon.png</normaloff>:/res/eighth_note_icon.png</iconset>
    </property>
    <property name="text">
@@ -226,7 +226,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/sharp.png</normaloff>:/res/sharp.png</iconset>
    </property>
    <property name="text">
@@ -238,7 +238,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/flat.png</normaloff>:/res/flat.png</iconset>
    </property>
    <property name="text">
@@ -247,7 +247,7 @@
   </action>
   <action name="actionNewScore">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/new_icon.png</normaloff>:/res/new_icon.png</iconset>
    </property>
    <property name="text">
@@ -259,7 +259,7 @@
   </action>
   <action name="actionNewCounterpoint">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/CP_icon.png</normaloff>:/res/CP_icon.png</iconset>
    </property>
    <property name="text">
@@ -268,7 +268,7 @@
   </action>
   <action name="actionChangeNoteRest">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/changeicon.png</normaloff>:/res/changeicon.png</iconset>
    </property>
    <property name="text">
@@ -283,7 +283,7 @@
   </action>
   <action name="actionOpenLilypond">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/open.png</normaloff>:/res/open.png</iconset>
    </property>
    <property name="text">
@@ -295,7 +295,7 @@
   </action>
   <action name="actionSaveLilypond">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/save_icon.png</normaloff>:/res/save_icon.png</iconset>
    </property>
    <property name="text">
@@ -307,7 +307,7 @@
   </action>
   <action name="actionTest">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/test_icon.png</normaloff>:/res/test_icon.png</iconset>
    </property>
    <property name="text">
@@ -319,7 +319,7 @@
   </action>
   <action name="actionNewStaff">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/staff_icon.png</normaloff>:/res/staff_icon.png</iconset>
    </property>
    <property name="text">
@@ -328,7 +328,7 @@
   </action>
   <action name="actionPlayMIDI">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/play_icon.png</normaloff>:/res/play_icon.png</iconset>
    </property>
    <property name="text">
@@ -337,7 +337,7 @@
   </action>
   <action name="actionStopPlayBack">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/stop_icon.png</normaloff>:/res/stop_icon.png</iconset>
    </property>
    <property name="text">
@@ -349,7 +349,7 @@
   </action>
   <action name="actionCutHalf">
    <property name="icon">
-    <iconset>
+    <iconset resource="../GUI.qrc">
      <normaloff>:/res/split_icon.png</normaloff>:/res/split_icon.png</iconset>
    </property>
    <property name="text">
@@ -378,6 +378,8 @@
    <header>scoreview.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../GUI.qrc"/>
+ </resources>
  <connections/>
 </ui>
