@@ -17,8 +17,10 @@ void ScoreView::wheelEvent(QWheelEvent *event)
     if(event->modifiers() == Qt::ControlModifier){
         if(event->delta() > 0){
             emit ctrlWheelChanging(+5);
+            emit ctrlWheelChanging();
         }else{
             emit ctrlWheelChanging(-5);
+            emit ctrlWheelChanging();
         }
     }else{
         setTransformationAnchor(QGraphicsView::AnchorUnderMouse);

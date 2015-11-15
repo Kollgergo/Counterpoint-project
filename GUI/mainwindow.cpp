@@ -63,6 +63,7 @@ void MainWindow::showScore(bool isCF)
         }
 
         connect(ui->scoreView, SIGNAL(ctrlWheelChanging(int)), vstaffs.last(), SLOT(setVNoteDistance(int)));
+        connect(ui->scoreView, SIGNAL(ctrlWheelChanging()), this, SLOT(updateSceneRect()));
 
         for(unsigned int j=1; j<=svm->getNumOfNotes(i); j++){
 
@@ -134,6 +135,7 @@ void MainWindow::addVStaff(VStaff *vstaff)
 
     scene->addItem(vstaffs.last());
     connect(ui->scoreView, SIGNAL(ctrlWheelChanging(int)), vstaffs.last(), SLOT(setVNoteDistance(int)));
+    connect(ui->scoreView, SIGNAL(ctrlWheelChanging()), this, SLOT(updateSceneRect()));
 
     updateSceneRect();
 
@@ -1309,12 +1311,29 @@ void MainWindow::on_actionCutHalf_triggered()
 
 void MainWindow::on_actionMidiSettings_triggered()
 {
-    qDebug() << midivelocity;
+    //qDebug() << midivelocity;
     MidiSettingsDialog *dialog = new MidiSettingsDialog(instrument, midivelocity, tempo/8, this);
 
     if(dialog->exec() == QDialog::Accepted){
         instrument = dialog->getInstrument();
         midivelocity = dialog->getVolume()-1;
         tempo = dialog->getTempo()*8;
+    }
+}
+
+void MainWindow::on_actionScoreSettings_triggered()
+{
+    int notedist = 50;
+    if(!vstaffs.isEmpty()){
+        notedist = vstaffs.first()->getVNoteDistance();
+    }
+
+    ScoreSettingsDialog *dialog = new ScoreSettingsDialog(svm->getRuleList(), notedist, this);
+
+    if(dialog->exec() == QDialog::Accepted){
+        svm->setRules(dialog->getRuleList());
+        foreach (VStaff *vstaff, vstaffs) {
+            vstaff->setVNoteDistance(dialog->getVnoteDistance());
+        }
     }
 }

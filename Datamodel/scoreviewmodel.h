@@ -59,6 +59,9 @@ public:
 
     Score *getScore() const;
 
+    void setRules(QList<int> rulelist);
+    QList<Tester *> getRuleList() const;
+
 private:
     Score *score;
     QVector<clefNames> clefs;

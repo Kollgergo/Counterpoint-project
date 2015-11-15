@@ -38,3 +38,8 @@ QList<Error *> ModeRule::test(QVector<Staff> staffs, QMap<int, QVector<Accent *>
     }
     return errors;
 }
+
+int ModeRule::getTestType() const
+{
+    return 5;
+}

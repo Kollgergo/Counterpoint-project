@@ -1142,10 +1142,19 @@ void VStaff::updateAccentByKeySig()
     }
 }
 
+int VStaff::getVNoteDistance() const
+{
+    return vnotedistance;
+}
+
 void VStaff::setVNoteDistance(int dist)
 {
-    if(vnotedistance + dist > 0){
-        vnotedistance += dist;
+    if(dist > 5){
+        vnotedistance = dist;
+    }else{
+        if(vnotedistance + dist > 0 && vnotedistance + dist < 100){
+            vnotedistance += dist;
+        }
     }
 
     updateVStaffWidth();

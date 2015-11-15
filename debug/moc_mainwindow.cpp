@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[34];
-    char stringdata0[705];
+    QByteArrayData data[36];
+    char stringdata0[754];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -52,17 +52,19 @@ QT_MOC_LITERAL(19, 468, 27), // "on_actionPlayMIDI_triggered"
 QT_MOC_LITERAL(20, 496, 31), // "on_actionStopPlayBack_triggered"
 QT_MOC_LITERAL(21, 528, 26), // "on_actionCutHalf_triggered"
 QT_MOC_LITERAL(22, 555, 31), // "on_actionMidiSettings_triggered"
-QT_MOC_LITERAL(23, 587, 13), // "vNoteSelected"
-QT_MOC_LITERAL(24, 601, 6), // "VNote*"
-QT_MOC_LITERAL(25, 608, 4), // "note"
-QT_MOC_LITERAL(26, 613, 15), // "vNotePosChanged"
-QT_MOC_LITERAL(27, 629, 14), // "vstaffSelected"
-QT_MOC_LITERAL(28, 644, 7), // "VStaff*"
-QT_MOC_LITERAL(29, 652, 6), // "vstaff"
-QT_MOC_LITERAL(30, 659, 13), // "newVNoteAdded"
-QT_MOC_LITERAL(31, 673, 5), // "vnote"
-QT_MOC_LITERAL(32, 679, 13), // "playBackEnded"
-QT_MOC_LITERAL(33, 693, 11) // "vNoteUpdate"
+QT_MOC_LITERAL(23, 587, 32), // "on_actionScoreSettings_triggered"
+QT_MOC_LITERAL(24, 620, 13), // "vNoteSelected"
+QT_MOC_LITERAL(25, 634, 6), // "VNote*"
+QT_MOC_LITERAL(26, 641, 4), // "note"
+QT_MOC_LITERAL(27, 646, 15), // "vNotePosChanged"
+QT_MOC_LITERAL(28, 662, 14), // "vstaffSelected"
+QT_MOC_LITERAL(29, 677, 7), // "VStaff*"
+QT_MOC_LITERAL(30, 685, 6), // "vstaff"
+QT_MOC_LITERAL(31, 692, 13), // "newVNoteAdded"
+QT_MOC_LITERAL(32, 706, 5), // "vnote"
+QT_MOC_LITERAL(33, 712, 13), // "playBackEnded"
+QT_MOC_LITERAL(34, 726, 11), // "vNoteUpdate"
+QT_MOC_LITERAL(35, 738, 15) // "updateSceneRect"
 
     },
     "MainWindow\0on_actionExit_triggered\0\0"
@@ -85,10 +87,11 @@ QT_MOC_LITERAL(33, 693, 11) // "vNoteUpdate"
     "on_actionStopPlayBack_triggered\0"
     "on_actionCutHalf_triggered\0"
     "on_actionMidiSettings_triggered\0"
+    "on_actionScoreSettings_triggered\0"
     "vNoteSelected\0VNote*\0note\0vNotePosChanged\0"
     "vstaffSelected\0VStaff*\0vstaff\0"
     "newVNoteAdded\0vnote\0playBackEnded\0"
-    "vNoteUpdate"
+    "vNoteUpdate\0updateSceneRect"
 };
 #undef QT_MOC_LITERAL
 
@@ -98,7 +101,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      26,   14, // methods
+      28,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -106,32 +109,34 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  144,    2, 0x08 /* Private */,
-       3,    1,  145,    2, 0x08 /* Private */,
-       5,    1,  148,    2, 0x08 /* Private */,
-       6,    1,  151,    2, 0x08 /* Private */,
-       7,    1,  154,    2, 0x08 /* Private */,
-       8,    1,  157,    2, 0x08 /* Private */,
-       9,    1,  160,    2, 0x08 /* Private */,
-      10,    1,  163,    2, 0x08 /* Private */,
-      11,    1,  166,    2, 0x08 /* Private */,
-      12,    0,  169,    2, 0x08 /* Private */,
-      13,    0,  170,    2, 0x08 /* Private */,
-      14,    0,  171,    2, 0x08 /* Private */,
-      15,    0,  172,    2, 0x08 /* Private */,
-      16,    0,  173,    2, 0x08 /* Private */,
-      17,    0,  174,    2, 0x08 /* Private */,
-      18,    0,  175,    2, 0x08 /* Private */,
-      19,    0,  176,    2, 0x08 /* Private */,
-      20,    0,  177,    2, 0x08 /* Private */,
-      21,    0,  178,    2, 0x08 /* Private */,
-      22,    0,  179,    2, 0x08 /* Private */,
-      23,    1,  180,    2, 0x0a /* Public */,
-      26,    1,  183,    2, 0x0a /* Public */,
-      27,    1,  186,    2, 0x0a /* Public */,
-      30,    1,  189,    2, 0x0a /* Public */,
-      32,    0,  192,    2, 0x0a /* Public */,
-      33,    1,  193,    2, 0x0a /* Public */,
+       1,    0,  154,    2, 0x08 /* Private */,
+       3,    1,  155,    2, 0x08 /* Private */,
+       5,    1,  158,    2, 0x08 /* Private */,
+       6,    1,  161,    2, 0x08 /* Private */,
+       7,    1,  164,    2, 0x08 /* Private */,
+       8,    1,  167,    2, 0x08 /* Private */,
+       9,    1,  170,    2, 0x08 /* Private */,
+      10,    1,  173,    2, 0x08 /* Private */,
+      11,    1,  176,    2, 0x08 /* Private */,
+      12,    0,  179,    2, 0x08 /* Private */,
+      13,    0,  180,    2, 0x08 /* Private */,
+      14,    0,  181,    2, 0x08 /* Private */,
+      15,    0,  182,    2, 0x08 /* Private */,
+      16,    0,  183,    2, 0x08 /* Private */,
+      17,    0,  184,    2, 0x08 /* Private */,
+      18,    0,  185,    2, 0x08 /* Private */,
+      19,    0,  186,    2, 0x08 /* Private */,
+      20,    0,  187,    2, 0x08 /* Private */,
+      21,    0,  188,    2, 0x08 /* Private */,
+      22,    0,  189,    2, 0x08 /* Private */,
+      23,    0,  190,    2, 0x08 /* Private */,
+      24,    1,  191,    2, 0x0a /* Public */,
+      27,    1,  194,    2, 0x0a /* Public */,
+      28,    1,  197,    2, 0x0a /* Public */,
+      31,    1,  200,    2, 0x0a /* Public */,
+      33,    0,  203,    2, 0x0a /* Public */,
+      34,    1,  204,    2, 0x0a /* Public */,
+      35,    0,  207,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
@@ -154,12 +159,14 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 24,   25,
-    QMetaType::Void, 0x80000000 | 24,   25,
-    QMetaType::Void, 0x80000000 | 28,   29,
-    QMetaType::Void, 0x80000000 | 24,   31,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 24,   31,
+    QMetaType::Void, 0x80000000 | 25,   26,
+    QMetaType::Void, 0x80000000 | 25,   26,
+    QMetaType::Void, 0x80000000 | 29,   30,
+    QMetaType::Void, 0x80000000 | 25,   32,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 25,   32,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -190,24 +197,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 17: _t->on_actionStopPlayBack_triggered(); break;
         case 18: _t->on_actionCutHalf_triggered(); break;
         case 19: _t->on_actionMidiSettings_triggered(); break;
-        case 20: _t->vNoteSelected((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
-        case 21: _t->vNotePosChanged((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
-        case 22: _t->vstaffSelected((*reinterpret_cast< VStaff*(*)>(_a[1]))); break;
-        case 23: _t->newVNoteAdded((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
-        case 24: _t->playBackEnded(); break;
-        case 25: _t->vNoteUpdate((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 20: _t->on_actionScoreSettings_triggered(); break;
+        case 21: _t->vNoteSelected((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 22: _t->vNotePosChanged((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 23: _t->vstaffSelected((*reinterpret_cast< VStaff*(*)>(_a[1]))); break;
+        case 24: _t->newVNoteAdded((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 25: _t->playBackEnded(); break;
+        case 26: _t->vNoteUpdate((*reinterpret_cast< VNote*(*)>(_a[1]))); break;
+        case 27: _t->updateSceneRect(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 20:
-            switch (*reinterpret_cast<int*>(_a[1])) {
-            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-            case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VNote* >(); break;
-            }
-            break;
         case 21:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
@@ -219,17 +221,24 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VStaff* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VNote* >(); break;
             }
             break;
         case 23:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VStaff* >(); break;
+            }
+            break;
+        case 24:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<int*>(_a[0]) = -1; break;
+            case 0:
                 *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< VNote* >(); break;
             }
             break;
-        case 25:
+        case 26:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
@@ -265,13 +274,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 26)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 28;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 26)
+        if (_id < 28)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 26;
+        _id -= 28;
     }
     return _id;
 }

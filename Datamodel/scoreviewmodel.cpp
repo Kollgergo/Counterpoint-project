@@ -792,6 +792,56 @@ Score *ScoreViewModel::getScore() const
     return score;
 }
 
+/*QList<int> &ScoreViewModel::getRuleList() const
+{
+    //QList<int> templist;
+    QList<int> templist;
+
+    foreach (Tester * rule, ruleList) {
+        templist.push_back(rule->getTestType());
+    }
+
+    return templist;
+}*/
+
+void ScoreViewModel::setRules(QList<int> rulelist)
+{
+    ruleList.clear();
+
+    foreach (int rule, rulelist) {
+        switch (rule) {
+        case 1:
+            ruleList.push_back(new BeginEndRule());
+            break;
+        case 2:
+            ruleList.push_back(new ForbiddenSkipsRule());
+            break;
+        case 3:
+            ruleList.push_back(new MainRules());
+            break;
+        case 4:
+            ruleList.push_back(new MaxIntervalRule());
+            break;
+        case 5:
+            ruleList.push_back(new ModeRule);
+            break;
+        case 6:
+            ruleList.push_back(new NextToTheLastRule());
+            break;
+        case 7:
+            ruleList.push_back(new OnlyConsonanceRule());
+            break;
+        default:
+            break;
+        }
+    }
+}
+
+QList<Tester *> ScoreViewModel::getRuleList() const
+{
+    return ruleList;
+}
+
 int ScoreViewModel::getPosition(unsigned int staffnumber, unsigned int notenumber)
 {
     int pos;

@@ -51,6 +51,8 @@ public:
 
     void updateAccentByKeySig();
 
+    int getVNoteDistance() const;
+
 signals:
     void vstaffSelect(VStaff *vstaff);
     void newVNoteAdd(VNote *vnote);

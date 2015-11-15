@@ -23,3 +23,8 @@ QList<Error *> MaxIntervalRule::test(QVector<Staff> staffs, QMap<int, QVector<Ac
     }
     return errors;
 }
+
+int MaxIntervalRule::getTestType() const
+{
+    return 4;
+}

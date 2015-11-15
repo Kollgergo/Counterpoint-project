@@ -12,6 +12,7 @@
 #include "newstaffdialog.h"
 #include "newcpdialog.h"
 #include "midisettingsdialog.h"
+#include "scoresettingsdialog.h"
 #include "playback.h"
 
 
@@ -29,7 +30,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    void updateSceneRect();
+    //void updateSceneRect();
 
     void setSvm(ScoreViewModel *value);
     void showScore(bool isCF = false);
@@ -90,6 +91,8 @@ private slots:
 
     void on_actionMidiSettings_triggered();
 
+    void on_actionScoreSettings_triggered();
+
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);
@@ -97,6 +100,7 @@ public slots:
     void newVNoteAdded(VNote *vnote);
     void playBackEnded();
     void vNoteUpdate(VNote *vnote);
+    void updateSceneRect();
 
 private:
     Ui::MainWindow *ui;
@@ -112,6 +116,8 @@ private:
     unsigned int midivelocity;
     unsigned int tempo;
     unsigned int playbackcounter;
+
+    QList<int> rulelist;
 
 };
 

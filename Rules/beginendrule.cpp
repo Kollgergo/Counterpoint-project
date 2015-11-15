@@ -72,3 +72,8 @@ QList<Error *> BeginEndRule::test(QVector<Staff> staffs, QMap<int, QVector<Accen
             }
     return errors;
 }
+
+int BeginEndRule::getTestType() const
+{
+    return 1;
+}

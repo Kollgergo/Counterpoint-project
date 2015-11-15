@@ -64,3 +64,8 @@ QList<Error *> OnlyConsonanceRule::test(QVector<Staff> staffs, QMap<int, QVector
     }
     return errors;
 }
+
+int OnlyConsonanceRule::getTestType() const
+{
+    return 7;
+}

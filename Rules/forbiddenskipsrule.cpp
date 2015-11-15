@@ -60,3 +60,8 @@ QList<Error *> ForbiddenSkipsRule::test(QVector<Staff> staffs, QMap<int, QVector
     }
     return errors;
 }
+
+int ForbiddenSkipsRule::getTestType() const
+{
+    return 2;
+}

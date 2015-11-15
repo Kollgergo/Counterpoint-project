@@ -111,3 +111,8 @@ QList<Error *> NextToTheLastRule::test(QVector<Staff> staffs, QMap<int, QVector<
             }
     return errors;
 }
+
+int NextToTheLastRule::getTestType() const
+{
+    return 6;
+}

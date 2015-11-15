@@ -19,6 +19,7 @@ protected:
 
 signals:
     void ctrlWheelChanging(int value);
+    void ctrlWheelChanging();
 
 };
 

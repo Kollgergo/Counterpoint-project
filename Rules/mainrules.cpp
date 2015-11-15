@@ -273,3 +273,8 @@ QList<Error *> MainRules::test(QVector<Staff> staffs, QMap<int, QVector<Accent *
             }
     return errors;
 }
+
+int MainRules::getTestType() const
+{
+    return 3;
+}

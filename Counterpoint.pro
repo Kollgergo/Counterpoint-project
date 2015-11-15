@@ -49,7 +49,8 @@ SOURCES += main.cpp \
     Rules/maxintervalrule.cpp \
     Rules/forbiddenskipsrule.cpp \
     GUI/midisettingsdialog.cpp \
-    GUI/playback.cpp
+    GUI/playback.cpp \
+    GUI/scoresettingsdialog.cpp
 
 
 HEADERS += \
@@ -80,13 +81,15 @@ HEADERS += \
     Rules/maxintervalrule.h \
     Rules/forbiddenskipsrule.h \
     GUI/midisettingsdialog.h \
-    GUI/playback.h
+    GUI/playback.h \
+    GUI/scoresettingsdialog.h
 
 
 FORMS    += GUI/mainwindow.ui \
     GUI/newstaffdialog.ui \
     GUI/newcpdialog.ui \
-    GUI/midisettingsdialog.ui
+    GUI/midisettingsdialog.ui \
+    GUI/scoresettingsdialog.ui
 
 RESOURCES += \
     GUI.qrc

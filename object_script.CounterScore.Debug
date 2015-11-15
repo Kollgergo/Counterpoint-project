@@ -29,6 +29,7 @@ INPUT(
 ./debug\forbiddenskipsrule.o
 ./debug\midisettingsdialog.o
 ./debug\playback.o
+./debug\scoresettingsdialog.o
 ./debug\qrc_GUI.o
 ./debug\moc_mainwindow.o
 ./debug\moc_vnote.o
@@ -41,4 +42,5 @@ INPUT(
 ./debug\moc_QMidiOut.o
 ./debug\moc_midisettingsdialog.o
 ./debug\moc_playback.o
+./debug\moc_scoresettingsdialog.o
 );
