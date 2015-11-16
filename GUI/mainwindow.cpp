@@ -173,6 +173,12 @@ void MainWindow::initToolBars(bool isCP)
         ui->actionQuarter->setEnabled(false);
         ui->actionEighth->setEnabled(false);
 
+        ui->actionAddNote->setEnabled(true);
+        ui->actionAddRest->setEnabled(true);
+
+        ui->actionWhole->setEnabled(true);
+        ui->actionHalf->setEnabled(true);
+
         ui->actionAddSharp->setChecked(false);
         ui->actionAddFlat->setChecked(false);
 
@@ -194,6 +200,9 @@ void MainWindow::initToolBars(bool isCP)
         ui->actionHalf->setChecked(false);
         ui->actionQuarter->setChecked(false);
         ui->actionEighth->setChecked(false);
+
+        ui->actionAddNote->setEnabled(true);
+        ui->actionAddRest->setEnabled(true);
 
         ui->actionWhole->setEnabled(true);
         ui->actionHalf->setEnabled(true);
