@@ -16,42 +16,35 @@ class VStaff : public QGraphicsObject
 
 public:
     VStaff(bool CPmode, bool isCF = false ,ScoreViewModel::clefNames clef = ScoreViewModel::treble, KeySignature keysig = 0,QGraphicsObject *parent = 0);
+    ~VStaff();
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     QList<VStaffLine *> getVstafflines() const;
-
-    QList<VNote *> getVnotes() const;
-
-    VNote *getNewvnote() const;
-    void setNewvnote(VNote *value);
-    void setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accents accent);
-    void addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where);
-
-    ScoreViewModel::clefNames getClef() const;
-    KeySignature getKeysignature() const;
-
-    VNote *getSelectedvnote() const;
-    void setSelectedvnote(VNote *value);
-
-    void showNextVNote(VNote *vnote);
-
-    void finalizeNewVNote();
-
     int getVStaffWidth();
     void updateVStaffWidth();
     void updateVStaff();
 
+    QList<VNote *> getVnotes() const;
+    int getVNoteDistance() const;
+    VNote *getSelectedvnote() const;
+    void addVNote(unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where);
+    void showNextVNote(VNote *vnote);
     int getDurationSum();
-
-    void setNewError(int location, QString errormessage);
-
-    void deleteErrorMarkers();
 
     void updateAccentByKeySig();
 
-    int getVNoteDistance() const;
+    VNote *getNewvnote() const;
+    void setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accents accent);
+    void setNewvnote(VNote *value);
+    void finalizeNewVNote();
+
+    ScoreViewModel::clefNames getClef() const;
+    KeySignature getKeysignature() const;
+
+    void setNewError(int location, QString errormessage);
+    void deleteErrorMarkers();
 
 signals:
     void vstaffSelect(VStaff *vstaff);
@@ -70,12 +63,10 @@ private:
     QList <VStaffLine *> vstafflines;
     QGraphicsPixmapItem *barline;
     QList<VNote *> vnotes;
+    int vnotedistance;
     VNote *newvnote;
-    VNote *selectedvnote;
     bool CPmode;
     QList<ErrorMarker *> errormarkers;
-    int vnotedistance;
-
 };
 
 #endif // VSTAFF_H

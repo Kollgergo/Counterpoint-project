@@ -115,9 +115,12 @@ void PlayBack::process()
         if(!midi->isConnected()){
             emit finished();
             return;
+        }else{
+            midi->noteOn(/* note */ note.getPitch()+60, /* voice */ voice , velocity /*velocity */);
         }
-        midi->noteOn(/* note */ note.getPitch()+60, /* voice */ voice , velocity /*velocity */);
+
         //        midi.noteOn(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
+        //qDebug() << "noteon\n";
         switch (note.getDuration()) {
         case 1:
             QThread::msleep(tempo*8);
@@ -137,8 +140,10 @@ void PlayBack::process()
         if(!midi->isConnected()){
             emit finished();
             return;
+        }else{
+            midi->noteOff(/* note */ note.getPitch()+60, /* voice */ voice);
         }
-        midi->noteOff(/* note */ note.getPitch()+60, /* voice */ voice);
+        //qDebug() << "noteoff";
         //        midi.noteOff(/* note */ svm->getNoteByNum(2,i+1).getPitch()+60, /* voice */ 1 /* , velocity */);
     }
     emit finished();

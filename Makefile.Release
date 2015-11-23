@@ -3742,6 +3742,10 @@ release/moc_midisettingsdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDia
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		GUI/midisettingsdialog.h
 	C:\Qt\5.5\mingw492_32\bin\moc.exe $(DEFINES) -D__GNUC__ -DWIN32 -IC:/Qt/5.5/mingw492_32/mkspecs/win32-g++ -IC:/Users/kollg/Documents/GitHub/Counterpoint-project -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Datamodel -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/GUI -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/Rules -IC:/Users/kollg/Documents/GitHub/Counterpoint-project/QMidi/src -IC:/Qt/5.5/mingw492_32/include -IC:/Qt/5.5/mingw492_32/include/QtWidgets -IC:/Qt/5.5/mingw492_32/include/QtGui -IC:/Qt/5.5/mingw492_32/include/QtANGLE -IC:/Qt/5.5/mingw492_32/include/QtCore GUI\midisettingsdialog.h -o release\moc_midisettingsdialog.cpp
 
@@ -4044,6 +4048,10 @@ release/moc_scoresettingsdialog.cpp: C:/Qt/5.5/mingw492_32/include/QtWidgets/QDi
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \
@@ -11540,6 +11548,10 @@ release/midisettingsdialog.o: GUI/midisettingsdialog.cpp GUI/midisettingsdialog.
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		ui_midisettingsdialog.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\midisettingsdialog.o GUI\midisettingsdialog.cpp
 
@@ -11843,6 +11855,10 @@ release/scoresettingsdialog.o: GUI/scoresettingsdialog.cpp GUI/scoresettingsdial
 		C:/Qt/5.5/mingw492_32/include/QtCore/qfiledevice.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qvector2d.h \
 		C:/Qt/5.5/mingw492_32/include/QtGui/qtouchdevice.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/QPushButton \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qpushbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtWidgets/qabstractbutton.h \
+		C:/Qt/5.5/mingw492_32/include/QtGui/qicon.h \
 		Rules/tester.h \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCore \
 		C:/Qt/5.5/mingw492_32/include/QtCore/QtCoreDepends \

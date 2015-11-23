@@ -15,7 +15,7 @@ public:
 protected:
     void mouseReleaseEvent(QMouseEvent* event);
     void wheelEvent(QWheelEvent *event);
-    void contextMenuEvent(QContextMenuEvent *event);
+    //void contextMenuEvent(QContextMenuEvent *event);
 
 signals:
     void ctrlWheelChanging(int value);

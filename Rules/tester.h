@@ -11,6 +11,7 @@ class Tester
 {
 public:
     Tester();
+    ~Tester();
 
     virtual QList<Error *> test(QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap) = 0;
     virtual int getTestType() const = 0;

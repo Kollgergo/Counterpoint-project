@@ -13,12 +13,6 @@ QRectF VStaffLine::boundingRect() const
 {
     QRectF rect(0,0,staffwidth,1);
 
-    //qDebug() << rect;
-
-    //rect.setWidth(rect.width()+extrawidth);
-
-    //qDebug() << extrawidth;
-
     return rect;
 }
 
@@ -40,11 +34,9 @@ void VStaffLine::paint(QPainter *painter, const QStyleOptionGraphicsItem *option
 
 void VStaffLine::hoverEnterEvent(QGraphicsSceneHoverEvent *event)
 {
-    //qDebug() << "hover enter";
     emit hoverEntering(this);
     this->scene()->update();
 
-    //QGraphicsItem::hoverEnterEvent(event);
 }
 int VStaffLine::getStaffwidth() const
 {
@@ -61,18 +53,5 @@ void VStaffLine::addStaffwidth(int value)
         staffwidth += value;
     }
 
-    //qDebug() << staffwidth;
-    //qDebug() << this->boundingRect().width();
     this->scene()->update();
 }
-
-
-/*void VStaffLine::hoverLeaveEvent(QGraphicsSceneHoverEvent *event)
-{
-    //qDebug() << "hover leave";
-
-    this->parentItem()->scene()->update();
-
-    QGraphicsItem::hoverLeaveEvent(event);
-
-}*/

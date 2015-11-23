@@ -7,6 +7,8 @@ ForbiddenSkipsRule::ForbiddenSkipsRule()
 
 QList<Error *> ForbiddenSkipsRule::test(QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap)
 {
+    Q_UNUSED(accentsMap);
+
     int interval = 0;
     QList<Error *> errors;
 

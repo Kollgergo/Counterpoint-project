@@ -46,6 +46,10 @@ public:
 
     VStaff* getSelectedVStaff() const;
 
+    void addVNoteButtonClicked(bool isrest, bool checked);
+    void durationButtonClicked(ScoreViewModel::noteTypes ntype, bool checked);
+    void addAccentButtonClicked(bool isflat, bool checked);
+
 protected:
     void keyPressEvent(QKeyEvent * event);
 

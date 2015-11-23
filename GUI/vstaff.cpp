@@ -88,6 +88,21 @@ VStaff::VStaff(bool CPmode, bool isCF, ScoreViewModel::clefNames clef, KeySignat
     barline->setPos(vstafflines.at(2)->boundingRect().right()-22, vstafflines.at(12)->y()+1);
 }
 
+VStaff::~VStaff()
+{
+    delete(barline);
+    delete(newvnote);
+    foreach (VStaffLine *line, vstafflines) {
+        delete(line);
+    }
+    foreach (VNote *vnote, vnotes) {
+        delete(vnote);
+    }
+    foreach (ErrorMarker *error, errormarkers) {
+        delete(error);
+    }
+}
+
 QRectF VStaff::boundingRect() const
 {
     return QRectF(0,-60, 60, 120);
@@ -138,16 +153,9 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
         break;
     }
 
-    QList <QPixmap> keylist;
-
     if(keysignature.getKeysig() == 0){
 
     }else if(keysignature.getKeysig() > 0){
-        keylist.clear();
-        for(int i=0; i<keysignature.getKeysig(); i++){
-            keylist.push_back(QPixmap("./res/sharp.png"));
-        }
-
         int clefshift = 0;
 
         switch (clef) {
@@ -219,10 +227,6 @@ void VStaff::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QW
 
     }else{
         int tempkeysig = qAbs(keysignature.getKeysig());
-        keylist.clear();
-        for(int i=0; i<tempkeysig; i++){
-            keylist.push_back(QPixmap("./res/flat.png"));
-        }
 
         int clefshift = 0;
 
@@ -409,6 +413,9 @@ void VStaff::showNextVNote(VNote *vnote) //shows the next vnote and pushes it ba
 
 void VStaff::setNewVNoteByData(ScoreViewModel::noteTypes notetype, Accent::accents accent)
 {
+    if(newvnote != NULL){
+        delete(newvnote);
+    }
     newvnote = new VNote(false,true,9,notetype,accent,this);
 
     newvnote->setOpacity(0.5);
@@ -625,14 +632,14 @@ void VStaff::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     QGraphicsItem::mousePressEvent(event);
 }
+
+void VStaff::setNewvnote(VNote *value)
+{
+    newvnote = value;
+}
 KeySignature VStaff::getKeysignature() const
 {
     return keysignature;
-}
-
-void VStaff::setSelectedvnote(VNote *value)
-{
-    selectedvnote = value;
 }
 
 void VStaff::updateVStaffWidth()
@@ -1181,9 +1188,4 @@ ScoreViewModel::clefNames VStaff::getClef() const
 VNote *VStaff::getNewvnote() const
 {
     return newvnote;
-}
-
-void VStaff::setNewvnote(VNote *value)
-{
-    newvnote = value;
 }

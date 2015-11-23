@@ -16,6 +16,7 @@ class VNote : public QGraphicsObject
 public:
     VNote(bool isCF = false, bool newnote = false, unsigned int spos = 0, ScoreViewModel::noteTypes ntype = ScoreViewModel::half,
           Accent::accents acc = Accent::none, QGraphicsObject *parent = 0);
+    ~VNote();
 
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
@@ -29,11 +30,11 @@ public:
     Accent::accents getAccent() const;
     void setAccent(const Accent::accents &value, bool iskeysig);
 
-    void changeToRest();
-    void changeToNote();
-
     bool getIskeysig() const;
     void setIskeysig(bool value);
+
+    void changeToRest();
+    void changeToNote();
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
@@ -49,11 +50,11 @@ public slots:
 
 private:
     QPixmap pixmap;
+    ScoreViewModel::noteTypes notetype;
+    Accent::accents accent;
     VNote *shadow;
     unsigned int staffpos;
-    Accent::accents accent;
     bool iskeysig;
-    ScoreViewModel::noteTypes notetype;
     bool newnote;
 };
 

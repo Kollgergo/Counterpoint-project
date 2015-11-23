@@ -34,12 +34,12 @@ void ScoreView::wheelEvent(QWheelEvent *event)
     }
 }
 
-void ScoreView::contextMenuEvent(QContextMenuEvent *event)
-{
-    QMenu menu(this);
-    QAction *actionNewScore = new QAction("Új kotta", this);
+//void ScoreView::contextMenuEvent(QContextMenuEvent *event)
+//{
+//    QMenu menu(this);
+//    QAction *actionNewScore = new QAction("Új kotta", this);
 
-    menu.addAction("Valami");
+//    menu.addAction("Valami");
 
-    menu.exec(event->globalPos());
-}
+//    menu.exec(event->globalPos());
+//}

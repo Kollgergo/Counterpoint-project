@@ -18,6 +18,14 @@ ScoreViewModel::ScoreViewModel()
 ScoreViewModel::~ScoreViewModel()
 {
     delete score;
+    foreach (QVector<Accent *> staff, accentsMap) {
+        foreach (Accent *acc, staff) {
+            delete(acc);
+        }
+    }
+    foreach (Tester *test, ruleList) {
+        delete(test);
+    }
 }
 
 unsigned int ScoreViewModel::getNumOfStaffs() const

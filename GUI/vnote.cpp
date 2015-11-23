@@ -39,6 +39,11 @@ VNote::VNote(bool isCF, bool newnote, unsigned int spos, ScoreViewModel::noteTyp
     }
 }
 
+VNote::~VNote()
+{
+    delete(shadow);
+}
+
 QRectF VNote::boundingRect() const
 {
     QRectF rect;
@@ -187,13 +192,6 @@ void VNote::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWi
             }
 
         }
-
-
-    /*QPen pen(Qt::red);
-    painter->setPen(pen);
-    painter->drawRect(boundingRect());
-
-    */
 }
 
 void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
@@ -205,9 +203,6 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     }else{
         emit vNoteSelecting(this);
-
-        VStaff *tempparent = (VStaff *)this->parentItem();
-        tempparent->setSelectedvnote(this);
 
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
            setCursor(Qt::ClosedHandCursor);
@@ -235,22 +230,14 @@ void VNote::mousePressEvent(QGraphicsSceneMouseEvent *event)
                shadow->setOpacity(0);
                shadow->setX(this->pos().x());
                shadow->setY(this->pos().y());
-               //qDebug() << "Current note pos" << this->pos();
-               //qDebug() << "Current note scenepos" << this->scenePos();
            }
         }
-        //qDebug() << this->pos();
         QGraphicsItem::mousePressEvent(event);
     }
-
-
-    //QGraphicsItem::mousePressEvent(event);
 }
 
 void VNote::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-    //qDebug() << "mousmoveevent call";
-
     if(newnote == false){
         if(getNotetype() == ScoreViewModel::whole || getNotetype() == ScoreViewModel::half || getNotetype() == ScoreViewModel::quarter || getNotetype() == ScoreViewModel::eighth){
             QList <QGraphicsItem *> colList = this->scene()->collidingItems(this);
@@ -339,9 +326,6 @@ void VNote::hoverEntered(VStaffLine *staffline)
             }
         }
     }
-
-
-
 }
 
 bool VNote::getIskeysig() const

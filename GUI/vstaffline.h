@@ -20,7 +20,6 @@ public:
 
 protected:
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event);
-    //void hoverLeaveEvent(QGraphicsSceneHoverEvent *event);
 
 signals:
     void hoverEntering(VStaffLine *staffline);

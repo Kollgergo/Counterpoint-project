@@ -82,6 +82,7 @@ void QMidiOut::sendMsg(qint32 msg)
 		return;
 	}
 
-	midiOutShortMsg(fMidiPtrs->midiOutPtr, (DWORD)msg);
-
+    if(fConnected){// itt lehet valami gebasz
+        midiOutShortMsg(fMidiPtrs->midiOutPtr, (DWORD)msg);
+    }
 }
