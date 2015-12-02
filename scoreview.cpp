@@ -6,12 +6,6 @@ ScoreView::ScoreView(QWidget *parent) : QGraphicsView(parent)
     setAlignment(Qt::AlignCenter);
 }
 
-void ScoreView::mouseReleaseEvent(QMouseEvent *event)
-{
-    this->scene()->update();
-    QGraphicsView::mouseReleaseEvent(event);
-}
-
 void ScoreView::wheelEvent(QWheelEvent *event)
 {
     if(event->modifiers() == Qt::ControlModifier){

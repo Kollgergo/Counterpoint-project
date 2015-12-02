@@ -30,9 +30,10 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    //void updateSceneRect();
-
     void setSvm(ScoreViewModel *value);
+    QList<VStaff *> getVstaffs() const;
+    VStaff* getSelectedVStaff() const;
+
     void showScore(bool isCF = false);
     void showNextVStaff(VStaff * vstaff);
     void updateNoteData(VNote *vnote);
@@ -41,10 +42,6 @@ public:
     void addVNote(VStaff *vstaff, unsigned int staffpos, ScoreViewModel::noteTypes notetype, Accent::accents accent, unsigned int where);
 
     void initToolBars(bool isCP);
-
-    QList<VStaff *> getVstaffs() const;
-
-    VStaff* getSelectedVStaff() const;
 
     void addVNoteButtonClicked(bool isrest, bool checked);
     void durationButtonClicked(ScoreViewModel::noteTypes ntype, bool checked);
@@ -100,28 +97,29 @@ private slots:
 public slots:
     void vNoteSelected(VNote *note);
     void vNotePosChanged(VNote *note);
-    void vstaffSelected(VStaff *vstaff);
-    void newVNoteAdded(VNote *vnote);
-    void playBackEnded();
     void vNoteUpdate(VNote *vnote);
+    void newVNoteAdded(VNote *vnote);
+    void vstaffSelected(VStaff *vstaff);
+    void playBackEnded();
     void updateSceneRect();
 
 private:
     Ui::MainWindow *ui;
-    ScoreViewModel *svm;
     QGraphicsScene *scene;
+    ScoreViewModel *svm;
     QList<VStaff*> vstaffs;
     VStaff *selectedvstaff;
     bool CPmode;
+    QList<int> rulelist;
 
     QList<PlayBack *> voices;
+    QMap<QString, QString> vals;
     QMidiOut *midi;
     unsigned int instrument;
     unsigned int midivelocity;
     unsigned int tempo;
     unsigned int playbackcounter;
 
-    QList<int> rulelist;
 
 };
 

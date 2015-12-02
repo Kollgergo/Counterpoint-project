@@ -220,7 +220,7 @@ $(DESTDIR_TARGET): ui_mainwindow.h ui_newstaffdialog.h ui_newcpdialog.h ui_midis
 	$(LINKER) $(LFLAGS) -o $(DESTDIR_TARGET) object_script.CounterScore.Release  $(LIBS)
 
 qmake: FORCE
-	@$(QMAKE) -spec win32-g++ "CONFIG+=debug" -o Makefile.Release Counterpoint.pro
+	@$(QMAKE) -spec win32-g++ -o Makefile.Release Counterpoint.pro
 
 qmake_all: FORCE
 

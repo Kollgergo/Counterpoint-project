@@ -5,11 +5,6 @@ Tester::Tester()
 
 }
 
-Tester::~Tester()
-{
-
-}
-
 unsigned int Tester::getInterval(unsigned int staffnum, unsigned int notenum, QVector<Staff> staffs, QMap<int, QVector<Accent *> > accentsMap)
 {
     int interval = 0;

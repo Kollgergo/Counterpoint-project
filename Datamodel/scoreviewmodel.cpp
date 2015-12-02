@@ -23,9 +23,6 @@ ScoreViewModel::~ScoreViewModel()
             delete(acc);
         }
     }
-    foreach (Tester *test, ruleList) {
-        delete(test);
-    }
 }
 
 unsigned int ScoreViewModel::getNumOfStaffs() const
@@ -780,12 +777,6 @@ void ScoreViewModel::readLilyPond(QString file, bool isCF)
 
 QList<Error *> ScoreViewModel::testScore()
 {
-//    QList<Error *> errors = consonancerule->test(score->getStaffs());
-
-//    foreach (Error *error, errors) {
-//        qDebug() << error->getLocation();
-//        qDebug() << error->getErrormessage();
-//    }
 
     QList<Error *> errorlist;
 
@@ -799,18 +790,6 @@ Score *ScoreViewModel::getScore() const
 {
     return score;
 }
-
-/*QList<int> &ScoreViewModel::getRuleList() const
-{
-    //QList<int> templist;
-    QList<int> templist;
-
-    foreach (Tester * rule, ruleList) {
-        templist.push_back(rule->getTestType());
-    }
-
-    return templist;
-}*/
 
 void ScoreViewModel::setRules(QList<int> rulelist)
 {

@@ -261,7 +261,9 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "CounterScore", 0));
         actionExit->setText(QApplication::translate("MainWindow", "Kil\303\251p\303\251s", 0));
         actionAddNote->setText(QApplication::translate("MainWindow", "\303\232j Hangjegy", 0));
+        actionAddNote->setShortcut(QApplication::translate("MainWindow", "N", 0));
         actionAddRest->setText(QApplication::translate("MainWindow", "\303\232j Sz\303\274net", 0));
+        actionAddRest->setShortcut(QApplication::translate("MainWindow", "R", 0));
         actionHalf->setText(QApplication::translate("MainWindow", "F\303\251l", 0));
         actionHalf->setShortcut(QApplication::translate("MainWindow", "2", 0));
         actionWhole->setText(QApplication::translate("MainWindow", "Eg\303\251sz", 0));
@@ -271,10 +273,13 @@ public:
         actionEighth->setText(QApplication::translate("MainWindow", "Nyolcad", 0));
         actionEighth->setShortcut(QApplication::translate("MainWindow", "4", 0));
         actionAddSharp->setText(QApplication::translate("MainWindow", "Kereszt hozz\303\241ad\303\241sa", 0));
+        actionAddSharp->setShortcut(QApplication::translate("MainWindow", "X", 0));
         actionAddFlat->setText(QApplication::translate("MainWindow", "B hozz\303\241ad\303\241sa", 0));
+        actionAddFlat->setShortcut(QApplication::translate("MainWindow", "B", 0));
         actionNewScore->setText(QApplication::translate("MainWindow", "\303\232j kotta", 0));
         actionNewScore->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", 0));
         actionNewCounterpoint->setText(QApplication::translate("MainWindow", "\303\232j Ellenpont feladat", 0));
+        actionNewCounterpoint->setShortcut(QApplication::translate("MainWindow", "Ctrl+C", 0));
         actionChangeNoteRest->setText(QApplication::translate("MainWindow", "Hang cser\303\251je hang-sz\303\274net", 0));
 #ifndef QT_NO_TOOLTIP
         actionChangeNoteRest->setToolTip(QApplication::translate("MainWindow", "Hang - Sz\303\274net csere, gyorsbillenyt\305\261: M", 0));
@@ -287,13 +292,16 @@ public:
         actionTest->setText(QApplication::translate("MainWindow", "Ellen\305\221rz\303\251s", 0));
         actionTest->setShortcut(QApplication::translate("MainWindow", "T", 0));
         actionNewStaff->setText(QApplication::translate("MainWindow", "\303\232j Kottasor", 0));
+        actionNewStaff->setShortcut(QApplication::translate("MainWindow", "S", 0));
         actionPlayMIDI->setText(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s", 0));
+        actionPlayMIDI->setShortcut(QApplication::translate("MainWindow", "P", 0));
         actionStopPlayBack->setText(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s meg\303\241ll\303\255t\303\241sa", 0));
 #ifndef QT_NO_TOOLTIP
         actionStopPlayBack->setToolTip(QApplication::translate("MainWindow", "Lej\303\241tsz\303\241s le\303\241ll\303\255t\303\241sa", 0));
 #endif // QT_NO_TOOLTIP
+        actionStopPlayBack->setShortcut(QApplication::translate("MainWindow", "Ctrl+P", 0));
         actionCutHalf->setText(QApplication::translate("MainWindow", "Hang elfelez\303\251se", 0));
-        actionCutHalf->setShortcut(QApplication::translate("MainWindow", "N", 0));
+        actionCutHalf->setShortcut(QApplication::translate("MainWindow", "K", 0));
         actionScoreSettings->setText(QApplication::translate("MainWindow", "Kotta", 0));
         actionMidiSettings->setText(QApplication::translate("MainWindow", "MIDI", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "F\303\241jl", 0));

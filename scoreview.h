@@ -13,9 +13,7 @@ public:
     ScoreView(QWidget *parent = 0);
 
 protected:
-    void mouseReleaseEvent(QMouseEvent* event);
     void wheelEvent(QWheelEvent *event);
-    //void contextMenuEvent(QContextMenuEvent *event);
 
 signals:
     void ctrlWheelChanging(int value);

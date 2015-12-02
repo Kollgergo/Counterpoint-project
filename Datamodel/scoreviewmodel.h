@@ -33,6 +33,7 @@ public:
     Staff &getStaffByNum(unsigned int which);
     clefNames getClefByNum(int which);
     KeySignature getKeySignatureByNum(int which);
+    QVector<Accent *> getStaffAccentByNum(unsigned int which);
 
     void addNote(unsigned int staffnum, int pitch, int duration, Accent::accents accent, unsigned int where = 0);
     bool deleteNote(unsigned int staffnum, unsigned int which);
@@ -44,8 +45,6 @@ public:
     Accent::accents getAccent(unsigned int staffnumber, unsigned int notenumber);
     noteTypes getType(unsigned int staffnumber, unsigned int notenumber);
 
-    QVector<Accent *> getStaffAccentByNum(unsigned int which);
-
     void updatePosition(unsigned int staffnumber, unsigned int notenumber, int newscorepos);
     void updateAccent(unsigned int staffnumber, unsigned int notenumber, Accent::accents newaccent);
     void updateType(unsigned int staffnumber, unsigned int notenumber, noteTypes newnotetype);
@@ -55,21 +54,19 @@ public:
     void makeLilyPond(QString destination);
     void readLilyPond(QString file, bool isCF);
 
-    QList<Error *> testScore();
-
     Score *getScore() const;
 
     void setRules(QList<int> rulelist);
     QList<Tester *> getRuleList() const;
+
+    QList<Error *> testScore();
 
 private:
     Score *score;
     QVector<clefNames> clefs;
     QVector<KeySignature> keysignatures;
     QMap<int,QVector<Accent *> > accentsMap;
-
     QList<Tester *> ruleList;
-    //OnlyConsonanceRule *consonancerule;
 
 };
 

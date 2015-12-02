@@ -148,6 +148,9 @@
    <property name="text">
     <string>Új Hangjegy</string>
    </property>
+   <property name="shortcut">
+    <string>N</string>
+   </property>
   </action>
   <action name="actionAddRest">
    <property name="checkable">
@@ -159,6 +162,9 @@
    </property>
    <property name="text">
     <string>Új Szünet</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
    </property>
   </action>
   <action name="actionHalf">
@@ -232,6 +238,9 @@
    <property name="text">
     <string>Kereszt hozzáadása</string>
    </property>
+   <property name="shortcut">
+    <string>X</string>
+   </property>
   </action>
   <action name="actionAddFlat">
    <property name="checkable">
@@ -243,6 +252,9 @@
    </property>
    <property name="text">
     <string>B hozzáadása</string>
+   </property>
+   <property name="shortcut">
+    <string>B</string>
    </property>
   </action>
   <action name="actionNewScore">
@@ -264,6 +276,9 @@
    </property>
    <property name="text">
     <string>Új Ellenpont feladat</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
   <action name="actionChangeNoteRest">
@@ -325,6 +340,9 @@
    <property name="text">
     <string>Új Kottasor</string>
    </property>
+   <property name="shortcut">
+    <string>S</string>
+   </property>
   </action>
   <action name="actionPlayMIDI">
    <property name="icon">
@@ -333,6 +351,9 @@
    </property>
    <property name="text">
     <string>Lejátszás</string>
+   </property>
+   <property name="shortcut">
+    <string>P</string>
    </property>
   </action>
   <action name="actionStopPlayBack">
@@ -346,6 +367,9 @@
    <property name="toolTip">
     <string>Lejátszás leállítása</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionCutHalf">
    <property name="icon">
@@ -356,7 +380,7 @@
     <string>Hang elfelezése</string>
    </property>
    <property name="shortcut">
-    <string>N</string>
+    <string>K</string>
    </property>
   </action>
   <action name="actionScoreSettings">

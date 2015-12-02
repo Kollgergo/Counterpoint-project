@@ -19,6 +19,10 @@ MainWindow::MainWindow(QWidget *parent) :
     instrument = 0;
     midivelocity = 64;
     tempo = 400;
+
+    vals = QMidiOut::devices();
+    qDebug() << vals.firstKey();
+    midi = new QMidiOut;
 }
 
 MainWindow::~MainWindow()
@@ -1083,9 +1087,7 @@ void MainWindow::on_actionPlayMIDI_triggered()
         ui->mainToolBar->setEnabled(false);
         playbackcounter = 0;
 
-        QMap<QString, QString> vals = QMidiOut::devices();
-        qDebug() << vals.firstKey();
-        midi = new QMidiOut;
+
         midi->connect(vals.firstKey());
 
         voices.clear();
